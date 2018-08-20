@@ -1,12 +1,17 @@
 import QtQuick 2.0
 
+
+//WalletAssetsHeaderView {
+//    activeItem: listView.currentItem
+//}
+
 ListView {
     id: root
 
     model: ListModel {
-        ListElement { color: "lightblue"; name: "Dash" }
-        ListElement { color: "darkblue"; name: "XSN" }
-        ListElement { color: "orange"; name: "Bitcoin" }
+        ListElement { color: "lightblue"; name: "Dash"; balance: "1.5"; }
+        ListElement { color: "darkblue"; name: "XSN"; balance: "1.3"; }
+        ListElement { color: "orange"; name: "Bitcoin"; icon: ""; balance: "2.7"; }
     }
 
     highlight: Item {
