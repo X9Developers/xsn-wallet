@@ -8,6 +8,6 @@ Project {
     references: [
         "src/app/app.qbs",
         "src/core/core.qbs",
-        "src/networking/networking.qbs",
+//        "src/networking/networking.qbs",
     ]
 }

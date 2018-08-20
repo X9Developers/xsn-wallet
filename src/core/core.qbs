@@ -10,11 +10,14 @@ Product {
     files: [
         "Utils.cpp",
         "Utils.hpp",
+        "ViewModels/WalletAssetViewModel.cpp",
+        "ViewModels/WalletAssetViewModel.hpp",
         "lib.cpp",
         "lib.h",
     ]
     Depends { name: "cpp" }
-    Depends { name: "networking" }
+    Depends { name: "Qt.core" }
+//    Depends { name: "networking" }
     cpp.defines: ['CRUCIAL_DEFINE']
 
     Export {
