@@ -2,6 +2,8 @@
 #define WALLETDATASOURCE_HPP
 
 #include <QObject>
+#include <functional>
+#include <Utils.hpp>
 #include <Data/TransactionEntry.hpp>
 
 class WalletDataSource : public QObject
@@ -16,6 +18,15 @@ public:
 signals:
     void transactionsFetched(TransactionsList list);
     void transactionsFetchError(QString error);
+
+protected:
+    virtual TransactionsList executeFetch(QString id) = 0;
+
+private:
+    void initWorkerThread();
+
+private:
+    WorkerThread _dataSourceWorker;
 
 };
 
