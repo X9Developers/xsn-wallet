@@ -8,7 +8,7 @@ Module {
 //    name: "vendor"
     Depends { name: "cpp" }
 
-    property string includePath: path + "/include"
+    property string includePath: path
 
     cpp.includePaths: [
         includePath + "/gsl/include",

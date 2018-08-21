@@ -3,11 +3,17 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 import qbs
+import qbs.Utilities
 
 Project {
     references: [
         "src/app/app.qbs",
         "src/core/core.qbs",
+        "src/core/tests/core_tests.qbs"
 //        "src/networking/networking.qbs",
     ]
+
+    AutotestRunner {
+        name: "run_autotests"
+    }
 }
