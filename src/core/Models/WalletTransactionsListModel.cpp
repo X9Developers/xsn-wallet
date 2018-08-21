@@ -23,3 +23,15 @@ QVariant WalletTransactionsListModel::data(const QModelIndex &index, int role) c
 }
 
 //==============================================================================
+
+QHash<int, QByteArray> WalletTransactionsListModel::roleNames() const
+{
+    static QHash<int, QByteArray> result;
+    if(result.isEmpty())
+    {
+    }
+
+    return result;
+}
+
+//==============================================================================

@@ -8,6 +8,10 @@ Product {
     type: "staticlibrary"
     name: "core"
     files: [
+        "Data/TransactionEntry.cpp",
+        "Data/TransactionEntry.hpp",
+        "Models/WalletDataSource.cpp",
+        "Models/WalletDataSource.hpp",
         "Models/WalletTransactionsListModel.cpp",
         "Models/WalletTransactionsListModel.hpp",
         "Utils.cpp",
@@ -17,6 +21,7 @@ Product {
     ]
     Depends { name: "cpp" }
     Depends { name: "Qt.core" }
+    Depends { name: "3rdparty" }
 //    Depends { name: "networking" }
     cpp.defines: ['CRUCIAL_DEFINE']
     cpp.includePaths: [product.sourceDirectory]

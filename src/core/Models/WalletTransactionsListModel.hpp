@@ -10,8 +10,14 @@ class WalletTransactionsListModel : public QAbstractListModel
 public:
     explicit WalletTransactionsListModel(QObject *parent = nullptr);
 
+    enum Roles {
+
+    };
+
     virtual int rowCount(const QModelIndex &parent) const override final;
     virtual QVariant data(const QModelIndex &index, int role) const override final;
+    virtual QHash<int, QByteArray> roleNames() const override final;
+
 signals:
 
 public slots:
