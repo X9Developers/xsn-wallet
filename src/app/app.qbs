@@ -28,9 +28,13 @@ CppApplication {
     ]
 
     files: [
+        "QMLUtils.cpp",
+        "QMLUtils.hpp",
         "main.cpp",
         "qml/qml.qrc",
     ]
+
+    cpp.includePaths: [product.sourceDirectory]
 
     Group {     // Properties for the produced executable
         fileTagsFilter: "application"

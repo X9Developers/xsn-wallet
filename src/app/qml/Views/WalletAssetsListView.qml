@@ -1,10 +1,5 @@
 import QtQuick 2.0
 
-
-//WalletAssetsHeaderView {
-//    activeItem: listView.currentItem
-//}
-
 ListView {
     id: root
 

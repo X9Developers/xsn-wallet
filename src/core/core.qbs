@@ -8,17 +8,18 @@ Product {
     type: "staticlibrary"
     name: "core"
     files: [
+        "Models/WalletTransactionsListModel.cpp",
+        "Models/WalletTransactionsListModel.hpp",
         "Utils.cpp",
         "Utils.hpp",
         "ViewModels/WalletAssetViewModel.cpp",
         "ViewModels/WalletAssetViewModel.hpp",
-        "lib.cpp",
-        "lib.h",
     ]
     Depends { name: "cpp" }
     Depends { name: "Qt.core" }
 //    Depends { name: "networking" }
     cpp.defines: ['CRUCIAL_DEFINE']
+    cpp.includePaths: [product.sourceDirectory]
 
     Export {
         Depends { name: "cpp" }

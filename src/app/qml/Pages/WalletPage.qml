@@ -3,6 +3,7 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 
 import "../Views"
+import com.xsn.viewmodels 1.0
 
 Page {
 
@@ -16,10 +17,20 @@ Page {
             Layout.fillWidth: true
         }
 
+        WalletAssetViewModel {
+            id: walletViewModel
+        }
+
         Rectangle {
             Layout.fillHeight: true
             Layout.fillWidth: true
             color: "grey"
+
+
+            Text {
+                anchors.centerIn: parent
+                text: "Balance: " + walletViewModel.balance
+            }
         }
     }
 }
