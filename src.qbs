@@ -9,9 +9,12 @@ Project {
     references: [
         "src/app/app.qbs",
         "src/core/core.qbs",
-        "src/core/tests/core_tests.qbs"
 //        "src/networking/networking.qbs",
     ]
+
+    SubProject {
+        filePath: "src/tests/tests.qbs"
+    }
 
     AutotestRunner {
         name: "run_autotests"

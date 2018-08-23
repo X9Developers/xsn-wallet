@@ -21,7 +21,7 @@ Product {
     ]
     Depends { name: "cpp" }
     Depends { name: "Qt.core" }
-    Depends { name: "3rdparty" }
+    Depends { name: "gsl" }
 //    Depends { name: "networking" }
     cpp.defines: ['CRUCIAL_DEFINE']
     cpp.includePaths: [product.sourceDirectory]
