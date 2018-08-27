@@ -6,7 +6,7 @@ Item {
     property alias textButton: actionButton.text
 
     Button {
-        id:actionButton
+        id: actionButton
         //text:textButton
     }
 }

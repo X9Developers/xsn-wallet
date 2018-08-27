@@ -22,7 +22,7 @@ Page {
             //            Layout.fillWidth: true
         }
 
-        ColumnLayout{
+        ColumnLayout {
 
             Layout.fillWidth: true
             Layout.fillHeight: true
@@ -37,18 +37,17 @@ Page {
                     text: "Balance: " + walletViewModel.balance
                 }
 
-                TransactionButton{
+                TransactionButton {
                     textButton: "Send"
                 }
 
-                TransactionButton{
+                TransactionButton {
                     textButton: "Receive"
                 }
 
                 Image {
                     //source: "pics/qtlogo.png"
                 }
-
             }
 
             TramsactionsListView {
@@ -56,9 +55,7 @@ Page {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 Layout.maximumHeight: parent.height / 2
-
             }
         }
-
     }
 }
