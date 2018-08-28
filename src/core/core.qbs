@@ -10,12 +10,16 @@ Product {
     files: [
         "Data/TransactionEntry.cpp",
         "Data/TransactionEntry.hpp",
+        "Models/EmulatorWalletDataSource.cpp",
+        "Models/EmulatorWalletDataSource.hpp",
         "Models/WalletDataSource.cpp",
         "Models/WalletDataSource.hpp",
         "Models/WalletTransactionsListModel.cpp",
         "Models/WalletTransactionsListModel.hpp",
         "Utils.cpp",
         "Utils.hpp",
+        "ViewModels/ApplicationViewModel.cpp",
+        "ViewModels/ApplicationViewModel.hpp",
         "ViewModels/WalletAssetViewModel.cpp",
         "ViewModels/WalletAssetViewModel.hpp",
     ]

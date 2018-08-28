@@ -24,6 +24,8 @@ static void ScheduleJob(WorkerThread &thread, std::function<T(void)> job, std::f
 WalletDataSource::WalletDataSource(QObject *parent) : QObject(parent)
 {
     initWorkerThread();
+
+    qRegisterMetaType<TransactionsList>("TransactionsList");
 }
 
 //==============================================================================

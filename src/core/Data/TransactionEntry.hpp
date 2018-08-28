@@ -11,7 +11,6 @@ struct TransactionEntry
     };
 
     TransactionEntry(QString txId, Type txType, int delta);
-
     const QString _transactionID;
     const Type _txType;
     const int _delta;
