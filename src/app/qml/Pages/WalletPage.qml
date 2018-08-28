@@ -11,7 +11,7 @@ Page {
 
     WalletAssetViewModel {
         id: walletViewModel
-        //applicationViewModel: ApplicationViewModel
+        applicationViewModel: ApplicationViewModel
     }
 
     RowLayout {

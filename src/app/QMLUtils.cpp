@@ -20,7 +20,12 @@ void QMLUtils::RegisterQMLTypes()
 void QMLUtils::RegisterViewModels(const char *uri, int versionMinor, int versionMajor)
 {
     QML_REGISTER_TYPE_HELPER(WalletAssetViewModel);
-    QML_REGISTER_TYPE_HELPER(ApplicationViewModel);
+
+    qmlRegisterSingletonType<ApplicationViewModel>("com.xsn.viewmodels", 1, 0, "ApplicationViewModel",
+                                                   [](QQmlEngine *engine, QJSEngine *) -> QObject* {
+        engine->setObjectOwnership(ApplicationViewModel::Instance(), QQmlEngine::CppOwnership);
+        return ApplicationViewModel::Instance();
+    });
 
 }
 

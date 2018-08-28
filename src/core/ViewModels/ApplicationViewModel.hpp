@@ -15,6 +15,7 @@ public:
     ~ApplicationViewModel();
 
     WalletDataSource *dataSource();
+    static ApplicationViewModel *Instance();
 
 private:
     void init();

@@ -24,6 +24,14 @@ WalletDataSource* ApplicationViewModel::dataSource()
 
 //==============================================================================
 
+ApplicationViewModel *ApplicationViewModel::Instance()
+{
+    static ApplicationViewModel instance;
+    return &instance;
+}
+
+//==============================================================================
+
 void ApplicationViewModel::init()
 {
     initDataSource();
