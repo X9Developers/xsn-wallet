@@ -23,6 +23,8 @@ WalletDataSource::TransactionsList EmulatorWalletDataSource::executeFetch(QStrin
     auto it = _transactionMap.find(id);
     if(it != std::end(_transactionMap))
         return it->second;
+    else
+        return TransactionsList();
 }
 
 //==============================================================================
