@@ -7,7 +7,6 @@
 
 WalletAssetViewModel::WalletAssetViewModel(QObject *parent)
 {
-    init();
 }
 
 //==============================================================================
@@ -35,7 +34,10 @@ QString WalletAssetViewModel::balance() const
 
 void WalletAssetViewModel::setApplicationViewModel(ApplicationViewModel *applicationViewModel)
 {
-    _walletDataSource.reset(applicationViewModel->dataSource());
+    _walletDataSource = applicationViewModel->dataSource();
+    init();
+
+    emit applicationViewModelChanged();
 }
 
 //==============================================================================

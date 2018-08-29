@@ -11,8 +11,9 @@ class EmulatorWalletDataSource : public WalletDataSource
     Q_OBJECT
 public:
     explicit EmulatorWalletDataSource(QObject *parent = nullptr);
-    ~EmulatorWalletDataSource();
+    ~EmulatorWalletDataSource() override;
 
+protected:
     TransactionsList executeFetch(QString id) override;
 
 private:

@@ -17,7 +17,7 @@ ApplicationViewModel::~ApplicationViewModel()
 
 //==============================================================================
 
-WalletDataSource* ApplicationViewModel::dataSource()
+WalletDataSource* ApplicationViewModel::dataSource() const
 {
     return _emulatorWalletDataSource.get();
 }

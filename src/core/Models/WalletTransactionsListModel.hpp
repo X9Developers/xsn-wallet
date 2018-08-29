@@ -3,7 +3,7 @@
 
 #include <QAbstractListModel>
 #include <QObject>
-#include <memory>
+#include <QPointer>
 
 #include "Models/WalletDataSource.hpp"
 #include "Data/TransactionEntry.hpp"
@@ -12,7 +12,8 @@ class WalletTransactionsListModel : public QAbstractListModel
 {
     Q_OBJECT
 public:
-    explicit WalletTransactionsListModel(std::weak_ptr<WalletDataSource> dataSource, QString coinsID, QObject *parent = nullptr);
+    explicit WalletTransactionsListModel(QPointer<WalletDataSource> dataSource, QString coinsID, QObject *parent = nullptr);
+    ~WalletTransactionsListModel() override;
 
     enum Roles {
         TransactionIDRole,
@@ -35,7 +36,7 @@ private:
     void init();
 
 private:
-    std::weak_ptr<WalletDataSource> _walletDataSource;
+    QPointer<WalletDataSource> _walletDataSource;
     WalletDataSource::TransactionsList _transactionList;
     QString _coinsID;
 };

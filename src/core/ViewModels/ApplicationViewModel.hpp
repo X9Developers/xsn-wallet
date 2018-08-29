@@ -14,7 +14,7 @@ public:
     explicit ApplicationViewModel(QObject *parent = nullptr);
     ~ApplicationViewModel();
 
-    WalletDataSource *dataSource();
+    WalletDataSource *dataSource() const;
     static ApplicationViewModel *Instance();
 
 private:

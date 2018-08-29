@@ -3,12 +3,19 @@
 
 //==============================================================================
 
-WalletTransactionsListModel::WalletTransactionsListModel(std::weak_ptr<WalletDataSource> dataSource, QString coinsID, QObject *parent) :
+WalletTransactionsListModel::WalletTransactionsListModel(QPointer<WalletDataSource> dataSource, QString coinsID, QObject *parent) :
     QAbstractListModel(parent),
     _walletDataSource(dataSource),
     _coinsID(coinsID)
 {
     init();
+}
+
+//==============================================================================
+
+WalletTransactionsListModel::~WalletTransactionsListModel()
+{
+
 }
 
 //==============================================================================
@@ -59,8 +66,7 @@ QHash<int, QByteArray> WalletTransactionsListModel::roleNames() const
 void WalletTransactionsListModel::onTransactionFetched(WalletDataSource::TransactionsList list)
 {
     beginResetModel();
-    for(auto transaction : list )
-        _transactionList.push_back(transaction);
+    _transactionList.swap(list);
     endResetModel();
 }
 
@@ -68,10 +74,10 @@ void WalletTransactionsListModel::onTransactionFetched(WalletDataSource::Transac
 
 void WalletTransactionsListModel::init()
 {
-    if(auto dataSource = _walletDataSource.lock())
+    if(_walletDataSource)
     {
-        connect(dataSource.get(), &WalletDataSource::transactionsFetched, this, &WalletTransactionsListModel::onTransactionFetched);
-        dataSource->fetchTransactions(_coinsID);
+        connect(_walletDataSource.data(), &WalletDataSource::transactionsFetched, this, &WalletTransactionsListModel::onTransactionFetched);
+        _walletDataSource->fetchTransactions(_coinsID);
     }
 }
 

@@ -1,5 +1,4 @@
 #include "EmulatorWalletDataSource.hpp"
-#include <QDebug>
 #include <map>
 
 //==============================================================================
@@ -21,9 +20,9 @@ EmulatorWalletDataSource::~EmulatorWalletDataSource()
 
 WalletDataSource::TransactionsList EmulatorWalletDataSource::executeFetch(QString id)
 {
-    qDebug() << "Coin`s ID:" << id;
     auto it = _transactionMap.find(id);
-    return it->second;
+    if(it != std::end(_transactionMap))
+        return it->second;
 }
 
 //==============================================================================
