@@ -19,7 +19,6 @@ Page {
             Layout.fillHeight: true
             Layout.maximumWidth: parent.width / 4
             Layout.minimumWidth: parent.width / 4
-            //            Layout.fillWidth: true
         }
 
         ColumnLayout{
@@ -32,33 +31,87 @@ Page {
                 Layout.fillWidth: true
                 color: "grey"
 
-                Text {
-                    anchors.centerIn: parent
-                    text: "Balance: " + walletViewModel.balance
-                }
+                ColumnLayout{
 
-                TransactionButton{
-                    textButton: "Send"
-                }
+                    anchors.fill: parent
 
-                TransactionButton{
-                    textButton: "Receive"
-                }
+                    //                    Item {
+                    //                        Layout.fillHeight: true
+                    //                    }
 
-                Image {
-                    //source: "pics/qtlogo.png"
+                    IconButton {
+                        id: logBut
+                        source: "qrc:/images/BC_Logo_.png"
+                        sourceSize: Qt.size(55, 55)
+                        anchors.horizontalCenter: parent.horizontalCenter
+
+                        hoverEnabled: true
+                        onHoveredChanged: {
+                            if(logBut.hovered)
+                            {
+                                logBut.source = "qrc:/images/refresh.png"
+                            }
+                            else
+                            {
+                                logBut.source = "qrc:/images/BC_Logo_.png"
+                            }
+                        }
+                    }
+
+                    Text {
+                        text: qsTr("0.01347051 BTC")
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        font.family: "Helvetica"
+                        font.pixelSize: 30
+                        style: Text.StyledText
+                        color: "Orange"
+                        styleColor: "black"
+                    }
+
+                    Text {
+                        text: qsTr("$91.22 USD")
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        font.family: "Helvetica"
+                        font.pixelSize: 30
+                        style: Text.StyledText
+                        color: "white"
+                        styleColor: "black"
+                    }
+
+                    Item {
+                        Layout.fillHeight: true
+                    }
+
+
+                    RowLayout{
+
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.bottom: parent.bottomMargin
+
+                        TransactionButton{
+                            Layout.preferredWidth: 80
+                            color: "orange"
+                            radius: 20
+                            text: qsTr("Send")
+                        }
+
+                        TransactionButton{
+                            Layout.preferredWidth: 80
+                            color: "orange"
+                            radius: 20
+                            text: qsTr("Receive")
+                        }
+                    }
                 }
 
             }
 
-            TramsactionsListView {
-                //anchors.fill: parent
+            TransactionsListView {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 Layout.maximumHeight: parent.height / 2
 
             }
         }
-
     }
 }

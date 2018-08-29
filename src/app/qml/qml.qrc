@@ -3,7 +3,8 @@
         <file>main.qml</file>
         <file>Pages/WalletPage.qml</file>
         <file>Views/WalletAssetsListView.qml</file>
-        <file>Views/TramsactionsListView.qml</file>
+        <file>Views/TransactionsListView.qml</file>
         <file>Components/TransactionButton.qml</file>
+        <file>Components/IconButton.qml</file>
     </qresource>
 </RCC>
