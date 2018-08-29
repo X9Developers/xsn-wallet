@@ -3,24 +3,33 @@
 
 #include <QObject>
 #include <memory>
+#include <QPointer>
 
 class QAbstractListModel;
 class WalletTransactionsListModel;
+class WalletDataSource;
+class ApplicationViewModel;
 
 class WalletAssetViewModel : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString balance READ balance NOTIFY balanceChanged)
-    Q_PROPERTY(QAbstractListModel* transactionsListModel READ transactionsListModel CONSTANT)
+    Q_PROPERTY(QObject* transactionsListModel READ transactionsListModel NOTIFY applicationViewModelChanged)
+    Q_PROPERTY(ApplicationViewModel* applicationViewModel WRITE setApplicationViewModel NOTIFY applicationViewModelChanged)
+
 public:
     explicit WalletAssetViewModel(QObject *parent = nullptr);
     ~WalletAssetViewModel();
 
-    QAbstractListModel *transactionsListModel() const;
+    QObject *transactionsListModel() const;
     QString balance() const;
+
+    void setApplicationViewModel(ApplicationViewModel* applicationViewModel);
+
 
 signals:
     void balanceChanged();
+    void applicationViewModelChanged();
 
 public slots:
 
@@ -29,6 +38,7 @@ private:
     void initTransactionsListModel();
 
 private:
+    QPointer<WalletDataSource> _walletDataSource;
     std::unique_ptr<WalletTransactionsListModel> _walletTransactionsListModel;
 };
 

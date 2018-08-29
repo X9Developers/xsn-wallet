@@ -4,12 +4,14 @@ import QtQuick.Layouts 1.3
 
 import "../Views"
 import "../Components"
+
 import com.xsn.viewmodels 1.0
 
 Page {
 
     WalletAssetViewModel {
         id: walletViewModel
+        applicationViewModel: ApplicationViewModel
     }
 
     RowLayout {
@@ -22,7 +24,7 @@ Page {
             //            Layout.fillWidth: true
         }
 
-        ColumnLayout{
+        ColumnLayout {
 
             Layout.fillWidth: true
             Layout.fillHeight: true
@@ -37,18 +39,17 @@ Page {
                     text: "Balance: " + walletViewModel.balance
                 }
 
-                TransactionButton{
+                TransactionButton {
                     textButton: "Send"
                 }
 
-                TransactionButton{
+                TransactionButton {
                     textButton: "Receive"
                 }
 
                 Image {
                     //source: "pics/qtlogo.png"
                 }
-
             }
 
             TramsactionsListView {
@@ -56,9 +57,8 @@ Page {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 Layout.maximumHeight: parent.height / 2
-
+                transactionListModel: walletViewModel.transactionsListModel
             }
         }
-
     }
 }
