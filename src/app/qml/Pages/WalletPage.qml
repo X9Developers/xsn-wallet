@@ -57,7 +57,6 @@ Page {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 Layout.maximumHeight: parent.height / 2
-                transactionListModel: walletViewModel.transactionsListModel
             }
         }
     }

@@ -1,7 +1,10 @@
 #include "WalletAssetViewModel.hpp"
 #include "Models/WalletTransactionsListModel.hpp"
 #include "Models/WalletDataSource.hpp"
+#include "Models/EmulatorWalletDataSource.hpp"
 #include "ViewModels/ApplicationViewModel.hpp"
+#include "Data/TransactionEntry.hpp"
+#include <QDebug>
 
 //==============================================================================
 
@@ -36,6 +39,16 @@ void WalletAssetViewModel::setApplicationViewModel(ApplicationViewModel *applica
 {
     _walletDataSource = applicationViewModel->dataSource();
     init();
+
+    emit applicationViewModelChanged();
+}
+
+//==============================================================================
+
+void WalletAssetViewModel::addTransaction()
+{
+    if(_walletDataSource)
+        dynamic_cast<EmulatorWalletDataSource*>(_walletDataSource.data())->executeAdd();
 
     emit applicationViewModelChanged();
 }

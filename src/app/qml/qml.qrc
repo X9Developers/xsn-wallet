@@ -5,5 +5,7 @@
         <file>Views/WalletAssetsListView.qml</file>
         <file>Views/TramsactionsListView.qml</file>
         <file>Components/TransactionButton.qml</file>
+        <file>Views/EmulatorView.qml</file>
+        <file>Pages/EmulatorPage.qml</file>
     </qresource>
 </RCC>

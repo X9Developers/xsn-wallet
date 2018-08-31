@@ -13,6 +13,8 @@ public:
     explicit EmulatorWalletDataSource(QObject *parent = nullptr);
     ~EmulatorWalletDataSource() override;
 
+    void executeAdd();
+
 protected:
     TransactionsList executeFetch(QString id) override;
 

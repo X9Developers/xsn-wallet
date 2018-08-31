@@ -1,5 +1,6 @@
 #include "EmulatorWalletDataSource.hpp"
 #include <map>
+#include <QDebug>
 
 //==============================================================================
 
@@ -23,8 +24,42 @@ WalletDataSource::TransactionsList EmulatorWalletDataSource::executeFetch(QStrin
     auto it = _transactionMap.find(id);
     if(it != std::end(_transactionMap))
         return it->second;
+
+    return TransactionsList();
+}
+
+//==============================================================================
+
+static TransactionEntry generateTransaction()
+{
+    TransactionEntry::Type type;
+
+    if(rand() % 2 == 1)
+        type = TransactionEntry::Type::Sent;
     else
-        return TransactionsList();
+        type = TransactionEntry::Type::Received;
+
+    return TransactionEntry(QString::number(rand() % 1000), type, rand() % 100);
+}
+
+//==============================================================================
+
+void EmulatorWalletDataSource::executeAdd()
+{
+    srand ( time(NULL));
+
+    QString id = "Bitcoin";
+    TransactionEntry transaction = generateTransaction();
+
+    auto it = _transactionMap.find(id);
+    if(it != std::end(_transactionMap))
+    {
+        it->second.push_back(transaction);
+        transactionsFetched(it->second);
+        //qDebug() << "Transaction added, transaction count: " << it->second.size();
+    }
+    else
+        qDebug() << "Transaction not added";
 }
 
 //==============================================================================
@@ -57,5 +92,4 @@ void EmulatorWalletDataSource::init()
 }
 
 //==============================================================================
-
 

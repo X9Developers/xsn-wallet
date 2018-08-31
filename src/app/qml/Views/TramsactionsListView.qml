@@ -1,7 +1,6 @@
 import QtQuick 2.0
 
 Rectangle {
-    property var transactionListModel: undefined
     color: "blue"
     //        height: 100
     //        width:  100
@@ -37,15 +36,15 @@ Rectangle {
            Item {
                width: 200; height:40
                Column {
-                   Text { text: '<b>ID:</b> ' + id }
-                   Text { text: '<b>Delta:</b> ' + delta }
+                   Text { text: '<b>Date:</b> ' + date }
+                   Text { text: '<b>Type:</b> ' + type }
                }
            }
        }
 
        ListView {
            anchors.fill: parent
-           model: transactionListModel
+           model: lsitModel
            delegate: contactDelegate
            highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
            focus: true

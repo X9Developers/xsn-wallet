@@ -26,12 +26,12 @@ public:
 
     void setApplicationViewModel(ApplicationViewModel* applicationViewModel);
 
-
 signals:
     void balanceChanged();
     void applicationViewModelChanged();
 
 public slots:
+    void addTransaction();
 
 private:
     void init();
