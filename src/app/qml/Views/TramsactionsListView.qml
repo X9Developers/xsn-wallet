@@ -1,18 +1,13 @@
 import QtQuick 2.0
+import QtQuick.Layouts 1.3
+import QtQuick.Controls 2.3
 
 Rectangle {
+    id: root
+    property var transactionListModel: undefined
     color: "blue"
     //        height: 100
     //        width:  100
-
-
-    Text {
-        anchors.centerIn: parent
-        text: "No Transactions"
-        font.pixelSize: 12
-    }
-
-
 
     ListModel {
         id: lsitModel
@@ -31,22 +26,30 @@ Rectangle {
     }
 
     //////////////
-    Component {
-           id: contactDelegate
-           Item {
-               width: 200; height:40
-               Column {
-                   Text { text: '<b>Date:</b> ' + date }
-                   Text { text: '<b>Type:</b> ' + type }
-               }
-           }
-       }
+    ColumnLayout {
+        id: layout
+        spacing: 0
+        anchors.fill: parent.fill
+        height: parent.height
+        width: parent.width
 
-       ListView {
-           anchors.fill: parent
-           model: lsitModel
-           delegate: contactDelegate
-           highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
-           focus: true
-       }
+        ListView {
+            boundsBehavior: Flickable.StopAtBounds
+            anchors.fill: parent
+            model: transactionListModel
+            //highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
+            //focus: true
+            clip: true
+            delegate: Item {
+                width: 200; height: 80
+                anchors.bottomMargin: 5
+                Column {
+                    Text { text: '<b>ID:</b> ' + id }
+                    Text { text: isSend ?'<b>Type:</b> ' + "Send": '<b>Type:</b> ' + "Received"}
+                    Text { text: '<b>Delta:</b> ' + delta }
+                }
+            }
+        }
+    }
 }
+

@@ -20,6 +20,8 @@ Product {
         "Utils.hpp",
         "ViewModels/ApplicationViewModel.cpp",
         "ViewModels/ApplicationViewModel.hpp",
+        "ViewModels/EmulatorViewModel.cpp",
+        "ViewModels/EmulatorViewModel.hpp",
         "ViewModels/WalletAssetViewModel.cpp",
         "ViewModels/WalletAssetViewModel.hpp",
     ]

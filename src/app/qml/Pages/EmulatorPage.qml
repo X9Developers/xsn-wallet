@@ -8,16 +8,14 @@ import "../Components"
 import com.xsn.viewmodels 1.0
 
 Page {
-
-    WalletAssetViewModel {
+    EmulatorViewModel {
         id: walletViewModel
         applicationViewModel: ApplicationViewModel
     }
 
     EmulatorView {
-        id: emularorView
+        id: emulatorView
         anchors.fill: parent
         onAddTransaction: walletViewModel.addTransaction();
-        transactionListModel: walletViewModel.transactionsListModel
     }
 }

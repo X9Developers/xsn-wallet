@@ -30,6 +30,14 @@ WalletDataSource::WalletDataSource(QObject *parent) : QObject(parent)
 
 //==============================================================================
 
+WalletDataSource::~WalletDataSource()
+{
+    _dataSourceWorker.quit();
+    _dataSourceWorker.wait();
+}
+
+//==============================================================================
+
 void WalletDataSource::fetchTransactions(QString id)
 {
     ScheduleJob<TransactionsList>(_dataSourceWorker,

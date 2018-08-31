@@ -12,6 +12,7 @@ Page {
     WalletAssetViewModel {
         id: walletViewModel
         applicationViewModel: ApplicationViewModel
+        Component.onCompleted: currentNameViewModel = "Bitcoin"
     }
 
     RowLayout {
@@ -21,6 +22,10 @@ Page {
             Layout.fillHeight: true
             Layout.maximumWidth: parent.width / 4
             Layout.minimumWidth: parent.width / 4
+            onCoinsChanged: {
+                walletViewModel.currentNameViewModel = currentName
+            }
+
             //            Layout.fillWidth: true
         }
 
@@ -57,6 +62,7 @@ Page {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 Layout.maximumHeight: parent.height / 2
+                transactionListModel: walletViewModel.transactionsListModel
             }
         }
     }

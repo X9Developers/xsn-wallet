@@ -3,13 +3,12 @@
 #include "Models/WalletDataSource.hpp"
 #include "Models/EmulatorWalletDataSource.hpp"
 #include "ViewModels/ApplicationViewModel.hpp"
-#include "Data/TransactionEntry.hpp"
-#include <QDebug>
 
 //==============================================================================
 
 WalletAssetViewModel::WalletAssetViewModel(QObject *parent)
 {
+
 }
 
 //==============================================================================
@@ -38,19 +37,16 @@ QString WalletAssetViewModel::balance() const
 void WalletAssetViewModel::setApplicationViewModel(ApplicationViewModel *applicationViewModel)
 {
     _walletDataSource = applicationViewModel->dataSource();
-    init();
-
-    emit applicationViewModelChanged();
 }
 
 //==============================================================================
 
-void WalletAssetViewModel::addTransaction()
+void WalletAssetViewModel::setCurrentNameViewModel(QString currentNameViewModel)
 {
-    if(_walletDataSource)
-        dynamic_cast<EmulatorWalletDataSource*>(_walletDataSource.data())->executeAdd();
+    if(!currentNameViewModel.isEmpty())
+        _currentNameViewModel = currentNameViewModel;
 
-    emit applicationViewModelChanged();
+    init();
 }
 
 //==============================================================================
@@ -64,7 +60,10 @@ void WalletAssetViewModel::init()
 
 void WalletAssetViewModel::initTransactionsListModel()
 {
-    _walletTransactionsListModel.reset(new WalletTransactionsListModel(_walletDataSource, "Bitcoin"));
+    _walletTransactionsListModel.reset(new WalletTransactionsListModel(_walletDataSource, _currentNameViewModel));
+
+    emit applicationViewModelChanged();
 }
 
 //==============================================================================
+

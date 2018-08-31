@@ -2,7 +2,7 @@
 #define APPLICATIONVIEWMODEL_HPP
 
 #include <QObject>
-#include <memory>
+#include <QPointer>
 
 class EmulatorWalletDataSource;
 class WalletDataSource;
@@ -22,7 +22,7 @@ private:
     void initDataSource();
 
 private:
-    std::shared_ptr<EmulatorWalletDataSource> _emulatorWalletDataSource;
+    QPointer<EmulatorWalletDataSource> _emulatorWalletDataSource;
 };
 
 #endif // APPLICATIONVIEWMODEL_HPP
