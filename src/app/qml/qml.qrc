@@ -6,5 +6,7 @@
         <file>Views/TransactionsListView.qml</file>
         <file>Components/TransactionButton.qml</file>
         <file>Components/IconButton.qml</file>
+        <file>Views/WalletPageHeaderView.qml</file>
+        <file>Components/XSNLabel.qml</file>
     </qresource>
 </RCC>

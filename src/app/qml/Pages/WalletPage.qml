@@ -16,6 +16,7 @@ Page {
         anchors.fill: parent
 
         WalletAssetsListView {
+            id: assetsListView
             Layout.fillHeight: true
             Layout.maximumWidth: parent.width / 4
             Layout.minimumWidth: parent.width / 4
@@ -26,91 +27,18 @@ Page {
             Layout.fillWidth: true
             Layout.fillHeight: true
 
-            Rectangle {
+            WalletPageHeaderView {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-                color: "grey"
-
-                ColumnLayout{
-
-                    anchors.fill: parent
-
-                    //                    Item {
-                    //                        Layout.fillHeight: true
-                    //                    }
-
-                    IconButton {
-                        id: logBut
-                        source: "qrc:/images/BC_Logo_.png"
-                        sourceSize: Qt.size(55, 55)
-                        anchors.horizontalCenter: parent.horizontalCenter
-
-                        hoverEnabled: true
-                        onHoveredChanged: {
-                            if(logBut.hovered)
-                            {
-                                logBut.source = "qrc:/images/refresh.png"
-                            }
-                            else
-                            {
-                                logBut.source = "qrc:/images/BC_Logo_.png"
-                            }
-                        }
-                    }
-
-                    Text {
-                        text: qsTr("0.01347051 BTC")
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        font.family: "Helvetica"
-                        font.pixelSize: 30
-                        style: Text.StyledText
-                        color: "Orange"
-                        styleColor: "black"
-                    }
-
-                    Text {
-                        text: qsTr("$91.22 USD")
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        font.family: "Helvetica"
-                        font.pixelSize: 30
-                        style: Text.StyledText
-                        color: "white"
-                        styleColor: "black"
-                    }
-
-                    Item {
-                        Layout.fillHeight: true
-                    }
-
-
-                    RowLayout{
-
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        anchors.bottom: parent.bottomMargin
-
-                        TransactionButton{
-                            Layout.preferredWidth: 80
-                            color: "orange"
-                            radius: 20
-                            text: qsTr("Send")
-                        }
-
-                        TransactionButton{
-                            Layout.preferredWidth: 80
-                            color: "orange"
-                            radius: 20
-                            text: qsTr("Receive")
-                        }
-                    }
-                }
-
+                coinMeasure: assetsListView.currentItem.name
+                labelColor: assetsListView.currentItem.color
+                //color: assetsListView.currentItem ? assetsListView.currentItem.color : ""
             }
 
             TransactionsListView {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 Layout.maximumHeight: parent.height / 2
-
             }
         }
     }

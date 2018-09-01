@@ -30,6 +30,7 @@ ListView {
         width: parent.width
 
         property string color: model.color
+        property string name: model.name
 
         Text {
             anchors.fill: parent

@@ -13,6 +13,7 @@ Button {
     focusPolicy: Qt.NoFocus
     implicitWidth: image.sourceSize.width
     implicitHeight: image.sourceSize.height
+    font.family: "Helvetica"
 
     contentItem: Item {
         Image {
