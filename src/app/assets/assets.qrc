@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>images.png</file>
+        <file>received.jpg</file>
+        <file>BC_Logo_.png</file>
+        <file>refresh.png</file>
+    </qresource>
+</RCC>

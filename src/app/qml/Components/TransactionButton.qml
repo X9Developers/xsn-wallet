@@ -1,12 +1,16 @@
 import QtQuick 2.0
-import QtQuick.Controls 1.4
+import QtQuick.Controls 2.2
+import QtGraphicalEffects 1.0
 
-Item {
 
-    property alias textButton: actionButton.text
+Button {
+    id: actionButton
 
-    Button {
-        id: actionButton
-        //text:textButton
+    property color color: "transparent"
+    property int radius: 0
+
+    background: Rectangle {
+        color: actionButton.color
+        radius: actionButton.radius
     }
 }
