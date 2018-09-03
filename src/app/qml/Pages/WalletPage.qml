@@ -12,7 +12,7 @@ Page {
     WalletAssetViewModel {
         id: walletViewModel
         applicationViewModel: ApplicationViewModel
-        Component.onCompleted: currentNameViewModel = "Bitcoin"
+        Component.onCompleted: currentNameViewModel = "Dash"
     }
 
     RowLayout {

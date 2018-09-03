@@ -14,8 +14,8 @@ class WalletAssetViewModel : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString balance READ balance NOTIFY balanceChanged)
-    Q_PROPERTY(QString currentNameViewModel WRITE setCurrentNameViewModel CONSTANT)
-    Q_PROPERTY(QObject* transactionsListModel READ transactionsListModel  NOTIFY applicationViewModelChanged)
+    Q_PROPERTY(QString currentNameViewModel WRITE setCurrentNameViewModel NOTIFY applicationViewModelChanged)
+    Q_PROPERTY(QObject* transactionsListModel READ transactionsListModel NOTIFY applicationViewModelChanged)
     Q_PROPERTY(ApplicationViewModel* applicationViewModel WRITE setApplicationViewModel NOTIFY applicationViewModelChanged)
 
 public:

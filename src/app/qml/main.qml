@@ -11,9 +11,7 @@ Window {
     title: qsTr("Hello World")
 
     RowLayout {
-        width: parent.width
-        height: parent.height
-
+        anchors.fill: parent
         Rectangle {
             Layout.fillHeight: true
             Layout.fillWidth: true

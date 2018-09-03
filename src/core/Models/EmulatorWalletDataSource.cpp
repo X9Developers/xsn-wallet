@@ -30,7 +30,7 @@ WalletDataSource::TransactionsList EmulatorWalletDataSource::executeFetch(QStrin
 
 //==============================================================================
 
-static TransactionEntry generateTransaction()
+static TransactionEntry GenerateTransaction()
 {
     TransactionEntry::Type type;
 
@@ -49,7 +49,7 @@ void EmulatorWalletDataSource::executeAdd()
     srand ( time(NULL));
 
     QString id = "Bitcoin";
-    TransactionEntry transaction = generateTransaction();
+    TransactionEntry transaction = GenerateTransaction();
 
     auto it = _transactionMap.find(id);
     if(it != std::end(_transactionMap))

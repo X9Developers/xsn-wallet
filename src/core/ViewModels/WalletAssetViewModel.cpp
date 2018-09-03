@@ -47,6 +47,8 @@ void WalletAssetViewModel::setCurrentNameViewModel(QString currentNameViewModel)
         _currentNameViewModel = currentNameViewModel;
 
     init();
+
+    emit applicationViewModelChanged();
 }
 
 //==============================================================================
@@ -61,8 +63,6 @@ void WalletAssetViewModel::init()
 void WalletAssetViewModel::initTransactionsListModel()
 {
     _walletTransactionsListModel.reset(new WalletTransactionsListModel(_walletDataSource, _currentNameViewModel));
-
-    emit applicationViewModelChanged();
 }
 
 //==============================================================================
