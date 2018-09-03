@@ -30,12 +30,20 @@ WalletDataSource::WalletDataSource(QObject *parent) : QObject(parent)
 
 //==============================================================================
 
+WalletDataSource::~WalletDataSource()
+{
+    _dataSourceWorker.quit();
+    _dataSourceWorker.wait();
+}
+
+//==============================================================================
+
 void WalletDataSource::fetchTransactions(QString id)
 {
     ScheduleJob<TransactionsList>(_dataSourceWorker,
-                std::bind(&WalletDataSource::executeFetch, this, id),
-                std::bind(&WalletDataSource::transactionsFetched, this, std::placeholders::_1),
-                std::bind(&WalletDataSource::transactionsFetchError, this, std::placeholders::_1));
+                                  std::bind(&WalletDataSource::executeFetch, this, id),
+                                  std::bind(&WalletDataSource::transactionsFetched, this, std::placeholders::_1),
+                                  std::bind(&WalletDataSource::transactionsFetchError, this, std::placeholders::_1));
 }
 
 //==============================================================================

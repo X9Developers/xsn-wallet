@@ -12,6 +12,7 @@ class WalletDataSource : public QObject
 public:
     using TransactionsList = std::vector<TransactionEntry>;
     explicit WalletDataSource(QObject *parent = nullptr);
+    ~WalletDataSource();
 
     void fetchTransactions(QString id);
 

@@ -2,6 +2,7 @@
 #include <Models/WalletTransactionsListModel.hpp>
 #include <ViewModels/WalletAssetViewModel.hpp>
 #include <ViewModels/ApplicationViewModel.hpp>
+#include "ViewModels/EmulatorViewModel.hpp"
 
 #include <QQmlEngine>
 
@@ -20,6 +21,7 @@ void QMLUtils::RegisterQMLTypes()
 void QMLUtils::RegisterViewModels(const char *uri, int versionMinor, int versionMajor)
 {
     QML_REGISTER_TYPE_HELPER(WalletAssetViewModel);
+    QML_REGISTER_TYPE_HELPER(EmulatorViewModel);
 
     qmlRegisterSingletonType<ApplicationViewModel>("com.xsn.viewmodels", 1, 0, "ApplicationViewModel",
                                                    [](QQmlEngine *engine, QJSEngine *) -> QObject* {

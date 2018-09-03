@@ -19,7 +19,7 @@ ApplicationViewModel::~ApplicationViewModel()
 
 WalletDataSource* ApplicationViewModel::dataSource() const
 {
-    return _emulatorWalletDataSource.get();
+    return _emulatorWalletDataSource.data();
 }
 
 //==============================================================================
@@ -41,7 +41,7 @@ void ApplicationViewModel::init()
 
 void ApplicationViewModel::initDataSource()
 {
-    _emulatorWalletDataSource.reset(new EmulatorWalletDataSource());
+    _emulatorWalletDataSource = new EmulatorWalletDataSource();
 }
 
 //==============================================================================
