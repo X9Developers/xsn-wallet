@@ -1,49 +1,59 @@
 import QtQuick 2.0
-
-ListView {
+Rectangle {
     id: root
 
-    model: ListModel {
-        ListElement { color: "lightblue"; name: "Dash"; balance: "1.5"; }
-        ListElement { color: "darkblue"; name: "XSN"; balance: "1.3"; }
-        ListElement { color: "orange"; name: "Bitcoin"; icon: ""; balance: "2.7"; }
-    }
+    signal coinsChanged(string currentName)
 
-    highlight: Item {
-        Rectangle {
-            anchors.right: parent.right
-            width: 5
-            height: parent.height
-            radius: 5
-            //        x: currentItem.width - width
-            //        y: currentItem.y
-            color: currentItem.color
-        }
-    }
+    ListView {
+        id: listView
+        anchors.fill: parent
 
-    highlightFollowsCurrentItem: true
-
-    spacing: 10
-
-    delegate: Item {
-        height: 20
-        width: parent.width
-
-        property string color: model.color
-        property string name: model.name
-
-        Text {
-            anchors.fill: parent
-            text: model.name
-
-            font.pixelSize: 14
-            color: parent.ListView.isCurrentItem ? parent.color : "grey"
+        model: ListModel {
+            ListElement { color: "lightblue"; name: "Dash"; balance: "1.5"; }
+            ListElement { color: "darkblue"; name: "XSN"; balance: "1.3"; }
+            ListElement { color: "orange"; name: "Bitcoin"; icon: ""; balance: "2.7"; }
         }
 
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                root.currentIndex = index;
+        highlight: Item {
+            Rectangle {
+                anchors.right: parent.right
+                width: 5
+                height: parent.height
+                radius: 5
+                //        x: currentItem.width - width
+                //        y: currentItem.y
+                color: listView.currentItem.color
+            }
+        }
+
+        highlightFollowsCurrentItem: true
+
+        spacing: 10
+
+
+//        property string color: model.color
+//        property string name: model.name
+        delegate: Item {
+            height: 20
+            width: parent.width
+
+            property string color: model.color
+            property string name: model.name
+
+            Text {
+                anchors.fill: parent
+                text: model.name
+
+                font.pixelSize: 14
+                color: parent.ListView.isCurrentItem ? parent.color : "grey"
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    listView.currentIndex = index;
+                    root.coinsChanged(parent.name);
+                }
             }
         }
     }

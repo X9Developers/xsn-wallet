@@ -8,5 +8,7 @@
         <file>Components/IconButton.qml</file>
         <file>Views/WalletPageHeaderView.qml</file>
         <file>Components/XSNLabel.qml</file>
+        <file>Views/EmulatorView.qml</file>
+        <file>Pages/EmulatorPage.qml</file>
     </qresource>
 </RCC>

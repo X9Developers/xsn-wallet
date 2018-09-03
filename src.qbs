@@ -12,6 +12,7 @@ Project {
 //        "src/networking/networking.qbs",
     ]
 
+
     SubProject {
         filePath: "src/tests/tests.qbs"
     }
