@@ -4,7 +4,7 @@
 
 //==============================================================================
 
-EmulatorViewModel::EmulatorViewModel(QObject *parent)
+EmulatorViewModel::EmulatorViewModel(QObject *parent) : QObject(parent)
 {
 
 }

@@ -1,12 +1,11 @@
 #include "WalletAssetViewModel.hpp"
 #include "Models/WalletTransactionsListModel.hpp"
 #include "Models/WalletDataSource.hpp"
-#include "Models/EmulatorWalletDataSource.hpp"
 #include "ViewModels/ApplicationViewModel.hpp"
 
 //==============================================================================
 
-WalletAssetViewModel::WalletAssetViewModel(QObject *parent)
+WalletAssetViewModel::WalletAssetViewModel(QObject *parent) : QObject(parent)
 {
 
 }
