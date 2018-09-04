@@ -56,7 +56,13 @@ Rectangle {
             border.width: 1
             border.color: "black"
             width: parent.width
-            height: 30
+            height: ListView.isCurrentItem ? 70 : 30
+            //color: ListView.isCurrentItem ? "black" : "red"
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked: { transactionsList.currentIndex = index }
+            }
 
             RowLayout {
                 width: parent.width
@@ -73,11 +79,52 @@ Rectangle {
                 Item { Layout.fillWidth: true }
                 Text { text: transactionAmount }
 
+
+//                ColumnLayout{
+//                    Text { text: fullDate }
+//                    Text { text: transactionId }
+//                }
+
+
+//                ColumnLayout{
+//                    Text { text: transactionIdTo }
+//                    Text { text: valueInUSDNow }
+//                }
+
+
+//                ColumnLayout{
+//                    Text { text: valueInUSD }
+//                }
+                //                Text { text: fullDate }
+                //                Text { text: transactionId }
+                //                Text { text: transactionIdTo }
+                //                Text { text: valueInUSDNow }
+
+
+
+
+            }
+
+            ColumnLayout{
+                Text { text: fullDate }
+                Text { text: transactionId }
+            }
+
+
+            ColumnLayout{
+                Text { text: transactionIdTo }
+                Text { text: valueInUSDNow }
+            }
+
+
+            ColumnLayout{
+                Text { text: valueInUSD }
             }
         }
     }
 
     ListView {
+        id:transactionsList
         anchors.fill: parent
         model: listModel
         delegate: contactDelegate
