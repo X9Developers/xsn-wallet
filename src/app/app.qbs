@@ -32,6 +32,7 @@ CppApplication {
     files: [
         "QMLUtils.cpp",
         "QMLUtils.hpp",
+        "assets/assets.qrc",
         "main.cpp",
         "qml/qml.qrc",
     ]
