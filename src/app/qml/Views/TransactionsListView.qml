@@ -65,6 +65,7 @@ Rectangle {
                 anchors.fill: parent
                 onClicked: { transactionsList.currentIndex = index }
             }
+            // height: 30
 
             RowLayout {
                 width: parent.width
@@ -108,32 +109,31 @@ Rectangle {
 
             }
 
-//            RowLayout{
+            //            RowLayout{
 
-//                ColumnLayout{
-//                    Text { text: fullDate }
-//                    Text { text: transactionId }
-//                }
+            //                ColumnLayout{
+            //                    Text { text: fullDate }
+            //                    Text { text: transactionId }
+            //                }
 
-//                ColumnLayout{
-//                    Text { text: transactionIdTo }
-//                    Text { text: valueInUSDNow }
-//                }
+            //                ColumnLayout{
+            //                    Text { text: transactionIdTo }
+            //                    Text { text: valueInUSDNow }
+            //                }
 
-//                ColumnLayout{
-//                    Text { text: valueInUSD }
-//                }
-//            }
+            //                ColumnLayout{
+            //                    Text { text: valueInUSD }
+            //                }
+            //            }
         }
     }
 
+
+
     ListView {
-        //<<<<<<< HEAD
         id:transactionsList
-        //=======
         boundsBehavior: Flickable.StopAtBounds
         clip: true
-        //>>>>>>> 63f9488ec0588aff293b4418e4698daf8d4e7f47
         anchors.fill: parent
         model: transactionListModel
         delegate: contactDelegate
@@ -141,4 +141,5 @@ Rectangle {
         spacing: 10
         //height: ListView.isCurrentItem ? 20 : 60
     }
+
 }
