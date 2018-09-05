@@ -4,9 +4,11 @@ import QtQuick.Layouts 1.3
 Rectangle {
     color: "grey"
 
+    property var transactionListModel: undefined
+
     Text {
         anchors.centerIn: parent
-        text: "No Transactions"
+        text: transactionListModel === undefined ? "No Transactions" : ""
         font.pixelSize: 12
     }
 
@@ -68,33 +70,34 @@ Rectangle {
                 width: parent.width
                 height: parent.height
 
-                Text { text: date }
+                Text { text: "Date" }
                 Image {
-                    source: operationPic
+                    source: isSend? "qrc:/images/images.png" : "qrc:/images/received.jpg"
                     sourceSize.width: 16
                     sourceSize.height: 16
-
                 }
-                Text { text: type }
+
+                Text { text: isSend ? "Sent" : "Received" }
+                Text { text: qsTr("Id: ") + id }
                 Item { Layout.fillWidth: true }
-                Text { text: transactionAmount }
+                Text { text: delta }
 
 
-//                ColumnLayout{
-//                    Text { text: fullDate }
-//                    Text { text: transactionId }
-//                }
+                //                ColumnLayout{
+                //                    Text { text: fullDate }
+                //                    Text { text: transactionId }
+                //                }
 
 
-//                ColumnLayout{
-//                    Text { text: transactionIdTo }
-//                    Text { text: valueInUSDNow }
-//                }
+                //                ColumnLayout{
+                //                    Text { text: transactionIdTo }
+                //                    Text { text: valueInUSDNow }
+                //                }
 
 
-//                ColumnLayout{
-//                    Text { text: valueInUSD }
-//                }
+                //                ColumnLayout{
+                //                    Text { text: valueInUSD }
+                //                }
                 //                Text { text: fullDate }
                 //                Text { text: transactionId }
                 //                Text { text: transactionIdTo }
@@ -105,28 +108,34 @@ Rectangle {
 
             }
 
-            ColumnLayout{
-                Text { text: fullDate }
-                Text { text: transactionId }
-            }
+//            RowLayout{
 
+//                ColumnLayout{
+//                    Text { text: fullDate }
+//                    Text { text: transactionId }
+//                }
 
-            ColumnLayout{
-                Text { text: transactionIdTo }
-                Text { text: valueInUSDNow }
-            }
+//                ColumnLayout{
+//                    Text { text: transactionIdTo }
+//                    Text { text: valueInUSDNow }
+//                }
 
-
-            ColumnLayout{
-                Text { text: valueInUSD }
-            }
+//                ColumnLayout{
+//                    Text { text: valueInUSD }
+//                }
+//            }
         }
     }
 
     ListView {
+        //<<<<<<< HEAD
         id:transactionsList
+        //=======
+        boundsBehavior: Flickable.StopAtBounds
+        clip: true
+        //>>>>>>> 63f9488ec0588aff293b4418e4698daf8d4e7f47
         anchors.fill: parent
-        model: listModel
+        model: transactionListModel
         delegate: contactDelegate
         focus: true
         spacing: 10

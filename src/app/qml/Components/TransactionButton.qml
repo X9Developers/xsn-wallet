@@ -4,7 +4,7 @@ import QtGraphicalEffects 1.0
 
 
 Button {
-    id:actionButton
+    id: actionButton
 
     property color color: "transparent"
     property int radius: 0

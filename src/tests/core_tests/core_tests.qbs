@@ -9,7 +9,7 @@ CppApplication {
     name: "core_tests"
     type: base.concat("autotest")
 
-    files: ["tst_coretests.cpp"]
+    files: [ "main.cpp", "tst_coretests.hpp" ]
 
     Group {
         name: "testdata"

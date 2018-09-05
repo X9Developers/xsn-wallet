@@ -24,6 +24,16 @@ static void ScheduleJob(WorkerThread &thread, std::function<T(void)> job, std::f
 WalletDataSource::WalletDataSource(QObject *parent) : QObject(parent)
 {
     initWorkerThread();
+
+    qRegisterMetaType<TransactionsList>("TransactionsList");
+}
+
+//==============================================================================
+
+WalletDataSource::~WalletDataSource()
+{
+    _dataSourceWorker.quit();
+    _dataSourceWorker.wait();
 }
 
 //==============================================================================
@@ -31,9 +41,9 @@ WalletDataSource::WalletDataSource(QObject *parent) : QObject(parent)
 void WalletDataSource::fetchTransactions(QString id)
 {
     ScheduleJob<TransactionsList>(_dataSourceWorker,
-                std::bind(&WalletDataSource::executeFetch, this, id),
-                std::bind(&WalletDataSource::transactionsFetched, this, std::placeholders::_1),
-                std::bind(&WalletDataSource::transactionsFetchError, this, std::placeholders::_1));
+                                  std::bind(&WalletDataSource::executeFetch, this, id),
+                                  std::bind(&WalletDataSource::transactionsFetched, this, std::placeholders::_1),
+                                  std::bind(&WalletDataSource::transactionsFetchError, this, std::placeholders::_1));
 }
 
 //==============================================================================

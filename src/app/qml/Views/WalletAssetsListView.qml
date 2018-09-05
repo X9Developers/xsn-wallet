@@ -1,7 +1,8 @@
 import QtQuick 2.0
 
 ListView {
-    id: root
+    id: listView
+    anchors.fill: parent
 
     model: ListModel {
         ListElement { color: "lightblue"; name: "Dash"; balance: "1.5"; }
@@ -17,13 +18,17 @@ ListView {
             radius: 5
             //        x: currentItem.width - width
             //        y: currentItem.y
-            color: currentItem.color
+            color: listView.currentItem.color
         }
     }
 
     highlightFollowsCurrentItem: true
 
     spacing: 10
+
+
+    //       property string color: model.color
+    //       property string name: model.name
 
     delegate: Item {
         height: 20
@@ -43,7 +48,7 @@ ListView {
         MouseArea {
             anchors.fill: parent
             onClicked: {
-                root.currentIndex = index;
+                listView.currentIndex = index;
             }
         }
     }
