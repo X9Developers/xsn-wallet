@@ -23,13 +23,6 @@ Window {
             }
         }
 
-        Connections {
-            target: walletPage
-            onCurrentModelChanged: {
-                emulatorPage.modelName = modelName
-            }
-
-        }
 
         Rectangle {
             Layout.fillHeight: true
@@ -39,6 +32,7 @@ Window {
 
             EmulatorPage {
                 id: emulatorPage
+                modelName: walletPage.currentAssetID
                 anchors.fill: parent
             }
         }

@@ -16,8 +16,6 @@ class EmulatorViewModel : public QObject
 public:
     EmulatorViewModel(QObject *parent = nullptr);
     ~EmulatorViewModel();
-signals:
-    void applicationViewModelChanged();
 
 public slots:
     void addTransaction(QString currentModel);

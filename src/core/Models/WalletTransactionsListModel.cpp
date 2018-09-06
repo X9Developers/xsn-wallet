@@ -3,10 +3,10 @@
 
 //==============================================================================
 
-WalletTransactionsListModel::WalletTransactionsListModel(QPointer<WalletDataSource> dataSource, QString coinsID, QObject *parent) :
+WalletTransactionsListModel::WalletTransactionsListModel(QPointer<WalletDataSource> dataSource, QString assetID, QObject *parent) :
     QAbstractListModel(parent),
     _walletDataSource(dataSource),
-    _coinsID(coinsID)
+    _assetID(assetID)
 {
     init();
 }
@@ -77,7 +77,7 @@ void WalletTransactionsListModel::init()
     if(_walletDataSource)
     {
         connect(_walletDataSource.data(), &WalletDataSource::transactionsFetched, this, &WalletTransactionsListModel::onTransactionFetched);
-        _walletDataSource->fetchTransactions(_coinsID);
+        _walletDataSource->fetchTransactions(_assetID);
     }
 }
 
