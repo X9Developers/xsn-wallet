@@ -44,19 +44,24 @@ static TransactionEntry GenerateTransaction()
 
 //==============================================================================
 
-void EmulatorWalletDataSource::executeAdd()
+void EmulatorWalletDataSource::executeAdd(QString modelName)
 {
     srand ( time(NULL));
 
-    QString id = "Bitcoin";
+    QString id = modelName;
     TransactionEntry transaction = GenerateTransaction();
 
     auto it = _transactionMap.find(id);
     if(it != std::end(_transactionMap))
     {
+        for(auto trans : it->second)
+        {
+            if(trans._transactionID == transaction._transactionID)
+                return;
+        }
+
         it->second.push_back(transaction);
         transactionsFetched(it->second);
-        //qDebug() << "Transaction added, transaction count: " << it->second.size();
     }
     else
         qDebug() << "Transaction not added";

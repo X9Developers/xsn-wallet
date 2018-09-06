@@ -18,8 +18,17 @@ Window {
             color: "transparent"
 
             WalletPage {
+                id: walletPage
                 anchors.fill: parent
             }
+        }
+
+        Connections {
+            target: walletPage
+            onCurrentModelChanged: {
+                emulatorPage.modelName = modelName
+            }
+
         }
 
         Rectangle {
@@ -29,6 +38,7 @@ Window {
             color: "white"
 
             EmulatorPage {
+                id: emulatorPage
                 anchors.fill: parent
             }
         }

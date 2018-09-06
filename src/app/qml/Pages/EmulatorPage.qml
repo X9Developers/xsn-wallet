@@ -8,6 +8,7 @@ import "../Components"
 import com.xsn.viewmodels 1.0
 
 Page {
+    property string modelName: undefined
     EmulatorViewModel {
         id: walletViewModel
         applicationViewModel: ApplicationViewModel
@@ -16,6 +17,6 @@ Page {
     EmulatorView {
         id: emulatorView
         anchors.fill: parent
-        onAddTransaction: walletViewModel.addTransaction();
+        onAddTransaction: walletViewModel.addTransaction(modelName);
     }
 }
