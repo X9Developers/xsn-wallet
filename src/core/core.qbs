@@ -28,7 +28,7 @@ Product {
     Depends { name: "cpp" }
     Depends { name: "Qt.core" }
     Depends { name: "gsl" }
-    Depends { name: "libbitcoin" }
+    //Depends { name: "libbitcoin" }
 //    Depends { name: "networking" }
     cpp.defines: ['CRUCIAL_DEFINE']
     cpp.includePaths: [product.sourceDirectory]
