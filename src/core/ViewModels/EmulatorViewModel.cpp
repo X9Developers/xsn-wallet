@@ -18,9 +18,9 @@ EmulatorViewModel::~EmulatorViewModel()
 
 //==============================================================================
 
-void EmulatorViewModel::setApplicationViewModel(ApplicationViewModel *applicationViewModel)
+void EmulatorViewModel::initialize(ApplicationViewModel *applicationViewModel)
 {
-   _walletDataSource = applicationViewModel->dataSource();
+    _walletDataSource = qobject_cast<EmulatorWalletDataSource*>(applicationViewModel->dataSource());
 }
 
 //==============================================================================
@@ -29,9 +29,8 @@ void EmulatorViewModel::addTransaction(QString currentModel)
 {
     if(_walletDataSource)
     {
-        dynamic_cast<EmulatorWalletDataSource*>(_walletDataSource.data())->executeAdd(currentModel);
+        _walletDataSource->executeAdd(currentModel);
     }
-
 }
 
 //==============================================================================

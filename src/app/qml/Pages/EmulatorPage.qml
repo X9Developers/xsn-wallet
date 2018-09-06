@@ -8,10 +8,12 @@ import "../Components"
 import com.xsn.viewmodels 1.0
 
 Page {
-    property string modelName: undefined
+    property string modelName: ""
     EmulatorViewModel {
         id: walletViewModel
-        applicationViewModel: ApplicationViewModel
+         Component.onCompleted: {
+             initialize(ApplicationViewModel);
+         }
     }
 
     EmulatorView {

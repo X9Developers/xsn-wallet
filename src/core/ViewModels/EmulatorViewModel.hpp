@@ -7,26 +7,24 @@
 
 class WalletDataSource;
 class ApplicationViewModel;
+class EmulatorWalletDataSource;
 
 class EmulatorViewModel : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(ApplicationViewModel* applicationViewModel WRITE setApplicationViewModel NOTIFY applicationViewModelChanged)
 
 public:
     EmulatorViewModel(QObject *parent = nullptr);
     ~EmulatorViewModel();
-
-    void setApplicationViewModel(ApplicationViewModel* applicationViewModel);
-
 signals:
     void applicationViewModelChanged();
 
 public slots:
     void addTransaction(QString currentModel);
+    void initialize(ApplicationViewModel *applicationViewModel);
 
 private:
-    QPointer<WalletDataSource> _walletDataSource;
+    QPointer<EmulatorWalletDataSource> _walletDataSource;
 };
 
 #endif // EMULATORVIEWMODEL_HPP
