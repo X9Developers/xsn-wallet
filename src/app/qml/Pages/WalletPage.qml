@@ -20,7 +20,7 @@ Page {
         anchors.fill: parent
 
         WalletAssetsListView {
-            id: walletAssetsListView
+            id: assetsListView
             Layout.fillHeight: true
             Layout.maximumWidth: parent.width / 4
             Layout.minimumWidth: parent.width / 4
@@ -28,7 +28,6 @@ Page {
                 walletViewModel.currentNameViewModel = currentItem.name
                 root.currentModelChanged(currentItem.name)
             }
-            //            Layout.fillWidth: true
         }
 
         ColumnLayout {
@@ -36,31 +35,16 @@ Page {
             Layout.fillWidth: true
             Layout.fillHeight: true
 
-            Rectangle {
+            WalletPageHeaderView {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-                color: "grey"
 
-                Text {
-                    anchors.centerIn: parent
-                    text: "Balance: " + walletViewModel.balance
-                }
-
-                TransactionButton {
-                    textButton: "Send"
-                }
-
-                TransactionButton {
-                    textButton: "Receive"
-                }
-
-                Image {
-                    //source: "pics/qtlogo.png"
-                }
+                coinMeasure: assetsListView.currentItem.name
+                labelColor: assetsListView.currentItem.color
+                //color: assetsListView.currentItem ? assetsListView.currentItem.color : ""
             }
 
-            TramsactionsListView {
-                //anchors.fill: parent
+            TransactionsListView {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 Layout.maximumHeight: parent.height / 2

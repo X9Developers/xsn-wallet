@@ -5,6 +5,7 @@ CppApplication {
     Depends { name: "Qt.core" }
     Depends { name: "Qt.testlib" }
     Depends { name: "core" }
+    Depends { name: "libbitcoin" }
     Depends { name: "gtest" }
     name: "core_tests"
     type: base.concat("autotest")

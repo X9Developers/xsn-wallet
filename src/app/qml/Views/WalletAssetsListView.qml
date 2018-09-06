@@ -26,9 +26,10 @@ ListView {
 
     spacing: 10
 
-    delegate: Item {
-        height: 20
-        width: parent.width
+
+        delegate: Item {
+            height: 20
+            width: parent.width
 
         property string color: model.color
         property string name: model.name
