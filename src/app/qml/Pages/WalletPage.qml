@@ -9,12 +9,15 @@ import com.xsn.viewmodels 1.0
 
 Page {
     id: root
-    signal currentModelChanged(string modelName);
+    property string currentAssetID: assetsListView.currentItem.name
 
     WalletAssetViewModel {
         id: walletViewModel
-        applicationViewModel: ApplicationViewModel
-        Component.onCompleted: currentNameViewModel = "Dash"
+        Component.onCompleted: {
+            initialize(ApplicationViewModel);
+        }
+
+        currentAssetID: root.currentAssetID
     }
 
     RowLayout {
@@ -25,12 +28,6 @@ Page {
             Layout.fillHeight: true
             Layout.maximumWidth: parent.width / 4
             Layout.minimumWidth: parent.width / 4
-            onCurrentItemChanged: {
-                if(currentIndex !== -1) {
-                    walletViewModel.currentNameViewModel = currentItem.name;
-                    root.currentModelChanged(currentItem.name)
-                }
-            }
         }
 
         ColumnLayout {

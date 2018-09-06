@@ -19,9 +19,17 @@ WalletAssetViewModel::~WalletAssetViewModel()
 
 //==============================================================================
 
-QObject *WalletAssetViewModel::transactionsListModel() const
+QObject *WalletAssetViewModel::transactionsListModel()
 {
-    return _walletTransactionsListModel.get();
+    if(_currentAssetID.isEmpty() || !_walletDataSource)
+        return nullptr;
+
+    if(_walletTransactionsListModels.count(_currentAssetID) == 0)
+    {
+        _walletTransactionsListModels.emplace(_currentAssetID, TransactionsListModelPtr(new WalletTransactionsListModel(_walletDataSource, _currentAssetID)));
+    }
+
+    return _walletTransactionsListModels.at(_currentAssetID).get();
 }
 
 //==============================================================================
@@ -33,35 +41,34 @@ QString WalletAssetViewModel::balance() const
 
 //==============================================================================
 
-void WalletAssetViewModel::setApplicationViewModel(ApplicationViewModel *applicationViewModel)
+WalletAssetViewModel::AssetID WalletAssetViewModel::currentAssetID() const
 {
-    _walletDataSource = applicationViewModel->dataSource();
+    return _currentAssetID;
 }
 
 //==============================================================================
 
-void WalletAssetViewModel::setCurrentNameViewModel(QString currentNameViewModel)
+void WalletAssetViewModel::initialize(ApplicationViewModel *applicationViewModel)
 {
-    if(!currentNameViewModel.isEmpty())
-        _currentNameViewModel = currentNameViewModel;
+    _walletDataSource = applicationViewModel->dataSource();
+    currentAssetIDChanged();
+}
 
-    init();
+//==============================================================================
 
-    emit applicationViewModelChanged();
+void WalletAssetViewModel::setCurrentAssetID(AssetID assetID)
+{
+    if(_currentAssetID != assetID)
+    {
+        _currentAssetID = assetID;
+        currentAssetIDChanged();
+    }
 }
 
 //==============================================================================
 
 void WalletAssetViewModel::init()
 {
-    initTransactionsListModel();
-}
-
-//==============================================================================
-
-void WalletAssetViewModel::initTransactionsListModel()
-{
-    _walletTransactionsListModel.reset(new WalletTransactionsListModel(_walletDataSource, _currentNameViewModel));
 }
 
 //==============================================================================

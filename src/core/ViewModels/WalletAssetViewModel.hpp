@@ -13,35 +13,38 @@ class ApplicationViewModel;
 class WalletAssetViewModel : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString balance READ balance NOTIFY balanceChanged)
-    Q_PROPERTY(QString currentNameViewModel WRITE setCurrentNameViewModel NOTIFY applicationViewModelChanged)
-    Q_PROPERTY(QObject* transactionsListModel READ transactionsListModel NOTIFY applicationViewModelChanged)
-    Q_PROPERTY(ApplicationViewModel* applicationViewModel WRITE setApplicationViewModel NOTIFY applicationViewModelChanged)
 
+    using AssetID = QString;
+
+    Q_PROPERTY(QString balance READ balance NOTIFY balanceChanged)
+    Q_PROPERTY(QString currentAssetID READ currentAssetID WRITE setCurrentAssetID NOTIFY currentAssetIDChanged)
+    Q_PROPERTY(QObject* transactionsListModel READ transactionsListModel NOTIFY currentAssetIDChanged)
 public:
     explicit WalletAssetViewModel(QObject *parent = nullptr);
     ~WalletAssetViewModel();
 
-    QObject *transactionsListModel() const;
+    QObject *transactionsListModel();
     QString balance() const;
+    AssetID currentAssetID() const;
 
-    void setApplicationViewModel(ApplicationViewModel* applicationViewModel);
-    void setCurrentNameViewModel(QString currentNameViewModel);
+    void setCurrentAssetID(AssetID assetID);
 
 signals:
     void balanceChanged();
-    void applicationViewModelChanged();
+    void currentAssetIDChanged();
+    void transactionsListModelChanged();
 
 public slots:
+    void initialize(ApplicationViewModel* applicationViewModel);
 
 private:
     void init();
-    void initTransactionsListModel();
 
 private:
-    QString _currentNameViewModel;
+    QString _currentAssetID;
     QPointer<WalletDataSource> _walletDataSource;
-    std::unique_ptr<WalletTransactionsListModel> _walletTransactionsListModel;
+    using TransactionsListModelPtr = std::unique_ptr<WalletTransactionsListModel>;
+    std::map<AssetID, TransactionsListModelPtr> _walletTransactionsListModels;
 };
 
 #endif // WALLETASSETVIEWMODEL_HPP

@@ -12,7 +12,7 @@ class WalletTransactionsListModel : public QAbstractListModel
 {
     Q_OBJECT
 public:
-    explicit WalletTransactionsListModel(QPointer<WalletDataSource> dataSource, QString coinsID, QObject *parent = nullptr);
+    explicit WalletTransactionsListModel(QPointer<WalletDataSource> dataSource, QString assetID, QObject *parent = nullptr);
     ~WalletTransactionsListModel() override;
 
     enum Roles {
@@ -38,7 +38,7 @@ private:
 private:
     QPointer<WalletDataSource> _walletDataSource;
     WalletDataSource::TransactionsList _transactionList;
-    QString _coinsID;
+    QString _assetID;
 };
 
 #endif // WALLETTRANSACTIONSLISTMODEL_HPP
