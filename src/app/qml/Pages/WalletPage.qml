@@ -10,6 +10,7 @@ import com.xsn.viewmodels 1.0
 Page {
     id: root
     signal currentModelChanged(string modelName);
+
     WalletAssetViewModel {
         id: walletViewModel
         applicationViewModel: ApplicationViewModel
@@ -24,9 +25,11 @@ Page {
             Layout.fillHeight: true
             Layout.maximumWidth: parent.width / 4
             Layout.minimumWidth: parent.width / 4
-            onCurrentIndexChanged: {
-                walletViewModel.currentNameViewModel = currentItem.name
-                root.currentModelChanged(currentItem.name)
+            onCurrentItemChanged: {
+                if(currentIndex !== -1) {
+                    walletViewModel.currentNameViewModel = currentItem.name;
+                    root.currentModelChanged(currentItem.name)
+                }
             }
         }
 

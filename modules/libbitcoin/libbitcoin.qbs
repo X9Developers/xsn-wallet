@@ -19,7 +19,10 @@ Module {
 
     cpp.staticLibraries: [
         libFolder + "libbitcoin.a",
-        libFolder + "libsecp256k1.a",
+        libFolder + "libsecp256k1.a"
+    ]
+
+    cpp.dynamicLibraries: [
         "gmp"
     ]
 }
