@@ -23,8 +23,10 @@ Page {
             Layout.fillHeight: true
             Layout.maximumWidth: parent.width / 4
             Layout.minimumWidth: parent.width / 4
-            onCoinsChanged: {
-                walletViewModel.currentNameViewModel = currentName
+            onCurrentItemChanged: {
+                if(currentIndex !== -1) {
+                    walletViewModel.currentNameViewModel = currentItem.name;
+                }
             }
         }
 
