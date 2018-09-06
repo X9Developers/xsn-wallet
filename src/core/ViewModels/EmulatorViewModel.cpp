@@ -25,10 +25,13 @@ void EmulatorViewModel::setApplicationViewModel(ApplicationViewModel *applicatio
 
 //==============================================================================
 
-void EmulatorViewModel::addTransaction()
+void EmulatorViewModel::addTransaction(QString currentModel)
 {
     if(_walletDataSource)
-        dynamic_cast<EmulatorWalletDataSource*>(_walletDataSource.data())->executeAdd();
+    {
+        dynamic_cast<EmulatorWalletDataSource*>(_walletDataSource.data())->executeAdd(currentModel);
+    }
+
 }
 
 //==============================================================================

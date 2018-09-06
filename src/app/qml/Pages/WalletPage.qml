@@ -8,6 +8,8 @@ import "../Components"
 import com.xsn.viewmodels 1.0
 
 Page {
+    id: root
+    signal currentModelChanged(string modelName);
 
     WalletAssetViewModel {
         id: walletViewModel
@@ -26,6 +28,7 @@ Page {
             onCurrentItemChanged: {
                 if(currentIndex !== -1) {
                     walletViewModel.currentNameViewModel = currentItem.name;
+                    root.currentModelChanged(currentItem.name)
                 }
             }
         }
