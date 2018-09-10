@@ -59,6 +59,7 @@ Rectangle {
             border.color: "black"
             width: parent.width
             height: ListView.isCurrentItem ? 70 : 20
+            clip: true
             MouseArea {
                 anchors.fill: parent
                 onClicked: { transactionsList.currentIndex = index }
