@@ -19,7 +19,8 @@ public:
         TransactionIDRole,
         IsSendRole,
         DeltaRole,
-        ImageUrlRole
+        ImageUrlRole,
+        TxDateRole
     };
     Q_ENUMS(Roles)
 

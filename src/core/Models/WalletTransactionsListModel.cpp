@@ -41,6 +41,7 @@ QVariant WalletTransactionsListModel::data(const QModelIndex &index, int role) c
     case IsSendRole: return transaction._txType == TransactionEntry::Type::Sent;
     case DeltaRole: return transaction._delta;
     case ImageUrlRole: return "";
+    case TxDateRole: return transaction._transactionDate.toString("MMM/dd");
     }
 
     return QVariant();
@@ -57,6 +58,7 @@ QHash<int, QByteArray> WalletTransactionsListModel::roleNames() const
         roleNames[Roles::IsSendRole] = "isSend";
         roleNames[Roles::DeltaRole] = "delta";
         roleNames[Roles::ImageUrlRole] = "imageUrl";
+        roleNames[Roles::TxDateRole] = "txDate";
     }
     return roleNames;
 }
