@@ -16,39 +16,49 @@ Page {
         Component.onCompleted: {
             initialize(ApplicationViewModel);
         }
-
         currentAssetID: root.currentAssetID
     }
 
-    RowLayout {
+    Rectangle {
         anchors.fill: parent
+        color: assetsListView.currentItem.color
 
-        WalletAssetsListView {
-            id: assetsListView
-            Layout.fillHeight: true
-            Layout.maximumWidth: parent.width / 6
-            Layout.minimumWidth: parent.width / 6
-        }
+        RowLayout {
+            anchors.fill: parent
+            spacing: 3
 
-        ColumnLayout {
-
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-
-            WalletPageHeaderView {
+            Rectangle {
                 Layout.fillHeight: true
-                Layout.fillWidth: true
+                Layout.maximumWidth: parent.width / 6
+                Layout.minimumWidth: parent.width / 6
+                color: "#292E34"
 
-                coinMeasure: assetsListView.currentItem.name
-                labelColor: assetsListView.currentItem.color
-                //color: assetsListView.currentItem ? assetsListView.currentItem.color : ""
+                WalletAssetsListView {
+                    id: assetsListView
+                    anchors.fill: parent
+                }
             }
 
-            TransactionsListView {
+            ColumnLayout {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                Layout.maximumHeight: parent.height / 2
-                transactionListModel: walletViewModel.transactionsListModel
+                spacing: 0
+
+                WalletPageHeaderView {
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+
+                    coinMeasure: assetsListView.currentItem.name
+                    labelColor: assetsListView.currentItem.color
+                    //color: assetsListView.currentItem ? assetsListView.currentItem.color : ""
+                }
+
+                TransactionsListView {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    Layout.maximumHeight: parent.height / 2
+                    transactionListModel: walletViewModel.transactionsListModel
+                }
             }
         }
     }

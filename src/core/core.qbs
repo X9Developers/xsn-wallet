@@ -37,5 +37,4 @@ Product {
         Depends { name: "cpp" }
         cpp.includePaths: [product.sourceDirectory]
     }
-
 }

@@ -17,8 +17,8 @@ public:
     void fetchTransactions(QString id);
 
 signals:
-    void transactionsFetched(TransactionsList list);
-    void transactionsFetchError(QString error);
+    void transactionsFetched(QString id, TransactionsList list);
+    void transactionsFetchError(QString id, QString error);
 
 protected:
     virtual TransactionsList executeFetch(QString id) = 0;

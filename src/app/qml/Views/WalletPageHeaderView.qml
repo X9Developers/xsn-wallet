@@ -6,7 +6,7 @@ import "../Components"
 
 Rectangle {
     id: backgroundRectangle
-    color: "grey"
+    color: "#292E34"
 
     property string coinMeasure: ""
     property string labelColor: ""

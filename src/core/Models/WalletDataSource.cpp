@@ -42,8 +42,8 @@ void WalletDataSource::fetchTransactions(QString id)
 {
     ScheduleJob<TransactionsList>(_dataSourceWorker,
                                   std::bind(&WalletDataSource::executeFetch, this, id),
-                                  std::bind(&WalletDataSource::transactionsFetched, this, std::placeholders::_1),
-                                  std::bind(&WalletDataSource::transactionsFetchError, this, std::placeholders::_1));
+                                  std::bind(&WalletDataSource::transactionsFetched, this, id, std::placeholders::_1),
+                                  std::bind(&WalletDataSource::transactionsFetchError, this, id, std::placeholders::_1));
 }
 
 //==============================================================================

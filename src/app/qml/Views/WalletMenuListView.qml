@@ -10,32 +10,23 @@ ListView {
         ListElement { name: "Wallet"; image:  "qrc:/images/received.jpg" }
         ListElement { name: "Exchange"; image:"qrc:/images/images.png" }
         ListElement { name: "Backup"; image: "qrc:/images/received.jpg" }
-        ListElement {name: "Settings"; image : "qrc:/images/received.jpg"}
+        ListElement { name: "Settings"; image : "qrc:/images/received.jpg"}
         ListElement { name: "Help"; image: "qrc:/images/received.jpg" }
     }
 
-    highlight: Item {
-        Rectangle {
-            anchors.right: parent.right
-            width: 5
-            height: parent.height
-            radius: 5
-            color: "darkgrey"
-            clip: true
-        }
-    }
-
-    highlightFollowsCurrentItem: true
-
     delegate: Rectangle {
-        height: 20
+        height: 40
         width: parent.width
-        color: ListView.isCurrentItem ? "darkgrey" : "grey"
-
+        color: ListView.isCurrentItem ? "#292E34" : "transparent"
         property string name: model.name
 
         RowLayout {
+            anchors.leftMargin: parent.width / 7
+            anchors.left: parent.left
+            anchors.verticalCenter: parent.verticalCenter
+
             Image {
+                anchors.margins: 10
                 sourceSize.width: 16
                 sourceSize.height: 16
                 source: model.image
