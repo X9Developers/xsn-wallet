@@ -46,7 +46,7 @@ static TransactionEntry GenerateTransaction()
 
 void EmulatorWalletDataSource::executeAdd(QString modelName)
 {
-    srand ( time(0));
+    srand (time(0));
 
     QString id = modelName;
     TransactionEntry transaction = GenerateTransaction();

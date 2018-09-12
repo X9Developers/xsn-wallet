@@ -68,9 +68,9 @@ QHash<int, QByteArray> WalletTransactionsListModel::roleNames() const
 void WalletTransactionsListModel::onTransactionFetched(QString assetID, WalletDataSource::TransactionsList list)
 {
     if(assetID != _assetID)
-      {
-          return;
-      }
+    {
+        return;
+    }
 
     beginResetModel();
     _transactionList.swap(list);
