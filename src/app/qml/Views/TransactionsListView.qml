@@ -53,55 +53,94 @@ Rectangle {
     Component {
         id: contactDelegate
 
-        Rectangle{
-            color: "white"
+        Rectangle {
+            color: "transparent"
             border.width: 1
             border.color: "black"
             width: parent.width
-            height: ListView.isCurrentItem ? 70 : 20
+            height: ListView.isCurrentItem ? 140 : 30
             clip: true
+
             MouseArea {
                 anchors.fill: parent
-                onClicked: { transactionsList.currentIndex = index }
+                onClicked: {
+                    if(transactionsList.currentIndex === index)
+                        transactionsList.currentIndex = -1
+                    else
+                        transactionsList.currentIndex = index }
             }
 
-            ColumnLayout{
-                width: parent.width
-                height: parent.height
-
-
-//                MouseArea {
-//                    anchors.fill: parent
-//                    onClicked: { transactionsList.currentIndex = index }
-//                }
-
-                RowLayout {
-                    //width: parent.width
-                    //height: parent.height
-
-                    Text { text: txDate }
-                    Image {
-                        source: isSend? "qrc:/images/images.png" : "qrc:/images/received.jpg"
-                        sourceSize.width: 16
-                        sourceSize.height: 16
-                    }
-
-                    Text { text: isSend ? "Sent" : "Received" }
-                    Text { text: qsTr("Id: ") + id }
-                    Item { Layout.fillWidth: true }
-                    Text { text: delta }
-
+            RowLayout {
+                anchors.fill: parent
+                Text {
+                    Layout.fillHeight: true
+                    Layout.maximumWidth: parent.width / 7
+                    Layout.minimumWidth: parent.width / 7
+                    text: txDate
                 }
 
-                GridLayout{
-                    columns: 3
+                Rectangle {
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    color: "transparent"
+                    clip: true
 
-                   // visible: !ListView.isCurrentItem //transactionsList.i
-                    Text { text: "Friday, Jun 15th 2018, 11:23:01 PM"; font.pixelSize: 12 }
-                    Text { text: "f4184fc596403b9d638783cf57adfe4c75"; font.pixelSize: 12}
-                    Text { text: "4ce18f49ba153a51bcda9bb80d7f978e3d"; font.pixelSize: 12}
-                    Text { text: "38.43 USD"; font.pixelSize: 12 }
+                    ColumnLayout {
+                        Layout.alignment: Qt.AlignHCenter
+                        anchors.fill: parent
+                        spacing: 12
 
+                        RowLayout {
+                            Layout.fillWidth: true
+                            Layout.maximumHeight: 30
+                            Layout.minimumHeight: 30
+                            Layout.alignment: Qt.AlignHCenter
+
+                            Image {
+                                id: image
+                                anchors.leftMargin: 10
+                                anchors.rightMargin: 10
+                                source: isSend? "qrc:/images/images.png" : "qrc:/images/received.jpg"
+                                sourceSize.width: 16
+                                sourceSize.height: 16
+                                clip: true
+                            }
+                            Text {anchors.left: image.right; text: isSend ? "Sent" : "Received" }
+                            Item {Layout.fillHeight: true; Layout.fillWidth: true}
+                            Text {text: delta; color: "darkorange"}
+                        }
+                        RowLayout {
+                            id: sec
+                            Layout.fillWidth: true
+                            Layout.maximumHeight: parent.height / 3
+                            Layout.minimumHeight: parent.height / 3
+
+                            spacing: 20
+
+                            Column {
+                                Text { text: "DATE"; font.bold: true; font.pixelSize: 10 }
+                                Text {text: "Friday, Jun 15th 2018, 11:23:01 PM"; font.pixelSize: 10}
+                            }
+                            Column {
+                                Text { text: "TRANSACTION ID"; font.bold: true; font.pixelSize: 10 }
+                                Text { text: id; font.pixelSize: 10}
+                            }
+                            Column {
+                                Text { text: "TO"; font.bold: true; font.pixelSize: 10 }
+                                Text {  text: "4ce18f49ba153a51bcda9bb80d7f978e3d"; font.pixelSize: 10}
+                            }
+                        }
+                        RowLayout {
+                            Layout.fillWidth: true
+                            Layout.maximumHeight: parent.height / 3
+                            Layout.minimumHeight: parent.height / 3
+                            Column {
+                                Text { text: "NOW"; font.bold: true; font.pixelSize: 10 }
+                                Text { text: "38.43 USD"; font.pixelSize: 10 }
+                            }
+                            Item { Layout.fillWidth: true }
+                        }
+                    }
                 }
             }
         }
@@ -110,7 +149,7 @@ Rectangle {
 
 
     ListView {
-        id:transactionsList
+        id: transactionsList
         boundsBehavior: Flickable.StopAtBounds
         clip: true
         anchors.fill: parent
@@ -118,7 +157,6 @@ Rectangle {
         delegate: contactDelegate
         focus: true
         spacing: 7
-        //height: ListView.isCurrentItem ? 20 : 60
     }
 
 }

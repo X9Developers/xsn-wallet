@@ -26,8 +26,8 @@ Page {
         WalletAssetsListView {
             id: assetsListView
             Layout.fillHeight: true
-            Layout.maximumWidth: parent.width / 4
-            Layout.minimumWidth: parent.width / 4
+            Layout.maximumWidth: parent.width / 6
+            Layout.minimumWidth: parent.width / 6
         }
 
         ColumnLayout {

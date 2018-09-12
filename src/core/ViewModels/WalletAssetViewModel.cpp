@@ -2,6 +2,7 @@
 #include "Models/WalletTransactionsListModel.hpp"
 #include "Models/WalletDataSource.hpp"
 #include "ViewModels/ApplicationViewModel.hpp"
+#include <QDebug>
 
 //==============================================================================
 
@@ -28,7 +29,7 @@ QObject *WalletAssetViewModel::transactionsListModel()
     {
         _walletTransactionsListModels.emplace(_currentAssetID, TransactionsListModelPtr(new WalletTransactionsListModel(_walletDataSource, _currentAssetID)));
     }
-
+    qDebug()  << "_currentAssetID" << _currentAssetID;
     return _walletTransactionsListModels.at(_currentAssetID).get();
 }
 

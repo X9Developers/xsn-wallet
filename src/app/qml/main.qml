@@ -6,35 +6,11 @@ import "Pages"
 
 Window {
     visible: true
-    width: 640
-    height: 480
+    width: 1100
+    height: 640
     title: qsTr("Hello World")
 
-    RowLayout {
-        anchors.fill: parent
-        Rectangle {
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-            color: "transparent"
-
-            WalletPage {
-                id: walletPage
-                anchors.fill: parent
-            }
-        }
-
-
-        Rectangle {
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-            Layout.maximumWidth: parent.width / 3
-            color: "white"
-
-            EmulatorPage {
-                id: emulatorPage
-                modelName: walletPage.currentAssetID
-                anchors.fill: parent
-            }
-        }
-    }
+   MainPage {
+       anchors.fill: parent
+   }
 }

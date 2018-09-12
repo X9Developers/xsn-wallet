@@ -10,5 +10,7 @@
         <file>Components/XSNLabel.qml</file>
         <file>Views/EmulatorView.qml</file>
         <file>Pages/EmulatorPage.qml</file>
+        <file>Views/WalletMenuListView.qml</file>
+        <file>Pages/MainPage.qml</file>
     </qresource>
 </RCC>
