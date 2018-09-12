@@ -28,7 +28,6 @@ QObject *WalletAssetViewModel::transactionsListModel()
     {
         _walletTransactionsListModels.emplace(_currentAssetID, TransactionsListModelPtr(new WalletTransactionsListModel(_walletDataSource, _currentAssetID)));
     }
-
     return _walletTransactionsListModels.at(_currentAssetID).get();
 }
 

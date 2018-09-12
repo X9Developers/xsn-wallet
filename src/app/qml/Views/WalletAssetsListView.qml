@@ -16,25 +16,23 @@ ListView {
             width: 5
             height: parent.height
             radius: 5
-            //        x: currentItem.width - width
-            //        y: currentItem.y
             color: listView.currentItem.color
         }
     }
 
     highlightFollowsCurrentItem: true
 
-    spacing: 10
-
     delegate: Item {
-        height: 20
+        height: 35
         width: parent.width
-
+        anchors.right: parent.right
         property string color: model.color
         property string name: model.name
 
         Text {
-            anchors.fill: parent
+            anchors.rightMargin: parent.width / 7
+            anchors.right: parent.right
+            anchors.verticalCenter: parent.verticalCenter
             text: model.name
 
             font.pixelSize: 14

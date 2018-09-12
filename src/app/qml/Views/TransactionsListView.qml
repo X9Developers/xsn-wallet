@@ -2,7 +2,7 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.3
 
 Rectangle {
-    color: "grey"
+    color: "#292E34"
 
     property var transactionListModel: undefined
 
@@ -12,134 +12,159 @@ Rectangle {
         font.pixelSize: 12
     }
 
-    ListModel {
-        id: listModel
-        ListElement {
-            date: "28\nJUL"
-            operationPic: "qrc:/images/received.jpg"
-            type: "Received"
-            transactionAmount: "+0.00435"
-            fullDate: "Friday, Jul 28th 2018, 11:23:01 PM"
-            transactionId: "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16"
-            transactionIdTo: "4ce18f49ba153a51bcda9bb80d7f978e3de6e81b5fc326f00465464530c052f4"
-            valueInUSDNow: "38.43 USD"
-            valueInUSD: "37.31 USD"
+    //    ListModel {
+    //        id: listModel
+    //        ListElement {
+    //            date: "28\nJUL"
+    //            operationPic: "qrc:/images/received.jpg"
+    //            type: "Received"
+    //            transactionAmount: "+0.00435"
+    //            fullDate: "Friday, Jul 28th 2018, 11:23:01 PM"
+    //            transactionId: "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16"
+    //            transactionIdTo: "4ce18f49ba153a51bcda9bb80d7f978e3de6e81b5fc326f00465464530c052f4"
+    //            valueInUSDNow: "38.43 USD"
+    //            valueInUSD: "37.31 USD"
 
-        }
-        ListElement {
-            date: " 15\nJUN"
-            operationPic: "qrc:/images/images.png"
-            type: "Sent"
-            transactionAmount: "-0.00435"
-            fullDate: "Friday, Jun 15th 2018, 11:23:01 PM"
-            transactionId: "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16"
-            transactionIdTo: "4ce18f49ba153a51bcda9bb80d7f978e3de6e81b5fc326f00465464530c052f4"
-            valueInUSDNow: "38.43 USD"
-            valueInUSD: "37.31 USD"
-        }
-        ListElement {
-            date: "7\nJUN"
-            operationPic: "qrc:/images/received.jpg"
-            type: "Received"
-            transactionAmount: "+0.00435"
-            fullDate: "Friday, Jul 7th 2018, 11:23:01 PM"
-            transactionId: "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16"
-            transactionIdTo: "4ce18f49ba153a51bcda9bb80d7f978e3de6e81b5fc326f00465464530c052f4"
-            valueInUSDNow: "38.43 USD"
-            valueInUSD: "37.31 USD"
-        }
-    }
+    //        }
+    //        ListElement {
+    //            date: " 15\nJUN"
+    //            operationPic: "qrc:/images/images.png"
+    //            type: "Sent"
+    //            transactionAmount: "-0.00435"
+    //            fullDate: "Friday, Jun 15th 2018, 11:23:01 PM"
+    //            transactionId: "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16"
+    //            transactionIdTo: "4ce18f49ba153a51bcda9bb80d7f978e3de6e81b5fc326f00465464530c052f4"
+    //            valueInUSDNow: "38.43 USD"
+    //            valueInUSD: "37.31 USD"
+    //        }
+    //        ListElement {
+    //            date: "7\nJUN"
+    //            operationPic: "qrc:/images/received.jpg"
+    //            type: "Received"
+    //            transactionAmount: "+0.00435"
+    //            fullDate: "Friday, Jul 7th 2018, 11:23:01 PM"
+    //            transactionId: "f4184fc596403b9d638783cf57adfe4c75c605f6356fbc91338530e9831e9e16"
+    //            transactionIdTo: "4ce18f49ba153a51bcda9bb80d7f978e3de6e81b5fc326f00465464530c052f4"
+    //            valueInUSDNow: "38.43 USD"
+    //            valueInUSD: "37.31 USD"
+    //        }
+    //    }
 
     Component {
         id: contactDelegate
 
-        Rectangle{
-            color: "grey"
-            border.width: 1
-            border.color: "black"
+        Rectangle {
+            color: ListView.isCurrentItem ? "#1C1F24" : "transparent"
+            border.width: ListView.isCurrentItem? 0 : 1
+            border.color: "#3B4046"
             width: parent.width
-            height: ListView.isCurrentItem ? 70 : 30
-            //color: ListView.isCurrentItem ? "black" : "red"
+            height: ListView.isCurrentItem ? 140 : 30
 
             MouseArea {
                 anchors.fill: parent
-                onClicked: { transactionsList.currentIndex = index }
+                onClicked: {
+                    if(transactionsList.currentIndex === index)
+                        transactionsList.currentIndex = -1
+                    else
+                        transactionsList.currentIndex = index }
             }
-            // height: 30
 
             RowLayout {
-                width: parent.width
-                height: parent.height
+                anchors.fill: parent
+                anchors.leftMargin: 10
+                anchors.rightMargin: 10
 
-                Text { text: "Date" }
-                Image {
-                    source: isSend? "qrc:/images/images.png" : "qrc:/images/received.jpg"
-                    sourceSize.width: 16
-                    sourceSize.height: 16
+                Item {
+                    Layout.fillHeight: true
+                    Layout.maximumWidth: parent.width / 7
+                    Layout.minimumWidth: parent.width / 7
+
+                    Text {
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.top: parent.top
+                        anchors.topMargin: 5
+                        text: txDate
+                        color: "white"
+                    }
                 }
 
-                Text { text: isSend ? "Sent" : "Received" }
-                Text { text: qsTr("Id: ") + id }
-                Item { Layout.fillWidth: true }
-                Text { text: delta }
+                Item {
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    clip: true
 
+                    ColumnLayout {
+                        Layout.alignment: Qt.AlignHCenter
+                        anchors.fill: parent
+                        spacing: 12
 
-                //                ColumnLayout{
-                //                    Text { text: fullDate }
-                //                    Text { text: transactionId }
-                //                }
+                        RowLayout {
+                            Layout.fillWidth: true
+                            Layout.maximumHeight: 30
+                            Layout.minimumHeight: 30
+                            Image {
+                                id: image
+                                anchors.leftMargin: 10
+                                anchors.rightMargin: 10
+                                source: isSend? "qrc:/images/images.png" : "qrc:/images/received.jpg"
+                                sourceSize.width: 16
+                                sourceSize.height: 16
+                                clip: true
+                            }
+                            Text {anchors.left: image.right; text: isSend ? "Sent" : "Received"; color: "white" }
+                            Item {Layout.fillHeight: true; Layout.fillWidth: true}
+                            Text {text: delta; color: "darkorange"; anchors.right: parent.right}
+                        }
 
+                        RowLayout {
+                            id: sec
+                            Layout.fillWidth: true
+                            Layout.maximumHeight: parent.height / 3
+                            Layout.minimumHeight: parent.height / 3
 
-                //                ColumnLayout{
-                //                    Text { text: transactionIdTo }
-                //                    Text { text: valueInUSDNow }
-                //                }
+                            spacing: 20
 
+                            Column {
+                                Text { text: "DATE"; font.bold: true; font.pixelSize: 10; color: "white" }
+                                Text {text: "Friday, Jun 15th 2018, 11:23:01 PM"; font.pixelSize: 10; color: "white"}
+                            }
+                            Column {
+                                Text { text: "TRANSACTION ID"; font.bold: true; font.pixelSize: 10; color: "white" }
+                                Text { text: id; font.pixelSize: 10; color: "white"}
+                            }
+                            Column {
+                                Text { text: "TO"; font.bold: true; font.pixelSize: 10; color: "white" }
+                                Text {  text: "4ce18f49ba153a51bcda9bb80d7f978e3d"; font.pixelSize: 10; color: "white"}
+                            }
+                        }
 
-                //                ColumnLayout{
-                //                    Text { text: valueInUSD }
-                //                }
-                //                Text { text: fullDate }
-                //                Text { text: transactionId }
-                //                Text { text: transactionIdTo }
-                //                Text { text: valueInUSDNow }
+                        RowLayout {
+                            Layout.fillWidth: true
+                            Layout.maximumHeight: parent.height / 3
+                            Layout.minimumHeight: parent.height / 3
 
-
-
-
+                            Column {
+                                Text { text: "NOW"; font.bold: true; font.pixelSize: 10; color: "white" }
+                                Text { text: "38.43 USD"; font.pixelSize: 10; color: "white" }
+                            }
+                            Item { Layout.fillWidth: true }
+                        }
+                    }
+                }
             }
-
-            //            RowLayout{
-
-            //                ColumnLayout{
-            //                    Text { text: fullDate }
-            //                    Text { text: transactionId }
-            //                }
-
-            //                ColumnLayout{
-            //                    Text { text: transactionIdTo }
-            //                    Text { text: valueInUSDNow }
-            //                }
-
-            //                ColumnLayout{
-            //                    Text { text: valueInUSD }
-            //                }
-            //            }
         }
     }
 
 
 
     ListView {
-        id:transactionsList
+        id: transactionsList
         boundsBehavior: Flickable.StopAtBounds
         clip: true
         anchors.fill: parent
         model: transactionListModel
         delegate: contactDelegate
         focus: true
-        spacing: 10
-        //height: ListView.isCurrentItem ? 20 : 60
     }
 
 }

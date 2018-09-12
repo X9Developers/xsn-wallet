@@ -2,6 +2,7 @@
 #define TRANSACTIONENTRY_HPP
 
 #include <QString>
+#include <QDateTime>
 
 struct TransactionEntry
 {
@@ -10,10 +11,11 @@ struct TransactionEntry
         Sent
     };
 
-    TransactionEntry(QString txId, Type txType, int delta);
+    TransactionEntry(QString txId, Type txType, int delta, QDateTime txDate);
     const QString _transactionID;
     const Type _txType;
     const int _delta;
+    const QDateTime _transactionDate;
 };
 
 #endif // TRANSACTIONENTRY_HPP
