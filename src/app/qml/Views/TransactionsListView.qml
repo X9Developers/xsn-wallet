@@ -58,7 +58,7 @@ Rectangle {
             border.width: ListView.isCurrentItem? 0 : 1
             border.color: "#3B4046"
             width: parent.width
-            height: ListView.isCurrentItem ? 140 : 30
+            height: ListView.isCurrentItem ? 145 : 45
 
             MouseArea {
                 anchors.fill: parent
@@ -76,8 +76,8 @@ Rectangle {
 
                 Item {
                     Layout.fillHeight: true
-                    Layout.maximumWidth: parent.width / 7
-                    Layout.minimumWidth: parent.width / 7
+                    Layout.maximumWidth: parent.width / 14
+                    Layout.minimumWidth: parent.width / 14
 
                     Text {
                         anchors.horizontalCenter: parent.horizontalCenter
@@ -85,6 +85,7 @@ Rectangle {
                         anchors.topMargin: 5
                         text: txDate
                         color: "white"
+                        font.pixelSize: 15
                     }
                 }
 
@@ -94,39 +95,35 @@ Rectangle {
                     clip: true
 
                     ColumnLayout {
-                        Layout.alignment: Qt.AlignHCenter
                         anchors.fill: parent
-                        spacing: 12
 
                         RowLayout {
                             Layout.fillWidth: true
-                            Layout.maximumHeight: 30
-                            Layout.minimumHeight: 30
+                            Layout.maximumHeight: 45
+                            Layout.minimumHeight: 45
                             Image {
-                                id: image
-                                anchors.leftMargin: 10
-                                anchors.rightMargin: 10
+                                Layout.leftMargin: 7
+                                Layout.rightMargin: 12
                                 source: isSend? "qrc:/images/images.png" : "qrc:/images/received.jpg"
-                                sourceSize.width: 16
-                                sourceSize.height: 16
-                                clip: true
+                                sourceSize.width: 20
+                                sourceSize.height: 20
                             }
-                            Text {anchors.left: image.right; text: isSend ? "Sent" : "Received"; color: "white" }
-                            Item {Layout.fillHeight: true; Layout.fillWidth: true}
-                            Text {text: delta; color: "darkorange"; anchors.right: parent.right}
+                            Text { text: isSend ? "Sent" : "Received"; color: "white"; font.pixelSize: 15; }
+                            Item { Layout.fillHeight: true; Layout.fillWidth: true}
+                            Text { text: delta; color: "darkorange"; anchors.right: parent.right}
                         }
-
+                         Item { Layout.fillHeight: true; Layout.fillWidth: true}
                         RowLayout {
                             id: sec
                             Layout.fillWidth: true
-                            Layout.maximumHeight: parent.height / 3
-                            Layout.minimumHeight: parent.height / 3
+                            Layout.maximumHeight: parent.height / 4
+                            Layout.minimumHeight: parent.height / 4
 
                             spacing: 20
 
                             Column {
                                 Text { text: "DATE"; font.bold: true; font.pixelSize: 10; color: "white" }
-                                Text {text: "Friday, Jun 15th 2018, 11:23:01 PM"; font.pixelSize: 10; color: "white"}
+                                Text { text: "Friday, Jun 15th 2018, 11:23:01 PM"; font.pixelSize: 10; color: "white"}
                             }
                             Column {
                                 Text { text: "TRANSACTION ID"; font.bold: true; font.pixelSize: 10; color: "white" }
@@ -134,14 +131,14 @@ Rectangle {
                             }
                             Column {
                                 Text { text: "TO"; font.bold: true; font.pixelSize: 10; color: "white" }
-                                Text {  text: "4ce18f49ba153a51bcda9bb80d7f978e3d"; font.pixelSize: 10; color: "white"}
+                                Text { text: "4ce18f49ba153a51bcda9bb80d7f978e3d"; font.pixelSize: 10; color: "white"}
                             }
                         }
 
                         RowLayout {
                             Layout.fillWidth: true
-                            Layout.maximumHeight: parent.height / 3
-                            Layout.minimumHeight: parent.height / 3
+                            Layout.maximumHeight: parent.height / 4
+                            Layout.minimumHeight: parent.height / 4
 
                             Column {
                                 Text { text: "NOW"; font.bold: true; font.pixelSize: 10; color: "white" }

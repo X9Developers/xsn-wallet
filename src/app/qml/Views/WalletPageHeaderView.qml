@@ -11,13 +11,13 @@ Rectangle {
     property string coinMeasure: ""
     property string labelColor: ""
 
-    ColumnLayout{
+    ColumnLayout {
 
         anchors.fill: parent
 
         IconButton {
             id: iconBut
-            source: hovered ? "qrc:/images/refresh.png" : "qrc:/images/BC_Logo_.png"
+            source: hovered ? "qrc:/images/refresh.png" : coinMeasure !== "" ? "qrc:/images/%1.png".arg(coinMeasure): ""
             sourceSize: Qt.size(55, 55)
             anchors.horizontalCenter: parent.horizontalCenter
             hoverEnabled: true
@@ -35,27 +35,27 @@ Rectangle {
             color: "white"
         }
 
-        Item {
-            Layout.fillHeight: true
-        }
-
         RowLayout{
             anchors.horizontalCenter: parent.horizontalCenter
             Layout.alignment: Layout.Bottom
             Layout.bottomMargin: 10
+            spacing: 20
 
             TransactionButton{
-                Layout.preferredWidth: 80
+                Layout.preferredWidth: 170
+                Layout.preferredHeight: 40
                 color: labelColor
                 radius: 20
                 text: qsTr("Send")
             }
 
             TransactionButton{
-                Layout.preferredWidth: 80
+                Layout.preferredWidth: 170
+                Layout.preferredHeight: 40
                 color: labelColor
                 radius: 20
                 text: qsTr("Receive")
+                font.weight: Font.Light
             }
         }
     }

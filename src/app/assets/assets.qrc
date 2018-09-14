@@ -2,7 +2,9 @@
     <qresource prefix="/images">
         <file>images.png</file>
         <file>received.jpg</file>
-        <file>BC_Logo_.png</file>
+        <file>Bitcoin.png</file>
         <file>refresh.png</file>
+        <file>Dash.png</file>
+        <file>XSN.png</file>
     </qresource>
 </RCC>

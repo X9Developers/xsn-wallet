@@ -5,9 +5,9 @@ ListView {
     anchors.fill: parent
 
     model: ListModel {
-        ListElement { color: "lightblue"; name: "Dash"; balance: "1.5"; }
-        ListElement { color: "darkblue"; name: "XSN"; balance: "1.3"; }
-        ListElement { color: "orange"; name: "Bitcoin"; icon: ""; balance: "2.7"; }
+        ListElement { color: "#1D73BC"; name: "Dash"; balance: "1.5"; } // color - blue
+        ListElement { color: "#18B8EE"; name: "XSN"; balance: "1.3"; } // color - light blue
+        ListElement { color: "#FD9400"; name: "Bitcoin"; icon: ""; balance: "2.7"; } //color - orange
     }
 
     highlight: Item {

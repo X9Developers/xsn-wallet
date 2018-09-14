@@ -1,6 +1,5 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.3
-
 ListView {
     id: listView
     anchors.fill: parent
@@ -26,7 +25,6 @@ ListView {
             anchors.verticalCenter: parent.verticalCenter
 
             Image {
-                anchors.margins: 10
                 sourceSize.width: 16
                 sourceSize.height: 16
                 source: model.image

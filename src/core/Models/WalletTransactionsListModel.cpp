@@ -41,7 +41,7 @@ QVariant WalletTransactionsListModel::data(const QModelIndex &index, int role) c
     case IsSendRole: return transaction._txType == TransactionEntry::Type::Sent;
     case DeltaRole: return transaction._delta;
     case ImageUrlRole: return "";
-    case TxDateRole: return transaction._transactionDate.toString("MMM/dd");
+    case TxDateRole: return transaction._transactionDate.toString("MMM\ndd");
     }
 
     return QVariant();
