@@ -118,7 +118,6 @@ Rectangle {
                             Layout.fillWidth: true
                             Layout.maximumHeight: parent.height / 4
                             Layout.minimumHeight: parent.height / 4
-
                             spacing: 20
 
                             Column {
