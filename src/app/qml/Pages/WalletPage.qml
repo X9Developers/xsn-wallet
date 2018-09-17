@@ -45,7 +45,7 @@ Page {
                 spacing: 0
 
                 WalletPageHeaderView {
-                    Layout.fillHeight: true
+                    Layout.preferredHeight: 250
                     Layout.fillWidth: true
 
                     coinMeasure: assetsListView.currentItem.name
@@ -56,7 +56,6 @@ Page {
                 TransactionsListView {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-                    Layout.maximumHeight: parent.height / 2
                     transactionListModel: walletViewModel.transactionsListModel
                 }
             }
