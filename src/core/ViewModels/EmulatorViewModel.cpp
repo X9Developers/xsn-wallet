@@ -18,6 +18,16 @@ EmulatorViewModel::~EmulatorViewModel()
 
 //==============================================================================
 
+void EmulatorViewModel::clearTransactions(QString currentModel)
+{
+    if(_walletDataSource)
+    {
+        _walletDataSource->clearTransactions(currentModel);
+    }
+}
+
+//==============================================================================
+
 void EmulatorViewModel::initialize(ApplicationViewModel *applicationViewModel)
 {
     _walletDataSource = qobject_cast<EmulatorWalletDataSource*>(applicationViewModel->dataSource());
@@ -25,11 +35,11 @@ void EmulatorViewModel::initialize(ApplicationViewModel *applicationViewModel)
 
 //==============================================================================
 
-void EmulatorViewModel::addTransaction(QString currentModel)
+void EmulatorViewModel::addTransaction(QString currentModel, int count)
 {
     if(_walletDataSource)
     {
-        _walletDataSource->executeAdd(currentModel);
+        _walletDataSource->executeAdd(currentModel, count);
     }
 }
 
