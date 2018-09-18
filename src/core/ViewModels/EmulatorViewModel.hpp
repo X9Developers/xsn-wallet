@@ -18,7 +18,8 @@ public:
     ~EmulatorViewModel();
 
 public slots:
-    void addTransaction(QString currentModel);
+    void addTransaction(QString currentModel, int count);
+    void clearTransactions(QString currentModel);
     void initialize(ApplicationViewModel *applicationViewModel);
 
 private:

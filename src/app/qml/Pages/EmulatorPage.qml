@@ -19,6 +19,7 @@ Page {
     EmulatorView {
         id: emulatorView
         anchors.fill: parent
-        onAddTransaction: walletViewModel.addTransaction(modelName);
+        onAddTransaction: walletViewModel.addTransaction(modelName, count);
+        onClearTransactions: walletViewModel.clearTransactions(modelName);
     }
 }

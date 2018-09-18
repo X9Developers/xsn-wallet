@@ -44,27 +44,35 @@ static TransactionEntry GenerateTransaction()
 
 //==============================================================================
 
-void EmulatorWalletDataSource::executeAdd(QString modelName)
+void EmulatorWalletDataSource::executeAdd(QString modelName, int count)
 {
-    srand (time(0));
-
     QString id = modelName;
     TransactionEntry transaction = GenerateTransaction();
 
     auto it = _transactionMap.find(id);
     if(it != std::end(_transactionMap))
     {
-        for(auto trans : it->second)
+        for(int i = 0; i < count; ++i)
         {
-            if(trans._transactionID == transaction._transactionID)
-                return;
+            it->second.push_back(transaction);
+            transactionAdded(modelName, transaction);
         }
-
-        it->second.push_back(transaction);
-        transactionsFetched(modelName, it->second);
     }
     else
+    {
         qDebug() << "Transaction not added";
+    }
+}
+
+//==============================================================================
+
+void EmulatorWalletDataSource::clearTransactions(QString modelName)
+{
+    if(_transactionMap.count(modelName))
+    {
+        _transactionMap[modelName].clear();
+        transactionsFetched(modelName, {});
+    }
 }
 
 //==============================================================================

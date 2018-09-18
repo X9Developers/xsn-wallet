@@ -54,6 +54,7 @@ Page {
                 }
 
                 TransactionsListView {
+                    assetName: currentAssetID
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     transactionListModel: walletViewModel.transactionsListModel
