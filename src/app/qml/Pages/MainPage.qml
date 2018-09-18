@@ -9,6 +9,7 @@ RowLayout {
     property string currentAssetID: walletPage.currentAssetID
 
     Rectangle {
+        visible: false
         Layout.fillHeight: true
         Layout.maximumWidth: parent.width / 7
         Layout.minimumWidth: parent.width / 7
@@ -22,7 +23,8 @@ RowLayout {
     StackLayout {
         Layout.fillHeight: true
         Layout.fillWidth: true
-        currentIndex: walletMenuListView.currentIndex
+//        currentIndex: walletMenuListView.currentIndex
+        currentIndex: 1
 
         Text {
             Layout.fillHeight: true
