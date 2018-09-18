@@ -32,6 +32,7 @@ signals:
 
 private slots:
     void onTransactionFetched(QString assetID, WalletDataSource::TransactionsList list);
+    void onTransactionAdded(QString assetID, TransactionEntry entry);
 
 private:
     void init();

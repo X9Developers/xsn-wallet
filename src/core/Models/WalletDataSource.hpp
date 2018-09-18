@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <functional>
-#include <Utils.hpp>
+#include <Utils/Utils.hpp>
 #include <Data/TransactionEntry.hpp>
 
 class WalletDataSource : public QObject
@@ -18,6 +18,7 @@ public:
 
 signals:
     void transactionsFetched(QString id, TransactionsList list);
+    void transactionAdded(QString id, TransactionEntry transaction);
     void transactionsFetchError(QString id, QString error);
 
 protected:

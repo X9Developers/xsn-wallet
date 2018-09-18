@@ -46,8 +46,6 @@ static TransactionEntry GenerateTransaction()
 
 void EmulatorWalletDataSource::executeAdd(QString modelName)
 {
-    srand (time(0));
-
     QString id = modelName;
     TransactionEntry transaction = GenerateTransaction();
 
@@ -61,7 +59,7 @@ void EmulatorWalletDataSource::executeAdd(QString modelName)
         }
 
         it->second.push_back(transaction);
-        transactionsFetched(modelName, it->second);
+        transactionAdded(modelName, transaction);
     }
     else
         qDebug() << "Transaction not added";

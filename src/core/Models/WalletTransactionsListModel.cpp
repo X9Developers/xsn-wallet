@@ -23,7 +23,7 @@ WalletTransactionsListModel::~WalletTransactionsListModel()
 int WalletTransactionsListModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
-    return _transactionList.size();
+    return static_cast<int>(_transactionList.size());
 }
 
 //==============================================================================
@@ -33,7 +33,7 @@ QVariant WalletTransactionsListModel::data(const QModelIndex &index, int role) c
     if (!index.isValid())
         return QVariant();
 
-    const int row = index.row();
+    const size_t row = static_cast<size_t>(index.row());
     const TransactionEntry transaction = _transactionList.at(row);
     switch(role)
     {
@@ -79,11 +79,29 @@ void WalletTransactionsListModel::onTransactionFetched(QString assetID, WalletDa
 
 //==============================================================================
 
+void WalletTransactionsListModel::onTransactionAdded(QString assetID, TransactionEntry entry)
+{
+    if(_assetID != assetID)
+    {
+        return;
+    }
+
+    int rows = rowCount(QModelIndex());
+    beginInsertRows(QModelIndex(), rows, rows);
+    _transactionList.emplace_back(entry);
+    endInsertRows();
+}
+
+//==============================================================================
+
 void WalletTransactionsListModel::init()
 {
     if(_walletDataSource)
     {
-        connect(_walletDataSource.data(), &WalletDataSource::transactionsFetched, this, &WalletTransactionsListModel::onTransactionFetched);
+        connect(_walletDataSource, &WalletDataSource::transactionsFetched,
+                this, &WalletTransactionsListModel::onTransactionFetched);
+        connect(_walletDataSource, &WalletDataSource::transactionAdded,
+                this, &WalletTransactionsListModel::onTransactionAdded);
         _walletDataSource->fetchTransactions(_assetID);
     }
 }

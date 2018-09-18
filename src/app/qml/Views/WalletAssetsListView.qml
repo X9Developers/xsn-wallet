@@ -12,8 +12,9 @@ ListView {
 
     highlight: Item {
         Rectangle {
+            id: highlightItem
             anchors.right: parent.right
-            width: 5
+            width: 7
             height: parent.height
             radius: 5
             color: listView.currentItem.color

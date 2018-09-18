@@ -161,6 +161,12 @@ Rectangle {
         model: transactionListModel
         delegate: contactDelegate
         focus: true
-    }
 
+        add: Transition {
+            NumberAnimation { properties: "y"; from: transactionsList.height; duration: 200 }
+        }
+        addDisplaced: Transition {
+            NumberAnimation { properties: "x,y"; duration: 200 }
+        }
+    }
 }
