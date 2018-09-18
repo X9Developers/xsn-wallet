@@ -13,9 +13,9 @@ Project {
     ]
 
 
-    SubProject {
-        filePath: "src/tests/tests.qbs"
-    }
+//    SubProject {
+//        filePath: "src/tests/tests.qbs"
+//    }
 
     AutotestRunner {
         name: "run_autotests"
