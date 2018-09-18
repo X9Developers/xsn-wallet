@@ -32,7 +32,8 @@ Rectangle {
                     if(transactionsList.currentIndex === index)
                         transactionsList.currentIndex = -1
                     else
-                        transactionsList.currentIndex = index }
+                        transactionsList.currentIndex = index
+                }
             }
 
             RowLayout {
@@ -78,7 +79,7 @@ Rectangle {
                             Item { Layout.fillHeight: true; Layout.fillWidth: true}
                             Text { text: delta; color: "darkorange"; anchors.right: parent.right}
                         }
-                         Item { Layout.fillHeight: true; Layout.fillWidth: true}
+                        Item { Layout.fillHeight: true; Layout.fillWidth: true }
                         RowLayout {
                             id: sec
                             Layout.fillWidth: true
