@@ -12,5 +12,6 @@
         <file>Pages/EmulatorPage.qml</file>
         <file>Views/WalletMenuListView.qml</file>
         <file>Pages/MainPage.qml</file>
+        <file>Components/MenuItem.qml</file>
     </qresource>
 </RCC>

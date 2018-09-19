@@ -29,8 +29,8 @@ Page {
 
             Rectangle {
                 Layout.fillHeight: true
-                Layout.maximumWidth: parent.width / 6
-                Layout.minimumWidth: parent.width / 6
+                Layout.maximumWidth: 150
+                Layout.minimumWidth: 150
                 color: "#292E34"
 
                 WalletAssetsListView {
@@ -45,7 +45,7 @@ Page {
                 spacing: 0
 
                 WalletPageHeaderView {
-                    Layout.preferredHeight: 250
+                    Layout.preferredHeight: 270
                     Layout.fillWidth: true
 
                     coinMeasure: assetsListView.currentItem.name

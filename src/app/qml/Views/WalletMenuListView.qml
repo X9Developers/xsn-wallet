@@ -1,48 +1,72 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.3
 
-ListView {
-    id: listView
+import "../Components"
+
+ColumnLayout {
+    id: root
     anchors.fill: parent
 
-    model: ListModel {
-        ListElement { name: "Portfolio"; image: "qrc:/images/images.png" }
-        ListElement { name: "Wallet"; image:  "qrc:/images/received.jpg" }
-        ListElement { name: "Exchange"; image:"qrc:/images/images.png" }
-        ListElement { name: "Backup"; image: "qrc:/images/received.jpg" }
-        ListElement { name: "Settings"; image : "qrc:/images/received.jpg"}
-        ListElement { name: "Help"; image: "qrc:/images/received.jpg" }
+    property int currentIndex: 0
+    property string currentName: "Portfolio"
+
+    MenuItem {
+        Layout.fillWidth: true
+        Layout.preferredHeight: 40
+        isCurrentItem: currentName === name
+        name: "Portfolio"
+        imageSource: "qrc:/images/images.png"
+        onMenuItemClicked: { currentIndex = 0 ; currentName = name}
     }
 
-    delegate: Rectangle {
-        height: 40
-        width: parent.width
-        color: ListView.isCurrentItem ? "#292E34" : "transparent"
-        property string name: model.name
+    MenuItem {
+        Layout.fillWidth: true
+        Layout.preferredHeight: 40
+        isCurrentItem: currentName === name
+        name: "Wallet"
+        imageSource: "qrc:/images/received.jpg"
+        onMenuItemClicked: { currentIndex = 1 ; currentName = name}
+    }
 
-        RowLayout {
-            anchors.leftMargin: parent.width / 7
-            anchors.left: parent.left
-            anchors.verticalCenter: parent.verticalCenter
+    MenuItem {
+        Layout.fillWidth: true
+        Layout.preferredHeight: 40
+        isCurrentItem: currentName === name
+        name: "Exchange"
+        imageSource: "qrc:/images/images.png"
+        onMenuItemClicked: { currentIndex = 2; currentName = name}
+    }
 
-            Image {
-                sourceSize.width: 16
-                sourceSize.height: 16
-                source: model.image
-            }
+    MenuItem {
+        Layout.fillWidth: true
+        Layout.preferredHeight: 40
+        isCurrentItem: currentName === name
+        name: "Backup"
+        imageSource: "qrc:/images/received.jpg"
+        onMenuItemClicked: { currentIndex = 3; currentName = name;}
+    }
 
-            Text {
-                text: model.name
-                font.pixelSize: 14
-                color: "white"
-            }
-        }
+    Item {
+        Layout.fillHeight: true
+        Layout.fillWidth: true
+    }
 
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                listView.currentIndex = index;
-            }
-        }
+    MenuItem {
+        Layout.fillWidth: true
+        Layout.preferredHeight: 40
+        isCurrentItem: currentName === name
+        name: "Settings"
+        imageSource: "qrc:/images/received.jpg"
+        onMenuItemClicked: { currentIndex = 4; currentName = name}
+    }
+
+    MenuItem {
+        Layout.fillWidth: true
+        Layout.preferredHeight: 40
+        isCurrentItem: currentName === name
+        name: "Help"
+        imageSource: "qrc:/images/received.jpg"
+        onMenuItemClicked: { currentIndex = 5; currentName = name}
     }
 }
+

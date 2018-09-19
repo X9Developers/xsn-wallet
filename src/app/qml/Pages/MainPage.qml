@@ -11,8 +11,7 @@ RowLayout {
     Rectangle {
         visible: false
         Layout.fillHeight: true
-        Layout.maximumWidth: parent.width / 7
-        Layout.minimumWidth: parent.width / 7
+        Layout.preferredWidth: parent.width < 1180 ? 90 : 180
         color: "#3F444A"
 
         WalletMenuListView {
@@ -23,7 +22,7 @@ RowLayout {
     StackLayout {
         Layout.fillHeight: true
         Layout.fillWidth: true
-//        currentIndex: walletMenuListView.currentIndex
+        //currentIndex: walletMenuListView.currentIndex
         currentIndex: 1
 
         Text {
@@ -62,5 +61,4 @@ RowLayout {
             text: "Help"
         }
     }
-
 }
