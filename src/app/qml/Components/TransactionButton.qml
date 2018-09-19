@@ -12,9 +12,22 @@ Button {
     background: Rectangle {
         color: actionButton.color
         radius: actionButton.radius
-//        gradient: Gradient {
-//                GradientStop { position: 0.0; color: "#426DD3" }
-//                GradientStop { position: 1.0; color: "#4927BB" }
-//            }
+
+        //        gradient: Gradient {
+        //                GradientStop { position: 0.0; color: "#426DD3" }
+        //                GradientStop { position: 1.0; color: "#4927BB" }
+        //            }
+        MouseArea {
+            anchors.fill: parent
+            hoverEnabled: true
+            onEntered:  {
+                actionButton.scale = scale * 1.05
+            }
+            onExited: {
+                actionButton.scale = scale
+            }
+        }
+
+
     }
 }

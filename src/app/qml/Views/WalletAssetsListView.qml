@@ -14,7 +14,7 @@ ListView {
         Rectangle {
             id: highlightItem
             anchors.right: parent.right
-            width: 7
+            width: 8
             height: parent.height
             radius: 5
             color: listView.currentItem.color
@@ -24,13 +24,14 @@ ListView {
     highlightFollowsCurrentItem: true
 
     delegate: Item {
-        height: 35
+        height: 45
         width: parent.width
         anchors.right: parent.right
         property string color: model.color
         property string name: model.name
 
         Text {
+            id: assetsName
             anchors.rightMargin: parent.width / 7
             anchors.right: parent.right
             anchors.verticalCenter: parent.verticalCenter
@@ -41,9 +42,21 @@ ListView {
         }
 
         MouseArea {
+            id: mouseArea
             anchors.fill: parent
+            hoverEnabled: true
             onClicked: {
                 listView.currentIndex = index;
+            }
+            onEntered:  {
+                if(!parent.ListView.isCurrentItem)
+                    assetsName.color = "white"
+            }
+            onExited: {
+                if(parent.ListView.isCurrentItem)
+                    assetsName.color = parent.color
+                else
+                    assetsName.color = "grey"
             }
         }
     }

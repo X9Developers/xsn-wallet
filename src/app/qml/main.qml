@@ -1,4 +1,5 @@
 import QtQuick 2.9
+import QtQuick.Controls 2.2
 import QtQuick.Window 2.2
 import QtQuick.Layouts 1.3
 
@@ -6,8 +7,10 @@ import "Pages"
 
 Window {
     visible: true
-    width: 1100
+    width: 1080
     height: 640
+    minimumWidth: 1080
+    minimumHeight: 640
     title: qsTr("Hello World")
 
     RowLayout {
