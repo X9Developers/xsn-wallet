@@ -10,6 +10,9 @@ Rectangle {
 
     property string coinMeasure: ""
     property string labelColor: ""
+    property int windowWidth: 0
+    property string buttonColor: ""
+
 
     ColumnLayout {
         anchors.fill: parent
@@ -19,7 +22,7 @@ Rectangle {
         IconButton {
             id: iconBut
             source: hovered ? "qrc:/images/refresh.png" : coinMeasure !== "" ? "qrc:/images/%1.png".arg(coinMeasure): ""
-            sourceSize: Qt.size(55, 55)
+            sourceSize: Qt.size(75, 75)
             anchors.horizontalCenter: parent.horizontalCenter
             hoverEnabled: true
         }
@@ -31,27 +34,29 @@ Rectangle {
 
             XSNLabel {
                 id: coinsAmount
+                anchors.top: iconBut.button
                 text: "0"
                 color: labelColor
-                backgroundRectangleWidth: backgroundRectangle.width
                 lineHeightMode: Text.FixedHeight
-                height: 60
+                height: font.pixelSize
+                font.pixelSize: windowWidth > 1180 ? (backgroundRectangle.width > 1250 ? 100 : 75)
+                                                                : 60
             }
-
 
             XSNLabel {
                 text: coinMeasure
                 anchors.bottom: coinsAmount.bottom
                 color: labelColor
-                font.pixelSize: coinsAmount.font.pixelSize * 0.4
+                font.pixelSize: coinsAmount.font.pixelSize * 0.5
                 font.capitalization: Font.AllUppercase
             }
         }
 
         Row {
+            id: usd
+            anchors.top: coins.bottom
             anchors.horizontalCenter: parent.horizontalCenter
             spacing: 5
-            anchors.top: coins.bottom
 
             XSNLabel {
                 text: qsTr("$")
@@ -78,15 +83,16 @@ Rectangle {
         }
 
         RowLayout {
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 10
+            anchors.top: usd.bottom
+            anchors.topMargin: 10
             anchors.horizontalCenter: parent.horizontalCenter
             spacing: 25
 
             TransactionButton {
                 Layout.preferredWidth: 235
-                Layout.preferredHeight: 45
-                color: labelColor
+                Layout.preferredHeight: 47
+                baseColor: labelColor
+                secondaryColor: buttonColor
                 radius: 25
 
                 Text {
@@ -100,8 +106,9 @@ Rectangle {
 
             TransactionButton {
                 Layout.preferredWidth: 235
-                Layout.preferredHeight: 45
-                color: labelColor
+                Layout.preferredHeight: 47
+                baseColor: labelColor
+                secondaryColor: buttonColor
                 radius: 25
                 font.weight: Font.Light
 

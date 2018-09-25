@@ -6,17 +6,18 @@ import QtGraphicalEffects 1.0
 Button {
     id: actionButton
 
-    property color color: "transparent"
+    property color baseColor: "transparent"
+    property color secondaryColor: "transparent"
     property int radius: 0
 
     background: Rectangle {
-        color: actionButton.color
+        color: actionButton.baseColor
         radius: actionButton.radius
 
-        //        gradient: Gradient {
-        //                GradientStop { position: 0.0; color: "#426DD3" }
-        //                GradientStop { position: 1.0; color: "#4927BB" }
-        //            }
+        gradient: Gradient {
+            GradientStop { position: 0.0; color: baseColor }
+            GradientStop { position: 1.0; color: secondaryColor }
+        }
         MouseArea {
             anchors.fill: parent
             hoverEnabled: true

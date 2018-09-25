@@ -23,7 +23,6 @@ Rectangle {
 
         Rectangle {
             id: item
-
             property bool isCurrentItem: ListView.isCurrentItem
             width: parent.width
             height: columnLayout.height

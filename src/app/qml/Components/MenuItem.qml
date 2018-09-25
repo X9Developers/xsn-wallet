@@ -2,12 +2,10 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.3
 
 Rectangle {
-    id: root
-
     property bool isCurrentItem: false
     property string name: ""
     property string imageSource: ""
-    signal menuItemClicked(int index)
+    signal menuItemClicked()
 
     color: isCurrentItem ? "#292E34" : "transparent"
 
@@ -32,7 +30,7 @@ Rectangle {
 
         MouseArea {
             anchors.fill: parent
-            onClicked: menuItemClicked(root.index)
+            onClicked: menuItemClicked()
         }
     }
 }

@@ -4,6 +4,7 @@ import QtQuick.Layouts 1.3
 import "../Views"
 
 RowLayout {
+    id: root
     anchors.fill: parent
     spacing: 0
     property string currentAssetID: walletPage.currentAssetID
@@ -35,6 +36,7 @@ RowLayout {
             id: walletPage
             Layout.fillHeight: true
             Layout.fillWidth: true
+            windowWidth: root.parent.width
         }
 
         Text {

@@ -10,6 +10,7 @@ import com.xsn.viewmodels 1.0
 Page {
     id: root
     property string currentAssetID: assetsListView.currentItem.name
+    property int windowWidth: 0
 
     WalletAssetViewModel {
         id: walletViewModel
@@ -21,7 +22,7 @@ Page {
 
     Rectangle {
         anchors.fill: parent
-        color: assetsListView.currentItem.color
+        color: assetsListView.currentItem.baseColor
 
         RowLayout {
             anchors.fill: parent
@@ -29,8 +30,7 @@ Page {
 
             Rectangle {
                 Layout.fillHeight: true
-                Layout.maximumWidth: 150
-                Layout.minimumWidth: 150
+                Layout.preferredWidth: windowWidth > 1180 ? 150 : 130
                 color: "#292E34"
 
                 WalletAssetsListView {
@@ -45,11 +45,14 @@ Page {
                 spacing: 0
 
                 WalletPageHeaderView {
-                    Layout.preferredHeight: 270
+                    Layout.preferredHeight: 300
                     Layout.fillWidth: true
 
                     coinMeasure: assetsListView.currentItem.name
-                    labelColor: assetsListView.currentItem.color
+                    labelColor: assetsListView.currentItem.baseColor
+                    buttonColor: assetsListView.currentItem.buttonColor
+                    windowWidth: root.windowWidth
+
                     //color: assetsListView.currentItem ? assetsListView.currentItem.color : ""
                 }
 
