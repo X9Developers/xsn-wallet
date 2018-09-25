@@ -89,6 +89,8 @@ Rectangle {
                 color: labelColor
                 radius: 25
 
+                onClicked: console.log(walletViewModel.getReceivingAddress());
+
                 Text {
                     anchors.centerIn: parent
                     text: qsTr("SEND")

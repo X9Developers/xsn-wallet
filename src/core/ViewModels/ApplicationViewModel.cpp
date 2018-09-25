@@ -1,5 +1,6 @@
 #include "ApplicationViewModel.hpp"
 #include "Models/EmulatorWalletDataSource.hpp"
+#include "Data/WalletAssetsModel.hpp"
 
 //==============================================================================
 
@@ -24,6 +25,13 @@ WalletDataSource* ApplicationViewModel::dataSource() const
 
 //==============================================================================
 
+const WalletAssetsModel &ApplicationViewModel::assetsModel() const
+{
+    return *_walletAssetsModel;
+}
+
+//==============================================================================
+
 ApplicationViewModel *ApplicationViewModel::Instance()
 {
     static ApplicationViewModel instance;
@@ -35,6 +43,7 @@ ApplicationViewModel *ApplicationViewModel::Instance()
 void ApplicationViewModel::init()
 {
     initDataSource();
+    initWalletAssets();
 }
 
 //==============================================================================
@@ -42,6 +51,13 @@ void ApplicationViewModel::init()
 void ApplicationViewModel::initDataSource()
 {
     _emulatorWalletDataSource = new EmulatorWalletDataSource();
+}
+
+//==============================================================================
+
+void ApplicationViewModel::initWalletAssets()
+{
+    _walletAssetsModel.reset(new WalletAssetsModel);
 }
 
 //==============================================================================

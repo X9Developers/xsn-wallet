@@ -3,7 +3,10 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #include <gtest/gtest.h>
 #include <gmock/gmock-matchers.h>
+<<<<<<< Updated upstream
 //#include <bitcoin/bitcoin.hpp>
+=======
+>>>>>>> Stashed changes
 #include <iostream>
 
 using namespace testing;
@@ -13,6 +16,7 @@ TEST(CoreTests, CoreTests)
     EXPECT_EQ(1, 1);
     ASSERT_THAT(0, Eq(0));
 }
+<<<<<<< Updated upstream
 
 TEST(CoreTests, LibbitcoinTest)
 {
@@ -23,3 +27,5 @@ TEST(CoreTests, LibbitcoinTest)
 //    std::string message(script.begin() + sizeof(uint64_t), script.end());
 //    std::cout << message << std::endl;
 }
+=======
+>>>>>>> Stashed changes

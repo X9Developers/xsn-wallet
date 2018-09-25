@@ -29,6 +29,7 @@ ListView {
         anchors.right: parent.right
         property string color: model.color
         property string name: model.name
+        property string symbol: model.symbol
 
         Text {
             id: assetsName

@@ -26,6 +26,10 @@ Button {
             onExited: {
                 actionButton.scale = scale
             }
+
+            onClicked: {
+                actionButton.clicked();
+            }
         }
 
 
