@@ -13,7 +13,6 @@ Button {
     background: Rectangle {
         color: actionButton.baseColor
         radius: actionButton.radius
-
         gradient: Gradient {
             GradientStop { position: 0.0; color: baseColor }
             GradientStop { position: 1.0; color: secondaryColor }
@@ -21,6 +20,7 @@ Button {
         MouseArea {
             anchors.fill: parent
             hoverEnabled: true
+            onClicked: actionButton.clicked()
             onEntered:  {
                 actionButton.scale = scale * 1.05
             }
@@ -28,7 +28,5 @@ Button {
                 actionButton.scale = scale
             }
         }
-
-
     }
 }

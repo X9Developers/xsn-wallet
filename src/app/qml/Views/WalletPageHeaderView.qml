@@ -5,8 +5,12 @@ import QtQuick.Layouts 1.3
 import "../Components"
 
 Rectangle {
-    id: backgroundRectangle
+    id: root
     color: "#292E34"
+
+
+    signal sendCoins()
+    signal receiveCoins()
 
     property string coinMeasure: ""
     property string labelColor: ""
@@ -102,6 +106,8 @@ Rectangle {
                     style: Text.StyledText
                     styleColor: "black"
                 }
+
+                onClicked: sendCoins()
             }
 
             TransactionButton {
@@ -119,6 +125,8 @@ Rectangle {
                     style: Text.StyledText
                     styleColor: "black"
                 }
+
+                onClicked: receiveCoins();
             }
         }
     }

@@ -13,5 +13,7 @@
         <file>Views/WalletMenuListView.qml</file>
         <file>Pages/MainPage.qml</file>
         <file>Components/MenuItem.qml</file>
+        <file>Components/ActionDialog.qml</file>
+        <file>Popups/ReceivePopup.qml</file>
     </qresource>
 </RCC>
