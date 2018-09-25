@@ -8,15 +8,22 @@ Product {
     type: "staticlibrary"
     name: "core"
     files: [
+        "Data/CoinAsset.cpp",
+        "Data/CoinAsset.hpp",
         "Data/TransactionEntry.cpp",
         "Data/TransactionEntry.hpp",
+        "Data/WalletAssetsModel.cpp",
+        "Data/WalletAssetsModel.hpp",
         "Models/EmulatorWalletDataSource.cpp",
         "Models/EmulatorWalletDataSource.hpp",
+        "Models/WalletAssetsListModel.cpp",
+        "Models/WalletAssetsListModel.hpp",
         "Models/WalletDataSource.cpp",
         "Models/WalletDataSource.hpp",
         "Models/WalletTransactionsListModel.cpp",
         "Models/WalletTransactionsListModel.hpp",
         "Utils/*",
+        "Storage/*",
         "ViewModels/ApplicationViewModel.cpp",
         "ViewModels/ApplicationViewModel.hpp",
         "ViewModels/EmulatorViewModel.cpp",
@@ -27,8 +34,7 @@ Product {
     Depends { name: "cpp" }
     Depends { name: "Qt.core" }
     Depends { name: "gsl" }
-//    Depends { name: "libbitcoin" }
-//    Depends { name: "networking" }
+    Depends { name: "bitcoin" }
     cpp.defines: ['CRUCIAL_DEFINE']
     cpp.includePaths: [product.sourceDirectory]
 

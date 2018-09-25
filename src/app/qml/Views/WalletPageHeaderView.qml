@@ -17,7 +17,6 @@ Rectangle {
     property int windowWidth: 0
     property string buttonColor: ""
 
-
     ColumnLayout {
         anchors.fill: parent
         anchors.bottomMargin: 10
@@ -44,14 +43,14 @@ Rectangle {
                 lineHeightMode: Text.FixedHeight
                 height: font.pixelSize
                 font.pixelSize: windowWidth > 1180 ? (backgroundRectangle.width > 1250 ? 100 : 75)
-                                                                : 60
+                                                   : 60
             }
 
             XSNLabel {
                 text: coinMeasure
                 anchors.bottom: coinsAmount.bottom
                 color: labelColor
-                font.pixelSize: coinsAmount.font.pixelSize * 0.5
+                font.pixelSize: coinsAmount.font.pixelSize * 0.4
                 font.capitalization: Font.AllUppercase
             }
         }
@@ -89,6 +88,8 @@ Rectangle {
         RowLayout {
             anchors.top: usd.bottom
             anchors.topMargin: 10
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 10
             anchors.horizontalCenter: parent.horizontalCenter
             spacing: 25
 

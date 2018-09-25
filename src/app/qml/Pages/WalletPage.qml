@@ -7,11 +7,14 @@ import "../Components"
 import "../Popups"
 
 import com.xsn.viewmodels 1.0
+import com.xsn.models 1.0
 
 Page {
     id: root
-    property string currentAssetID: assetsListView.currentItem.name
     property int windowWidth: 0
+    property string currentAssetID: assetsListView.currentItem ? assetsListView.currentItem.name : ""
+    property string currentAssetColor: assetsListView.currentItem ? assetsListView.currentItem.color : ""
+    property string currentAssetSymbol: assetsListView.currentItem ? assetsListView.currentItem.symbol : ""
 
     WalletAssetViewModel {
         id: walletViewModel
@@ -48,7 +51,7 @@ Page {
 
     Rectangle {
         anchors.fill: parent
-        color: assetsListView.currentItem.baseColor
+        color: currentAssetColor
 
         RowLayout {
             anchors.fill: parent
@@ -62,6 +65,13 @@ Page {
                 WalletAssetsListView {
                     id: assetsListView
                     anchors.fill: parent
+                    model: WalletAssetsListModel {
+                        Component.onCompleted: initialize(ApplicationViewModel)
+
+                        onModelReset: {
+                            assetsListView.currentIndex = 0;
+                        }
+                    }
                 }
             }
 
@@ -71,11 +81,11 @@ Page {
                 spacing: 0
 
                 WalletPageHeaderView {
-                    Layout.preferredHeight: 300
+                    Layout.preferredHeight: 270
                     Layout.fillWidth: true
 
-                    coinMeasure: assetsListView.currentItem.name
-                    labelColor: assetsListView.currentItem.baseColor
+                    coinMeasure: currentAssetID
+                    labelColor: currentAssetColor
                     buttonColor: assetsListView.currentItem.buttonColor
                     windowWidth: root.windowWidth
 

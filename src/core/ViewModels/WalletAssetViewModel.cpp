@@ -2,6 +2,7 @@
 #include "Models/WalletTransactionsListModel.hpp"
 #include "Models/WalletDataSource.hpp"
 #include "ViewModels/ApplicationViewModel.hpp"
+#include <Storage/KeyStorage.hpp>
 
 //==============================================================================
 
@@ -51,6 +52,18 @@ void WalletAssetViewModel::initialize(ApplicationViewModel *applicationViewModel
 {
     _walletDataSource = applicationViewModel->dataSource();
     currentAssetIDChanged();
+}
+
+//==============================================================================
+
+QString WalletAssetViewModel::getReceivingAddress() const
+{
+    static KeyStorage keyStorage;
+    auto derivedNewChildKey = keyStorage.deriveNewChildKey(0, 0, false);
+
+    auto pubKey = derivedNewChildKey.second.key.GetPubKey();
+    auto keyIDStr = pubKey.GetID().ToString();
+    return derivedNewChildKey.first.toString().left(20);
 }
 
 //==============================================================================

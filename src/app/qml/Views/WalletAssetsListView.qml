@@ -27,9 +27,10 @@ ListView {
         height: 45
         width: parent.width
         anchors.right: parent.right
-        property string baseColor: model.baseColor
+        property string baseColor: model.color
         property string name: model.name
-        property string buttonColor: model.buttonColor
+        property string buttonColor: model.color
+        property string symbol: model.symbol
 
         Text {
             id: assetsName
@@ -48,6 +49,16 @@ ListView {
             hoverEnabled: true
             onClicked: {
                 listView.currentIndex = index;
+            }
+            onEntered:  {
+                if(!parent.ListView.isCurrentItem)
+                    assetsName.color = "white"
+            }
+            onExited: {
+                if(parent.ListView.isCurrentItem)
+                    assetsName.color = parent.color
+                else
+                    assetsName.color = "grey"
             }
         }
     }
