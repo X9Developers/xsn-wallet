@@ -6,5 +6,10 @@
         <file>refresh.png</file>
         <file>Dash.png</file>
         <file>XSN.png</file>
+        <file>Code.png</file>
+        <file>CopyFlat.png</file>
+        <file>MailFlat.png</file>
+        <file>ViewFlat.png</file>
+        <file>PrintFlat.png</file>
     </qresource>
 </RCC>

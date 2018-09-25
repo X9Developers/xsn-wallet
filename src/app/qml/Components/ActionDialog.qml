@@ -28,7 +28,10 @@ Popup {
             width: 32
             height: 32
             radius: 24
-            background: "#3F444A"
+            background: Rectangle {
+                color: "#3F444A"
+                radius: 24
+            }
             onClicked: popUpComponent.close()
         }
 
