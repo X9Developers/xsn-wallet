@@ -32,6 +32,7 @@ Popup {
                 color: "#3F444A"
                 radius: 24
             }
+//            background: "#3F444A"
             onClicked: popUpComponent.close()
         }
 

@@ -26,11 +26,13 @@ Image {
         }
     }
 
-//    Rectangle {
-//        anchors.fill: parent
-//        opacity: 0.5
-//        color: "green"
-//    }
+    Rectangle {
+        anchors.fill: parent
+        color: "transparent"
+        border.color: "orange"
+        border.width: 1
+        radius: parent.width / 2
+    }
 
 //    layer.enabled: rounded
 //    layer.effect: OpacityMask {

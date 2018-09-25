@@ -5,9 +5,9 @@ ListView {
     anchors.fill: parent
 
     model: ListModel {
-        ListElement { color: "#1D73BC"; name: "Dash"; balance: "1.5"; } // color - blue
-        ListElement { color: "#18B8EE"; name: "XSN"; balance: "1.3"; } // color - light blue
-        ListElement { color: "#FD9400"; name: "Bitcoin"; icon: ""; balance: "2.7"; } //color - orange
+        ListElement { baseColor: "#426DD3"; buttonColor: "#4927BB"; name: "Dash"; balance: "1.5"; } // color - blue
+        ListElement { baseColor: "#18B8EE"; buttonColor: "#207EB4"; name: "XSN"; balance: "1.3"; } // color - light blue
+        ListElement { baseColor: "#F8A502"; buttonColor: "#D9880A"; name: "Bitcoin"; icon: ""; balance: "2.7"; } //color - orange
     }
 
     highlight: Item {
@@ -17,7 +17,7 @@ ListView {
             width: 8
             height: parent.height
             radius: 5
-            color: listView.currentItem.color
+            color: listView.currentItem.baseColor
         }
     }
 
@@ -27,8 +27,10 @@ ListView {
         height: 45
         width: parent.width
         anchors.right: parent.right
-        property string color: model.color
+        property string baseColor: model.color
         property string name: model.name
+        property string buttonColor: model.color
+        property string symbol: model.symbol
 
         Text {
             id: assetsName
@@ -38,7 +40,7 @@ ListView {
             text: model.name
 
             font.pixelSize: 14
-            color: parent.ListView.isCurrentItem ? parent.color : "grey"
+            color: parent.ListView.isCurrentItem ? parent.baseColor : mouseArea.containsMouse ? "white" : "grey"
         }
 
         MouseArea {

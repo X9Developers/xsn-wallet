@@ -36,6 +36,7 @@ signals:
 
 public slots:
     void initialize(ApplicationViewModel* applicationViewModel);
+    QString getReceivingAddress() const;
 
 private:
     void init();

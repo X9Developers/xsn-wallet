@@ -7,10 +7,14 @@ import "../Components"
 import "../Popups"
 
 import com.xsn.viewmodels 1.0
+import com.xsn.models 1.0
 
 Page {
     id: root
-    property string currentAssetID: assetsListView.currentItem.name
+    property int windowWidth: 0
+    property string currentAssetID: assetsListView.currentItem ? assetsListView.currentItem.name : ""
+    property string currentAssetColor: assetsListView.currentItem ? assetsListView.currentItem.color : ""
+    property string currentAssetSymbol: assetsListView.currentItem ? assetsListView.currentItem.symbol : ""
 
     WalletAssetViewModel {
         id: walletViewModel
@@ -47,7 +51,7 @@ Page {
 
     Rectangle {
         anchors.fill: parent
-        color: assetsListView.currentItem.color
+        color: currentAssetColor
 
         RowLayout {
             anchors.fill: parent
@@ -55,13 +59,19 @@ Page {
 
             Rectangle {
                 Layout.fillHeight: true
-                Layout.maximumWidth: 150
-                Layout.minimumWidth: 150
+                Layout.preferredWidth: windowWidth > 1180 ? 150 : 130
                 color: "#292E34"
 
                 WalletAssetsListView {
                     id: assetsListView
                     anchors.fill: parent
+                    model: WalletAssetsListModel {
+                        Component.onCompleted: initialize(ApplicationViewModel)
+
+                        onModelReset: {
+                            assetsListView.currentIndex = 0;
+                        }
+                    }
                 }
             }
 
@@ -74,8 +84,11 @@ Page {
                     Layout.preferredHeight: 270
                     Layout.fillWidth: true
 
-                    coinMeasure: assetsListView.currentItem.name
-                    labelColor: assetsListView.currentItem.color
+                    coinMeasure: currentAssetID
+                    labelColor: currentAssetColor
+                    buttonColor: assetsListView.currentItem.buttonColor
+                    windowWidth: root.windowWidth
+
 
                     onSendCoins: {
                         var dialog = sendDialogComponent.createObject(root)

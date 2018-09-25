@@ -9,6 +9,7 @@ Project {
     references: [
         "src/app/app.qbs",
         "src/core/core.qbs",
+        "src/bitcoin/bitcoin.qbs"
 //        "src/networking/networking.qbs",
     ]
 
