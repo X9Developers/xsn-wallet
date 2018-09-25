@@ -8,8 +8,18 @@ class QJsonObject;
 
 struct CoinAsset
 {
+    struct Misc {
+
+        Misc(QString color);
+        static Misc FromJson(const QJsonObject &obj);
+
+        const QString color;
+    };
+
+
     CoinAsset(unsigned int coinID, QString name,
-              QString ticket, bitcoin::CChainParams params);
+              QString ticket, bitcoin::CChainParams params, Misc misc);
+
 
     static CoinAsset FromJson(const QJsonObject &obj);
 
@@ -17,6 +27,7 @@ struct CoinAsset
     const QString name;
     const QString ticket;
     const bitcoin::CChainParams params;
+    const Misc misc;
 };
 
 #endif // COINASSET_HPP

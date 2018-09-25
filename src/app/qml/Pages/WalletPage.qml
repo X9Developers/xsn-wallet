@@ -58,7 +58,7 @@ Page {
                     Layout.preferredHeight: 270
                     Layout.fillWidth: true
 
-                    coinMeasure: currentAssetSymbol
+                    coinMeasure: currentAssetID
                     labelColor: currentAssetColor
                     //color: assetsListView.currentItem ? assetsListView.currentItem.color : ""
                 }

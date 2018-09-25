@@ -48,7 +48,7 @@ QVariant WalletAssetsListModel::data(const QModelIndex &index, int role) const
     switch(role) {
     case NameRole: return asset.name;
     case TicketRole: return asset.ticket;
-    case ColorRole: return "lightblue";
+    case ColorRole: return asset.misc.color;
     default:
         break;
     }

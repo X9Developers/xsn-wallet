@@ -38,11 +38,12 @@ static bitcoin::CChainParams ChainParamsFromJson(QJsonObject obj)
 
 //==============================================================================
 
-CoinAsset::CoinAsset(unsigned int coinID, QString name, QString ticket, bitcoin::CChainParams params) :
+CoinAsset::CoinAsset(unsigned int coinID, QString name, QString ticket, bitcoin::CChainParams params, Misc data) :
     coinID(coinID),
     name(name),
     ticket(ticket),
-    params(params)
+    params(params),
+    misc(data)
 {
 
 }
@@ -54,7 +55,23 @@ CoinAsset CoinAsset::FromJson(const QJsonObject &obj)
     return CoinAsset(static_cast<unsigned>(obj.value("id").toInt()),
                      obj.value("name").toString(),
                      obj.value("symbol").toString(),
-                     ChainParamsFromJson(obj.value("chainparams").toObject()));
+                     ChainParamsFromJson(obj.value("chainparams").toObject()),
+                     Misc::FromJson(obj.value("misc").toObject()));
+}
+
+//==============================================================================
+
+CoinAsset::Misc::Misc(QString color) :
+    color(color)
+{
+
+}
+
+//==============================================================================
+
+CoinAsset::Misc CoinAsset::Misc::FromJson(const QJsonObject &obj)
+{
+    return Misc(obj.value("color").toString());
 }
 
 //==============================================================================
