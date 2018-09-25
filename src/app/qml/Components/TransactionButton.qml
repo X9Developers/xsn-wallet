@@ -17,9 +17,11 @@ Button {
         //                GradientStop { position: 0.0; color: "#426DD3" }
         //                GradientStop { position: 1.0; color: "#4927BB" }
         //            }
+
         MouseArea {
             anchors.fill: parent
             hoverEnabled: true
+            onClicked: actionButton.clicked()
             onEntered:  {
                 actionButton.scale = scale * 1.05
             }
@@ -27,7 +29,5 @@ Button {
                 actionButton.scale = scale
             }
         }
-
-
     }
 }
