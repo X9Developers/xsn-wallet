@@ -1,0 +1,17 @@
+[
+  {
+    "id": 384,
+    "name": "Stakenet",
+    "symbol": "XSN",
+    "color": "#147fb0ff",
+    "chainparams": {
+      "base58Prefix": {
+        "pubkeyAddress": [76],
+        "scriptAddress": [16],
+        "secretKey": [204],
+        "extPublicKey": [4, 136, 178, 30],
+        "extSecretKey": [4, 136, 173, 228]
+      }
+    }
+  }
+]

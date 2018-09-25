@@ -1,4 +1,10 @@
 #include "WalletAssetsModel.hpp"
+#include <QFile>
+#include <QDebug>
+
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
 
 //==============================================================================
 
@@ -36,15 +42,20 @@ const CoinAsset &WalletAssetsModel::assetById(unsigned id) const
 
 void WalletAssetsModel::init()
 {
-    using namespace bitcoin;
-    addAsset(CoinAsset(384u, "Stakenet", "XSN",
-                       CChainParams({
-                                        { CChainParams::Base58Type::PUBKEY_ADDRESS, {76}},
-                                        { CChainParams::Base58Type::SCRIPT_ADDRESS, {16}},
-                                        { CChainParams::Base58Type::SECRET_KEY, {204}},
-                                        { CChainParams::Base58Type::EXT_PUBLIC_KEY, {0x04, 0x88, 0xB2, 0x1E}},
-                                        { CChainParams::Base58Type::EXT_SECRET_KEY, {0x04, 0x88, 0xAD, 0xE4}}
-                                    })));
+    QFile file(":/data/assets_conf.json");
+
+    if(file.open(QFile::ReadOnly))
+    {
+        auto doc = QJsonDocument::fromJson(file.readAll());
+        for(QJsonValueRef object : doc.array())
+        {
+            addAsset(CoinAsset::FromJson(object.toObject()));
+        }
+    }
+    else
+    {
+        qCritical() << "Failed to ope assets_conf.json";
+    }
 }
 
 //==============================================================================
