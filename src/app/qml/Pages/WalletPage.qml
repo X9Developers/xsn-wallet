@@ -51,74 +51,75 @@ Page {
         }
     }
 
-    Rectangle {
+    RowLayout {
         anchors.fill: parent
-        color: currentAssetColor
+        spacing: 0
 
-        RowLayout {
-            anchors.fill: parent
-            spacing: 3
+        Rectangle {
+            Layout.fillHeight: true
+            Layout.preferredWidth: windowWidth > 1180 ? 150 : 130
+            color: "#292E34"
 
-            Rectangle {
-                Layout.fillHeight: true
-                Layout.preferredWidth: windowWidth > 1180 ? 150 : 130
-                color: "#292E34"
+            WalletAssetsListView {
+                id: assetsListView
+                anchors.fill: parent
+                model: WalletAssetsListModel {
+                    Component.onCompleted: initialize(ApplicationViewModel)
 
-                WalletAssetsListView {
-                    id: assetsListView
-                    anchors.fill: parent
-                    model: WalletAssetsListModel {
-                        Component.onCompleted: initialize(ApplicationViewModel)
-
-                        onModelReset: {
-                            assetsListView.currentIndex = 0;
-                        }
+                    onModelReset: {
+                        assetsListView.currentIndex = 0;
                     }
                 }
             }
+        }
 
-            ColumnLayout {
+        Rectangle {
+            Layout.fillHeight: true
+            Layout.preferredWidth: 4
+            color: currentAssetColor
+        }
+
+        ColumnLayout {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            spacing: 0
+
+            WalletPageHeaderView {
+                Layout.preferredHeight: windowWidth > 1180 ? (width > 1250 ? 350 : 300)
+                                                           : 270
+                Layout.fillWidth: true
+
+                coinMeasure: currentAssetName
+                labelColor: currentAssetColor
+                buttonColor: currentButtonColor
+                coinSymbol: currentAssetSymbol
+                windowWidth: root.windowWidth
+
+
+                onSendCoins: {
+                    var dialog = sendDialogComponent.createObject(root)
+                    dialog.width = 600;
+                    dialog.height = 400;
+                    dialog.x = root.width / 2 - dialog.width / 2;
+                    dialog.y = root.height / 2 - dialog.height / 2;
+                    dialog.open();
+                }
+
+                onReceiveCoins: {
+                    var dialog = receiveDialogComponent.createObject(root)
+                    dialog.width = 600;
+                    dialog.height = 400;
+                    dialog.x = root.width / 2 - dialog.width / 2;
+                    dialog.y = root.height / 2 - dialog.height / 2;
+                    dialog.open();
+                }
+            }
+
+            TransactionsListView {
+                assetName: currentAssetName
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                spacing: 0
-
-                WalletPageHeaderView {
-                    Layout.preferredHeight: windowWidth > 1180 ? (width > 1250 ? 350 : 300)
-                                                               : 270
-                    Layout.fillWidth: true
-
-                    coinMeasure: currentAssetName
-                    labelColor: currentAssetColor
-                    buttonColor: currentButtonColor
-                    coinSymbol: currentAssetSymbol
-                    windowWidth: root.windowWidth
-
-
-                    onSendCoins: {
-                        var dialog = sendDialogComponent.createObject(root)
-                        dialog.width = 600;
-                        dialog.height = 400;
-                        dialog.x = root.width / 2 - dialog.width / 2;
-                        dialog.y = root.height / 2 - dialog.height / 2;
-                        dialog.open();
-                    }
-
-                    onReceiveCoins: {
-                        var dialog = receiveDialogComponent.createObject(root)
-                        dialog.width = 600;
-                        dialog.height = 400;
-                        dialog.x = root.width / 2 - dialog.width / 2;
-                        dialog.y = root.height / 2 - dialog.height / 2;
-                        dialog.open();
-                    }
-                }
-
-                TransactionsListView {
-                    assetName: currentAssetName
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                    transactionListModel: walletViewModel.transactionsListModel
-                }
+                transactionListModel: walletViewModel.transactionsListModel
             }
         }
     }

@@ -10,7 +10,7 @@ ListView {
             anchors.right: parent.right
             width: 8
             height: parent.height
-            radius: 5
+            radius: 3
             color: listView.currentItem.color
         }
     }
@@ -18,7 +18,7 @@ ListView {
     highlightFollowsCurrentItem: true
 
     delegate: Item {
-        height: 45
+        height: 50
         width: parent.width
         anchors.right: parent.right
         property string color: model.color
@@ -34,7 +34,7 @@ ListView {
             anchors.verticalCenter: parent.verticalCenter
             text: model.name
 
-            font.pixelSize: 14
+            font.pixelSize: 15
             color: parent.ListView.isCurrentItem ? parent.color : mouseArea.containsMouse ? "white" : "grey"
         }
 
