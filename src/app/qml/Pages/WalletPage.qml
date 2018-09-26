@@ -24,22 +24,10 @@ Page {
         currentAssetID: root.currentAssetID
     }
 
-//    Component {
-//        id: dialogComponent1
-//        Dialog {
-//            title: "Title"
-//            standardButtons: Dialog.Ok | Dialog.Cancel
-
-//            onAccepted: console.log("Ok clicked")
-//            onRejected: console.log("Cancel clicked")
-//        }
-//    }
-
-
-
     Component{
         id: sendDialogComponent
-        ActionDialog {
+        SendPopup {
+
         }
     }
 
