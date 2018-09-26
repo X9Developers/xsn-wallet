@@ -4,8 +4,8 @@
     "name":"Stakenet",
     "symbol":"XSN",
     "misc":{
-      "color":"#147fb0ff",
-      "buttonColor":"grey"
+      "color":"#616161",
+      "buttonColor":"#4F5050"
     },
     "chainparams":{
       "base58Prefix":{

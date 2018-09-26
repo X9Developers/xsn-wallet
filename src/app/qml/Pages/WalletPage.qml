@@ -83,7 +83,8 @@ Page {
                 spacing: 0
 
                 WalletPageHeaderView {
-                    Layout.preferredHeight: 270
+                    Layout.preferredHeight: windowWidth > 1180 ? (width > 1250 ? 350 : 300)
+                                                               : 270
                     Layout.fillWidth: true
 
                     coinMeasure: currentAssetName
