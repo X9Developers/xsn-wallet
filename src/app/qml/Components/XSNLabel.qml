@@ -5,5 +5,7 @@ Text {
     font.family: "Arial"
     style: Text.StyledText
     styleColor: "black"
-    font.pixelSize: 60
+    font.pixelSize: 60 //backgroundRectangleWidth !== 0 ? (backgroundRectangleWidth > 930 ? (backgroundRectangleWidth > 1150 ? 80 : 45)
+                                                                                    // : 35 )
+                                                 // : 35
 }

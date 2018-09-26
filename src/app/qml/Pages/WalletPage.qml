@@ -26,16 +26,16 @@ Page {
         currentAssetID: root.currentAssetID
     }
 
-    Component {
-        id: dialogComponent1
-        Dialog {
-            title: "Title"
-            standardButtons: Dialog.Ok | Dialog.Cancel
+//    Component {
+//        id: dialogComponent1
+//        Dialog {
+//            title: "Title"
+//            standardButtons: Dialog.Ok | Dialog.Cancel
 
-            onAccepted: console.log("Ok clicked")
-            onRejected: console.log("Cancel clicked")
-        }
-    }
+//            onAccepted: console.log("Ok clicked")
+//            onRejected: console.log("Cancel clicked")
+//        }
+//    }
 
 
 
@@ -95,8 +95,8 @@ Page {
 
                     onSendCoins: {
                         var dialog = sendDialogComponent.createObject(root)
-                        dialog.width = 500;
-                        dialog.height = 300;
+                        dialog.width = 600;
+                        dialog.height = 400;
                         dialog.x = root.width / 2 - dialog.width / 2;
                         dialog.y = root.height / 2 - dialog.height / 2;
                         dialog.open();
@@ -104,8 +104,8 @@ Page {
 
                     onReceiveCoins: {
                         var dialog = receiveDialogComponent.createObject(root)
-                        dialog.width = 500;
-                        dialog.height = 300;
+                        dialog.width = 600;
+                        dialog.height = 400;
                         dialog.x = root.width / 2 - dialog.width / 2;
                         dialog.y = root.height / 2 - dialog.height / 2;
                         dialog.open();
