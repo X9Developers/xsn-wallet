@@ -4,12 +4,6 @@ ListView {
     id: listView
     anchors.fill: parent
 
-    model: ListModel {
-        ListElement { baseColor: "#426DD3"; buttonColor: "#4927BB"; name: "Dash"; balance: "1.5"; } // color - blue
-        ListElement { baseColor: "#18B8EE"; buttonColor: "#207EB4"; name: "XSN"; balance: "1.3"; } // color - light blue
-        ListElement { baseColor: "#F8A502"; buttonColor: "#D9880A"; name: "Bitcoin"; icon: ""; balance: "2.7"; } //color - orange
-    }
-
     highlight: Item {
         Rectangle {
             id: highlightItem
@@ -17,7 +11,7 @@ ListView {
             width: 8
             height: parent.height
             radius: 5
-            color: listView.currentItem.baseColor
+            color: listView.currentItem.color
         }
     }
 
@@ -27,9 +21,10 @@ ListView {
         height: 45
         width: parent.width
         anchors.right: parent.right
-        property string baseColor: model.color
+        property string color: model.color
+        property int id: model.id
         property string name: model.name
-        property string buttonColor: model.color
+        property string buttonColor: model.buttonColor
         property string symbol: model.symbol
 
         Text {
@@ -40,7 +35,7 @@ ListView {
             text: model.name
 
             font.pixelSize: 14
-            color: parent.ListView.isCurrentItem ? parent.baseColor : mouseArea.containsMouse ? "white" : "grey"
+            color: parent.ListView.isCurrentItem ? parent.color : mouseArea.containsMouse ? "white" : "grey"
         }
 
         MouseArea {
@@ -49,16 +44,6 @@ ListView {
             hoverEnabled: true
             onClicked: {
                 listView.currentIndex = index;
-            }
-            onEntered:  {
-                if(!parent.ListView.isCurrentItem)
-                    assetsName.color = "white"
-            }
-            onExited: {
-                if(parent.ListView.isCurrentItem)
-                    assetsName.color = parent.color
-                else
-                    assetsName.color = "grey"
             }
         }
     }

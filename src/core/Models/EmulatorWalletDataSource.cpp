@@ -19,7 +19,7 @@ EmulatorWalletDataSource::~EmulatorWalletDataSource()
 
 //==============================================================================
 
-WalletDataSource::TransactionsList EmulatorWalletDataSource::executeFetch(QString id)
+WalletDataSource::TransactionsList EmulatorWalletDataSource::executeFetch(int id)
 {
     auto it = _transactionMap.find(id);
     if(it != std::end(_transactionMap))
@@ -44,9 +44,9 @@ static TransactionEntry GenerateTransaction()
 
 //==============================================================================
 
-void EmulatorWalletDataSource::executeAdd(QString modelName, int count)
+void EmulatorWalletDataSource::executeAdd(int assetID, int count)
 {
-    QString id = modelName;
+    int id = assetID;
     TransactionEntry transaction = GenerateTransaction();
 
     auto it = _transactionMap.find(id);
@@ -55,7 +55,7 @@ void EmulatorWalletDataSource::executeAdd(QString modelName, int count)
         for(int i = 0; i < count; ++i)
         {
             it->second.push_back(transaction);
-            transactionAdded(modelName, transaction);
+            transactionAdded(assetID, transaction);
         }
     }
     else
@@ -66,12 +66,12 @@ void EmulatorWalletDataSource::executeAdd(QString modelName, int count)
 
 //==============================================================================
 
-void EmulatorWalletDataSource::clearTransactions(QString modelName)
+void EmulatorWalletDataSource::clearTransactions(int assetID)
 {
-    if(_transactionMap.count(modelName))
+    if(_transactionMap.count(assetID))
     {
-        _transactionMap[modelName].clear();
-        transactionsFetched(modelName, {});
+        _transactionMap[assetID].clear();
+        transactionsFetched(assetID, {});
     }
 }
 
@@ -85,7 +85,7 @@ void EmulatorWalletDataSource::init()
     bitcoinTransactionList.push_back(TransactionEntry("3", TransactionEntry::Type::Sent, 133, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
     bitcoinTransactionList.push_back(TransactionEntry("4", TransactionEntry::Type::Sent, 46, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
 
-    _transactionMap.emplace("Bitcoin", bitcoinTransactionList);
+    _transactionMap.emplace(0, bitcoinTransactionList);
 
     TransactionsList dashTransactionList;
     dashTransactionList.push_back(TransactionEntry("5", TransactionEntry::Type::Sent, 10, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
@@ -93,7 +93,7 @@ void EmulatorWalletDataSource::init()
     dashTransactionList.push_back(TransactionEntry("7", TransactionEntry::Type::Sent, 32, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
     dashTransactionList.push_back(TransactionEntry("8", TransactionEntry::Type::Sent, 14, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
 
-    _transactionMap.emplace("Dash", dashTransactionList);
+    _transactionMap.emplace(5, dashTransactionList);
 
     TransactionsList XSNTransactionList;
     XSNTransactionList.push_back(TransactionEntry("9", TransactionEntry::Type::Sent, 10, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
@@ -101,7 +101,7 @@ void EmulatorWalletDataSource::init()
     XSNTransactionList.push_back(TransactionEntry("11", TransactionEntry::Type::Sent, 32, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
     XSNTransactionList.push_back(TransactionEntry("12", TransactionEntry::Type::Sent, 14, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
 
-    _transactionMap.emplace("XSN", XSNTransactionList);
+    _transactionMap.emplace(384, XSNTransactionList);
 }
 
 //==============================================================================
