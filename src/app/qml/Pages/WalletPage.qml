@@ -12,9 +12,11 @@ import com.xsn.models 1.0
 Page {
     id: root
     property int windowWidth: 0
-    property string currentAssetID: assetsListView.currentItem ? assetsListView.currentItem.name : ""
+    property int currentAssetID: assetsListView.currentItem ? assetsListView.currentItem.id : 0
+    property string currentAssetName: assetsListView.currentItem ? assetsListView.currentItem.name : ""
     property string currentAssetColor: assetsListView.currentItem ? assetsListView.currentItem.color : ""
     property string currentAssetSymbol: assetsListView.currentItem ? assetsListView.currentItem.symbol : ""
+    property string currentButtonColor: assetsListView.currentItem ? assetsListView.currentItem.buttonColor : ""
 
     WalletAssetViewModel {
         id: walletViewModel
@@ -69,12 +71,14 @@ Page {
                 spacing: 0
 
                 WalletPageHeaderView {
-                    Layout.preferredHeight: 270
+                    Layout.preferredHeight: windowWidth > 1180 ? (width > 1250 ? 350 : 300)
+                                                               : 270
                     Layout.fillWidth: true
 
-                    coinMeasure: currentAssetID
+                    coinMeasure: currentAssetName
                     labelColor: currentAssetColor
-                    buttonColor: assetsListView.currentItem.buttonColor
+                    buttonColor: currentButtonColor
+                    coinSymbol: currentAssetSymbol
                     windowWidth: root.windowWidth
 
 
@@ -95,11 +99,10 @@ Page {
                         dialog.y = root.height / 2 - dialog.height / 2;
                         dialog.open();
                     }
-                    //color: assetsListView.currentItem ? assetsListView.currentItem.color : ""
                 }
 
                 TransactionsListView {
-                    assetName: currentAssetID
+                    assetName: currentAssetName
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     transactionListModel: walletViewModel.transactionsListModel

@@ -10,10 +10,11 @@ struct CoinAsset
 {
     struct Misc {
 
-        Misc(QString color);
+        Misc(QString color, QString buttonColor);
         static Misc FromJson(const QJsonObject &obj);
 
         const QString color;
+        const QString buttonColor;
     };
 
 

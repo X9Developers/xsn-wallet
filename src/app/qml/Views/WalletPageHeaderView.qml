@@ -13,6 +13,7 @@ Rectangle {
     signal receiveCoins()
 
     property string coinMeasure: ""
+    property string coinSymbol : ""
     property string labelColor: ""
     property int windowWidth: 0
     property string buttonColor: ""
@@ -42,12 +43,12 @@ Rectangle {
                 color: labelColor
                 lineHeightMode: Text.FixedHeight
                 height: font.pixelSize
-                font.pixelSize: windowWidth > 1180 ? (backgroundRectangle.width > 1250 ? 100 : 75)
+                font.pixelSize: windowWidth > 1180 ? (root.parent.width > 1250 ? 100 : 75)
                                                    : 60
             }
 
             XSNLabel {
-                text: coinMeasure
+                text: coinSymbol
                 anchors.bottom: coinsAmount.bottom
                 color: labelColor
                 font.pixelSize: coinsAmount.font.pixelSize * 0.4
