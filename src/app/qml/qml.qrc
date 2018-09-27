@@ -17,5 +17,6 @@
         <file>Popups/ReceivePopup.qml</file>
         <file>Components/RoundedImage.qml</file>
         <file>Popups/SendPopup.qml</file>
+        <file>Components/MenuIcon.qml</file>
     </qresource>
 </RCC>

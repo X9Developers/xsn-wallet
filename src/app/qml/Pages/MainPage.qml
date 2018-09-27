@@ -10,9 +10,9 @@ RowLayout {
     property string currentAssetID: walletPage.currentAssetID
 
     Rectangle {
-        visible: false
+        //visible: false
         Layout.fillHeight: true
-        Layout.preferredWidth: parent.width < 1180 ? 90 : 180
+        Layout.preferredWidth: parent.width < 1180 ? 85 : 180
         color: "#3F444A"
 
         WalletMenuListView {
@@ -23,8 +23,8 @@ RowLayout {
     StackLayout {
         Layout.fillHeight: true
         Layout.fillWidth: true
-        //currentIndex: walletMenuListView.currentIndex
-        currentIndex: 1
+        currentIndex: walletMenuListView.currentIndex
+        //currentIndex: 1
 
         Text {
             Layout.fillHeight: true
