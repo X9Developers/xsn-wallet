@@ -6,6 +6,8 @@ import "../Components"
 ActionDialog {
     id: root
 
+    property string receivingAddress: ""
+
     ColumnLayout {
 
         anchors.fill: root.container
@@ -38,10 +40,11 @@ ActionDialog {
         }
 
         XSNLabel {
+            id: receiveAddress
             anchors.horizontalCenter: parent.horizontalCenter
             color: "orange"
             font.pixelSize: 14
-            text: qsTr("1FgxF3zFsmBfU9RXYbCX6JyngMsLvCnT2x")
+            text: receivingAddress //qsTr("1FgxF3zFsmBfU9RXYbCX6JyngMsLvCnT2x")
         }
 
         RowLayout{

@@ -81,9 +81,9 @@ Page {
                     coinSymbol: currentAssetSymbol
                     windowWidth: root.windowWidth
 
-
                     onSendCoins: {
                         var dialog = sendDialogComponent.createObject(root)
+                        dialog.receivingAddress = walletViewModel.getReceivingAddress
                         dialog.width = 600;
                         dialog.height = 400;
                         dialog.x = root.width / 2 - dialog.width / 2;
