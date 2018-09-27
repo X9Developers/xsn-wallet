@@ -22,7 +22,7 @@ WalletAssetViewModel::~WalletAssetViewModel()
 
 QObject *WalletAssetViewModel::transactionsListModel()
 {
-    if(_currentAssetID.isEmpty() || !_walletDataSource)
+    if(!_walletDataSource)
         return nullptr;
 
     if(_walletTransactionsListModels.count(_currentAssetID) == 0)

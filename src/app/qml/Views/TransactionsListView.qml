@@ -23,7 +23,6 @@ Rectangle {
 
         Rectangle {
             id: item
-
             property bool isCurrentItem: ListView.isCurrentItem
             width: parent.width
             height: columnLayout.height
@@ -70,7 +69,8 @@ Rectangle {
 
                         Text { text: isSend ? "Sent" : "Received"; color: "white"; font.pixelSize: 15; }
                         Item { Layout.fillHeight: true; Layout.fillWidth: true}
-                        Text { text: delta; color: "darkorange"; anchors.right: parent.right}
+                        Text { text: isSend ? "−" : "+"; color: "darkorange"; anchors.right: deltaData.left}
+                        Text { id: deltaData; text: delta; color: "darkorange"; anchors.right: parent.right}
                     }
                 }
 

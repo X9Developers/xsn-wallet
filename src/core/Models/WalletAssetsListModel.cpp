@@ -46,9 +46,11 @@ QVariant WalletAssetsListModel::data(const QModelIndex &index, int role) const
     const auto &asset = _impl->_assets.at(static_cast<size_t>(index.row()));
 
     switch(role) {
+    case IDRole: return asset.coinID;
     case NameRole: return asset.name;
     case TicketRole: return asset.ticket;
     case ColorRole: return asset.misc.color;
+    case ButtonColorRole: return asset.misc.buttonColor;
     default:
         break;
     }
@@ -64,9 +66,11 @@ QHash<int, QByteArray> WalletAssetsListModel::roleNames() const
 
     if(roles.empty())
     {
+        roles[IDRole] = "id";
         roles[NameRole] = "name";
         roles[TicketRole] = "symbol";
         roles[ColorRole] = "color";
+        roles[ButtonColorRole] = "buttonColor";
     }
 
     return roles;

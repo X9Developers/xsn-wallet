@@ -3,10 +3,14 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #include <gtest/gtest.h>
 #include <gmock/gmock-matchers.h>
+<<<<<<< HEAD
+//#include <bitcoin/bitcoin.hpp>
+=======
 <<<<<<< Updated upstream
 //#include <bitcoin/bitcoin.hpp>
 =======
 >>>>>>> Stashed changes
+>>>>>>> b8174db8793c3375c8ddc47a8f488a46b1dac7b8
 #include <iostream>
 
 using namespace testing;

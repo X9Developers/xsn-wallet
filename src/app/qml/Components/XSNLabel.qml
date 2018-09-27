@@ -7,5 +7,5 @@ Text {
     styleColor: "black"
     font.pixelSize: 60 //backgroundRectangleWidth !== 0 ? (backgroundRectangleWidth > 930 ? (backgroundRectangleWidth > 1150 ? 80 : 45)
                                                                                     // : 35 )
-                                                  // : 35
+                                                 // : 35
 }

@@ -5,7 +5,18 @@
         <file>Bitcoin.png</file>
         <file>refresh.png</file>
         <file>Dash.png</file>
+        <file>Code.png</file>
+        <file>CopyFlat.png</file>
+        <file>MailFlat.png</file>
+        <file>ViewFlat.png</file>
+        <file>PrintFlat.png</file>
         <file>Stakenet.png</file>
+        <file>Portfolio.png</file>
+        <file>Wallet.png</file>
+        <file>Settings.png</file>
+        <file>Exchange.png</file>
+        <file>Backup.png</file>
+        <file>Help.png</file>
     </qresource>
     <qresource prefix="/data">
         <file>assets_conf.json</file>

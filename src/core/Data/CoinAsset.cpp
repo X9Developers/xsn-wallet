@@ -61,8 +61,8 @@ CoinAsset CoinAsset::FromJson(const QJsonObject &obj)
 
 //==============================================================================
 
-CoinAsset::Misc::Misc(QString color) :
-    color(color)
+CoinAsset::Misc::Misc(QString color, QString buttonColor) :
+    color(color), buttonColor(buttonColor)
 {
 
 }
@@ -71,7 +71,7 @@ CoinAsset::Misc::Misc(QString color) :
 
 CoinAsset::Misc CoinAsset::Misc::FromJson(const QJsonObject &obj)
 {
-    return Misc(obj.value("color").toString());
+    return Misc(obj.value("color").toString(), obj.value("buttonColor").toString());
 }
 
 //==============================================================================

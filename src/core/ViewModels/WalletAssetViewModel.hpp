@@ -14,11 +14,13 @@ class WalletAssetViewModel : public QObject
 {
     Q_OBJECT
 
-    using AssetID = QString;
+    using AssetID = int;
 
     Q_PROPERTY(QString balance READ balance NOTIFY balanceChanged)
-    Q_PROPERTY(QString currentAssetID READ currentAssetID WRITE setCurrentAssetID NOTIFY currentAssetIDChanged)
+    Q_PROPERTY(int currentAssetID READ currentAssetID WRITE setCurrentAssetID NOTIFY currentAssetIDChanged)
     Q_PROPERTY(QObject* transactionsListModel READ transactionsListModel NOTIFY currentAssetIDChanged)
+    Q_PROPERTY(QString getReceivingAddress READ getReceivingAddress NOTIFY getReceivingAddressChanged)
+
 public:
     explicit WalletAssetViewModel(QObject *parent = nullptr);
     ~WalletAssetViewModel();
@@ -33,6 +35,7 @@ signals:
     void balanceChanged();
     void currentAssetIDChanged();
     void transactionsListModelChanged();
+    void getReceivingAddressChanged();
 
 public slots:
     void initialize(ApplicationViewModel* applicationViewModel);
@@ -42,7 +45,7 @@ private:
     void init();
 
 private:
-    QString _currentAssetID;
+    int _currentAssetID;
     QPointer<WalletDataSource> _walletDataSource;
     using TransactionsListModelPtr = std::unique_ptr<WalletTransactionsListModel>;
     std::map<AssetID, TransactionsListModelPtr> _walletTransactionsListModels;

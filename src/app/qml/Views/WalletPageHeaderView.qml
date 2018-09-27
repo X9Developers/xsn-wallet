@@ -5,11 +5,18 @@ import QtQuick.Layouts 1.3
 import "../Components"
 
 Rectangle {
-    id: backgroundRectangle
+    id: root
     color: "#292E34"
 
+
+    signal sendCoins()
+    signal receiveCoins()
+
     property string coinMeasure: ""
+    property string coinSymbol : ""
     property string labelColor: ""
+    property int windowWidth: 0
+    property string buttonColor: ""
 
     ColumnLayout {
         anchors.fill: parent
@@ -19,7 +26,7 @@ Rectangle {
         IconButton {
             id: iconBut
             source: hovered ? "qrc:/images/refresh.png" : coinMeasure !== "" ? "qrc:/images/%1.png".arg(coinMeasure): ""
-            sourceSize: Qt.size(55, 55)
+            sourceSize: Qt.size(75, 75)
             anchors.horizontalCenter: parent.horizontalCenter
             hoverEnabled: true
         }
@@ -31,16 +38,17 @@ Rectangle {
 
             XSNLabel {
                 id: coinsAmount
+                anchors.top: iconBut.button
                 text: "0"
                 color: labelColor
-                backgroundRectangleWidth: backgroundRectangle.width
                 lineHeightMode: Text.FixedHeight
-                height: 60
+                height: font.pixelSize
+                font.pixelSize: windowWidth > 1180 ? (root.parent.width > 1250 ? 100 : 75)
+                                                   : 60
             }
 
-
             XSNLabel {
-                text: coinMeasure
+                text: coinSymbol
                 anchors.bottom: coinsAmount.bottom
                 color: labelColor
                 font.pixelSize: coinsAmount.font.pixelSize * 0.4
@@ -49,9 +57,10 @@ Rectangle {
         }
 
         Row {
+            id: usd
+            anchors.top: coins.bottom
             anchors.horizontalCenter: parent.horizontalCenter
             spacing: 5
-            anchors.top: coins.bottom
 
             XSNLabel {
                 text: qsTr("$")
@@ -78,6 +87,8 @@ Rectangle {
         }
 
         RowLayout {
+            anchors.top: usd.bottom
+            anchors.topMargin: 10
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 10
             anchors.horizontalCenter: parent.horizontalCenter
@@ -85,11 +96,10 @@ Rectangle {
 
             TransactionButton {
                 Layout.preferredWidth: 235
-                Layout.preferredHeight: 45
-                color: labelColor
+                Layout.preferredHeight: 47
+                baseColor: labelColor
+                secondaryColor: buttonColor
                 radius: 25
-
-                onClicked: console.log(walletViewModel.getReceivingAddress());
 
                 Text {
                     anchors.centerIn: parent
@@ -98,12 +108,15 @@ Rectangle {
                     style: Text.StyledText
                     styleColor: "black"
                 }
+
+                onClicked: sendCoins()
             }
 
             TransactionButton {
                 Layout.preferredWidth: 235
-                Layout.preferredHeight: 45
-                color: labelColor
+                Layout.preferredHeight: 47
+                baseColor: labelColor
+                secondaryColor: buttonColor
                 radius: 25
                 font.weight: Font.Light
 
@@ -114,6 +127,8 @@ Rectangle {
                     style: Text.StyledText
                     styleColor: "black"
                 }
+
+                onClicked: receiveCoins();
             }
         }
     }

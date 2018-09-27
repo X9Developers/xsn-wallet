@@ -4,19 +4,13 @@ ListView {
     id: listView
     anchors.fill: parent
 
-    model: ListModel {
-        ListElement { color: "#1D73BC"; name: "Dash"; balance: "1.5"; } // color - blue
-        ListElement { color: "#18B8EE"; name: "XSN"; balance: "1.3"; } // color - light blue
-        ListElement { color: "#FD9400"; name: "Bitcoin"; icon: ""; balance: "2.7"; } //color - orange
-    }
-
     highlight: Item {
         Rectangle {
             id: highlightItem
             anchors.right: parent.right
             width: 8
             height: parent.height
-            radius: 5
+            radius: 3
             color: listView.currentItem.color
         }
     }
@@ -24,11 +18,13 @@ ListView {
     highlightFollowsCurrentItem: true
 
     delegate: Item {
-        height: 45
+        height: 50
         width: parent.width
         anchors.right: parent.right
         property string color: model.color
+        property int id: model.id
         property string name: model.name
+        property string buttonColor: model.buttonColor
         property string symbol: model.symbol
 
         Text {
@@ -38,8 +34,8 @@ ListView {
             anchors.verticalCenter: parent.verticalCenter
             text: model.name
 
-            font.pixelSize: 14
-            color: parent.ListView.isCurrentItem ? parent.color : "grey"
+            font.pixelSize: 15
+            color: parent.ListView.isCurrentItem ? parent.color : mouseArea.containsMouse ? "white" : "grey"
         }
 
         MouseArea {
@@ -48,16 +44,6 @@ ListView {
             hoverEnabled: true
             onClicked: {
                 listView.currentIndex = index;
-            }
-            onEntered:  {
-                if(!parent.ListView.isCurrentItem)
-                    assetsName.color = "white"
-            }
-            onExited: {
-                if(parent.ListView.isCurrentItem)
-                    assetsName.color = parent.color
-                else
-                    assetsName.color = "grey"
             }
         }
     }

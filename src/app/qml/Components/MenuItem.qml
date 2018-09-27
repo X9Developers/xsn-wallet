@@ -1,38 +1,77 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.3
+import QtGraphicalEffects 1.0
 
 Rectangle {
     id: root
-
-    property bool isCurrentItem: false
-    property string name: ""
-    property string imageSource: ""
-    signal menuItemClicked(int index)
-
     color: isCurrentItem ? "#292E34" : "transparent"
 
-    RowLayout {
+    signal menuItemClicked()
+
+    property bool isCurrentItem: false
+    property bool isSmallItem: parent.isSmallMenu
+
+    property string name: ""
+    property string imageSource: ""
+
+    property color currentColor: isCurrentItem ? "white" : mouseArea.containsMouse ? "lightgrey" :  "grey"
+
+    ColumnLayout {
         anchors.fill: parent
-        anchors.leftMargin: parent.width / 7
-        anchors.left: parent.left
-        anchors.verticalCenter: parent.verticalCenter
+        anchors.centerIn: parent
 
-        Image {
-            Layout.alignment: Qt.AlignLeft
-            sourceSize.width: 16
-            sourceSize.height: 16
-            source: imageSource
+        ColumnLayout {
+            Layout.alignment: Qt.AlignHCenter
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            visible: root.isSmallItem
+
+            MenuIcon {
+                Layout.fillWidth: true
+                Layout.preferredHeight: implicitHeight
+                Layout.alignment: Qt.AlignHCenter
+                source: imageSource
+                color: currentColor
+            }
+
+            Text {
+                Layout.alignment: Qt.AlignHCenter
+                text: name
+                font.pixelSize: 14
+                color: currentColor
+            }
         }
 
-        Text {
-            text: name
-            font.pixelSize: 14
-            color: "white"
-        }
+        RowLayout {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            Layout.leftMargin: 25
+            Layout.alignment: Qt.AlignVCenter
+            anchors.verticalCenter: parent.verticalCenter
+            visible: !root.isSmallItem
 
-        MouseArea {
-            anchors.fill: parent
-            onClicked: menuItemClicked(root.index)
+            MenuIcon {
+                Layout.preferredWidth: implicitWidth
+                Layout.fillHeight: true
+                Layout.alignment: Qt.AlignVCenter
+                source: imageSource
+                color: currentColor
+            }
+
+            Text {
+                Layout.alignment: Qt.AlignVCenter
+                Layout.leftMargin: 5
+                text: name
+                font.pixelSize: 14
+                color: currentColor
+            }
         }
+    }
+
+    MouseArea {
+        id: mouseArea
+        anchors.fill: parent
+        hoverEnabled: true
+        onClicked: menuItemClicked()
     }
 }

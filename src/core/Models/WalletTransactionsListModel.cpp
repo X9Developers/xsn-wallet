@@ -3,7 +3,7 @@
 
 //==============================================================================
 
-WalletTransactionsListModel::WalletTransactionsListModel(QPointer<WalletDataSource> dataSource, QString assetID, QObject *parent) :
+WalletTransactionsListModel::WalletTransactionsListModel(QPointer<WalletDataSource> dataSource, int assetID, QObject *parent) :
     QAbstractListModel(parent),
     _walletDataSource(dataSource),
     _assetID(assetID)
@@ -65,7 +65,7 @@ QHash<int, QByteArray> WalletTransactionsListModel::roleNames() const
 
 //==============================================================================
 
-void WalletTransactionsListModel::onTransactionFetched(QString assetID, WalletDataSource::TransactionsList list)
+void WalletTransactionsListModel::onTransactionFetched(int assetID, WalletDataSource::TransactionsList list)
 {
     if(assetID != _assetID)
     {
@@ -79,7 +79,7 @@ void WalletTransactionsListModel::onTransactionFetched(QString assetID, WalletDa
 
 //==============================================================================
 
-void WalletTransactionsListModel::onTransactionAdded(QString assetID, TransactionEntry entry)
+void WalletTransactionsListModel::onTransactionAdded(int assetID, TransactionEntry entry)
 {
     if(_assetID != assetID)
     {

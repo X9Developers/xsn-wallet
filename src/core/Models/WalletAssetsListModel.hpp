@@ -13,9 +13,11 @@ class WalletAssetsListModel : public QAbstractListModel
     Q_OBJECT
 public:
     enum Roles {
+        IDRole,
         NameRole,
         TicketRole,
-        ColorRole
+        ColorRole,
+        ButtonColorRole
     };
     explicit WalletAssetsListModel(QObject *parent = nullptr);
     virtual ~WalletAssetsListModel() override;

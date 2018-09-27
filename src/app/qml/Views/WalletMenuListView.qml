@@ -10,39 +10,41 @@ ColumnLayout {
     property int currentIndex: 0
     property string currentName: "Portfolio"
 
+    property bool isSmallMenu: width === 85 ? true : false // 85 - constant menu width
+
     MenuItem {
         Layout.fillWidth: true
-        Layout.preferredHeight: 40
+        Layout.preferredHeight: isSmallMenu ? 70 : 60 // - constant menu item height; 70 - small mode, 60 - enlarged mode
         isCurrentItem: currentName === name
         name: "Portfolio"
-        imageSource: "qrc:/images/images.png"
+        imageSource: "qrc:/images/Portfolio.png"
         onMenuItemClicked: { currentIndex = 0 ; currentName = name}
     }
 
     MenuItem {
         Layout.fillWidth: true
-        Layout.preferredHeight: 40
+        Layout.preferredHeight: isSmallMenu ? 70 : 60
         isCurrentItem: currentName === name
         name: "Wallet"
-        imageSource: "qrc:/images/received.jpg"
+        imageSource: "qrc:/images/Wallet.png"
         onMenuItemClicked: { currentIndex = 1 ; currentName = name}
     }
 
     MenuItem {
         Layout.fillWidth: true
-        Layout.preferredHeight: 40
+        Layout.preferredHeight: isSmallMenu ? 70 : 60
         isCurrentItem: currentName === name
         name: "Exchange"
-        imageSource: "qrc:/images/images.png"
+        imageSource: "qrc:/images/Exchange.png"
         onMenuItemClicked: { currentIndex = 2; currentName = name}
     }
 
     MenuItem {
         Layout.fillWidth: true
-        Layout.preferredHeight: 40
+        Layout.preferredHeight: isSmallMenu ? 70 : 60
         isCurrentItem: currentName === name
         name: "Backup"
-        imageSource: "qrc:/images/received.jpg"
+        imageSource: "qrc:/images/Backup.png"
         onMenuItemClicked: { currentIndex = 3; currentName = name;}
     }
 
@@ -53,19 +55,19 @@ ColumnLayout {
 
     MenuItem {
         Layout.fillWidth: true
-        Layout.preferredHeight: 40
+        Layout.preferredHeight: isSmallMenu ? 70 : 60
         isCurrentItem: currentName === name
         name: "Settings"
-        imageSource: "qrc:/images/received.jpg"
+        imageSource: "qrc:/images/Settings.png"
         onMenuItemClicked: { currentIndex = 4; currentName = name}
     }
 
     MenuItem {
         Layout.fillWidth: true
-        Layout.preferredHeight: 40
+        Layout.preferredHeight: isSmallMenu ? 70 : 60
         isCurrentItem: currentName === name
         name: "Help"
-        imageSource: "qrc:/images/received.jpg"
+        imageSource: "qrc:/images/Help.png"
         onMenuItemClicked: { currentIndex = 5; currentName = name}
     }
 }

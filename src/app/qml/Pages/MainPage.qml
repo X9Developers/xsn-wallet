@@ -4,14 +4,15 @@ import QtQuick.Layouts 1.3
 import "../Views"
 
 RowLayout {
+    id: root
     anchors.fill: parent
     spacing: 0
     property string currentAssetID: walletPage.currentAssetID
 
     Rectangle {
-        visible: false
+        //visible: false
         Layout.fillHeight: true
-        Layout.preferredWidth: parent.width < 1180 ? 90 : 180
+        Layout.preferredWidth: parent.width < 1180 ? 85 : 180
         color: "#3F444A"
 
         WalletMenuListView {
@@ -22,8 +23,8 @@ RowLayout {
     StackLayout {
         Layout.fillHeight: true
         Layout.fillWidth: true
-        //currentIndex: walletMenuListView.currentIndex
-        currentIndex: 1
+        currentIndex: walletMenuListView.currentIndex
+        //currentIndex: 1
 
         Text {
             Layout.fillHeight: true
@@ -35,6 +36,7 @@ RowLayout {
             id: walletPage
             Layout.fillHeight: true
             Layout.fillWidth: true
+            windowWidth: root.parent.width
         }
 
         Text {
