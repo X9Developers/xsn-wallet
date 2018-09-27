@@ -9,7 +9,7 @@ ActionDialog {
     ColumnLayout {
 
         anchors.fill: root.container
-        spacing: 1
+        spacing: 10
 
         Item {
             Layout.fillHeight: true

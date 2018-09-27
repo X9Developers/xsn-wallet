@@ -20,13 +20,16 @@ Image {
 //        onClicked: actionButton.clicked()
         onEntered:  {
             img.scale = scale * 1.1
+            radiusRec.border.color = "red"
         }
         onExited: {
             img.scale = scale
+            radiusRec.border.color = "orange"
         }
     }
 
     Rectangle {
+        id: radiusRec
         anchors.fill: parent
         color: "transparent"
         border.color: "orange"
