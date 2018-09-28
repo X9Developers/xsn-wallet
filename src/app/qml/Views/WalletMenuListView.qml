@@ -7,9 +7,8 @@ ColumnLayout {
     id: root
     anchors.fill: parent
 
-    property int currentIndex: 0
-    property string currentName: "Portfolio"
-
+    property int currentIndex: 1
+    property string currentName: root.children[currentIndex].name
     property bool isSmallMenu: width === menuWidthSmallMode ? true : false
 
     MenuItem {

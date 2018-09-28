@@ -1,5 +1,5 @@
 import QtQuick 2.0
-import QtQuick.Controls 2.2
+import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 
 import "../Views"
@@ -58,6 +58,7 @@ Page {
                         assetsListView.currentIndex = 0;
                     }
                 }
+
             }
         }
 
@@ -88,18 +89,33 @@ Page {
                     var dialog = sendDialogComponent.createObject(root)
                     dialog.width = 600;
                     dialog.height = 400;
-                    dialog.x = root.width / 2 - dialog.width / 2;
-                    dialog.y = root.height / 2 - dialog.height / 2;
+//<<<<<<< HEAD
+//                    dialog.x = root.width / 2 - dialog.width / 2;
+//                    dialog.y = root.height / 2 - dialog.height / 2;
+//                    dialog.open();
+//                }
+
+//                onReceiveCoins: {
+//                    var dialog = receiveDialogComponent.createObject(root)
+//                    dialog.receivingAddress = walletViewModel.getReceivingAddress
+//                    dialog.width = 600;
+//                    dialog.height = 400;
+//                    dialog.x = root.width / 2 - dialog.width / 2;
+//                    dialog.y = root.height / 2 - dialog.height / 2;
+
+//                    dialog.x = ApplicationWindow.width / 2 - dialog.width / 2;
+//                    dialog.y = root.height / 2 - dialog.height / 2;
                     dialog.open();
                 }
 
+
                 onReceiveCoins: {
                     var dialog = receiveDialogComponent.createObject(root)
-                    dialog.receivingAddress = walletViewModel.getReceivingAddress
+                    dialog.receivingAddress = walletViewModel.getReceivingAddress();
                     dialog.width = 600;
                     dialog.height = 400;
-                    dialog.x = root.width / 2 - dialog.width / 2;
-                    dialog.y = root.height / 2 - dialog.height / 2;
+//                    dialog.x = root.width / 2 - dialog.width / 2;
+//                    dialog.y = root.height / 2 - dialog.height / 2;
                     dialog.open();
                 }
             }

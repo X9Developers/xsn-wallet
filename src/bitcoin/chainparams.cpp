@@ -32,4 +32,11 @@ const std::vector<unsigned char> &CChainParams::base58Prefix(CChainParams::Base5
 
 //==============================================================================
 
+const std::string &CChainParams::bech32HRP() const
+{
+    return std::string();
+}
+
+//==============================================================================
+
 }

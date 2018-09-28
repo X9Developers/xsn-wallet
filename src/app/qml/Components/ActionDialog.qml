@@ -1,4 +1,4 @@
-import QtQuick.Controls 2.2
+import QtQuick.Controls 2.3
 import QtQuick 2.0
 import QtQuick.Layouts 1.3
 
@@ -14,6 +14,12 @@ Popup {
         color: "transparent"
     }
 
+    x: (parent.width - width) / 2
+    y: (parent.height - height) / 2
+
+    parent: Overlay.overlay
+    modal: true
+
     Rectangle {
         id: item
         anchors.fill: parent
@@ -25,12 +31,24 @@ Popup {
         anchors.fill: parent
 
         RoundButton {
+            id: control
             width: 32
             height: 32
             radius: 24
             background: Rectangle {
                 color: "#3F444A"
                 radius: 24
+            }
+
+            text: "X"
+            font.pixelSize: 14
+
+            contentItem: Label {
+                text: control.text
+                font: control.font
+                color: "white"
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
             }
 //            background: "#3F444A"
             onClicked: popUpComponent.close()

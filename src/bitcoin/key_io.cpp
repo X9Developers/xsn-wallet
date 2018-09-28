@@ -18,8 +18,6 @@
 
 namespace bitcoin {
 
-#if 0
-
 class DestinationEncoder : public boost::static_visitor<std::string>
 {
 private:
@@ -30,14 +28,14 @@ public:
 
     std::string operator()(const CKeyID& id) const
     {
-        std::vector<unsigned char> data = m_params.Base58Prefix(CChainParams::PUBKEY_ADDRESS);
+        std::vector<unsigned char> data = m_params.base58Prefix(CChainParams::Base58Type::PUBKEY_ADDRESS);
         data.insert(data.end(), id.begin(), id.end());
         return EncodeBase58Check(data);
     }
 
     std::string operator()(const CScriptID& id) const
     {
-        std::vector<unsigned char> data = m_params.Base58Prefix(CChainParams::SCRIPT_ADDRESS);
+        std::vector<unsigned char> data = m_params.base58Prefix(CChainParams::Base58Type::SCRIPT_ADDRESS);
         data.insert(data.end(), id.begin(), id.end());
         return EncodeBase58Check(data);
     }
@@ -47,7 +45,7 @@ public:
         std::vector<unsigned char> data = {0};
         data.reserve(33);
         ConvertBits<8, 5, true>([&](unsigned char c) { data.push_back(c); }, id.begin(), id.end());
-        return bech32::Encode(m_params.Bech32HRP(), data);
+        return bech32::Encode(m_params.bech32HRP(), data);
     }
 
     std::string operator()(const WitnessV0ScriptHash& id) const
@@ -55,7 +53,7 @@ public:
         std::vector<unsigned char> data = {0};
         data.reserve(53);
         ConvertBits<8, 5, true>([&](unsigned char c) { data.push_back(c); }, id.begin(), id.end());
-        return bech32::Encode(m_params.Bech32HRP(), data);
+        return bech32::Encode(m_params.bech32HRP(), data);
     }
 
     std::string operator()(const WitnessUnknown& id) const
@@ -66,7 +64,7 @@ public:
         std::vector<unsigned char> data = {(unsigned char)id.version};
         data.reserve(1 + (id.length * 8 + 4) / 5);
         ConvertBits<8, 5, true>([&](unsigned char c) { data.push_back(c); }, id.program, id.program + id.length);
-        return bech32::Encode(m_params.Bech32HRP(), data);
+        return bech32::Encode(m_params.bech32HRP(), data);
     }
 
     std::string operator()(const CNoDestination& no) const { return {}; }
@@ -80,14 +78,14 @@ CTxDestination DecodeDestination(const std::string& str, const CChainParams& par
         // base58-encoded Bitcoin addresses.
         // Public-key-hash-addresses have version 0 (or 111 testnet).
         // The data vector contains RIPEMD160(SHA256(pubkey)), where pubkey is the serialized public key.
-        const std::vector<unsigned char>& pubkey_prefix = params.Base58Prefix(CChainParams::PUBKEY_ADDRESS);
+        const std::vector<unsigned char>& pubkey_prefix = params.base58Prefix(CChainParams::Base58Type::PUBKEY_ADDRESS);
         if (data.size() == hash.size() + pubkey_prefix.size() && std::equal(pubkey_prefix.begin(), pubkey_prefix.end(), data.begin())) {
             std::copy(data.begin() + pubkey_prefix.size(), data.end(), hash.begin());
             return CKeyID(hash);
         }
         // Script-hash-addresses have version 5 (or 196 testnet).
         // The data vector contains RIPEMD160(SHA256(cscript)), where cscript is the serialized redemption script.
-        const std::vector<unsigned char>& script_prefix = params.Base58Prefix(CChainParams::SCRIPT_ADDRESS);
+        const std::vector<unsigned char>& script_prefix = params.base58Prefix(CChainParams::Base58Type::SCRIPT_ADDRESS);
         if (data.size() == hash.size() + script_prefix.size() && std::equal(script_prefix.begin(), script_prefix.end(), data.begin())) {
             std::copy(data.begin() + script_prefix.size(), data.end(), hash.begin());
             return CScriptID(hash);
@@ -95,7 +93,7 @@ CTxDestination DecodeDestination(const std::string& str, const CChainParams& par
     }
     data.clear();
     auto bech = bech32::Decode(str);
-    if (bech.second.size() > 0 && bech.first == params.Bech32HRP()) {
+    if (bech.second.size() > 0 && bech.first == params.bech32HRP()) {
         // Bech32 decoding
         int version = bech.second[0]; // The first 5 bit symbol is the witness version (0-16)
         // The rest of the symbols are converted witness program bytes.
@@ -183,7 +181,7 @@ std::string EncodeExtPubKey(const CExtPubKey& key, const CChainParams &params)
     std::string ret = EncodeBase58Check(data);
     return ret;
 }
-#endif
+
 CExtKey DecodeExtKey(const std::string& str, const CChainParams &params)
 {
     CExtKey key;
@@ -208,28 +206,14 @@ std::string EncodeExtKey(const CExtKey& key, const CChainParams &params)
     return ret;
 }
 
-#if 0
-
 std::string EncodeDestination(const CTxDestination& dest, const CChainParams &params)
 {
     return boost::apply_visitor(DestinationEncoder(params), dest);
-}
-
-CTxDestination DecodeDestination(const std::string& str, const CChainParams &params)
-{
-    return DecodeDestination(str, params);
 }
 
 bool IsValidDestinationString(const std::string& str, const CChainParams& params)
 {
     return IsValidDestination(DecodeDestination(str, params));
 }
-
-bool IsValidDestinationString(const std::string& str, const CChainParams &params)
-{
-    return IsValidDestinationString(str, params);
-}
-
-#endif
 
 }

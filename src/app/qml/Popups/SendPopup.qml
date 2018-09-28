@@ -1,5 +1,6 @@
-import QtQuick 2.0
+import QtQuick 2.10
 import QtQuick.Layouts 1.3
+import QtQuick.Controls 2.3
 import QtGraphicalEffects 1.0
 import "../Components"
 
@@ -37,13 +38,13 @@ ActionDialog {
                 //Layout.fillWidth: true
                 Layout.maximumWidth: 350
 
-                TextInput {
+                TextArea {
                     Layout.alignment: Qt.AlignHCenter
                     Layout.fillWidth: true
                     font.bold: false;
                     font.pixelSize: 20;
-                    color: "grey"
-                    text: "Send to Bitcoin address..."
+                    color: "white"
+                    placeholderText: "Send to Bitcoin address..."
                     cursorVisible: true
                     onTextChanged: if(text == "")
                                        lineAddress.color = "red"
@@ -80,9 +81,9 @@ ActionDialog {
             TextInput {
                 id: btcCount
                 text: "0"
+                validator: IntValidator{bottom: 0; top: 99999999;}
                 font.pixelSize: 20;
                 color: "orange"
-                cursorVisible: true
                 onTextChanged: usdCount.text = parseInt(btcCount.text) * 6000
             }
 
