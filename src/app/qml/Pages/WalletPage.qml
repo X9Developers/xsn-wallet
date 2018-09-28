@@ -99,24 +99,6 @@ Page {
                         dialog.y = root.height / 2 - dialog.height / 2;
                         dialog.open();
                     }
-                    //=======
-                    //>>>>>>> 55f244f3e66cc182923223789724b634f842cc3b
-
-                    //                coinMeasure: currentAssetName
-                    //                labelColor: currentAssetColor
-                    //                buttonColor: currentButtonColor
-                    //                coinSymbol: currentAssetSymbol
-                    //                windowWidth: root.windowWidth
-
-
-                    //                onSendCoins: {
-                    //                    var dialog = sendDialogComponent.createObject(root)
-                    //                    dialog.width = 600;
-                    //                    dialog.height = 400;
-                    //                    dialog.x = root.width / 2 - dialog.width / 2;
-                    //                    dialog.y = root.height / 2 - dialog.height / 2;
-                    //                    dialog.open();
-                    //                }
 
                     onReceiveCoins: {
                         var dialog = receiveDialogComponent.createObject(root)
