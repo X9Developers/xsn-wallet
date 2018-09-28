@@ -21,7 +21,6 @@ Rectangle {
         anchors.centerIn: parent
 
         ColumnLayout {
-            Layout.alignment: Qt.AlignHCenter
             Layout.fillHeight: true
             Layout.fillWidth: true
             visible: root.isSmallItem
@@ -46,8 +45,6 @@ Rectangle {
             Layout.fillHeight: true
             Layout.fillWidth: true
             Layout.leftMargin: 25
-            Layout.alignment: Qt.AlignVCenter
-            anchors.verticalCenter: parent.verticalCenter
             visible: !root.isSmallItem
 
             MenuIcon {

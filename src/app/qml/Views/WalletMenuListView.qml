@@ -10,11 +10,11 @@ ColumnLayout {
     property int currentIndex: 0
     property string currentName: "Portfolio"
 
-    property bool isSmallMenu: width === 85 ? true : false // 85 - constant menu width
+    property bool isSmallMenu: width === menuWidthSmallMode ? true : false
 
     MenuItem {
         Layout.fillWidth: true
-        Layout.preferredHeight: isSmallMenu ? 70 : 60 // - constant menu item height; 70 - small mode, 60 - enlarged mode
+        Layout.preferredHeight: isSmallMenu ? menuItemHeightSmallMode : menuItemHeightLargeMode
         isCurrentItem: currentName === name
         name: "Portfolio"
         imageSource: "qrc:/images/Portfolio.png"
@@ -23,7 +23,7 @@ ColumnLayout {
 
     MenuItem {
         Layout.fillWidth: true
-        Layout.preferredHeight: isSmallMenu ? 70 : 60
+        Layout.preferredHeight: isSmallMenu ? menuItemHeightSmallMode : menuItemHeightLargeMode
         isCurrentItem: currentName === name
         name: "Wallet"
         imageSource: "qrc:/images/Wallet.png"
@@ -32,7 +32,7 @@ ColumnLayout {
 
     MenuItem {
         Layout.fillWidth: true
-        Layout.preferredHeight: isSmallMenu ? 70 : 60
+        Layout.preferredHeight: isSmallMenu ? menuItemHeightSmallMode : menuItemHeightLargeMode
         isCurrentItem: currentName === name
         name: "Exchange"
         imageSource: "qrc:/images/Exchange.png"
@@ -41,7 +41,7 @@ ColumnLayout {
 
     MenuItem {
         Layout.fillWidth: true
-        Layout.preferredHeight: isSmallMenu ? 70 : 60
+        Layout.preferredHeight: isSmallMenu ? menuItemHeightSmallMode : menuItemHeightLargeMode
         isCurrentItem: currentName === name
         name: "Backup"
         imageSource: "qrc:/images/Backup.png"
@@ -55,7 +55,7 @@ ColumnLayout {
 
     MenuItem {
         Layout.fillWidth: true
-        Layout.preferredHeight: isSmallMenu ? 70 : 60
+        Layout.preferredHeight: isSmallMenu ? menuItemHeightSmallMode : menuItemHeightLargeMode
         isCurrentItem: currentName === name
         name: "Settings"
         imageSource: "qrc:/images/Settings.png"
@@ -64,7 +64,7 @@ ColumnLayout {
 
     MenuItem {
         Layout.fillWidth: true
-        Layout.preferredHeight: isSmallMenu ? 70 : 60
+        Layout.preferredHeight: isSmallMenu ? menuItemHeightSmallMode : menuItemHeightLargeMode
         isCurrentItem: currentName === name
         name: "Help"
         imageSource: "qrc:/images/Help.png"

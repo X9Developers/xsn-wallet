@@ -12,7 +12,7 @@ RowLayout {
     Rectangle {
         //visible: false
         Layout.fillHeight: true
-        Layout.preferredWidth: parent.width < 1180 ? 85 : 180
+        Layout.preferredWidth: parent.width < windowWidthSmallMode ? menuWidthSmallMode : menuWidthLargeMode
         color: "#3F444A"
 
         WalletMenuListView {

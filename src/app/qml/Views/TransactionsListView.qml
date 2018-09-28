@@ -36,7 +36,7 @@ Rectangle {
 
                 RowLayout {
                     Layout.fillWidth: true
-                    Layout.preferredHeight: 45
+                    Layout.preferredHeight: closedTransactionHeight
 
                     Layout.leftMargin: 25
                     Layout.rightMargin: 25
@@ -75,7 +75,7 @@ Rectangle {
                 }
 
                 ColumnLayout {
-                    Layout.preferredHeight: 100
+                    Layout.preferredHeight: openedTransactionHeight
                     Layout.fillWidth: true
 
                     anchors.leftMargin: 70

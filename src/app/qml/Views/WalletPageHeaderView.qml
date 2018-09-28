@@ -43,8 +43,8 @@ Rectangle {
                 color: labelColor
                 lineHeightMode: Text.FixedHeight
                 height: font.pixelSize
-                font.pixelSize: windowWidth > 1180 ? (root.parent.width > 1250 ? 100 : 75)
-                                                   : 60
+                font.pixelSize: windowWidth > windowWidthSmallMode ? (root.parent.width > windowWidthLargeMode ? coinsSizeLargeMode : coinsSizeMediumMode)
+                                                                   : coinsSizeSmallMode
             }
 
             XSNLabel {

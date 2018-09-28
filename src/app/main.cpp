@@ -15,6 +15,8 @@ int main(int argc, char *argv[])
     QMLUtils::RegisterQMLTypes();
 
     QQmlApplicationEngine engine;
+    QMLUtils::setContextProperties(engine.rootContext());
+
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;
