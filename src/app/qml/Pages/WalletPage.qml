@@ -48,14 +48,19 @@ Page {
             Layout.preferredWidth: windowWidth > windowWidthSmallMode ? assetsViewWidthLargeMode : assetsViewWidthSmallMode
             color: "#292E34"
 
-            WalletAssetsListView {
-                id: assetsListView
+            Item {
                 anchors.fill: parent
-                model: WalletAssetsListModel {
-                    Component.onCompleted: initialize(ApplicationViewModel)
+                anchors.topMargin: 1
 
-                    onModelReset: {
-                        assetsListView.currentIndex = 0;
+                WalletAssetsListView {
+                    id: assetsListView
+                    anchors.fill: parent
+                    model: WalletAssetsListModel {
+                        Component.onCompleted: initialize(ApplicationViewModel)
+
+                        onModelReset: {
+                            assetsListView.currentIndex = 0;
+                        }
                     }
                 }
 
@@ -89,33 +94,19 @@ Page {
                     var dialog = sendDialogComponent.createObject(root)
                     dialog.width = 600;
                     dialog.height = 400;
-//<<<<<<< HEAD
-//                    dialog.x = root.width / 2 - dialog.width / 2;
-//                    dialog.y = root.height / 2 - dialog.height / 2;
-//                    dialog.open();
-//                }
-
-//                onReceiveCoins: {
-//                    var dialog = receiveDialogComponent.createObject(root)
-//                    dialog.receivingAddress = walletViewModel.getReceivingAddress
-//                    dialog.width = 600;
-//                    dialog.height = 400;
-//                    dialog.x = root.width / 2 - dialog.width / 2;
-//                    dialog.y = root.height / 2 - dialog.height / 2;
-
-//                    dialog.x = ApplicationWindow.width / 2 - dialog.width / 2;
-//                    dialog.y = root.height / 2 - dialog.height / 2;
+                    //                    dialog.x = ApplicationWindow.width / 2 - dialog.width / 2;
+                    //                    dialog.y = root.height / 2 - dialog.height / 2;
                     dialog.open();
                 }
 
 
                 onReceiveCoins: {
                     var dialog = receiveDialogComponent.createObject(root)
-                    dialog.receivingAddress = walletViewModel.getReceivingAddress();
+                    dialog.receivingAddress = walletViewModel.getReceivingAddress;
                     dialog.width = 600;
                     dialog.height = 400;
-//                    dialog.x = root.width / 2 - dialog.width / 2;
-//                    dialog.y = root.height / 2 - dialog.height / 2;
+                    //                    dialog.x = root.width / 2 - dialog.width / 2;
+                    //                    dialog.y = root.height / 2 - dialog.height / 2;
                     dialog.open();
                 }
             }

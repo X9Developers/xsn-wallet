@@ -1,6 +1,7 @@
-import QtQuick 2.10
+//import QtQuick 2.10
+import QtQuick 2.1
 import QtQuick.Layouts 1.3
-import QtQuick.Controls 2.3
+import QtQuick.Controls 2.2
 import QtGraphicalEffects 1.0
 import "../Components"
 
@@ -37,14 +38,23 @@ ActionDialog {
 
                 //Layout.fillWidth: true
                 Layout.maximumWidth: 350
-
+                //<<<<<<< HEAD
+                //                TextInput {
+                //=======
                 TextArea {
+                    //>>>>>>> 342e1fc1dbb6cdf9e07b7bf5a0681795c635bc30
                     Layout.alignment: Qt.AlignHCenter
                     Layout.fillWidth: true
                     font.bold: false;
                     font.pixelSize: 20;
+                    //<<<<<<< HEAD
+                    //                    color: "grey"
+                    //                    text: "Send to Bitcoin address..."
+                    //=======
                     color: "white"
                     placeholderText: "Send to Bitcoin address..."
+
+                    //>>>>>>> 342e1fc1dbb6cdf9e07b7bf5a0681795c635bc30
                     cursorVisible: true
                     onTextChanged: if(text == "")
                                        lineAddress.color = "red"
@@ -81,9 +91,15 @@ ActionDialog {
             TextInput {
                 id: btcCount
                 text: "0"
+                //<<<<<<< HEAD
+                //                font.pixelSize: 20;
+                //                color: "orange"
+                //                cursorVisible: true
+                //=======
                 validator: IntValidator{bottom: 0; top: 99999999;}
                 font.pixelSize: 20;
                 color: "orange"
+                //>>>>>>> 342e1fc1dbb6cdf9e07b7bf5a0681795c635bc30
                 onTextChanged: usdCount.text = parseInt(btcCount.text) * 6000
             }
 
