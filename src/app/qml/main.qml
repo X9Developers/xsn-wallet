@@ -11,7 +11,7 @@ Window {
     height: 640
     minimumWidth: 1080
     minimumHeight: 640
-    title: qsTr("Hello World")
+    title: qsTr("Stakenet Wallet")
 
     RowLayout {
         anchors.fill: parent
@@ -29,6 +29,7 @@ Window {
         }
 
         Rectangle {
+            visible: true
             Layout.fillHeight: true
             Layout.maximumWidth: parent.width / 6
             Layout.minimumWidth: parent.width / 6

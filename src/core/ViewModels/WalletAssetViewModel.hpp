@@ -8,20 +8,28 @@
 class QAbstractListModel;
 class WalletTransactionsListModel;
 class WalletDataSource;
+class WalletAssetsModel;
 class ApplicationViewModel;
 
 class WalletAssetViewModel : public QObject
 {
     Q_OBJECT
 
-    using AssetID = int;
+//<<<<<<< HEAD
+//    using AssetID = int;
 
     Q_PROPERTY(QString balance READ balance NOTIFY balanceChanged)
     Q_PROPERTY(int currentAssetID READ currentAssetID WRITE setCurrentAssetID NOTIFY currentAssetIDChanged)
     Q_PROPERTY(QObject* transactionsListModel READ transactionsListModel NOTIFY currentAssetIDChanged)
     Q_PROPERTY(QString getReceivingAddress READ getReceivingAddress NOTIFY getReceivingAddressChanged)
+//=======
+//    Q_PROPERTY(QString balance READ balance NOTIFY balanceChanged)
+//    Q_PROPERTY(unsigned currentAssetID READ currentAssetID WRITE setCurrentAssetID NOTIFY currentAssetIDChanged)
+//    Q_PROPERTY(QObject* transactionsListModel READ transactionsListModel NOTIFY currentAssetIDChanged)
+//>>>>>>> 342e1fc1dbb6cdf9e07b7bf5a0681795c635bc30
 
 public:
+    using AssetID = unsigned;
     explicit WalletAssetViewModel(QObject *parent = nullptr);
     ~WalletAssetViewModel();
 
@@ -45,10 +53,17 @@ private:
     void init();
 
 private:
-    int _currentAssetID;
+//<<<<<<< HEAD
+//    int _currentAssetID;
+//=======
+    AssetID _currentAssetID;
+//>>>>>>> 342e1fc1dbb6cdf9e07b7bf5a0681795c635bc30
     QPointer<WalletDataSource> _walletDataSource;
+    QPointer<const WalletAssetsModel> _walletAssetsModel;
     using TransactionsListModelPtr = std::unique_ptr<WalletTransactionsListModel>;
     std::map<AssetID, TransactionsListModelPtr> _walletTransactionsListModels;
 };
+
+Q_DECLARE_METATYPE(WalletAssetViewModel::AssetID)
 
 #endif // WALLETASSETVIEWMODEL_HPP

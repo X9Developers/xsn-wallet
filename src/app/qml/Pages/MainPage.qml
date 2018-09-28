@@ -25,7 +25,6 @@ RowLayout {
         Layout.fillWidth: true
         currentIndex: walletMenuListView.currentIndex
         //currentIndex: 1
-
         Text {
             Layout.fillHeight: true
             Layout.fillWidth: true

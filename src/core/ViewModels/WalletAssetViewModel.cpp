@@ -2,7 +2,9 @@
 #include "Models/WalletTransactionsListModel.hpp"
 #include "Models/WalletDataSource.hpp"
 #include "ViewModels/ApplicationViewModel.hpp"
+#include "Data/WalletAssetsModel.hpp"
 #include <Storage/KeyStorage.hpp>
+#include <key_io.h>
 
 //==============================================================================
 
@@ -51,6 +53,7 @@ WalletAssetViewModel::AssetID WalletAssetViewModel::currentAssetID() const
 void WalletAssetViewModel::initialize(ApplicationViewModel *applicationViewModel)
 {
     _walletDataSource = applicationViewModel->dataSource();
+    _walletAssetsModel = &applicationViewModel->assetsModel();
     currentAssetIDChanged();
 }
 
@@ -62,8 +65,9 @@ QString WalletAssetViewModel::getReceivingAddress() const
     auto derivedNewChildKey = keyStorage.deriveNewChildKey(0, 0, false);
 
     auto pubKey = derivedNewChildKey.second.key.GetPubKey();
-    auto keyIDStr = pubKey.GetID().ToString();
-    return derivedNewChildKey.first.toString().left(20);
+    auto keyID = pubKey.GetID();
+
+    return QString::fromStdString(bitcoin::EncodeDestination(keyID, _walletAssetsModel->assetById(_currentAssetID).params));
 }
 
 //==============================================================================

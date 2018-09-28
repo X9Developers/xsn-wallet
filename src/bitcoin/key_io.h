@@ -8,7 +8,7 @@
 
 #include <key.h>
 #include <pubkey.h>
-//#include <script/standard.h>
+#include <script/standard.h>
 
 #include <string>
 
@@ -16,21 +16,18 @@ namespace bitcoin {
 
 class CChainParams;
 
-#if 0
 CKey DecodeSecret(const std::string& str, const CChainParams &params);
 std::string EncodeSecret(const CKey& key, const CChainParams &params);
-#endif
+
 
 CExtKey DecodeExtKey(const std::string& str, const CChainParams &params);
 std::string EncodeExtKey(const CExtKey& extkey, const CChainParams &params);
-#if 0
 CExtPubKey DecodeExtPubKey(const std::string& str, const CChainParams &params);
 std::string EncodeExtPubKey(const CExtPubKey& extpubkey, const CChainParams &params);
 
 std::string EncodeDestination(const CTxDestination& dest, const CChainParams &params);
 CTxDestination DecodeDestination(const std::string& str, const CChainParams &params);
 bool IsValidDestinationString(const std::string& str, const CChainParams& params);
-#endif
 
 }
 

@@ -22,6 +22,7 @@ struct CChainParams {
     ~CChainParams();
 
     const std::vector<unsigned char> &base58Prefix(Base58Type type) const;
+    const std::string &bech32HRP() const;
 
 private:
     Base58TypesMap _base58Types;
