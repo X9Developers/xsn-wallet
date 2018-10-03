@@ -18,6 +18,11 @@ Page {
     property string currentAssetSymbol: assetsListView.currentItem ? assetsListView.currentItem.symbol : ""
     property string currentButtonColor: assetsListView.currentItem ? assetsListView.currentItem.buttonColor : ""
 
+    background: Rectangle {
+        anchors.fill: parent
+        color: "#090D1C"
+    }
+
     WalletAssetViewModel {
         id: walletViewModel
         Component.onCompleted: {
@@ -46,7 +51,7 @@ Page {
         Rectangle {
             Layout.fillHeight: true
             Layout.preferredWidth: windowWidth > windowWidthSmallMode ? assetsViewWidthLargeMode : assetsViewWidthSmallMode
-            color: "#292E34"
+            color: "#16192E"
 
             Item {
                 anchors.fill: parent
@@ -67,21 +72,14 @@ Page {
             }
         }
 
-        Rectangle {
-            Layout.fillHeight: true
-            Layout.preferredWidth: 4
-            color: currentAssetColor
-        }
-
         ColumnLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            spacing: 0
+            Layout.margins: 30
+            spacing: 30
 
             WalletPageHeaderView {
-                Layout.preferredHeight: windowWidth > windowWidthSmallMode ? (width > windowWidthLargeMode ? headerViewHeightLargeMode
-                                                                                                           : headerViewHeightMediumMode)
-                                                                           : headerViewHeightSmallMode
+                Layout.preferredHeight: 400
                 Layout.fillWidth: true
 
                 coinMeasure: currentAssetName
@@ -112,9 +110,9 @@ Page {
             }
 
             TransactionsListView {
-                assetName: currentAssetName
                 Layout.fillWidth: true
                 Layout.fillHeight: true
+                assetName: currentAssetName
                 transactionListModel: walletViewModel.transactionsListModel
             }
         }

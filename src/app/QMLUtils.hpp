@@ -10,8 +10,8 @@ public:
     static void setContextProperties(QQmlContext *context);
 
     struct Sizes {
-        int menuWidthSmallMode = 85;
-        int menuWidthLargeMode = 180;
+        int menuWidthSmallMode = 90;
+        int menuWidthLargeMode = 200;
 
         int windowWidthSmallMode = 1180;
         int windowWidthLargeMode = 1250;

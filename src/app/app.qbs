@@ -6,6 +6,7 @@ import qbs
 
 CppApplication {
     Depends { name: "Qt.core" }
+    //Depends { name : "Qt.charts"}
     Depends { name: "Qt.quick" }
     Depends { name: "core" }
 

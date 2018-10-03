@@ -18,5 +18,7 @@
         <file>Components/RoundedImage.qml</file>
         <file>Popups/SendPopup.qml</file>
         <file>Components/MenuIcon.qml</file>
+        <file>Components/ClickableLabel.qml</file>
+        <file>Components/ActionButton.qml</file>
     </qresource>
 </RCC>

@@ -3,137 +3,191 @@ import QtQuick.Layouts 1.3
 
 import "../Components"
 
-Rectangle {
-    color: "#292E34"
-
+Item {
+    id: root
     property string assetName: ""
     property QtObject transactionListModel: undefined
 
-    XSNLabel {
+    ColumnLayout {
+        anchors.fill: parent
         anchors.centerIn: parent
-        text: transactionsList.count === 0 ? "No %1 Transactions".arg(assetName) : ""
-        color: "white"
-        opacity: 0.2
-        font.pixelSize: 22
-        font.family: "Helvetica"
-    }
 
-    Component {
-        id: contactDelegate
+        XSNLabel {
+            Layout.fillWidth: true
+            Layout.preferredHeight: 30
+            Layout.topMargin: 10
+            Layout.bottomMargin: 10
+            Layout.rightMargin: 10
+            Layout.alignment: Qt.AlignVCenter
+
+            text: "Transactions"
+        }
 
         Rectangle {
-            id: item
-            property bool isCurrentItem: ListView.isCurrentItem
-            width: parent.width
-            height: columnLayout.height
-            color: ListView.isCurrentItem ? "#1C1F24" : "transparent"
-            border.width: ListView.isCurrentItem? 0 : 1
-            border.color: "#3B4046"
+            Layout.fillWidth: true
+            Layout.preferredHeight: 30
+            color: "#20233D"
+            radius: 4
 
-            ColumnLayout {
-                id: columnLayout
+            RowLayout {
+                Layout.leftMargin: 20
+                Layout.rightMargin: 20
+                anchors.fill: parent
+                Layout.alignment: Qt.AlignVCenter
+
+                Text {
+                    Layout.preferredWidth: 30
+                    Layout.fillHeight: true
+                    Layout.alignment: Qt.AlignHCenter
+                    text: "Type"; color: "#7F8DC1"; font.pixelSize: 10
+                }
+                Text {
+                    Layout.preferredWidth: 60
+                    Layout.fillHeight: true
+                    //ayout.alignment: Qt.AlignLeft
+                    text: "Date"; color: "#7F8DC1"; font.pixelSize: 10
+                }
+                Text {
+                    Layout.preferredWidth: 60
+                    Layout.fillHeight: true
+                    Layout.alignment: Qt.AlignLeft
+                    text: "Currency"; color: "#7F8DC1"; font.pixelSize: 10
+                }
+                Text {
+                    Layout.preferredWidth: 60
+                    Layout.fillHeight: true
+                    //Layout.alignment: Qt.AlignLeft
+                    text: "Transaction ID"; color: "#7F8DC1"; font.pixelSize: 10
+                }
+
+                Text {
+                    Layout.preferredWidth: 60
+                    Layout.fillHeight: true
+                    Layout.alignment: Qt.AlignRight
+                    text: "Amount"; color: "#7F8DC1"; font.pixelSize: 10
+                }
+
+                Item {
+                    Layout.preferredWidth: 20
+                    Layout.fillHeight: true
+                }
+            }
+        }
+
+        ListView {
+            id: transactionsList
+
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+
+            boundsBehavior: Flickable.StopAtBounds
+            model: transactionListModel
+            clip: true
+
+            delegate: contactDelegate
+
+            focus: true
+            spacing: 5
+
+            add: Transition {
+                NumberAnimation { properties: "y"; from: transactionsList.height; duration: 200 }
+            }
+            addDisplaced: Transition {
+                NumberAnimation { properties: "x,y"; duration: 200 }
+            }
+        }
+
+
+        Component {
+            id: contactDelegate
+
+            Rectangle {
+                id: item
+                property bool isCurrentItem: ListView.isCurrentItem
                 width: parent.width
+                height: closedTransactionHeight
+                color: "#16192E"
+                radius: 4
 
                 RowLayout {
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: closedTransactionHeight
+                    anchors.fill: parent
 
-                    Layout.leftMargin: 25
-                    Layout.rightMargin: 25
-                    Layout.topMargin: 5
-                    Layout.bottomMargin: 5
+                    Layout.leftMargin: 20
+                    Layout.rightMargin: 20
 
                     Item {
                         Layout.preferredWidth: 40
                         Layout.fillHeight: true
 
-                        Text {
-                            text: txDate
-                            color: "white"
-                            font.pixelSize: 15
-                            anchors.centerIn: parent
-                        }
-                    }
-
-                    RowLayout {
-                        Layout.fillHeight: true
-                        Layout.fillWidth: true
-
                         Image {
-                            Layout.leftMargin: 7
-                            Layout.rightMargin: 12
                             source: isSend? "qrc:/images/images.png" : "qrc:/images/received.jpg"
+                            anchors.centerIn: parent
                             sourceSize.width: 16
                             sourceSize.height: 16
                         }
+                    }
+
+                    Column {
+                        Layout.preferredWidth: 100
+                        Layout.fillHeight: true
+                        Layout.alignment: Qt.AlignVCenter
 
                         Text { text: isSend ? "Sent" : "Received"; color: "white"; font.pixelSize: 15; }
-                        Item { Layout.fillHeight: true; Layout.fillWidth: true}
-                        Text { text: isSend ? "−" : "+"; color: "darkorange"; anchors.right: deltaData.left}
-                        Text { id: deltaData; text: delta; color: "darkorange"; anchors.right: parent.right}
+                        Text { text: txDate; color: "white"; font.pixelSize: 10;}
+                    }
+
+                    Row {
+                        Layout.preferredWidth: 125
+                        Layout.fillHeight: true
+
+                        Image {
+                            source: "qrc:/images/Bitcoin.png"
+                            sourceSize: Qt.size(15, 15)
+                        }
+
+                        Text { text: "Currency"; color: "white"; font.pixelSize: 10}
+                    }
+
+                    Text {
+                        Layout.preferredWidth: 125
+                        Layout.fillHeight: true
+                        text: id
+                        color: "grey"
+                        font.pixelSize: 12
+                    }
+
+                    Column {
+                        Layout.preferredWidth: 60
+                        Layout.fillHeight: true
+
+                        Row {
+                            Text { text: isSend ? "−" : "+"; color: isSend ? "#1DB182" : "#E2344F"; font.pixelSize: 12}
+                            Text { id: deltaData; text: delta; color: isSend ? "#1DB182" : "#E2344F"; font.pixelSize: 12}
+                        }
+
+                        Text {
+                            text: "$ 4562.54"; color: "white"; font.pixelSize: 10;
+                        }
+                    }
+
+                    Item {
+                        Layout.preferredWidth: 20
+                        Layout.fillHeight: true
                     }
                 }
 
-                ColumnLayout {
-                    Layout.preferredHeight: openedTransactionHeight
-                    Layout.fillWidth: true
 
-                    anchors.leftMargin: 70
-                    anchors.left: parent.left
-                    visible: item.isCurrentItem
-
-                    RowLayout {
-                        spacing: columnLayout.width / 25
-
-                        Column {
-                            Text { text: "DATE"; font.bold: true; font.pixelSize: 10; color: "white" }
-                            Text { text: "Friday, Jun 15th 2018, 11:23:01 PM"; font.pixelSize: 10; color: "white"}
-                        }
-                        Column {
-                            Text { text: "TRANSACTION ID"; font.bold: true; font.pixelSize: 10; color: "white" }
-                            Text { text: id; font.pixelSize: 10; color: "white"}
-                        }
-                        Column {
-                            Text { text: "TO"; font.bold: true; font.pixelSize: 10; color: "white" }
-                            Text { text: "4ce18f49ba153a51bcda9bb80d7f978e3d"; font.pixelSize: 10; color: "white"}
-                        }
-                    }
-
-                    RowLayout {
-                        Column {
-                            Text { text: "NOW"; font.bold: true; font.pixelSize: 10; color: "white" }
-                            Text { text: "38.43 USD"; font.pixelSize: 10; color: "white" }
-                        }
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        if(transactionsList.currentIndex === index)
+                            transactionsList.currentIndex = -1
+                        else
+                            transactionsList.currentIndex = index
                     }
                 }
             }
-
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    if(transactionsList.currentIndex === index)
-                        transactionsList.currentIndex = -1
-                    else
-                        transactionsList.currentIndex = index
-                }
-            }
-        }
-    }
-
-    ListView {
-        id: transactionsList
-        boundsBehavior: Flickable.StopAtBounds
-        clip: true
-        anchors.fill: parent
-        model: transactionListModel
-        delegate: contactDelegate
-        focus: true
-
-        add: Transition {
-            NumberAnimation { properties: "y"; from: transactionsList.height; duration: 200 }
-        }
-        addDisplaced: Transition {
-            NumberAnimation { properties: "x,y"; duration: 200 }
         }
     }
 }
+

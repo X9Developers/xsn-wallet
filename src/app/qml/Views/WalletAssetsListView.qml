@@ -8,11 +8,11 @@ ListView {
         Rectangle {
             id: highlightItem
             anchors.right: parent.right
-            width: 8
+            width: 2
             height: parent.height
-            radius: 3
             color: listView.currentItem.color
         }
+
     }
 
     highlightFollowsCurrentItem: true
