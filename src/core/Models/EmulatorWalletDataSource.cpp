@@ -19,7 +19,7 @@ EmulatorWalletDataSource::~EmulatorWalletDataSource()
 
 //==============================================================================
 
-WalletDataSource::TransactionsList EmulatorWalletDataSource::executeFetch(int id)
+WalletDataSource::TransactionsList EmulatorWalletDataSource::executeFetch(AssetID id)
 {
     auto it = _transactionMap.find(id);
     if(it != std::end(_transactionMap))
@@ -44,7 +44,7 @@ static TransactionEntry GenerateTransaction()
 
 //==============================================================================
 
-void EmulatorWalletDataSource::executeAdd(int assetID, int count)
+void EmulatorWalletDataSource::executeAdd(AssetID assetID, int count)
 {
     int id = assetID;
     TransactionEntry transaction = GenerateTransaction();
@@ -66,7 +66,7 @@ void EmulatorWalletDataSource::executeAdd(int assetID, int count)
 
 //==============================================================================
 
-void EmulatorWalletDataSource::clearTransactions(int assetID)
+void EmulatorWalletDataSource::clearTransactions(AssetID assetID)
 {
     if(_transactionMap.count(assetID))
     {

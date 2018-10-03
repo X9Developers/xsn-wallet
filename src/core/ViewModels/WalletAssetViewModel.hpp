@@ -4,6 +4,7 @@
 #include <QObject>
 #include <memory>
 #include <QPointer>
+#include "Utils/Common.hpp"
 
 class QAbstractListModel;
 class WalletTransactionsListModel;
@@ -20,7 +21,7 @@ class WalletAssetViewModel : public QObject
     Q_PROPERTY(QObject* transactionsListModel READ transactionsListModel NOTIFY currentAssetIDChanged)
 
 public:
-    using AssetID = unsigned;
+
     explicit WalletAssetViewModel(QObject *parent = nullptr);
     ~WalletAssetViewModel();
 
@@ -49,7 +50,5 @@ private:
     using TransactionsListModelPtr = std::unique_ptr<WalletTransactionsListModel>;
     std::map<AssetID, TransactionsListModelPtr> _walletTransactionsListModels;
 };
-
-Q_DECLARE_METATYPE(WalletAssetViewModel::AssetID)
 
 #endif // WALLETASSETVIEWMODEL_HPP

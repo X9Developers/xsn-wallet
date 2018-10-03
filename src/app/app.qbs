@@ -39,8 +39,16 @@ CppApplication {
 
     cpp.includePaths: [product.sourceDirectory]
 
+    Group {
+        name: "Runtime resources"
+        files: "*.qml"
+        qbs.install: true
+        qbs.installDir: "share/stakenet-wallet"
+    }
     Group {     // Properties for the produced executable
+        name: "Stakenet Wallet"
         fileTagsFilter: "application"
         qbs.install: true
+        qbs.installDir: "bin"
     }
 }
