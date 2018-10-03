@@ -3,79 +3,71 @@
 #include <utilstrencodings.h>
 #include <chainparams.hpp>
 #include <key_io.h>
+#include <walletdb.h>
 
 #include <QDebug>
 
+//==============================================================================
+
 struct KeyStorage::KeyStorageImpl {
-    std::map<ExtendedKeyPathBip44, bitcoin::CExtKey> _extKeys;
-    bitcoin::CExtKey masterKey() const
-    {
-        bitcoin::CExtKey masterKey;             //hd master key
-        auto seed = bitcoin::ParseHex("4b381541583be4423346c643850da4b320e46a87ae3d2a4e6da11eba819cd4acba45d239319ac14f863b8d5ab5a0d0c64d2e8a1e7d1457df2e5a3c51c73235be");
-        masterKey.SetSeed(&seed[0], seed.size());
-        return masterKey;
-    }
+    bitcoin::CHDChain _hdChain;
+    bitcoin::CExtKey masterKey() const;
 };
+
+//==============================================================================
 
 KeyStorage::KeyStorage(QObject *parent) :
     QObject(parent),
     _impl(new KeyStorageImpl)
 {
-    bitcoin::ECC_Start();
 }
+
+//==============================================================================
 
 KeyStorage::~KeyStorage()
 {
 
 }
 
-static bitcoin::CExtKey DeriveExtKey(const bitcoin::CExtKey &parentKey, unsigned int nChild) {
+//==============================================================================
+
+void KeyStorage::setHDChain(const bitcoin::CHDChain &hdChain)
+{
+    _impl->_hdChain = hdChain;
+}
+
+//==============================================================================
+
+const bitcoin::CHDChain &KeyStorage::hdChain() const
+{
+    return _impl->_hdChain;
+}
+
+//==============================================================================
+
+static bitcoin::CExtKey DeriveExtKey(const bitcoin::CExtKey &parentKey, unsigned int nChild)
+{
     bitcoin::CExtKey result;
     parentKey.Derive(result, nChild);
     return result;
 }
 
-std::pair<ExtendedKeyPathBip44, bitcoin::CExtKey> KeyStorage::deriveNewChildKey(unsigned int coinType, unsigned int accountID, bool internal)
+//==============================================================================
+
+std::pair<ExtendedKeyPathBip44, bitcoin::CExtKey> KeyStorage::deriveNewChildKey(AssetID coinType, AccountIndex accountID, bool internal)
 {
     using namespace bitcoin;
 
-
-    // try to get the seed
-    //    if (!GetKey(hdChain.seed_id, seed))
-    //        throw std::runtime_error(std::string(__func__) + ": seed not found");
-
     ExtendedKeyPathBip44 path(coinType, accountID, internal);
 
-    static unsigned int nInternalChainCounter = 0;
-    static unsigned int nExternalChainCounter = 0;
+    auto &accounts = _impl->_hdChain.accounts[coinType];
+    auto &account = accounts[accountID];
+    auto &internalChainCounter = account.nInternalChainCounter;
+    auto &externalChainCounter = account.nExternalChainCounter;
 
     CExtKey childKey = deriveKeyForPath(path);
 
-#if 0
-    // derive child key at next index, skip keys already known to the wallet
-    do {
-        // always derive hardened keys
-        // childIndex | BIP32_HARDENED_KEY_LIMIT = derive childIndex in hardened child-index-range
-        // example: 1 | BIP32_HARDENED_KEY_LIMIT == 0x80000001 == 2147483649
-
-        if (internal) {
-            //            chainChildKey.Derive(childKey, hdChain.nInternalChainCounter | BIP32_HARDENED_KEY_LIMIT);
-            childKey = DeriveExtKey(chainChildKey, nInternalChainCounter);
-            //            metadata.hdKeypath = "m/0'/1'/" + std::to_string(hdChain.nInternalChainCounter) + "'";
-            //            hdChain.nInternalChainCounter++;
-//            nInternalChainCounter++;
-        }
-        else {
-            //            chainChildKey.Derive(childKey, hdChain.nExternalChainCounter | BIP32_HARDENED_KEY_LIMIT);
-            childKey = DeriveExtKey(chainChildKey, nExternalChainCounter);
-            //            metadata.hdKeypath = "m/0'/0'/" + std::to_string(hdChain.nExternalChainCounter) + "'";
-            //            hdChain.nExternalChainCounter++;
-//            nExternalChainCounter++;
-        }
-    } while (false/*HaveKey(childKey.key.GetPubKey().GetID())*/);
-#endif
-
-    path.addChild(internal ? nInternalChainCounter++ : nExternalChainCounter++);
+    path.addChild(internal ? internalChainCounter++ : externalChainCounter++);
 
 //    secret = childKey.key;
 //    metadata.hd_seed_id = hdChain.seed_id;
@@ -114,3 +106,11 @@ bitcoin::CExtKey KeyStorage::deriveKeyForPath(ExtendedKeyPathBip44 path)
 
 //==============================================================================
 
+bitcoin::CExtKey KeyStorage::KeyStorageImpl::masterKey() const
+{
+    bitcoin::CExtKey masterKey;
+    masterKey.SetSeed(&_hdChain.vchSeed[0], _hdChain.vchSeed.size());
+    return masterKey;
+}
+
+//==============================================================================
