@@ -30,6 +30,11 @@ unsigned ExtendedKeyPathBip44::operator[](unsigned index) const
     return _items.at(index);
 }
 
+bool ExtendedKeyPathBip44::operator==(const ExtendedKeyPathBip44 &other) const
+{
+    return _items == other._items;
+}
+
 auto ExtendedKeyPathBip44::begin() const -> Container::const_iterator
 {
     return _items.cbegin();

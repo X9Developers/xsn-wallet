@@ -1,8 +1,6 @@
 #ifndef COMMON_HPP
 #define COMMON_HPP
 
-#include <QMetaType>
-
 using AssetID = unsigned;
 
 /*!

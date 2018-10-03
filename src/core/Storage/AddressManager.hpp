@@ -3,16 +3,20 @@
 
 #include <QObject>
 #include <memory>
+#include <Utils/Common.hpp>
 
 class AddressManager : public QObject
 {
     Q_OBJECT
 public:
+    using Addresses = std::vector<QString>;
     explicit AddressManager(QObject *parent = nullptr);
     virtual ~AddressManager();
 
     QString externalAddress() const;
     QString changeAddress() const;
+
+    Addresses addresses(AssetID assetID) const;
 
     void markAddressAsUsed(QString address);
 

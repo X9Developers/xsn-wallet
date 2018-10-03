@@ -1,4 +1,5 @@
 #include "Common.hpp"
+#include <QMetaType>
 
 void RegisterCommonQtTypes()
 {
