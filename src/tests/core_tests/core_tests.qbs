@@ -2,6 +2,7 @@ import qbs
 import qbs.Utilities
 
 CppApplication {
+    id: test
     Depends { name: "Qt.core" }
     Depends { name: "Qt.testlib" }
     Depends { name: "core" }
@@ -21,7 +22,15 @@ CppApplication {
     Group {
         name: "testdata"
         prefix: "testdata/"
-        files: ["**/*"]
+        qbs.install: true
+        files: ["**/*", "../../../app/assets/assets_conf.json"]
         fileTags: []
+    }
+
+    Group {     // Properties for the produced executable
+        name: "tests"
+        fileTagsFilter: "application"
+        qbs.install: true
+        qbs.installDir: "bin"
     }
 }

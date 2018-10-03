@@ -6,6 +6,10 @@
 #include <Storage/KeyStorage.hpp>
 #include <walletdb.h>
 #include <utilstrencodings.h>
+#include <key_io.h>
+#include <chainparams.hpp>
+#include <Data/WalletAssetsModel.hpp>
+#include <iostream>
 
 using namespace testing;
 
@@ -18,11 +22,13 @@ protected:
 
     KeyStorageTest()
     {
+        WalletAssetsModel assetsModel("../assets_conf.json");
     }
 
     virtual void SetUp()
     {
         bitcoin::ECC_Start();
+        // master key for this seed - xprv9s21ZrQH143K25QhxbucbDDuQ4naNntJRi4KUfWT7xo4EKsHt2QJDu7KXp1A3u7Bi1j8ph3EGsZ9Xvz9dGuVrtHHs7pXeTzjuxBrCmmhgC6 for bitcoin
         auto seed = bitcoin::ParseHex("4b381541583be4423346c643850da4b320e46a87ae3d2a4e6da11eba819cd4acba45d239319ac14f863b8d5ab5a0d0c64d2e8a1e7d1457df2e5a3c51c73235be");
         hdChain.vchSeed = SecureVector(seed.begin(), seed.end());
         storage.setHDChain(hdChain);

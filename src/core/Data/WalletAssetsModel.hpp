@@ -11,7 +11,7 @@ class WalletAssetsModel : public QObject
     Q_OBJECT
 public:
     using Assets = std::vector<CoinAsset>;
-    explicit WalletAssetsModel(QObject *parent = nullptr);
+    explicit WalletAssetsModel(QString assetFilePath, QObject *parent = nullptr);
     virtual ~WalletAssetsModel();
 
     Assets assets() const;
@@ -22,7 +22,7 @@ signals:
 public slots:
 
 private:
-    void init();
+    void init(QString assetFilePath);
     void addAsset(CoinAsset asset);
 
 private:

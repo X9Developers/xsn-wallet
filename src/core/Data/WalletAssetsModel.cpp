@@ -8,9 +8,9 @@
 
 //==============================================================================
 
-WalletAssetsModel::WalletAssetsModel(QObject *parent) : QObject(parent)
+WalletAssetsModel::WalletAssetsModel(QString assetFilePath, QObject *parent) : QObject(parent)
 {
-    init();
+    init(assetFilePath);
 }
 
 //==============================================================================
@@ -40,9 +40,9 @@ const CoinAsset &WalletAssetsModel::assetById(unsigned id) const
 
 //==============================================================================
 
-void WalletAssetsModel::init()
+void WalletAssetsModel::init(QString assetFilePath)
 {
-    QFile file(":/data/assets_conf.json");
+    QFile file(assetFilePath);
 
     if(file.open(QFile::ReadOnly))
     {
@@ -54,7 +54,8 @@ void WalletAssetsModel::init()
     }
     else
     {
-        qCritical() << "Failed to ope assets_conf.json";
+        qCritical() << "Failed to open assets_conf.json";
+        throw std::runtime_error("Failed to ope assets_conf.json");
     }
 }
 
