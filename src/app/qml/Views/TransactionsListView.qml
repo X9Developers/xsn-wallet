@@ -81,6 +81,15 @@ Item {
             }
         }
 
+        XSNLabel {
+            visible: transactionsList.count === 0
+            anchors.centerIn: parent
+            text: "No %1 Transactions".arg(assetName)
+            color: "white"
+            opacity: 0.2
+            font.pixelSize: 22
+        }
+
         ListView {
             id: transactionsList
 
@@ -103,7 +112,6 @@ Item {
                 NumberAnimation { properties: "x,y"; duration: 200 }
             }
         }
-
 
         Component {
             id: contactDelegate

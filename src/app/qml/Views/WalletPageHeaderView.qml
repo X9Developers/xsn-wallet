@@ -99,7 +99,6 @@ ColumnLayout {
 
                     Row {
                         Layout.fillWidth: true
-                        Layout.preferredWidth: 50
                         spacing: 5
 
                         XSNLabel {
@@ -130,7 +129,6 @@ ColumnLayout {
                     Row {
                         id: usd
                         Layout.fillWidth: true
-                        Layout.preferredWidth: 50
                         spacing : 5
 
                         XSNLabel {

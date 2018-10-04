@@ -2,9 +2,8 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.3
 import QtGraphicalEffects 1.0
 
-Rectangle {
+Item {
     id: root
-    color: isCurrentItem ? "#0D1A35" : "transparent"
     signal menuItemClicked()
     property bool isCurrentItem: false
     property bool isSmallItem: parent.isSmallMenu
@@ -14,17 +13,15 @@ Rectangle {
 
     property color currentColor: isCurrentItem ? "#2C80FF" : mouseArea.containsMouse ? "lightgrey" :  "grey"
 
-//    Rectangle {
-//        id: background
-//        rotation: 90
-//        width: parent.height
-//        height: parent.width
-//        color: parent.isCurrentItem ? "#0D1A35" : "transparent"
-//        gradient: Gradient {
-//            GradientStop { position: 0.0; color: "transparent" }
-//            GradientStop { position: 1.0; color: isCurrentItem ? "#0D1A35" : "transparent" }
-//        }
-//    }
+    LinearGradient {
+        anchors.fill: parent
+        start: Qt.point(0, 0)
+        end: Qt.point(width, 0)
+        gradient: Gradient {
+            GradientStop { position: 1.0; color: "transparent" }
+            GradientStop { position: 0.0; color: isCurrentItem ? "#0D1A35" : "transparent" }
+        }
+    }
 
     ColumnLayout {
         anchors.fill: parent
@@ -34,7 +31,6 @@ Rectangle {
             Layout.fillHeight: true
             Layout.fillWidth: true
             visible: root.isSmallItem
-            //rotation: 270
 
             MenuIcon {
                 Layout.fillWidth: true
@@ -57,7 +53,6 @@ Rectangle {
             Layout.fillWidth: true
             Layout.leftMargin: 25
             visible: !root.isSmallItem
-            //rotation: 270
 
             MenuIcon {
                 Layout.preferredWidth: implicitWidth
@@ -81,7 +76,6 @@ Rectangle {
         id: mouseArea
         anchors.fill: parent
         hoverEnabled: true
-        //rotation: 270
         onClicked: menuItemClicked()
     }
 }

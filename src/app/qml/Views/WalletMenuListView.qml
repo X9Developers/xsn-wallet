@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.3
+import QtGraphicalEffects 1.0
 
 import "../Components"
 
@@ -93,8 +94,6 @@ ColumnLayout {
         onMenuItemClicked: { currentIndex = 8 ; currentName = name}
     }
 
-
-
     MenuItem {
         Layout.fillWidth: true
         Layout.preferredHeight: root.SmallMenu ? menuItemHeightSmallMode : menuItemHeightLargeMode
@@ -102,6 +101,43 @@ ColumnLayout {
         name: "Settings"
         imageSource: "qrc:/images/Settings.png"
         onMenuItemClicked: { root.currentIndex = 9; currentName = name}
+    }
+
+    RowLayout {
+        Layout.fillWidth: true
+        Layout.preferredHeight: 40
+        Layout.margins: 15
+        visible: !isSmallMenu
+        spacing: 20
+        Layout.alignment: Qt.AlignHCenter
+
+        Text {
+            text: "Privacy"
+            color: "grey"
+            font.pixelSize: 14
+        }
+
+        Text {
+           text: "Terms"
+           color: "grey"
+           font.pixelSize: 14
+        }
+
+        Item {
+            width: image.sourceSize.width
+
+            Image {
+                id: image
+                sourceSize: Qt.size(15, 15)
+                source: "qrc:/images/icons-2 stroke-16px-menu.png"
+            }
+            ColorOverlay {
+                anchors.fill: image
+                source: image
+                color: "grey"
+            }
+
+        }
     }
 
     Item {
