@@ -30,7 +30,7 @@ public:
         int menuItemHeightSmallMode = 70;
         int menuItemHeightLargeMode = 60;
 
-        int closedTransactionHeight = 45;
+        int closedTransactionHeight = 55;
         int openedTransactionHeight = 100;
     };
 

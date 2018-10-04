@@ -24,7 +24,6 @@ ListView {
         property string color: model.color
         property int id: model.id
         property string name: model.name
-        property string buttonColor: model.buttonColor
         property string symbol: model.symbol
 
         Text {

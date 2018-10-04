@@ -104,39 +104,6 @@ ColumnLayout {
         onMenuItemClicked: { root.currentIndex = 9; currentName = name}
     }
 
-//    RowLayout {
-//        Layout.preferredHeight: 20
-//        Layout.fillWidth: true
-//        property bool isSmallMenu: parent.isSmallMenu
-//        spacing: 5
-//        Layout.alignment: Qt.AlignVCenter
-
-//        MenuItem {
-//            Layout.preferredWidth: 40
-//            Layout.preferredHeight: root.SmallMenu ? menuItemHeightSmallMode : menuItemHeightLargeMode
-//            isCurrentItem: root.currentName === name
-//            name: "Privacy"
-//            onMenuItemClicked: { root.currentIndex = 10; root.currentName = name}
-//        }
-
-//        MenuItem {
-//            Layout.preferredWidth: 40
-//            Layout.preferredHeight: root.SmallMenu ? menuItemHeightSmallMode : menuItemHeightLargeMode
-//            isCurrentItem: root.currentName === name
-//            name: "Terms"
-//            onMenuItemClicked: { root.currentIndex = 11; root.currentName = name}
-//        }
-
-//        MenuItem {
-//            Layout.preferredWidth: 40
-//            Layout.preferredHeight: root.SmallMenu ? menuItemHeightSmallMode : menuItemHeightLargeMode
-//            isCurrentItem: root.currentName === name
-//            name: "3dots"
-//            imageSource: "qrc:/images/icons-2 stroke-16px-menu.png"
-//            onMenuItemClicked: { root.currentIndex = 12; root.currentName = name}
-//        }
-//    }
-
     Item {
         Layout.fillHeight: true
         Layout.fillWidth: true

@@ -5,11 +5,6 @@ import QtGraphicalEffects 1.0
 Rectangle {
     id: root
     color: isCurrentItem ? "#0D1A35" : "transparent"
-    //    rotation: 90
-    //    gradient: Gradient {
-    //        GradientStop { position: 0.0; color: "transparent" }
-    //        GradientStop { position: 1.0; color: isCurrentItem ? "#0D1A35" : "transparent" }
-    //    }
     signal menuItemClicked()
     property bool isCurrentItem: false
     property bool isSmallItem: parent.isSmallMenu
@@ -18,6 +13,18 @@ Rectangle {
     property string imageSource: ""
 
     property color currentColor: isCurrentItem ? "#2C80FF" : mouseArea.containsMouse ? "lightgrey" :  "grey"
+
+//    Rectangle {
+//        id: background
+//        rotation: 90
+//        width: parent.height
+//        height: parent.width
+//        color: parent.isCurrentItem ? "#0D1A35" : "transparent"
+//        gradient: Gradient {
+//            GradientStop { position: 0.0; color: "transparent" }
+//            GradientStop { position: 1.0; color: isCurrentItem ? "#0D1A35" : "transparent" }
+//        }
+//    }
 
     ColumnLayout {
         anchors.fill: parent

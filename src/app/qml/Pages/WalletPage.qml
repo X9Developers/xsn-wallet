@@ -16,7 +16,6 @@ Page {
     property string currentAssetName: assetsListView.currentItem ? assetsListView.currentItem.name : ""
     property string currentAssetColor: assetsListView.currentItem ? assetsListView.currentItem.color : ""
     property string currentAssetSymbol: assetsListView.currentItem ? assetsListView.currentItem.symbol : ""
-    property string currentButtonColor: assetsListView.currentItem ? assetsListView.currentItem.buttonColor : ""
 
     background: Rectangle {
         anchors.fill: parent
@@ -76,15 +75,13 @@ Page {
             Layout.fillWidth: true
             Layout.fillHeight: true
             Layout.margins: 30
-            spacing: 30
+            spacing: 35
 
             WalletPageHeaderView {
                 Layout.preferredHeight: 400
                 Layout.fillWidth: true
 
                 coinMeasure: currentAssetName
-                labelColor: currentAssetColor
-                buttonColor: currentButtonColor
                 coinSymbol: currentAssetSymbol
                 windowWidth: root.windowWidth
 
@@ -113,6 +110,7 @@ Page {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 assetName: currentAssetName
+                assetSymbol: currentAssetSymbol
                 transactionListModel: walletViewModel.transactionsListModel
             }
         }

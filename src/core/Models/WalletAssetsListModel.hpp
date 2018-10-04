@@ -16,8 +16,7 @@ public:
         IDRole,
         NameRole,
         TicketRole,
-        ColorRole,
-        ButtonColorRole
+        ColorRole
     };
     explicit WalletAssetsListModel(QObject *parent = nullptr);
     virtual ~WalletAssetsListModel() override;

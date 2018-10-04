@@ -10,7 +10,6 @@ RowLayout {
     property string currentAssetID: walletPage.currentAssetID
 
     Rectangle {
-        //visible: false
         Layout.fillHeight: true
         Layout.preferredWidth: parent.width < windowWidthSmallMode ? menuWidthSmallMode : menuWidthLargeMode
         color: "#090D1C"
@@ -85,6 +84,5 @@ RowLayout {
             Layout.fillWidth: true
             text: "Settings"
         }
-
     }
 }

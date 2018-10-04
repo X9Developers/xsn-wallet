@@ -11,9 +11,7 @@ ColumnLayout {
 
     property string coinMeasure: ""
     property string coinSymbol : ""
-    property string labelColor: ""
     property int windowWidth: 0
-    property string buttonColor: ""
 
     RowLayout {
         Layout.fillWidth: true
@@ -33,7 +31,7 @@ ColumnLayout {
 
         ListView {
             id: listView
-            Layout.preferredHeight: 30
+            Layout.preferredHeight: parent.height
             Layout.preferredWidth: contentWidth
             Layout.alignment: Qt.AlignVCenter
             anchors.right: parent.right
@@ -49,7 +47,7 @@ ColumnLayout {
                 Rectangle {
                     id: highlightItem
                     color: "#0E1E3E"
-                    height: 30
+                    height: parent.height
                     width: 45
                     radius: 5
                 }
@@ -59,14 +57,14 @@ ColumnLayout {
 
             delegate: Item {
                 width: 45
-                height: 30
+                height: parent.height
 
                 Text {
                     id: text
                     anchors.centerIn: parent
                     text: modelData
                     color: listView.currentIndex === index ? "#2C80FF" : "white"
-                    font.pixelSize: 10
+                    font.pixelSize: 11
                 }
 
                 MouseArea {
@@ -85,7 +83,6 @@ ColumnLayout {
         Layout.preferredHeight: 360
         Layout.fillWidth: true
         color: "#16192E"
-        //opacity: 0.2
 
         ColumnLayout {
             anchors.fill: parent

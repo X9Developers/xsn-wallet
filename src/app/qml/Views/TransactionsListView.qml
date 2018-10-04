@@ -1,11 +1,13 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.3
+import QtGraphicalEffects 1.0
 
 import "../Components"
 
 Item {
     id: root
     property string assetName: ""
+    property string assetSymbol: ""
     property QtObject transactionListModel: undefined
 
     ColumnLayout {
@@ -30,46 +32,51 @@ Item {
             radius: 4
 
             RowLayout {
-                Layout.leftMargin: 20
-                Layout.rightMargin: 20
                 anchors.fill: parent
-                Layout.alignment: Qt.AlignVCenter
+                anchors.leftMargin: 20
+                anchors.rightMargin: 20
+                spacing: width * 0.02
 
                 Text {
-                    Layout.preferredWidth: 30
-                    Layout.fillHeight: true
-                    Layout.alignment: Qt.AlignHCenter
-                    text: "Type"; color: "#7F8DC1"; font.pixelSize: 10
-                }
-                Text {
-                    Layout.preferredWidth: 60
-                    Layout.fillHeight: true
-                    //ayout.alignment: Qt.AlignLeft
-                    text: "Date"; color: "#7F8DC1"; font.pixelSize: 10
-                }
-                Text {
-                    Layout.preferredWidth: 60
-                    Layout.fillHeight: true
-                    Layout.alignment: Qt.AlignLeft
-                    text: "Currency"; color: "#7F8DC1"; font.pixelSize: 10
-                }
-                Text {
-                    Layout.preferredWidth: 60
-                    Layout.fillHeight: true
-                    //Layout.alignment: Qt.AlignLeft
-                    text: "Transaction ID"; color: "#7F8DC1"; font.pixelSize: 10
+                    Layout.preferredWidth: parent.width * 0.08
+                    Layout.alignment: Qt.AlignCenter
+                    text: "Type";
+                    color: "#7F8DC1";
+                    font.pixelSize: 11
                 }
 
                 Text {
-                    Layout.preferredWidth: 60
-                    Layout.fillHeight: true
-                    Layout.alignment: Qt.AlignRight
-                    text: "Amount"; color: "#7F8DC1"; font.pixelSize: 10
+                    Layout.preferredWidth: parent.width * 0.18
+                    text: "Date";
+                    color: "#7F8DC1";
+                    font.pixelSize: 11
+                }
+
+                Text {
+                    Layout.preferredWidth: parent.width * 0.16
+                    text: "Currency"; color: "#7F8DC1"; font.pixelSize: 11
+                }
+
+                Text {
+                    Layout.preferredWidth: parent.width * 0.22
+                    text: "Transaction ID"; color: "#7F8DC1"; font.pixelSize: 11
                 }
 
                 Item {
-                    Layout.preferredWidth: 20
-                    Layout.fillHeight: true
+                    Layout.preferredWidth: parent.width * 0.18
+                    Layout.alignment: Qt.AlignRight
+
+                    Text {
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: "Amount";
+                        color: "#7F8DC1";
+                        font.pixelSize: 11
+                    }
+                }
+
+                Item {
+                    Layout.preferredWidth: parent.width * 0.06
                 }
             }
         }
@@ -106,79 +113,119 @@ Item {
                 property bool isCurrentItem: ListView.isCurrentItem
                 width: parent.width
                 height: closedTransactionHeight
-                color: "#16192E"
+                color: ListView.isCurrentItem ? "#20233D": mouseArea.containsMouse ? "#20233D" : "#16192E"
                 radius: 4
 
                 RowLayout {
                     anchors.fill: parent
-
-                    Layout.leftMargin: 20
-                    Layout.rightMargin: 20
+                    anchors.leftMargin: 20
+                    anchors.rightMargin: 20
+                    anchors.verticalCenter: parent.verticalCenter
+                    spacing: width * 0.02
 
                     Item {
-                        Layout.preferredWidth: 40
-                        Layout.fillHeight: true
+                        Layout.preferredWidth: parent.width * 0.08
+                        Layout.alignment: Qt.AlignCenter
 
                         Image {
                             source: isSend? "qrc:/images/images.png" : "qrc:/images/received.jpg"
-                            anchors.centerIn: parent
-                            sourceSize.width: 16
-                            sourceSize.height: 16
+                            anchors.verticalCenter: parent.verticalCenter
+                            sourceSize.width: 25
+                            sourceSize.height: 25
                         }
                     }
 
                     Column {
-                        Layout.preferredWidth: 100
-                        Layout.fillHeight: true
+                        Layout.preferredWidth: parent.width * 0.18
                         Layout.alignment: Qt.AlignVCenter
 
-                        Text { text: isSend ? "Sent" : "Received"; color: "white"; font.pixelSize: 15; }
-                        Text { text: txDate; color: "white"; font.pixelSize: 10;}
+                        Text { text: isSend ? "Sent" : "Received"; color: "white"; font.pixelSize: 14}
+                        Text { text: txDate; color: "#7D8CBF"; font.pixelSize: 11}
                     }
 
                     Row {
-                        Layout.preferredWidth: 125
-                        Layout.fillHeight: true
+                        Layout.preferredWidth: parent.width * 0.16
+                        Layout.alignment: Qt.AlignVCenter
+                        spacing: 7
 
                         Image {
-                            source: "qrc:/images/Bitcoin.png"
-                            sourceSize: Qt.size(15, 15)
-                        }
-
-                        Text { text: "Currency"; color: "white"; font.pixelSize: 10}
-                    }
-
-                    Text {
-                        Layout.preferredWidth: 125
-                        Layout.fillHeight: true
-                        text: id
-                        color: "grey"
-                        font.pixelSize: 12
-                    }
-
-                    Column {
-                        Layout.preferredWidth: 60
-                        Layout.fillHeight: true
-
-                        Row {
-                            Text { text: isSend ? "−" : "+"; color: isSend ? "#1DB182" : "#E2344F"; font.pixelSize: 12}
-                            Text { id: deltaData; text: delta; color: isSend ? "#1DB182" : "#E2344F"; font.pixelSize: 12}
+                            anchors.verticalCenter: parent.verticalCenter
+                            source: "qrc:/images/%1.png" .arg(assetName)
+                            sourceSize: Qt.size(25, 25)
                         }
 
                         Text {
-                            text: "$ 4562.54"; color: "white"; font.pixelSize: 10;
+                            anchors.verticalCenter: parent.verticalCenter
+                            text: assetName
+                            color: "white"
+                            font.pixelSize: 14
+                        }
+                    }
+
+                    Row {
+                        Layout.preferredWidth: parent.width * 0.22
+                        Layout.alignment: Qt.AlignVCenter
+                        spacing: width * 0.05
+
+                        Text {
+                            property string iD: "dfjvndskfjnvdskjfvndskfvnbdskfnvkfdv"
+                            id: transactionID
+                            width: parent.width * 0.8
+                            text: iD//id
+                            color: "#7D8CBF"
+                            font.pixelSize: 14
+                            elide: Text.ElideRight
+                        }
+
+                        Image {
+                            width: transactionID.height
+                            visible: mouseArea.containsMouse
+                            source: "qrc:/images/copy.png"
+                            sourceSize: Qt.size(20, 20)
+                            height: transactionID.height
+                        }
+                    }
+
+                    Column {
+                        Layout.preferredWidth: parent.width * 0.18
+                        Layout.alignment: Qt.AlignVCenter
+
+                        Row {
+                            anchors.right: parent.right
+                            spacing: 5
+                            Text { text: isSend ? "−" : "+"; color: isSend ? "#E2344F": "#1DB182"; font.pixelSize: 14}
+                            Text { text: delta; color: isSend ? "#E2344F": "#1DB182"; font.pixelSize: 14}
+                            Text { text: assetSymbol; color: isSend ? "#E2344F": "#1DB182"; font.pixelSize: 14; font.capitalization: Font.AllUppercase}
+                        }
+
+                        Text {
+                            anchors.right: parent.right
+                            text: "$ 4562.54"; color: "#7D8CBF"; font.pixelSize: 11;
                         }
                     }
 
                     Item {
-                        Layout.preferredWidth: 20
-                        Layout.fillHeight: true
+                        Layout.preferredWidth: parent.width * 0.06
+
+                        Image {
+                            id: image
+                            anchors.centerIn: parent
+                            sourceSize: Qt.size(20, 20)
+                            source: "qrc:/images/checkmark.png"
+                        }
+
+                        ColorOverlay {
+                            anchors.fill: image
+                            source: image
+                            color: "#1DB182"
+                        }
                     }
                 }
 
-
                 MouseArea {
+                    id: mouseArea
                     anchors.fill: parent
+                    hoverEnabled: true
                     onClicked: {
                         if(transactionsList.currentIndex === index)
                             transactionsList.currentIndex = -1

@@ -17,18 +17,18 @@ Button {
 
     contentItem: RowLayout {
         anchors.fill: parent
-        anchors.centerIn: parent.Center
-        //Layout.alignment: Qt.AlignVCenter
+        anchors.centerIn: parent
+        anchors.leftMargin: 10
+        anchors.rightMargin: 10
+        spacing: 5
 
         Item {
-            Layout.preferredWidth: image.sourceSize.width
-            Layout.fillHeight: true
-            Layout.alignment: Qt.AlignCenter
+            id: icon
+            Layout.preferredWidth: 20
+            Layout.alignment: Qt.AlignVCenter
 
             Image {
                 id: image
-                anchors.margins: 10
-                anchors.left: parent.left
                 anchors.centerIn: parent
                 sourceSize: Qt.size(15, 15)
                 source: actionButton.source
@@ -42,7 +42,6 @@ Button {
         }
 
         Text {
-            Layout.alignment: Qt.AlignVCenter
             text: actionButton.buttonText
             color: "white"
             font.pixelSize: 14

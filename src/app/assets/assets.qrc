@@ -47,6 +47,8 @@
         <file>icons-1 stroke-16px-chart.png</file>
         <file>icons-1 stroke-16px-address@2x.png</file>
         <file>icons-1 stroke-16px-address.png</file>
+        <file>checkmark.png</file>
+        <file>copy.png</file>
     </qresource>
     <qresource prefix="/data">
         <file>assets_conf.json</file>
