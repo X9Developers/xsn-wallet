@@ -13,17 +13,17 @@ public:
     explicit EmulatorWalletDataSource(QObject *parent = nullptr);
     ~EmulatorWalletDataSource() override;
 
-    void executeAdd(int assetID, int count);
-    void clearTransactions(int assetID);
+    void executeAdd(AssetID assetID, int count);
+    void clearTransactions(AssetID assetID);
 
 protected:
-    TransactionsList executeFetch(int id) override;
+    TransactionsList executeFetch(AssetID id) override;
 
 private:
     void init();
 
 private:
-    std::map<int, TransactionsList> _transactionMap;
+    std::map<AssetID, TransactionsList> _transactionMap;
 };
 
 #endif // EMULATORWALLETDATASOURCE_HPP

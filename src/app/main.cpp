@@ -5,6 +5,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QMLUtils.hpp>
+#include <Utils/Common.hpp>
 
 int main(int argc, char *argv[])
 {
@@ -13,6 +14,7 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     QMLUtils::RegisterQMLTypes();
+    RegisterCommonQtTypes();
 
     QQmlApplicationEngine engine;
     QMLUtils::setContextProperties(engine.rootContext());

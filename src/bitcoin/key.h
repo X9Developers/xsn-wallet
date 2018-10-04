@@ -155,11 +155,16 @@ struct CExtKey {
             a.key == b.key;
     }
 
+    friend bool operator!=(const CExtKey& a, const CExtKey &b)
+    {
+        return !(a == b);
+    }
+
     void Encode(unsigned char code[BIP32_EXTKEY_SIZE]) const;
     void Decode(const unsigned char code[BIP32_EXTKEY_SIZE]);
     bool Derive(CExtKey& out, unsigned int nChild) const;
     CExtPubKey Neuter() const;
-    void SetSeed(const unsigned char* seed, unsigned int nSeedLen);
+    void SetSeed(const unsigned char* seed, size_t nSeedLen);
     template <typename Stream>
     void Serialize(Stream& s) const
     {

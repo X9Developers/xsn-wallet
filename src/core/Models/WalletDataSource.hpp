@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <functional>
+#include <Utils/Common.hpp>
 #include <Utils/Utils.hpp>
 #include <Data/TransactionEntry.hpp>
 
@@ -14,15 +15,15 @@ public:
     explicit WalletDataSource(QObject *parent = nullptr);
     ~WalletDataSource();
 
-    void fetchTransactions(int id);
+    void fetchTransactions(AssetID id);
 
 signals:
-    void transactionsFetched(int id, TransactionsList list);
-    void transactionAdded(int id, TransactionEntry transaction);
-    void transactionsFetchError(int id, QString error);
+    void transactionsFetched(AssetID id, TransactionsList list);
+    void transactionAdded(AssetID id, TransactionEntry transaction);
+    void transactionsFetchError(AssetID id, QString error);
 
 protected:
-    virtual TransactionsList executeFetch(int id) = 0;
+    virtual TransactionsList executeFetch(AssetID id) = 0;
 
 private:
     void initWorkerThread();

@@ -43,7 +43,7 @@ QString WalletAssetViewModel::balance() const
 
 //==============================================================================
 
-WalletAssetViewModel::AssetID WalletAssetViewModel::currentAssetID() const
+AssetID WalletAssetViewModel::currentAssetID() const
 {
     return _currentAssetID;
 }

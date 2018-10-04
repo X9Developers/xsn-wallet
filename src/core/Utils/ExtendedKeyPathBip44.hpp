@@ -13,6 +13,8 @@ public:
     ExtendedKeyPathBip44 addChild(unsigned index);
     unsigned operator[](unsigned index) const;
 
+    bool operator==(const ExtendedKeyPathBip44 &other) const;
+
     typename Container::const_iterator begin() const;
     typename Container::const_iterator end() const;
 
