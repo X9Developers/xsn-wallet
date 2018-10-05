@@ -32,10 +32,10 @@ Page {
             Layout.fillWidth: true
             currentIndex: walletMenuListView.currentIndex
 
-            Text {
+            PortfolioPage {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-                text: "Portfolio"
+                windowWidth: root.parent.width
             }
 
             Text {

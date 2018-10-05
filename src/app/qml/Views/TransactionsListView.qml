@@ -10,7 +10,6 @@ Item {
 
     ColumnLayout {
         anchors.fill: parent
-        anchors.centerIn: parent
 
         XSNLabel {
             Layout.fillWidth: true

@@ -23,5 +23,11 @@
         <file>Views/TransactionsListHeaderView.qml</file>
         <file>Components/TransactionHeader.qml</file>
         <file>Pages/TransactionPage.qml</file>
+        <file>Pages/PortfolioPage.qml</file>
+        <file>Views/PortfolioChart.qml</file>
+        <file>Components/CheckableButton.qml</file>
+        <file>Views/PortofiloWalletsListView.qml</file>
+        <file>Components/SecondaryLabel.qml</file>
+        <file>Views/WalletsListView.qml</file>
     </qresource>
 </RCC>
