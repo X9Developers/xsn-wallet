@@ -14,12 +14,15 @@ Popup {
         color: "transparent"
     }
 
+    //<<<<<<< HEAD
+    //=======
     x: (parent.width - width) / 2
     y: (parent.height - height) / 2
 
     parent: Overlay.overlay
     modal: true
 
+    //>>>>>>> 342e1fc1dbb6cdf9e07b7bf5a0681795c635bc30
     Rectangle {
         id: item
         anchors.fill: parent
@@ -50,8 +53,7 @@ Popup {
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
             }
-
-//            background: "#3F444A"
+            //            background: "#3F444A"
             onClicked: popUpComponent.close()
         }
 
@@ -63,5 +65,4 @@ Popup {
             //source: imageSource
         }
     }
-
 }

@@ -10,10 +10,9 @@ RowLayout {
     property string currentAssetID: walletPage.currentAssetID
 
     Rectangle {
-        //visible: false
         Layout.fillHeight: true
-        Layout.preferredWidth: parent.width < 1180 ? 85 : 180
-        color: "#3F444A"
+        Layout.preferredWidth: parent.width < windowWidthSmallMode ? menuWidthSmallMode : menuWidthLargeMode
+        color: "#090D1C"
 
         WalletMenuListView {
             id: walletMenuListView
@@ -31,11 +30,35 @@ RowLayout {
             text: "Portfolio"
         }
 
+        Text {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            text: "Send"
+        }
+
+        Text {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            text: "Receive"
+        }
+
         WalletPage {
             id: walletPage
             Layout.fillHeight: true
             Layout.fillWidth: true
             windowWidth: root.parent.width
+        }
+
+        Text {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            text: "Transactions"
+        }
+
+        Text {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            text: "Lightning"
         }
 
         Text {
@@ -47,19 +70,19 @@ RowLayout {
         Text {
             Layout.fillHeight: true
             Layout.fillWidth: true
-            text: "Backup"
+            text: "Masternodes"
+        }
+
+        Text {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            text: "TPoS"
         }
 
         Text {
             Layout.fillHeight: true
             Layout.fillWidth: true
             text: "Settings"
-        }
-
-        Text {
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-            text: "Help"
         }
     }
 }

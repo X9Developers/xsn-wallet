@@ -8,11 +8,11 @@ ListView {
         Rectangle {
             id: highlightItem
             anchors.right: parent.right
-            width: 8
+            width: 2
             height: parent.height
-            radius: 3
             color: listView.currentItem.color
         }
+
     }
 
     highlightFollowsCurrentItem: true
@@ -24,7 +24,6 @@ ListView {
         property string color: model.color
         property int id: model.id
         property string name: model.name
-        property string buttonColor: model.buttonColor
         property string symbol: model.symbol
 
         Text {

@@ -14,9 +14,41 @@
         <file>Portfolio.png</file>
         <file>Wallet.png</file>
         <file>Settings.png</file>
-        <file>Exchange.png</file>
+        <file>Transaction.png</file>
         <file>Backup.png</file>
         <file>Help.png</file>
+        <file>Send.png</file>
+        <file>Receive.png</file>
+        <file>Exchange.png</file>
+        <file>Lightning.png</file>
+        <file>TPoS.png</file>
+        <file>Masternodes.png</file>
+        <file>icons-2 stroke-16px-menu@2x.png</file>
+        <file>icons-2 stroke-16px-menu.png</file>
+        <file>icons-2 stroke-16px-close_big@2x.png</file>
+        <file>icons-2 stroke-16px-close_big.png</file>
+        <file>icons-1 stroke-16px-withdraw@2x.png</file>
+        <file>icons-1 stroke-16px-withdraw.png</file>
+        <file>icons-1 stroke-16px-wallet 2@2x.png</file>
+        <file>icons-1 stroke-16px-wallet 2.png</file>
+        <file>icons-1 stroke-16px-transactions@2x.png</file>
+        <file>icons-1 stroke-16px-transactions.png</file>
+        <file>icons-1 stroke-16px-rejected@2x.png</file>
+        <file>icons-1 stroke-16px-rejected.png</file>
+        <file>icons-1 stroke-16px-lightning@2x.png</file>
+        <file>icons-1 stroke-16px-lightning.png</file>
+        <file>icons-1 stroke-16px-filter@2x.png</file>
+        <file>icons-1 stroke-16px-filter.png</file>
+        <file>icons-1 stroke-16px-deposit@2x.png</file>
+        <file>icons-1 stroke-16px-deposit.png</file>
+        <file>icons-1 stroke-16px-currency@2x.png</file>
+        <file>icons-1 stroke-16px-currency.png</file>
+        <file>icons-1 stroke-16px-chart@2x.png</file>
+        <file>icons-1 stroke-16px-chart.png</file>
+        <file>icons-1 stroke-16px-address@2x.png</file>
+        <file>icons-1 stroke-16px-address.png</file>
+        <file>checkmark.png</file>
+        <file>copy.png</file>
     </qresource>
     <qresource prefix="/data">
         <file>assets_conf.json</file>

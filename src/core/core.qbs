@@ -35,6 +35,7 @@ Product {
     Depends { name: "Qt.core" }
     Depends { name: "gsl" }
     Depends { name: "bitcoin" }
+    Depends { name: "boost"}
     cpp.defines: ['CRUCIAL_DEFINE']
     cpp.includePaths: [product.sourceDirectory]
 

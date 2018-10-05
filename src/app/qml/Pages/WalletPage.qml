@@ -16,7 +16,11 @@ Page {
     property string currentAssetName: assetsListView.currentItem ? assetsListView.currentItem.name : ""
     property string currentAssetColor: assetsListView.currentItem ? assetsListView.currentItem.color : ""
     property string currentAssetSymbol: assetsListView.currentItem ? assetsListView.currentItem.symbol : ""
-    property string currentButtonColor: assetsListView.currentItem ? assetsListView.currentItem.buttonColor : ""
+
+    background: Rectangle {
+        anchors.fill: parent
+        color: "#090D1C"
+    }
 
     WalletAssetViewModel {
         id: walletViewModel
@@ -45,8 +49,8 @@ Page {
 
         Rectangle {
             Layout.fillHeight: true
-            Layout.preferredWidth: windowWidth > 1180 ? 150 : 130
-            color: "#292E34"
+            Layout.preferredWidth: windowWidth > windowWidthSmallMode ? assetsViewWidthLargeMode : assetsViewWidthSmallMode
+            color: "#16192E"
 
             Item {
                 anchors.fill: parent
@@ -67,25 +71,17 @@ Page {
             }
         }
 
-        Rectangle {
-            Layout.fillHeight: true
-            Layout.preferredWidth: 4
-            color: currentAssetColor
-        }
-
         ColumnLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            spacing: 0
+            Layout.margins: 30
+            spacing: 35
 
             WalletPageHeaderView {
-                Layout.preferredHeight: windowWidth > 1180 ? (width > 1250 ? 350 : 300)
-                                                           : 270
+                Layout.preferredHeight: 400
                 Layout.fillWidth: true
 
                 coinMeasure: currentAssetName
-                labelColor: currentAssetColor
-                buttonColor: currentButtonColor
                 coinSymbol: currentAssetSymbol
                 windowWidth: root.windowWidth
 
@@ -93,27 +89,28 @@ Page {
                     var dialog = sendDialogComponent.createObject(root)
                     dialog.width = 600;
                     dialog.height = 400;
-//                    dialog.x = ApplicationWindow.width / 2 - dialog.width / 2;
-//                    dialog.y = root.height / 2 - dialog.height / 2;
+                    //                    dialog.x = ApplicationWindow.width / 2 - dialog.width / 2;
+                    //                    dialog.y = root.height / 2 - dialog.height / 2;
                     dialog.open();
                 }
 
 
                 onReceiveCoins: {
                     var dialog = receiveDialogComponent.createObject(root)
-                    dialog.receivingAddress = walletViewModel.getReceivingAddress();
+                    dialog.receivingAddress = walletViewModel.getReceivingAddress;
                     dialog.width = 600;
                     dialog.height = 400;
-//                    dialog.x = root.width / 2 - dialog.width / 2;
-//                    dialog.y = root.height / 2 - dialog.height / 2;
+                    //                    dialog.x = root.width / 2 - dialog.width / 2;
+                    //                    dialog.y = root.height / 2 - dialog.height / 2;
                     dialog.open();
                 }
             }
 
             TransactionsListView {
-                assetName: currentAssetName
                 Layout.fillWidth: true
                 Layout.fillHeight: true
+                assetName: currentAssetName
+                assetSymbol: currentAssetSymbol
                 transactionListModel: walletViewModel.transactionsListModel
             }
         }

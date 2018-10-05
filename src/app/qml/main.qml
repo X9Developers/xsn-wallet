@@ -8,9 +8,9 @@ import "Pages"
 Window {
     visible: true
     width: 1080
-    height: 640
+    height: 840
     minimumWidth: 1080
-    minimumHeight: 640
+    minimumHeight: 840
     title: qsTr("Stakenet Wallet")
 
     RowLayout {

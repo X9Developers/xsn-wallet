@@ -5,7 +5,7 @@ import QtQuick.Controls 2.2
 Rectangle {
     id: root
     anchors.fill: parent
-    color: "#3F444A"
+    color: "#090D1C"
     signal addTransaction(int count)
     signal clearTransactions()
 

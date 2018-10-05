@@ -2,26 +2,32 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.3
 import QtGraphicalEffects 1.0
 
-Rectangle {
+Item {
     id: root
-    color: isCurrentItem ? "#292E34" : "transparent"
-
     signal menuItemClicked()
-
     property bool isCurrentItem: false
     property bool isSmallItem: parent.isSmallMenu
 
     property string name: ""
     property string imageSource: ""
 
-    property color currentColor: isCurrentItem ? "white" : mouseArea.containsMouse ? "lightgrey" :  "grey"
+    property color currentColor: isCurrentItem ? "#2C80FF" : mouseArea.containsMouse ? "lightgrey" :  "grey"
+
+    LinearGradient {
+        anchors.fill: parent
+        start: Qt.point(0, 0)
+        end: Qt.point(width, 0)
+        gradient: Gradient {
+            GradientStop { position: 1.0; color: "transparent" }
+            GradientStop { position: 0.0; color: isCurrentItem ? "#0D1A35" : "transparent" }
+        }
+    }
 
     ColumnLayout {
         anchors.fill: parent
         anchors.centerIn: parent
 
         ColumnLayout {
-            Layout.alignment: Qt.AlignHCenter
             Layout.fillHeight: true
             Layout.fillWidth: true
             visible: root.isSmallItem
@@ -37,7 +43,7 @@ Rectangle {
             Text {
                 Layout.alignment: Qt.AlignHCenter
                 text: name
-                font.pixelSize: 14
+                font.pixelSize: 13
                 color: currentColor
             }
         }
@@ -46,8 +52,6 @@ Rectangle {
             Layout.fillHeight: true
             Layout.fillWidth: true
             Layout.leftMargin: 25
-            Layout.alignment: Qt.AlignVCenter
-            anchors.verticalCenter: parent.verticalCenter
             visible: !root.isSmallItem
 
             MenuIcon {

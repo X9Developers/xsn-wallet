@@ -15,10 +15,10 @@ class ApplicationViewModel;
 class WalletAssetViewModel : public QObject
 {
     Q_OBJECT
-
     Q_PROPERTY(QString balance READ balance NOTIFY balanceChanged)
     Q_PROPERTY(unsigned currentAssetID READ currentAssetID WRITE setCurrentAssetID NOTIFY currentAssetIDChanged)
     Q_PROPERTY(QObject* transactionsListModel READ transactionsListModel NOTIFY currentAssetIDChanged)
+    Q_PROPERTY(QString getReceivingAddress READ getReceivingAddress NOTIFY getReceivingAddressChanged)
 
 public:
 
@@ -35,6 +35,7 @@ signals:
     void balanceChanged();
     void currentAssetIDChanged();
     void transactionsListModelChanged();
+    void getReceivingAddressChanged();
 
 public slots:
     void initialize(ApplicationViewModel* applicationViewModel);

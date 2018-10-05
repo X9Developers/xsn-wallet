@@ -19,6 +19,42 @@ void QMLUtils::RegisterQMLTypes()
 
 //==============================================================================
 
+void QMLUtils::setContextProperties(QQmlContext *context)
+{
+    QMLUtils::Sizes sizes;
+    std::array<std::pair<QString, QVariant>, 16> sizeValues = {
+        {
+            {"menuWidthSmallMode", sizes.menuWidthSmallMode},
+            {"menuWidthLargeMode", sizes.menuWidthLargeMode},
+
+            {"windowWidthSmallMode", sizes.windowWidthSmallMode},
+            {"windowWidthLargeMode", sizes.windowWidthLargeMode},
+
+            {"assetsViewWidthSmallMode", sizes.assetsViewWidthSmallMode},
+            {"assetsViewWidthLargeMode", sizes.assetsViewWidthLargeMode},
+
+            {"headerViewHeightSmallMode", sizes.headerViewHeightSmallMode},
+            {"headerViewHeightMediumMode", sizes.headerViewHeightMediumMode},
+            {"headerViewHeightLargeMode", sizes.headerViewHeightLargeMode},
+
+            {"coinsSizeSmallMode", sizes.coinsSizeSmallMode},
+            {"coinsSizeMediumMode", sizes.coinsSizeMediumMode},
+            {"coinsSizeLargeMode", sizes.coinsSizeLargeMode},
+
+            {"menuItemHeightSmallMode", sizes.menuItemHeightSmallMode},
+            {"menuItemHeightLargeMode", sizes.menuItemHeightLargeMode},
+
+            {"closedTransactionHeight", sizes.closedTransactionHeight},
+            {"openedTransactionHeight", sizes.openedTransactionHeight},
+        }
+    };
+
+    for(auto property : sizeValues)
+        context->setContextProperty(property.first, property.second);
+}
+
+//==============================================================================
+
 void QMLUtils::RegisterViewModels(const char *uri, int versionMinor, int versionMajor)
 {
     QML_REGISTER_TYPE_HELPER(WalletAssetViewModel);

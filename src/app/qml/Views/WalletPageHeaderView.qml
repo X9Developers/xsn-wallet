@@ -4,133 +4,194 @@ import QtQuick.Layouts 1.3
 
 import "../Components"
 
-Rectangle {
+ColumnLayout {
     id: root
-    color: "#292E34"
-
-
     signal sendCoins()
     signal receiveCoins()
 
     property string coinMeasure: ""
     property string coinSymbol : ""
-    property string labelColor: ""
     property int windowWidth: 0
-    property string buttonColor: ""
 
-    ColumnLayout {
-        anchors.fill: parent
-        anchors.bottomMargin: 10
-        anchors.topMargin: 20
+    RowLayout {
+        Layout.fillWidth: true
+        Layout.preferredHeight: 30
+        Layout.topMargin: 10
+        Layout.bottomMargin: 10
+        Layout.rightMargin: 10
 
-        IconButton {
-            id: iconBut
-            source: hovered ? "qrc:/images/refresh.png" : coinMeasure !== "" ? "qrc:/images/%1.png".arg(coinMeasure): ""
-            sourceSize: Qt.size(75, 75)
-            anchors.horizontalCenter: parent.horizontalCenter
-            hoverEnabled: true
+        XSNLabel {
+            Layout.alignment: Qt.AlignVCenter
+            text: coinMeasure
         }
 
-        Row {
-            id: coins
-            anchors.horizontalCenter: parent.horizontalCenter
-            spacing: 5
-
-            XSNLabel {
-                id: coinsAmount
-                anchors.top: iconBut.button
-                text: "0"
-                color: labelColor
-                lineHeightMode: Text.FixedHeight
-                height: font.pixelSize
-                font.pixelSize: windowWidth > 1180 ? (root.parent.width > 1250 ? 100 : 75)
-                                                   : 60
-            }
-
-            XSNLabel {
-                text: coinSymbol
-                anchors.bottom: coinsAmount.bottom
-                color: labelColor
-                font.pixelSize: coinsAmount.font.pixelSize * 0.4
-                font.capitalization: Font.AllUppercase
-            }
+        Item {
+            Layout.fillWidth: true
         }
 
-        Row {
-            id: usd
-            anchors.top: coins.bottom
-            anchors.horizontalCenter: parent.horizontalCenter
-            spacing: 5
+        ListView {
+            id: listView
+            Layout.preferredHeight: parent.height
+            Layout.preferredWidth: contentWidth
+            Layout.alignment: Qt.AlignVCenter
+            anchors.right: parent.right
 
-            XSNLabel {
-                text: qsTr("$")
-                anchors.bottom: parent.bottom
-                color: "grey"
-                font.pixelSize: 22
+            boundsBehavior: Flickable.StopAtBounds
+            orientation: ListView.Horizontal
+
+            spacing: 10
+
+            model: ["Day", "Week", "Month", "Year"]
+
+            highlight: Item {
+                Rectangle {
+                    id: highlightItem
+                    color: "#0E1E3E"
+                    height: parent.height
+                    width: 45
+                    radius: 5
+                }
             }
 
-            XSNLabel {
-                id: usdAmount
-                text: "0.00" //qsTr("91.22")
-                color: "white"
-                anchors.bottom: parent.bottom
-                font.pixelSize: 31
-            }
+            highlightFollowsCurrentItem: true
 
-            XSNLabel {
-                text: "USD"
-                anchors.bottom: parent.bottom
-                color: "grey"
-                font.pixelSize: 22
-                font.capitalization: Font.AllUppercase
-            }
-        }
-
-        RowLayout {
-            anchors.top: usd.bottom
-            anchors.topMargin: 10
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 10
-            anchors.horizontalCenter: parent.horizontalCenter
-            spacing: 25
-
-            TransactionButton {
-                Layout.preferredWidth: 235
-                Layout.preferredHeight: 47
-                baseColor: labelColor
-                secondaryColor: buttonColor
-                radius: 25
+            delegate: Item {
+                width: 45
+                height: parent.height
 
                 Text {
+                    id: text
                     anchors.centerIn: parent
-                    text: qsTr("SEND")
-                    color: "white"
-                    style: Text.StyledText
-                    styleColor: "black"
+                    text: modelData
+                    color: listView.currentIndex === index ? "#2C80FF" : "white"
+                    font.pixelSize: 11
                 }
 
-                onClicked: sendCoins()
+                MouseArea {
+                    id: mouseArea
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onClicked: {
+                        listView.currentIndex = index;
+                    }
+                }
+            }
+        }
+    }
+
+    Rectangle {
+        Layout.preferredHeight: 360
+        Layout.fillWidth: true
+        color: "#16192E"
+
+        ColumnLayout {
+            anchors.fill: parent
+            anchors.margins: 20
+
+            RowLayout {
+                Layout.fillWidth: true
+                Layout.preferredHeight: 60
+                spacing: 25
+
+                ColumnLayout {
+                    Layout.fillHeight: true
+                    Layout.preferredWidth: 50
+
+                    Row {
+                        Layout.fillWidth: true
+                        spacing: 5
+
+                        XSNLabel {
+                            id: coinsAmount
+                            text: "73 612.12"
+                        }
+
+                        XSNLabel {
+                            text: coinSymbol
+                            anchors.top: coinsAmount.top
+                            font.pixelSize: coinsAmount.font.pixelSize * 0.5
+                            font.capitalization: Font.AllUppercase
+                        }
+                    }
+
+                    Text {
+                        text: "$ %1" .arg("18 673.72")
+                        color: "#6E7BAA"
+                        font.pixelSize: 12
+                    }
+
+                }
+
+                ColumnLayout {
+                    Layout.preferredWidth: 50
+                    Layout.fillHeight: true
+
+                    Row {
+                        id: usd
+                        Layout.fillWidth: true
+                        spacing : 5
+
+                        XSNLabel {
+                            id: usdAmount
+                            text: "+ 624.73"
+                        }
+
+                        XSNLabel {
+                            text: "USD"
+                            anchors.top: usdAmount.top
+                            font.pixelSize: coinsAmount.font.pixelSize * 0.5
+                            font.capitalization: Font.AllUppercase
+                        }
+                    }
+
+                    Text {
+                        text: "+ %1%" .arg("5.09")
+                        color: "#1DB182"
+                        font.pixelSize: 12
+                    }
+                }
+
+                Item {
+                    Layout.fillWidth: true
+                }
+
+                RowLayout {
+                    Layout.fillHeight: true
+                    Layout.preferredWidth: parent / 3
+                    Layout.alignment: Qt.AlignVCenter
+                    spacing: 10
+
+                    ActionButton {
+                        Layout.preferredWidth: 110
+                        Layout.preferredHeight: 40
+                        buttonText: qsTr("Send")
+                        source: "qrc:/images/icons-1 stroke-16px-withdraw.png"
+
+                        onClicked: sendCoins()
+                    }
+
+                    ActionButton {
+                        Layout.preferredWidth: 110
+                        Layout.preferredHeight: 40
+                        font.weight: Font.Light
+                        buttonText: qsTr("Receive")
+                        source: "qrc:/images/icons-1 stroke-16px-deposit.png"
+
+                        onClicked: receiveCoins();
+                    }
+                }
             }
 
-            TransactionButton {
-                Layout.preferredWidth: 235
-                Layout.preferredHeight: 47
-                baseColor: labelColor
-                secondaryColor: buttonColor
-                radius: 25
-                font.weight: Font.Light
+            Item {
+                Layout.fillHeight: true
+                Layout.fillWidth: true
 
                 Text {
+                    text: "Chart"
                     anchors.centerIn: parent
-                    text: qsTr("RECEIVE")
                     color: "white"
-                    style: Text.StyledText
-                    styleColor: "black"
                 }
-
-                onClicked: receiveCoins();
             }
         }
     }
 }
-

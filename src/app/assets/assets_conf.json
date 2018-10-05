@@ -4,8 +4,7 @@
     "name":"Stakenet",
     "symbol":"XSN",
     "misc":{
-      "color":"#616161",
-      "buttonColor":"#4F5050"
+      "color":"#616161"
     },
     "chainparams":{
       "base58Prefix":{
@@ -38,8 +37,7 @@
     "name":"Dash",
     "symbol":"DASH",
     "misc":{
-      "color":"#0d579b",
-      "buttonColor": "#4927BB"
+      "color":"#0d579b"
     },
     "chainparams":{
       "base58Prefix":{
@@ -72,8 +70,7 @@
     "name":"Bitcoin",
     "symbol":"BTC",
     "misc":{
-      "color":"#f7931a",
-      "buttonColor":"#d9880d"
+      "color":"#f7931a"
     },
     "chainparams":{
       "base58Prefix":{
