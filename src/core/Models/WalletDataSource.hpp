@@ -15,15 +15,20 @@ public:
     explicit WalletDataSource(QObject *parent = nullptr);
     ~WalletDataSource();
 
+    void fetchAllTransactions();
     void fetchTransactions(AssetID id);
 
 signals:
+    void allTransactionsFetched(TransactionsList list);
+    void fetchAllTransactionsError(QString error);
+
     void transactionsFetched(AssetID id, TransactionsList list);
     void transactionAdded(AssetID id, TransactionEntry transaction);
     void transactionsFetchError(AssetID id, QString error);
 
 protected:
     virtual TransactionsList executeFetch(AssetID id) = 0;
+    virtual TransactionsList executeFetchAll() = 0;
 
 private:
     void initWorkerThread();

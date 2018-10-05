@@ -1,5 +1,6 @@
 #include "EmulatorWalletDataSource.hpp"
 #include <map>
+#include <algorithm>
 #include <QDebug>
 
 //==============================================================================
@@ -26,6 +27,20 @@ WalletDataSource::TransactionsList EmulatorWalletDataSource::executeFetch(AssetI
         return it->second;
 
     return TransactionsList();
+}
+
+//==============================================================================
+
+WalletDataSource::TransactionsList EmulatorWalletDataSource::executeFetchAll()
+{
+    TransactionsList result;
+    for(auto &&entry : _transactionMap)
+    {
+        const auto &list = entry.second;
+        std::copy(std::begin(list), std::end(list), std::back_inserter(result));
+    }
+
+    return result;
 }
 
 //==============================================================================

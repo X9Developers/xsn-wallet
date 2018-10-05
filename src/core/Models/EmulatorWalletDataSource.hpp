@@ -18,6 +18,7 @@ public:
 
 protected:
     TransactionsList executeFetch(AssetID id) override;
+    TransactionsList executeFetchAll() override;
 
 private:
     void init();
