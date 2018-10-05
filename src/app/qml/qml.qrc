@@ -24,5 +24,7 @@
         <file>Views/PortfolioChart.qml</file>
         <file>Components/CheckableButton.qml</file>
         <file>Views/PortofiloWalletsListView.qml</file>
+        <file>Components/SecondaryLabel.qml</file>
+        <file>Views/WalletsListView.qml</file>
     </qresource>
 </RCC>

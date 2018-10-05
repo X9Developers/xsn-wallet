@@ -4,6 +4,7 @@ import QtQuick.Controls 2.3
 Button {
     id: control
     checkable: true
+    font.pixelSize: 14
 
     contentItem: Text {
         text: control.text

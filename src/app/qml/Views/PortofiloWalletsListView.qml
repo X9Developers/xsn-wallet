@@ -18,7 +18,7 @@ ColumnLayout {
             Layout.fillWidth: true
         }
 
-        Text {
+        SecondaryLabel {
             text: qsTr("Sort by")
         }
     }
@@ -27,10 +27,9 @@ ColumnLayout {
         Layout.fillHeight: true
         Layout.fillWidth: true
         color: "#16192E"
-        Text {
-            text: "ListView"
-            anchors.centerIn: parent
-            color: "white"
+
+        WalletsListView {
+            anchors.fill: parent
         }
 
     }
