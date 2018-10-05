@@ -14,6 +14,8 @@ Product {
         "Data/TransactionEntry.hpp",
         "Data/WalletAssetsModel.cpp",
         "Data/WalletAssetsModel.hpp",
+        "Models/AllTransactionsDataSource.cpp",
+        "Models/AllTransactionsDataSource.hpp",
         "Models/AssetTransactionsDataSource.cpp",
         "Models/AssetTransactionsDataSource.hpp",
         "Models/EmulatorWalletDataSource.cpp",
