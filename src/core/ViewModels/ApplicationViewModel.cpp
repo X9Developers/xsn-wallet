@@ -57,7 +57,7 @@ void ApplicationViewModel::initDataSource()
 
 void ApplicationViewModel::initWalletAssets()
 {
-    _walletAssetsModel.reset(new WalletAssetsModel);
+    _walletAssetsModel.reset(new WalletAssetsModel(":/data/assets_conf.json"));
 }
 
 //==============================================================================

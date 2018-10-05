@@ -1,8 +1,9 @@
 #include "WalletAssetViewModel.hpp"
-#include "Models/WalletTransactionsListModel.hpp"
-#include "Models/WalletDataSource.hpp"
-#include "ViewModels/ApplicationViewModel.hpp"
-#include "Data/WalletAssetsModel.hpp"
+#include <Models/WalletTransactionsListModel.hpp>
+#include <Models/WalletDataSource.hpp>
+#include <ViewModels/ApplicationViewModel.hpp>
+#include <Data/WalletAssetsModel.hpp>
+#include <Models/AssetTransactionsDataSource.hpp>
 #include <Storage/KeyStorage.hpp>
 #include <key_io.h>
 
@@ -29,7 +30,8 @@ QObject *WalletAssetViewModel::transactionsListModel()
 
     if(_walletTransactionsListModels.count(_currentAssetID) == 0)
     {
-        _walletTransactionsListModels.emplace(_currentAssetID, TransactionsListModelPtr(new WalletTransactionsListModel(_walletDataSource, _currentAssetID)));
+        auto transactionsDataSource = new AssetTransactionsDataSource(_currentAssetID, _walletDataSource, this);
+        _walletTransactionsListModels.emplace(_currentAssetID, TransactionsListModelPtr(new WalletTransactionsListModel(transactionsDataSource)));
     }
     return _walletTransactionsListModels.at(_currentAssetID).get();
 }
@@ -43,7 +45,7 @@ QString WalletAssetViewModel::balance() const
 
 //==============================================================================
 
-WalletAssetViewModel::AssetID WalletAssetViewModel::currentAssetID() const
+AssetID WalletAssetViewModel::currentAssetID() const
 {
     return _currentAssetID;
 }

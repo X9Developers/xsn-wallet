@@ -38,7 +38,17 @@ WalletDataSource::~WalletDataSource()
 
 //==============================================================================
 
-void WalletDataSource::fetchTransactions(int id)
+void WalletDataSource::fetchAllTransactions()
+{
+    ScheduleJob<TransactionsList>(_dataSourceWorker,
+                                  std::bind(&WalletDataSource::executeFetchAll, this),
+                                  std::bind(&WalletDataSource::allTransactionsFetched, this, std::placeholders::_1),
+                                  std::bind(&WalletDataSource::fetchAllTransactionsError, this, std::placeholders::_1));
+}
+
+//==============================================================================
+
+void WalletDataSource::fetchTransactions(AssetID id)
 {
     ScheduleJob<TransactionsList>(_dataSourceWorker,
                                   std::bind(&WalletDataSource::executeFetch, this, id),

@@ -8,6 +8,8 @@ struct AddressManager::AddressManagerImpl {
     KeyStorage _keyStorage;
     std::unique_ptr<ExtendedKeyPathBip44> _pendingKey;
     std::unique_ptr<ExtendedKeyPathBip44> _pendingInternalKey;
+
+    std::map<AssetID, Addresses> _addressesCache;
 };
 
 //==============================================================================
@@ -44,6 +46,13 @@ QString AddressManager::externalAddress() const
 QString AddressManager::changeAddress() const
 {
     return QString();
+}
+
+//==============================================================================
+
+AddressManager::Addresses AddressManager::addresses(AssetID assetID) const
+{
+    return _impl->_addressesCache.at(assetID);
 }
 
 //==============================================================================

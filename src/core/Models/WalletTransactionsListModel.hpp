@@ -6,13 +6,14 @@
 #include <QPointer>
 
 #include "Models/WalletDataSource.hpp"
-#include "Data/TransactionEntry.hpp"
+
+class TransactionsDataSource;
 
 class WalletTransactionsListModel : public QAbstractListModel
 {
     Q_OBJECT
 public:
-    explicit WalletTransactionsListModel(QPointer<WalletDataSource> dataSource, int assetID, QObject *parent = nullptr);
+    explicit WalletTransactionsListModel(QPointer<TransactionsDataSource> dataSource, QObject *parent = nullptr);
     ~WalletTransactionsListModel() override;
 
     enum Roles {
@@ -31,16 +32,15 @@ public:
 signals:
 
 private slots:
-    void onTransactionFetched(int assetID, WalletDataSource::TransactionsList list);
-    void onTransactionAdded(int assetID, TransactionEntry entry);
+    void onTransactionFetched(WalletDataSource::TransactionsList list);
+    void onTransactionAdded(TransactionEntry entry);
 
 private:
     void init();
 
 private:
-    QPointer<WalletDataSource> _walletDataSource;
+    QPointer<TransactionsDataSource> _dataSource;
     WalletDataSource::TransactionsList _transactionList;
-    int _assetID;
 };
 
 #endif // WALLETTRANSACTIONSLISTMODEL_HPP

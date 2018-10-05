@@ -1,12 +1,12 @@
 #include "WalletTransactionsListModel.hpp"
 #include "Data/TransactionEntry.hpp"
+#include "TransactionsDataSource.hpp"
 
 //==============================================================================
 
-WalletTransactionsListModel::WalletTransactionsListModel(QPointer<WalletDataSource> dataSource, int assetID, QObject *parent) :
+WalletTransactionsListModel::WalletTransactionsListModel(QPointer<TransactionsDataSource> dataSource, QObject *parent) :
     QAbstractListModel(parent),
-    _walletDataSource(dataSource),
-    _assetID(assetID)
+    _dataSource(dataSource)
 {
     init();
 }
@@ -65,13 +65,8 @@ QHash<int, QByteArray> WalletTransactionsListModel::roleNames() const
 
 //==============================================================================
 
-void WalletTransactionsListModel::onTransactionFetched(int assetID, WalletDataSource::TransactionsList list)
+void WalletTransactionsListModel::onTransactionFetched(WalletDataSource::TransactionsList list)
 {
-    if(assetID != _assetID)
-    {
-        return;
-    }
-
     beginResetModel();
     _transactionList.swap(list);
     endResetModel();
@@ -79,13 +74,8 @@ void WalletTransactionsListModel::onTransactionFetched(int assetID, WalletDataSo
 
 //==============================================================================
 
-void WalletTransactionsListModel::onTransactionAdded(int assetID, TransactionEntry entry)
+void WalletTransactionsListModel::onTransactionAdded(TransactionEntry entry)
 {
-    if(_assetID != assetID)
-    {
-        return;
-    }
-
     int rows = rowCount(QModelIndex());
     beginInsertRows(QModelIndex(), rows, rows);
     _transactionList.emplace_back(entry);
@@ -96,13 +86,13 @@ void WalletTransactionsListModel::onTransactionAdded(int assetID, TransactionEnt
 
 void WalletTransactionsListModel::init()
 {
-    if(_walletDataSource)
+    if(_dataSource)
     {
-        connect(_walletDataSource, &WalletDataSource::transactionsFetched,
+        connect(_dataSource, &TransactionsDataSource::transactionsFetched,
                 this, &WalletTransactionsListModel::onTransactionFetched);
-        connect(_walletDataSource, &WalletDataSource::transactionAdded,
+        connect(_dataSource, &TransactionsDataSource::transactionAdded,
                 this, &WalletTransactionsListModel::onTransactionAdded);
-        _walletDataSource->fetchTransactions(_assetID);
+        _dataSource->fetchTransactions();
     }
 }
 

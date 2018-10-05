@@ -21,6 +21,10 @@ ExtendedKeyPathBip44::ExtendedKeyPathBip44(unsigned coinType, unsigned accountIn
 
 ExtendedKeyPathBip44 ExtendedKeyPathBip44::addChild(unsigned index)
 {
+    if(_items.size() >= 5) {
+        throw std::runtime_error("Trying to construct invalid BIP44 path");
+    }
+
     _items.push_back(index);
     return *this;
 }
@@ -28,6 +32,11 @@ ExtendedKeyPathBip44 ExtendedKeyPathBip44::addChild(unsigned index)
 unsigned ExtendedKeyPathBip44::operator[](unsigned index) const
 {
     return _items.at(index);
+}
+
+bool ExtendedKeyPathBip44::operator==(const ExtendedKeyPathBip44 &other) const
+{
+    return _items == other._items;
 }
 
 auto ExtendedKeyPathBip44::begin() const -> Container::const_iterator
