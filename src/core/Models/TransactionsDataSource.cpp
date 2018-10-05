@@ -1,4 +1,5 @@
 #include "TransactionsDataSource.hpp"
+#include <Models/WalletDataSource.hpp>
 
 //==============================================================================
 
@@ -6,7 +7,7 @@ TransactionsDataSource::TransactionsDataSource(QPointer<WalletDataSource> dataSo
     QObject(parent),
     _walletDataSource(dataSource)
 {
-
+    connect(_walletDataSource, &WalletDataSource::transactionAdded, this, &TransactionsDataSource::onTransactionAdded);
 }
 
 //==============================================================================
@@ -14,6 +15,14 @@ TransactionsDataSource::TransactionsDataSource(QPointer<WalletDataSource> dataSo
 TransactionsDataSource::~TransactionsDataSource()
 {
 
+}
+
+//==============================================================================
+
+void TransactionsDataSource::onTransactionAdded(AssetID assetID, TransactionEntry entry)
+{
+    Q_UNUSED(assetID);
+    transactionAdded(entry);
 }
 
 //==============================================================================

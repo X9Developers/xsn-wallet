@@ -21,6 +21,9 @@ signals:
 
 public slots:
 
+private slots:
+    void onTransactionAdded(AssetID assetID, TransactionEntry entry);
+
 protected:
     QPointer<WalletDataSource> _walletDataSource;
 };

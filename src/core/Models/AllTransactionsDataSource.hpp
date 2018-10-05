@@ -9,7 +9,6 @@ class AllTransactionsDataSource : public TransactionsDataSource
     Q_OBJECT
 public:
     explicit AllTransactionsDataSource(QPointer<WalletDataSource> dataSource, QObject *parent = nullptr);
-
     virtual void fetchTransactions() override final;
 
 signals:
