@@ -20,5 +20,8 @@
         <file>Components/MenuIcon.qml</file>
         <file>Components/ClickableLabel.qml</file>
         <file>Components/ActionButton.qml</file>
+        <file>Views/TransactionsListHeaderView.qml</file>
+        <file>Components/TransactionHeader.qml</file>
+        <file>Pages/TransactionPage.qml</file>
     </qresource>
 </RCC>

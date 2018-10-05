@@ -45,7 +45,7 @@ WalletDataSource::TransactionsList EmulatorWalletDataSource::executeFetchAll()
 
 //==============================================================================
 
-static TransactionEntry GenerateTransaction()
+static TransactionEntry GenerateTransaction(AssetID assetID)
 {
     TransactionEntry::Type type;
 
@@ -54,7 +54,7 @@ static TransactionEntry GenerateTransaction()
     else
         type = TransactionEntry::Type::Received;
 
-    return TransactionEntry(QString::number(rand() % 1000), type, rand() % 100, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0)));
+    return TransactionEntry(assetID, QString::number(rand() % 1000), type, rand() % 100, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0)));
 }
 
 //==============================================================================
@@ -62,7 +62,7 @@ static TransactionEntry GenerateTransaction()
 void EmulatorWalletDataSource::executeAdd(AssetID assetID, int count)
 {
     int id = assetID;
-    TransactionEntry transaction = GenerateTransaction();
+    TransactionEntry transaction = GenerateTransaction(assetID);
 
     auto it = _transactionMap.find(id);
     if(it != std::end(_transactionMap))
@@ -95,26 +95,26 @@ void EmulatorWalletDataSource::clearTransactions(AssetID assetID)
 void EmulatorWalletDataSource::init()
 {
     TransactionsList bitcoinTransactionList;
-    bitcoinTransactionList.push_back(TransactionEntry("1", TransactionEntry::Type::Sent, 100, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
-    bitcoinTransactionList.push_back(TransactionEntry("2", TransactionEntry::Type::Received, 20, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
-    bitcoinTransactionList.push_back(TransactionEntry("3", TransactionEntry::Type::Sent, 133, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
-    bitcoinTransactionList.push_back(TransactionEntry("4", TransactionEntry::Type::Sent, 46, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
+    bitcoinTransactionList.push_back(TransactionEntry(0, "1", TransactionEntry::Type::Sent, 100, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
+    bitcoinTransactionList.push_back(TransactionEntry(0, "2", TransactionEntry::Type::Received, 20, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
+    bitcoinTransactionList.push_back(TransactionEntry(0, "3", TransactionEntry::Type::Sent, 133, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
+    bitcoinTransactionList.push_back(TransactionEntry(0, "4", TransactionEntry::Type::Sent, 46, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
 
     _transactionMap.emplace(0, bitcoinTransactionList);
 
     TransactionsList dashTransactionList;
-    dashTransactionList.push_back(TransactionEntry("5", TransactionEntry::Type::Sent, 10, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
-    dashTransactionList.push_back(TransactionEntry("6", TransactionEntry::Type::Received, 18, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
-    dashTransactionList.push_back(TransactionEntry("7", TransactionEntry::Type::Sent, 32, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
-    dashTransactionList.push_back(TransactionEntry("8", TransactionEntry::Type::Sent, 14, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
+    dashTransactionList.push_back(TransactionEntry(5, "5", TransactionEntry::Type::Sent, 10, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
+    dashTransactionList.push_back(TransactionEntry(5, "6", TransactionEntry::Type::Received, 18, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
+    dashTransactionList.push_back(TransactionEntry(5, "7", TransactionEntry::Type::Sent, 32, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
+    dashTransactionList.push_back(TransactionEntry(5, "8", TransactionEntry::Type::Sent, 14, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
 
     _transactionMap.emplace(5, dashTransactionList);
 
     TransactionsList XSNTransactionList;
-    XSNTransactionList.push_back(TransactionEntry("9", TransactionEntry::Type::Sent, 10, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
-    XSNTransactionList.push_back(TransactionEntry("10", TransactionEntry::Type::Received, 18, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
-    XSNTransactionList.push_back(TransactionEntry("11", TransactionEntry::Type::Sent, 32, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
-    XSNTransactionList.push_back(TransactionEntry("12", TransactionEntry::Type::Sent, 14, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
+    XSNTransactionList.push_back(TransactionEntry(384, "9", TransactionEntry::Type::Sent, 10, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
+    XSNTransactionList.push_back(TransactionEntry(384, "10", TransactionEntry::Type::Received, 18, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
+    XSNTransactionList.push_back(TransactionEntry(384, "11", TransactionEntry::Type::Sent, 32, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
+    XSNTransactionList.push_back(TransactionEntry(384, "12", TransactionEntry::Type::Sent, 14, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
 
     _transactionMap.emplace(384, XSNTransactionList);
 }

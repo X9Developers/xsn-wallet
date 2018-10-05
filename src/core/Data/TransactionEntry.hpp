@@ -11,7 +11,8 @@ struct TransactionEntry
         Sent
     };
 
-    TransactionEntry(QString txId, Type txType, int delta, QDateTime txDate);
+    TransactionEntry(unsigned assetId, QString txId, Type txType, int delta, QDateTime txDate);
+    const unsigned _assetID;
     const QString _transactionID;
     const Type _txType;
     const int _delta;

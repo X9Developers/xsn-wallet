@@ -1,5 +1,7 @@
 #include "ApplicationViewModel.hpp"
 #include "Models/EmulatorWalletDataSource.hpp"
+#include <Models/AllTransactionsDataSource.hpp>
+#include <Models/WalletTransactionsListModel.hpp>
 #include "Data/WalletAssetsModel.hpp"
 
 //==============================================================================
@@ -40,10 +42,18 @@ ApplicationViewModel *ApplicationViewModel::Instance()
 
 //==============================================================================
 
+QObject *ApplicationViewModel::allTransactionsListModel() const
+{
+    _allTransactionsListNodel.get();
+}
+
+//==============================================================================
+
 void ApplicationViewModel::init()
 {
     initDataSource();
     initWalletAssets();
+    initAllTransactions();
 }
 
 //==============================================================================
@@ -58,6 +68,16 @@ void ApplicationViewModel::initDataSource()
 void ApplicationViewModel::initWalletAssets()
 {
     _walletAssetsModel.reset(new WalletAssetsModel(":/data/assets_conf.json"));
+}
+
+//==============================================================================
+
+void ApplicationViewModel::initAllTransactions()
+{
+    auto allTransactionsDataSource = new AllTransactionsDataSource(_emulatorWalletDataSource.data(), this);
+    _allTransactionsListNodel.reset(new WalletTransactionsListModel(allTransactionsDataSource, _walletAssetsModel.get()));
+
+    allTransactionChanged();
 }
 
 //==============================================================================

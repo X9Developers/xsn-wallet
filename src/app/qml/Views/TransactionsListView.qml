@@ -6,8 +6,6 @@ import "../Components"
 
 Item {
     id: root
-    property string assetName: ""
-    property string assetSymbol: ""
     property QtObject transactionListModel: undefined
 
     ColumnLayout {
@@ -25,66 +23,15 @@ Item {
             text: "Transactions"
         }
 
-        Rectangle {
+        TransactionsListHeaderView {
             Layout.fillWidth: true
             Layout.preferredHeight: 30
-            color: "#20233D"
-            radius: 4
-
-            RowLayout {
-                anchors.fill: parent
-                anchors.leftMargin: 20
-                anchors.rightMargin: 20
-                spacing: width * 0.02
-
-                Text {
-                    Layout.preferredWidth: parent.width * 0.08
-                    Layout.alignment: Qt.AlignCenter
-                    text: "Type";
-                    color: "#7F8DC1";
-                    font.pixelSize: 11
-                }
-
-                Text {
-                    Layout.preferredWidth: parent.width * 0.18
-                    text: "Date";
-                    color: "#7F8DC1";
-                    font.pixelSize: 11
-                }
-
-                Text {
-                    Layout.preferredWidth: parent.width * 0.16
-                    text: "Currency"; color: "#7F8DC1"; font.pixelSize: 11
-                }
-
-                Text {
-                    Layout.preferredWidth: parent.width * 0.22
-                    text: "Transaction ID"; color: "#7F8DC1"; font.pixelSize: 11
-                }
-
-                Item {
-                    Layout.preferredWidth: parent.width * 0.18
-                    Layout.alignment: Qt.AlignRight
-
-                    Text {
-                        anchors.right: parent.right
-                        anchors.verticalCenter: parent.verticalCenter
-                        text: "Amount";
-                        color: "#7F8DC1";
-                        font.pixelSize: 11
-                    }
-                }
-
-                Item {
-                    Layout.preferredWidth: parent.width * 0.06
-                }
-            }
         }
 
         XSNLabel {
             visible: transactionsList.count === 0
             anchors.centerIn: parent
-            text: "No %1 Transactions".arg(assetName)
+            text: "No Transactions"
             color: "white"
             opacity: 0.2
             font.pixelSize: 22
@@ -158,13 +105,13 @@ Item {
 
                         Image {
                             anchors.verticalCenter: parent.verticalCenter
-                            source: "qrc:/images/%1.png" .arg(assetName)
+                            source: "qrc:/images/%1.png" .arg(currency)
                             sourceSize: Qt.size(25, 25)
                         }
 
                         Text {
                             anchors.verticalCenter: parent.verticalCenter
-                            text: assetName
+                            text: currency
                             color: "white"
                             font.pixelSize: 14
                         }
@@ -203,7 +150,7 @@ Item {
                             spacing: 5
                             Text { text: isSend ? "−" : "+"; color: isSend ? "#E2344F": "#1DB182"; font.pixelSize: 14}
                             Text { text: delta; color: isSend ? "#E2344F": "#1DB182"; font.pixelSize: 14}
-                            Text { text: assetSymbol; color: isSend ? "#E2344F": "#1DB182"; font.pixelSize: 14; font.capitalization: Font.AllUppercase}
+                            Text { text: symbol; color: isSend ? "#E2344F": "#1DB182"; font.pixelSize: 14; font.capitalization: Font.AllUppercase}
                         }
 
                         Text {

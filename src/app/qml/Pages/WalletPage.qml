@@ -16,10 +16,8 @@ Page {
     property string currentAssetName: assetsListView.currentItem ? assetsListView.currentItem.name : ""
     property string currentAssetColor: assetsListView.currentItem ? assetsListView.currentItem.color : ""
     property string currentAssetSymbol: assetsListView.currentItem ? assetsListView.currentItem.symbol : ""
-
     background: Rectangle {
-        anchors.fill: parent
-        color: "#090D1C"
+        color: "transparent"
     }
 
     WalletAssetViewModel {
@@ -109,8 +107,6 @@ Page {
             TransactionsListView {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                assetName: currentAssetName
-                assetSymbol: currentAssetSymbol
                 transactionListModel: walletViewModel.transactionsListModel
             }
         }
