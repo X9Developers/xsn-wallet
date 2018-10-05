@@ -10,7 +10,7 @@ ColumnLayout {
 
     property string currentName: root.children[currentIndex].name
 
-    property int currentIndex: 3
+    property int currentIndex: 0
     property bool isSmallMenu: width === menuWidthSmallMode ? true : false
 
     MenuItem {

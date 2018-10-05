@@ -20,5 +20,9 @@
         <file>Components/MenuIcon.qml</file>
         <file>Components/ClickableLabel.qml</file>
         <file>Components/ActionButton.qml</file>
+        <file>Pages/PortfolioPage.qml</file>
+        <file>Views/PortfolioChart.qml</file>
+        <file>Components/CheckableButton.qml</file>
+        <file>Views/PortofiloWalletsListView.qml</file>
     </qresource>
 </RCC>
