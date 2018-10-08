@@ -75,13 +75,14 @@ Page {
             Layout.margins: 30
             spacing: 35
 
-            WalletPageHeaderView {
-                Layout.preferredHeight: 400
+            PageHeaderView {
+                Layout.fillHeight: true
                 Layout.fillWidth: true
 
-                coinMeasure: currentAssetName
+                mainHeader: currentAssetName
                 coinSymbol: currentAssetSymbol
                 windowWidth: root.windowWidth
+                buttonsVisible: true
 
                 onSendCoins: {
                     var dialog = sendDialogComponent.createObject(root)

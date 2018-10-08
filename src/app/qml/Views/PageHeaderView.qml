@@ -9,9 +9,10 @@ ColumnLayout {
     signal sendCoins()
     signal receiveCoins()
 
-    property string coinMeasure: ""
+    property string mainHeader: ""
     property string coinSymbol : ""
     property int windowWidth: 0
+    property bool buttonsVisible: false
 
     RowLayout {
         Layout.fillWidth: true
@@ -21,61 +22,26 @@ ColumnLayout {
         Layout.rightMargin: 10
 
         XSNLabel {
-            Layout.alignment: Qt.AlignVCenter
-            text: coinMeasure
+            text: mainHeader
         }
 
         Item {
             Layout.fillWidth: true
         }
 
-        ListView {
-            id: listView
-            Layout.preferredHeight: parent.height
-            Layout.preferredWidth: contentWidth
-            Layout.alignment: Qt.AlignVCenter
-            anchors.right: parent.right
-
-            boundsBehavior: Flickable.StopAtBounds
-            orientation: ListView.Horizontal
-
-            spacing: 10
-
-            model: ["Day", "Week", "Month", "Year"]
-
-            highlight: Item {
-                Rectangle {
-                    id: highlightItem
-                    color: "#0E1E3E"
-                    height: parent.height
-                    width: 45
-                    radius: 5
-                }
-            }
-
-            highlightFollowsCurrentItem: true
-
-            delegate: Item {
-                width: 45
-                height: parent.height
-
-                Text {
-                    id: text
-                    anchors.centerIn: parent
+        RowLayout {
+            id: buttonsLayout
+            Layout.maximumHeight: 30
+            Repeater {
+                model: ["Day", "Week", "Month", "Year"]
+                delegate: CheckableButton {
                     text: modelData
-                    color: listView.currentIndex === index ? "#2C80FF" : "white"
-                    font.pixelSize: 11
-                }
-
-                MouseArea {
-                    id: mouseArea
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onClicked: {
-                        listView.currentIndex = index;
-                    }
                 }
             }
+        }
+
+        ButtonGroup {
+            buttons: buttonsLayout.children
         }
     }
 
@@ -91,11 +57,10 @@ ColumnLayout {
             RowLayout {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 60
-                spacing: 25
 
                 ColumnLayout {
+                    Layout.maximumWidth: root.width / 3
                     Layout.fillHeight: true
-                    Layout.preferredWidth: 50
 
                     Row {
                         Layout.fillWidth: true
@@ -123,7 +88,7 @@ ColumnLayout {
                 }
 
                 ColumnLayout {
-                    Layout.preferredWidth: 50
+                    Layout.maximumWidth: root.width / 3
                     Layout.fillHeight: true
 
                     Row {
@@ -151,14 +116,11 @@ ColumnLayout {
                     }
                 }
 
-                Item {
-                    Layout.fillWidth: true
-                }
-
                 RowLayout {
                     Layout.fillHeight: true
-                    Layout.preferredWidth: parent / 3
-                    Layout.alignment: Qt.AlignVCenter
+                    Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignHCenter
+                    visible: buttonsVisible
                     spacing: 10
 
                     ActionButton {

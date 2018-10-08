@@ -19,9 +19,24 @@ Rectangle {
             text: "Type";
         }
 
-        TransactionHeader {
+        RowLayout {
             Layout.preferredWidth: parent.width * 0.18
-            text: "Date";
+            Layout.fillHeight: true
+            spacing: 5
+
+            TransactionHeader {
+                id: date
+                text: "Date"
+            }
+
+            ColorOverlayImage {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                Layout.alignment: Qt.AlignLeft
+                imageSource: "qrc:/images/icons-1 stroke-16px-filter.png"
+                imageSize: 15
+                color: "#7F8DC1"
+            }
         }
 
         TransactionHeader {
@@ -41,7 +56,7 @@ Rectangle {
             TransactionHeader {
                 anchors.right: parent.right
                 anchors.verticalCenter: parent.verticalCenter
-                text: "Amount";
+                text: "Amount"
             }
         }
 

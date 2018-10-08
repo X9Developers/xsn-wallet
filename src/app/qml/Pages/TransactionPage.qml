@@ -13,8 +13,7 @@ Page {
         color: "transparent"
     }
 
-    TransactionsListView
-    {
+    TransactionsListView {
         anchors.fill: parent
         anchors.margins: 40
         transactionListModel: ApplicationViewModel.allTransactionsListModel

@@ -1,7 +1,5 @@
 <RCC>
     <qresource prefix="/images">
-        <file>images.png</file>
-        <file>received.jpg</file>
         <file>Bitcoin.png</file>
         <file>refresh.png</file>
         <file>Dash.png</file>
@@ -11,9 +9,6 @@
         <file>ViewFlat.png</file>
         <file>PrintFlat.png</file>
         <file>Stakenet.png</file>
-        <file>Settings.png</file>
-        <file>Exchange.png</file>
-        <file>Masternodes.png</file>
         <file>icons-2 stroke-16px-menu@2x.png</file>
         <file>icons-2 stroke-16px-menu.png</file>
         <file>icons-2 stroke-16px-close_big@2x.png</file>
@@ -40,6 +35,15 @@
         <file>icons-1 stroke-16px-address.png</file>
         <file>checkmark.png</file>
         <file>copy.png</file>
+        <file>x@2x.png</file>
+        <file>settings@2x.png</file>
+        <file>send@2x.png</file>
+        <file>received.png</file>
+        <file>exchange@2x.png</file>
+        <file>clock@2x.png</file>
+        <file>check@2x.png</file>
+        <file>recieve@2x.png</file>
+        <file>icons-dasboard@2x.png</file>
     </qresource>
     <qresource prefix="/data">
         <file>assets_conf.json</file>

@@ -1,6 +1,5 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.3
-import QtGraphicalEffects 1.0
 
 import "../Components"
 
@@ -82,7 +81,7 @@ Item {
                         Layout.alignment: Qt.AlignCenter
 
                         Image {
-                            source: isSend? "qrc:/images/images.png" : "qrc:/images/received.jpg"
+                            source: isSend? "qrc:/images/send@2x.png" : "qrc:/images/recieve@2x.png"
                             anchors.verticalCenter: parent.verticalCenter
                             sourceSize.width: 25
                             sourceSize.height: 25
@@ -131,12 +130,13 @@ Item {
                             elide: Text.ElideRight
                         }
 
-                        Image {
+                        ColorOverlayImage {
                             width: transactionID.height
-                            visible: mouseArea.containsMouse
-                            source: "qrc:/images/copy.png"
-                            sourceSize: Qt.size(20, 20)
                             height: transactionID.height
+                            visible: mouseArea.containsMouse
+                            imageSource: "qrc:/images/copy.png"
+                            imageSize: 20
+                            color: "#7F8DC1"
                         }
                     }
 
@@ -158,21 +158,9 @@ Item {
                         }
                     }
 
-                    Item {
-                        Layout.preferredWidth: parent.width * 0.06
-
-                        Image {
-                            id: image
-                            anchors.centerIn: parent
-                            sourceSize: Qt.size(20, 20)
-                            source: "qrc:/images/checkmark.png"
-                        }
-
-                        ColorOverlay {
-                            anchors.fill: image
-                            source: image
-                            color: "#1DB182"
-                        }
+                    Image {
+                        sourceSize: Qt.size(20, 20)
+                        source: "qrc:/images/check@2x.png"
                     }
                 }
 

@@ -44,15 +44,15 @@ ApplicationViewModel *ApplicationViewModel::Instance()
 
 QObject *ApplicationViewModel::allTransactionsListModel() const
 {
-    _allTransactionsListNodel.get();
+    return _allTransactionsListNodel.get();
 }
 
 //==============================================================================
 
 void ApplicationViewModel::init()
 {
-    initDataSource();
     initWalletAssets();
+    initDataSource();
     initAllTransactions();
 }
 
@@ -60,7 +60,7 @@ void ApplicationViewModel::init()
 
 void ApplicationViewModel::initDataSource()
 {
-    _emulatorWalletDataSource = new EmulatorWalletDataSource();
+    _emulatorWalletDataSource = new EmulatorWalletDataSource(_walletAssetsModel.get());
 }
 
 //==============================================================================
@@ -74,7 +74,7 @@ void ApplicationViewModel::initWalletAssets()
 
 void ApplicationViewModel::initAllTransactions()
 {
-    auto allTransactionsDataSource = new AllTransactionsDataSource(_emulatorWalletDataSource.data(), this);
+    auto allTransactionsDataSource = new AllTransactionsDataSource(dataSource(), this);
     _allTransactionsListNodel.reset(new WalletTransactionsListModel(allTransactionsDataSource, _walletAssetsModel.get()));
 
     allTransactionChanged();

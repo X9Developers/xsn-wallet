@@ -4,23 +4,23 @@ import QtQuick.Controls 2.3
 Button {
     id: control
     checkable: true
-    font.pixelSize: 14
+    font.pixelSize: 12
 
     contentItem: Text {
         text: control.text
         font: control.font
         opacity: enabled ? 1.0 : 0.3
-        color: control.checked ? "#2C80FF" : "#8C9CD4"
+        color: control.checked ? "#2C80FF" : "#6B78A6"
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
         elide: Text.ElideRight
     }
 
     background: Rectangle {
-        implicitWidth: 69
-        implicitHeight: 32
-        color: control.checked ? "#2559A7" : "transparent"
+        implicitWidth: 45
+        implicitHeight: 30
+        color: control.checked ? "#0E1E3E" : "transparent"
         opacity: enabled ? 1 : 0.3
-        radius: 2
+        radius: 5
     }
 }

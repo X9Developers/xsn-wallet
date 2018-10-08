@@ -11,7 +11,6 @@ import com.xsn.models 1.0
 
 Page {
     id: root
-    property int windowWidth: 0
 
     background: Rectangle {
         anchors.fill: parent
@@ -23,9 +22,12 @@ Page {
         anchors.margins: 30
         spacing: 35
 
-        PortfolioChart {
+        PageHeaderView {
             Layout.fillWidth: true
             Layout.fillHeight: true
+            mainHeader: "Statistics"
+            buttonsVisible: false
+            coinSymbol: "usd"
         }
 
         PortofiloWalletsListView {

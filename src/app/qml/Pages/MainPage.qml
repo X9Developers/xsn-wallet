@@ -35,7 +35,6 @@ Page {
             PortfolioPage {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-                windowWidth: root.parent.width
             }
 
             Text {
