@@ -4,6 +4,7 @@
 #include <QObject>
 #include <memory>
 #include <QPointer>
+#include "Utils/Common.hpp"
 
 class WalletDataSource;
 class ApplicationViewModel;
@@ -18,8 +19,8 @@ public:
     ~EmulatorViewModel();
 
 public slots:
-    void addTransaction(int currentModel, int count);
-    void clearTransactions(int currentModel);
+    void addTransaction(AssetID currentModel, int count);
+    void clearTransactions(AssetID currentModel);
     void initialize(ApplicationViewModel *applicationViewModel);
 
 private:

@@ -1,88 +1,102 @@
 import QtQuick 2.0
+import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 
 import "../Views"
+import com.xsn.viewmodels 1.0
 
-RowLayout {
+Page {
     id: root
     anchors.fill: parent
-    spacing: 0
     property string currentAssetID: walletPage.currentAssetID
-
-    Rectangle {
-        Layout.fillHeight: true
-        Layout.preferredWidth: parent.width < windowWidthSmallMode ? menuWidthSmallMode : menuWidthLargeMode
+    background: Rectangle {
         color: "#090D1C"
-
-        WalletMenuListView {
-            id: walletMenuListView
-        }
     }
 
-    StackLayout {
-        Layout.fillHeight: true
-        Layout.fillWidth: true
-        currentIndex: walletMenuListView.currentIndex
+    RowLayout {
+        anchors.fill: parent
+        spacing: 0
 
-        PortfolioPage {
+        Rectangle {
             Layout.fillHeight: true
-            Layout.fillWidth: true
-            windowWidth: root.parent.width
+            Layout.preferredWidth: parent.width < windowWidthSmallMode ? menuWidthSmallMode : menuWidthLargeMode
+            color: "#090D1C"
+
+            WalletMenuListView {
+                id: walletMenuListView
+            }
         }
 
-        Text {
+        StackLayout {
             Layout.fillHeight: true
             Layout.fillWidth: true
-            text: "Send"
-        }
+            currentIndex: walletMenuListView.currentIndex
 
-        Text {
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-            text: "Receive"
-        }
+            PortfolioPage {
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+            }
 
-        WalletPage {
-            id: walletPage
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-            windowWidth: root.parent.width
-        }
+            Text {
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+                text: "Send"
+                color: "white"
+            }
 
-        Text {
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-            text: "Transactions"
-        }
+            Text {
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+                text: "Receive"
+                color: "white"
+            }
 
-        Text {
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-            text: "Lightning"
-        }
+            WalletPage {
+                id: walletPage
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+                windowWidth: root.parent.width
+            }
 
-        Text {
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-            text: "Exchange"
-        }
+            TransactionPage {
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+            }
 
-        Text {
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-            text: "Masternodes"
-        }
+            Text {
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+                text: "Lightning"
+                color: "white"
+            }
 
-        Text {
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-            text: "TPoS"
-        }
+            Text {
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+                text: "Exchange"
+                color: "white"
+            }
 
-        Text {
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-            text: "Settings"
+            Text {
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+                text: "Masternodes"
+                color: "white"
+            }
+
+            Text {
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+                text: "TPoS"
+                color: "white"
+            }
+
+            Text {
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+                text: "Settings"
+                color: "white"
+            }
         }
     }
 }

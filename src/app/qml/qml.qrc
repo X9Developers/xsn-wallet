@@ -6,7 +6,7 @@
         <file>Views/TransactionsListView.qml</file>
         <file>Components/TransactionButton.qml</file>
         <file>Components/IconButton.qml</file>
-        <file>Views/WalletPageHeaderView.qml</file>
+        <file>Views/PageHeaderView.qml</file>
         <file>Components/XSNLabel.qml</file>
         <file>Views/EmulatorView.qml</file>
         <file>Pages/EmulatorPage.qml</file>
@@ -20,11 +20,14 @@
         <file>Components/MenuIcon.qml</file>
         <file>Components/ClickableLabel.qml</file>
         <file>Components/ActionButton.qml</file>
+        <file>Views/TransactionsListHeaderView.qml</file>
+        <file>Components/TransactionHeader.qml</file>
+        <file>Pages/TransactionPage.qml</file>
         <file>Pages/PortfolioPage.qml</file>
-        <file>Views/PortfolioChart.qml</file>
         <file>Components/CheckableButton.qml</file>
         <file>Views/PortofiloWalletsListView.qml</file>
         <file>Components/SecondaryLabel.qml</file>
         <file>Views/WalletsListView.qml</file>
+        <file>Components/ColorOverlayImage.qml</file>
     </qresource>
 </RCC>

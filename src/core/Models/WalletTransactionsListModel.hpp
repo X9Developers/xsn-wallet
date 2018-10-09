@@ -8,12 +8,13 @@
 #include "Models/WalletDataSource.hpp"
 
 class TransactionsDataSource;
+class WalletAssetsModel;
 
 class WalletTransactionsListModel : public QAbstractListModel
 {
     Q_OBJECT
 public:
-    explicit WalletTransactionsListModel(QPointer<TransactionsDataSource> dataSource, QObject *parent = nullptr);
+    explicit WalletTransactionsListModel(QPointer<TransactionsDataSource> dataSource, QPointer<const WalletAssetsModel> walletAssetsModel, QObject *parent = nullptr);
     ~WalletTransactionsListModel() override;
 
     enum Roles {
@@ -21,7 +22,9 @@ public:
         IsSendRole,
         DeltaRole,
         ImageUrlRole,
-        TxDateRole
+        TxDateRole,
+        CurrencyRole,
+        SymbolRole
     };
     Q_ENUMS(Roles)
 
@@ -40,6 +43,7 @@ private:
 
 private:
     QPointer<TransactionsDataSource> _dataSource;
+    QPointer<const WalletAssetsModel> _walletAssetsModel;
     WalletDataSource::TransactionsList _transactionList;
 };
 

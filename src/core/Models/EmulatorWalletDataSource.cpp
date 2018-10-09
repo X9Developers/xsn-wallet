@@ -1,12 +1,15 @@
 #include "EmulatorWalletDataSource.hpp"
+#include "ViewModels/ApplicationViewModel.hpp"
+#include "Data/WalletAssetsModel.hpp"
 #include <map>
 #include <algorithm>
 #include <QDebug>
 
 //==============================================================================
 
-EmulatorWalletDataSource::EmulatorWalletDataSource(QObject *parent)
-    : WalletDataSource{parent}
+EmulatorWalletDataSource::EmulatorWalletDataSource(QPointer<WalletAssetsModel> walletAssetsModel, QObject *parent) :
+    WalletDataSource{parent},
+  _walletAssetsModel(walletAssetsModel)
 {
     init();
 }
@@ -45,7 +48,7 @@ WalletDataSource::TransactionsList EmulatorWalletDataSource::executeFetchAll()
 
 //==============================================================================
 
-static TransactionEntry GenerateTransaction()
+static TransactionEntry GenerateTransaction(AssetID assetID)
 {
     TransactionEntry::Type type;
 
@@ -54,15 +57,15 @@ static TransactionEntry GenerateTransaction()
     else
         type = TransactionEntry::Type::Received;
 
-    return TransactionEntry(QString::number(rand() % 1000), type, rand() % 100, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0)));
+    return TransactionEntry(assetID, QString::number(rand() % 1000), type, rand() % 100, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0)));
 }
 
 //==============================================================================
 
 void EmulatorWalletDataSource::executeAdd(AssetID assetID, int count)
 {
-    int id = assetID;
-    TransactionEntry transaction = GenerateTransaction();
+    AssetID id = assetID;
+    TransactionEntry transaction = GenerateTransaction(assetID);
 
     auto it = _transactionMap.find(id);
     if(it != std::end(_transactionMap))
@@ -94,29 +97,31 @@ void EmulatorWalletDataSource::clearTransactions(AssetID assetID)
 
 void EmulatorWalletDataSource::init()
 {
-    TransactionsList bitcoinTransactionList;
-    bitcoinTransactionList.push_back(TransactionEntry("1", TransactionEntry::Type::Sent, 100, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
-    bitcoinTransactionList.push_back(TransactionEntry("2", TransactionEntry::Type::Received, 20, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
-    bitcoinTransactionList.push_back(TransactionEntry("3", TransactionEntry::Type::Sent, 133, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
-    bitcoinTransactionList.push_back(TransactionEntry("4", TransactionEntry::Type::Sent, 46, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
+    auto assetsModel = _walletAssetsModel->assets();
 
-    _transactionMap.emplace(0, bitcoinTransactionList);
+    TransactionsList bitcoinTransactionList;
+    bitcoinTransactionList.push_back(TransactionEntry(assetsModel.at(0).coinID, "1", TransactionEntry::Type::Sent, 100, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
+    bitcoinTransactionList.push_back(TransactionEntry(assetsModel.at(0).coinID, "2", TransactionEntry::Type::Received, 20, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
+    bitcoinTransactionList.push_back(TransactionEntry(assetsModel.at(0).coinID, "3", TransactionEntry::Type::Sent, 133, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
+    bitcoinTransactionList.push_back(TransactionEntry(assetsModel.at(0).coinID, "4", TransactionEntry::Type::Sent, 46, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
+
+    _transactionMap.emplace(assetsModel.at(0).coinID, bitcoinTransactionList);
 
     TransactionsList dashTransactionList;
-    dashTransactionList.push_back(TransactionEntry("5", TransactionEntry::Type::Sent, 10, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
-    dashTransactionList.push_back(TransactionEntry("6", TransactionEntry::Type::Received, 18, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
-    dashTransactionList.push_back(TransactionEntry("7", TransactionEntry::Type::Sent, 32, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
-    dashTransactionList.push_back(TransactionEntry("8", TransactionEntry::Type::Sent, 14, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
+    dashTransactionList.push_back(TransactionEntry(assetsModel.at(1).coinID, "5", TransactionEntry::Type::Sent, 10, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
+    dashTransactionList.push_back(TransactionEntry(assetsModel.at(1).coinID, "6", TransactionEntry::Type::Received, 18, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
+    dashTransactionList.push_back(TransactionEntry(assetsModel.at(1).coinID, "7", TransactionEntry::Type::Sent, 32, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
+    dashTransactionList.push_back(TransactionEntry(assetsModel.at(1).coinID, "8", TransactionEntry::Type::Sent, 14, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
 
-    _transactionMap.emplace(5, dashTransactionList);
+    _transactionMap.emplace(assetsModel.at(1).coinID, dashTransactionList);
 
     TransactionsList XSNTransactionList;
-    XSNTransactionList.push_back(TransactionEntry("9", TransactionEntry::Type::Sent, 10, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
-    XSNTransactionList.push_back(TransactionEntry("10", TransactionEntry::Type::Received, 18, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
-    XSNTransactionList.push_back(TransactionEntry("11", TransactionEntry::Type::Sent, 32, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
-    XSNTransactionList.push_back(TransactionEntry("12", TransactionEntry::Type::Sent, 14, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
+    XSNTransactionList.push_back(TransactionEntry(assetsModel.at(2).coinID, "9", TransactionEntry::Type::Sent, 10, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
+    XSNTransactionList.push_back(TransactionEntry(assetsModel.at(2).coinID, "10", TransactionEntry::Type::Received, 18, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
+    XSNTransactionList.push_back(TransactionEntry(assetsModel.at(2).coinID, "11", TransactionEntry::Type::Sent, 32, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
+    XSNTransactionList.push_back(TransactionEntry(assetsModel.at(2).coinID, "12", TransactionEntry::Type::Sent, 14, QDateTime(QDate(2012, 7, 6), QTime(8, 30, 0))));
 
-    _transactionMap.emplace(384, XSNTransactionList);
+    _transactionMap.emplace(assetsModel.at(2).coinID, XSNTransactionList);
 }
 
 //==============================================================================

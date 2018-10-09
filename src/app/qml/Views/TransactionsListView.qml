@@ -1,13 +1,10 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.3
-import QtGraphicalEffects 1.0
 
 import "../Components"
 
 Item {
     id: root
-    property string assetName: ""
-    property string assetSymbol: ""
     property QtObject transactionListModel: undefined
 
     ColumnLayout {
@@ -24,66 +21,15 @@ Item {
             text: "Transactions"
         }
 
-        Rectangle {
+        TransactionsListHeaderView {
             Layout.fillWidth: true
             Layout.preferredHeight: 30
-            color: "#20233D"
-            radius: 4
-
-            RowLayout {
-                anchors.fill: parent
-                anchors.leftMargin: 20
-                anchors.rightMargin: 20
-                spacing: width * 0.02
-
-                Text {
-                    Layout.preferredWidth: parent.width * 0.08
-                    Layout.alignment: Qt.AlignCenter
-                    text: "Type";
-                    color: "#7F8DC1";
-                    font.pixelSize: 11
-                }
-
-                Text {
-                    Layout.preferredWidth: parent.width * 0.18
-                    text: "Date";
-                    color: "#7F8DC1";
-                    font.pixelSize: 11
-                }
-
-                Text {
-                    Layout.preferredWidth: parent.width * 0.16
-                    text: "Currency"; color: "#7F8DC1"; font.pixelSize: 11
-                }
-
-                Text {
-                    Layout.preferredWidth: parent.width * 0.22
-                    text: "Transaction ID"; color: "#7F8DC1"; font.pixelSize: 11
-                }
-
-                Item {
-                    Layout.preferredWidth: parent.width * 0.18
-                    Layout.alignment: Qt.AlignRight
-
-                    Text {
-                        anchors.right: parent.right
-                        anchors.verticalCenter: parent.verticalCenter
-                        text: "Amount";
-                        color: "#7F8DC1";
-                        font.pixelSize: 11
-                    }
-                }
-
-                Item {
-                    Layout.preferredWidth: parent.width * 0.06
-                }
-            }
         }
 
         XSNLabel {
             visible: transactionsList.count === 0
             anchors.centerIn: parent
-            text: "No %1 Transactions".arg(assetName)
+            text: "No Transactions"
             color: "white"
             opacity: 0.2
             font.pixelSize: 22
@@ -135,7 +81,7 @@ Item {
                         Layout.alignment: Qt.AlignCenter
 
                         Image {
-                            source: isSend? "qrc:/images/images.png" : "qrc:/images/received.jpg"
+                            source: isSend? "qrc:/images/send@2x.png" : "qrc:/images/recieve@2x.png"
                             anchors.verticalCenter: parent.verticalCenter
                             sourceSize.width: 25
                             sourceSize.height: 25
@@ -157,13 +103,13 @@ Item {
 
                         Image {
                             anchors.verticalCenter: parent.verticalCenter
-                            source: "qrc:/images/%1.png" .arg(assetName)
+                            source: "qrc:/images/%1.png" .arg(currency)
                             sourceSize: Qt.size(25, 25)
                         }
 
                         Text {
                             anchors.verticalCenter: parent.verticalCenter
-                            text: assetName
+                            text: currency
                             color: "white"
                             font.pixelSize: 14
                         }
@@ -184,12 +130,13 @@ Item {
                             elide: Text.ElideRight
                         }
 
-                        Image {
+                        ColorOverlayImage {
                             width: transactionID.height
-                            visible: mouseArea.containsMouse
-                            source: "qrc:/images/copy.png"
-                            sourceSize: Qt.size(20, 20)
                             height: transactionID.height
+                            visible: mouseArea.containsMouse
+                            imageSource: "qrc:/images/copy.png"
+                            imageSize: 20
+                            color: "#7F8DC1"
                         }
                     }
 
@@ -202,7 +149,7 @@ Item {
                             spacing: 5
                             Text { text: isSend ? "−" : "+"; color: isSend ? "#E2344F": "#1DB182"; font.pixelSize: 14}
                             Text { text: delta; color: isSend ? "#E2344F": "#1DB182"; font.pixelSize: 14}
-                            Text { text: assetSymbol; color: isSend ? "#E2344F": "#1DB182"; font.pixelSize: 14; font.capitalization: Font.AllUppercase}
+                            Text { text: symbol; color: isSend ? "#E2344F": "#1DB182"; font.pixelSize: 14; font.capitalization: Font.AllUppercase}
                         }
 
                         Text {
@@ -211,21 +158,9 @@ Item {
                         }
                     }
 
-                    Item {
-                        Layout.preferredWidth: parent.width * 0.06
-
-                        Image {
-                            id: image
-                            anchors.centerIn: parent
-                            sourceSize: Qt.size(20, 20)
-                            source: "qrc:/images/checkmark.png"
-                        }
-
-                        ColorOverlay {
-                            anchors.fill: image
-                            source: image
-                            color: "#1DB182"
-                        }
+                    Image {
+                        sourceSize: Qt.size(20, 20)
+                        source: "qrc:/images/check@2x.png"
                     }
                 }
 

@@ -31,7 +31,7 @@ QObject *WalletAssetViewModel::transactionsListModel()
     if(_walletTransactionsListModels.count(_currentAssetID) == 0)
     {
         auto transactionsDataSource = new AssetTransactionsDataSource(_currentAssetID, _walletDataSource, this);
-        _walletTransactionsListModels.emplace(_currentAssetID, TransactionsListModelPtr(new WalletTransactionsListModel(transactionsDataSource)));
+        _walletTransactionsListModels.emplace(_currentAssetID, TransactionsListModelPtr(new WalletTransactionsListModel(transactionsDataSource, _walletAssetsModel)));
     }
     return _walletTransactionsListModels.at(_currentAssetID).get();
 }
@@ -81,12 +81,6 @@ void WalletAssetViewModel::setCurrentAssetID(AssetID assetID)
         _currentAssetID = assetID;
         currentAssetIDChanged();
     }
-}
-
-//==============================================================================
-
-void WalletAssetViewModel::init()
-{
 }
 
 //==============================================================================

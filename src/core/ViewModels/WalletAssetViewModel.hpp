@@ -42,9 +42,6 @@ public slots:
     QString getReceivingAddress() const;
 
 private:
-    void init();
-
-private:
     AssetID _currentAssetID;
     QPointer<WalletDataSource> _walletDataSource;
     QPointer<const WalletAssetsModel> _walletAssetsModel;

@@ -1,6 +1,5 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.3
-import QtGraphicalEffects 1.0
 
 import "../Components"
 
@@ -36,7 +35,7 @@ ColumnLayout {
         Layout.preferredHeight: isSmallMenu ? menuItemHeightSmallMode : menuItemHeightLargeMode
         isCurrentItem: currentName === name
         name: "Receive"
-        imageSource: "qrc:/images/icons-1 stroke-16px-deposit@2x.png"
+        imageSource: "qrc:/images/received.png"
         onMenuItemClicked: { currentIndex = 2 ; currentName = name}
     }
 
@@ -72,7 +71,7 @@ ColumnLayout {
         Layout.preferredHeight: isSmallMenu ? menuItemHeightSmallMode : menuItemHeightLargeMode
         isCurrentItem: currentName === name
         name: "Exchange"
-        imageSource: "qrc:/images/Exchange.png"
+        imageSource: "qrc:/images/exchange@2x.png"
         onMenuItemClicked: { currentIndex = 6; currentName = name}
     }
 
@@ -81,7 +80,7 @@ ColumnLayout {
         Layout.preferredHeight: isSmallMenu ? menuItemHeightSmallMode : menuItemHeightLargeMode
         isCurrentItem: currentName === name
         name: "Masternodes"
-        imageSource: "qrc:/images/Masternodes.png"
+        imageSource: "qrc:/images/icons-dasboard@2x.png"
         onMenuItemClicked: { currentIndex = 7; currentName = name;}
     }
 
@@ -99,7 +98,7 @@ ColumnLayout {
         Layout.preferredHeight: root.SmallMenu ? menuItemHeightSmallMode : menuItemHeightLargeMode
         isCurrentItem: root.currentName === name
         name: "Settings"
-        imageSource: "qrc:/images/Settings.png"
+        imageSource: "qrc:/images/settings@2x.png"
         onMenuItemClicked: { root.currentIndex = 9; currentName = name}
     }
 
@@ -118,25 +117,17 @@ ColumnLayout {
         }
 
         Text {
-           text: "Terms"
-           color: "grey"
-           font.pixelSize: 14
+            text: "Terms"
+            color: "grey"
+            font.pixelSize: 14
         }
 
-        Item {
-            width: image.sourceSize.width
-
-            Image {
-                id: image
-                sourceSize: Qt.size(15, 15)
-                source: "qrc:/images/icons-2 stroke-16px-menu.png"
-            }
-            ColorOverlay {
-                anchors.fill: image
-                source: image
-                color: "grey"
-            }
-
+        ColorOverlayImage {
+            width: 15
+            height: parent.height
+            imageSize: 15
+            imageSource: "qrc:/images/icons-2 stroke-16px-menu.png"
+            color: "grey"
         }
     }
 
@@ -145,5 +136,4 @@ ColumnLayout {
         Layout.fillWidth: true
     }
 }
-
 

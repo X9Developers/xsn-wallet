@@ -1,12 +1,16 @@
 #include "WalletTransactionsListModel.hpp"
 #include "Data/TransactionEntry.hpp"
 #include "TransactionsDataSource.hpp"
+#include "Data/WalletAssetsModel.hpp"
 
 //==============================================================================
 
-WalletTransactionsListModel::WalletTransactionsListModel(QPointer<TransactionsDataSource> dataSource, QObject *parent) :
+WalletTransactionsListModel::WalletTransactionsListModel(QPointer<TransactionsDataSource> dataSource,
+                                                         QPointer<const WalletAssetsModel> walletAssetsModel,
+                                                         QObject *parent) :
     QAbstractListModel(parent),
-    _dataSource(dataSource)
+    _dataSource(dataSource),
+    _walletAssetsModel(walletAssetsModel)
 {
     init();
 }
@@ -42,6 +46,8 @@ QVariant WalletTransactionsListModel::data(const QModelIndex &index, int role) c
     case DeltaRole: return transaction._delta;
     case ImageUrlRole: return "";
     case TxDateRole: return transaction._transactionDate.toString("yyyy.MM.dd hh:mm");
+    case CurrencyRole: return _walletAssetsModel->assetById(transaction._assetID).name;
+    case SymbolRole:return _walletAssetsModel->assetById(transaction._assetID).ticket;
     }
 
     return QVariant();
@@ -59,6 +65,8 @@ QHash<int, QByteArray> WalletTransactionsListModel::roleNames() const
         roleNames[Roles::DeltaRole] = "delta";
         roleNames[Roles::ImageUrlRole] = "imageUrl";
         roleNames[Roles::TxDateRole] = "txDate";
+        roleNames[Roles::CurrencyRole] = "currency";
+        roleNames[Roles::SymbolRole] = "symbol";
     }
     return roleNames;
 }

@@ -18,7 +18,7 @@ EmulatorViewModel::~EmulatorViewModel()
 
 //==============================================================================
 
-void EmulatorViewModel::clearTransactions(int currentModel)
+void EmulatorViewModel::clearTransactions(AssetID currentModel)
 {
     if(_walletDataSource)
     {
@@ -35,7 +35,7 @@ void EmulatorViewModel::initialize(ApplicationViewModel *applicationViewModel)
 
 //==============================================================================
 
-void EmulatorViewModel::addTransaction(int currentModel, int count)
+void EmulatorViewModel::addTransaction(AssetID currentModel, int count)
 {
     if(_walletDataSource)
     {

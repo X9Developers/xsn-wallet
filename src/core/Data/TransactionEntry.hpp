@@ -3,6 +3,7 @@
 
 #include <QString>
 #include <QDateTime>
+#include "Utils/Common.hpp"
 
 struct TransactionEntry
 {
@@ -11,7 +12,8 @@ struct TransactionEntry
         Sent
     };
 
-    TransactionEntry(QString txId, Type txType, int delta, QDateTime txDate);
+    TransactionEntry(AssetID assetId, QString txId, Type txType, int delta, QDateTime txDate);
+    const AssetID _assetID;
     const QString _transactionID;
     const Type _txType;
     const int _delta;

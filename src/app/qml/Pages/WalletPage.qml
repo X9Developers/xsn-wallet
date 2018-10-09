@@ -16,10 +16,8 @@ Page {
     property string currentAssetName: assetsListView.currentItem ? assetsListView.currentItem.name : ""
     property string currentAssetColor: assetsListView.currentItem ? assetsListView.currentItem.color : ""
     property string currentAssetSymbol: assetsListView.currentItem ? assetsListView.currentItem.symbol : ""
-
     background: Rectangle {
-        anchors.fill: parent
-        color: "#090D1C"
+        color: "transparent"
     }
 
     WalletAssetViewModel {
@@ -77,13 +75,14 @@ Page {
             Layout.margins: 30
             spacing: 35
 
-            WalletPageHeaderView {
-                Layout.preferredHeight: 400
+            PageHeaderView {
+                Layout.fillHeight: true
                 Layout.fillWidth: true
 
-                coinMeasure: currentAssetName
+                mainHeader: currentAssetName
                 coinSymbol: currentAssetSymbol
                 windowWidth: root.windowWidth
+                buttonsVisible: true
 
                 onSendCoins: {
                     var dialog = sendDialogComponent.createObject(root)
@@ -109,8 +108,6 @@ Page {
             TransactionsListView {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                assetName: currentAssetName
-                assetSymbol: currentAssetSymbol
                 transactionListModel: walletViewModel.transactionsListModel
             }
         }
