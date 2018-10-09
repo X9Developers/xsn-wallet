@@ -23,14 +23,18 @@ ColumnLayout {
         }
     }
 
-    Rectangle {
+    ColumnLayout {
         Layout.fillHeight: true
         Layout.fillWidth: true
-        color: "#16192E"
 
-        WalletsListView {
-            anchors.fill: parent
+        WalletsListHeaderView {
+            Layout.fillWidth: true
+            Layout.preferredHeight: 30
         }
 
+        WalletsListView {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+        }
     }
 }
