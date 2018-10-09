@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.1
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.2
 import QtGraphicalEffects 1.0
@@ -22,8 +22,7 @@ ActionDialog {
             model: [ "Stakenet", "Dash", "Bitcoin" ]
         }
 
-
-        Rectangle{
+        Rectangle {
             Layout.fillWidth: true
             Layout.preferredHeight: 80
             color: "transparent"
@@ -34,7 +33,7 @@ ActionDialog {
                 anchors.fill: parent
                 anchors.margins: 15
 
-          RoundedImage{
+          RoundedImage {
               imageSource: "qrc:/images/alert@2x.png"
           }
 
@@ -44,7 +43,7 @@ ActionDialog {
             }
         }
 
-        ColumnLayout{
+        ColumnLayout {
             Layout.fillWidth: true
 
             SecondaryLabel{
@@ -59,7 +58,7 @@ ActionDialog {
 
                 color: "#090D1C"
 
-                RowLayout{
+                RowLayout {
 
                     anchors.fill: parent
 
@@ -114,8 +113,7 @@ ActionDialog {
                             radius: 4
                         }
 
-                        XSNLabel
-                        {
+                        XSNLabel {
                             anchors.verticalCenter: parent.verticalCenter
                             anchors.horizontalCenter: parent.horizontalCenter
                             color: "#FFFFFF"

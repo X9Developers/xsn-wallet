@@ -6,35 +6,34 @@ import "../Components"
 
 ActionDialog {
     id: root
+    popUpText: "Send"
     width: 503
     height: 464
-    popUpText: "Send"
 
     ColumnLayout {
         anchors.fill: root.container
         anchors.margins: 20
-        spacing: 2
+        spacing: 18
 
         ComboBox {
             Layout.fillWidth: true
             model: [ "Stakenet", "Dash", "Bitcoin" ]
         }
 
-        ColumnLayout{
+        ColumnLayout {
             Layout.fillWidth: true
 
-            SecondaryLabel{
+            SecondaryLabel {
                 Layout.fillWidth: true
                 text: qsTr("Send funds to")
             }
 
-            Rectangle{
-
+            Rectangle {
                 color: "#090D1C"
                 Layout.fillWidth: true
                 Layout.preferredHeight: 35
 
-                RowLayout{
+                RowLayout {
 
                     Layout.fillWidth: true
                     anchors.fill: parent
@@ -64,7 +63,7 @@ ActionDialog {
             }
         }
 
-        ColumnLayout{
+        ColumnLayout {
             Layout.fillWidth: true
 
             RowLayout{
@@ -169,45 +168,47 @@ ActionDialog {
             }
         }
 
-        RowLayout{
-
+        RowLayout {
             Layout.fillWidth: true
-            Layout.preferredHeight:60
+            Layout.preferredHeight: 60
 
-            SecondaryLabel{
+            SecondaryLabel {
                 text: qsTr("Network fee: ")
             }
 
-            XSNLabel{
-                color: "#8C9CD4"
-                font.pixelSize: 14
-                text: qsTr("Network fee: ")
-            }
-
-            XSNLabel{
+            XSNLabel {
                 color: "#FFFFFF"
                 font.pixelSize: 14
                 text: qsTr("15 XSN")
             }
 
+            Item {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+            }
 
-            SecondaryLabel{
+            SecondaryLabel {
                 text: qsTr("Remaining balance: ")
             }
 
-            XSNLabel{
+            XSNLabel {
                 color: "#FFFFFF"
                 font.pixelSize: 14
                 text: qsTr("319.26853 XSN")
             }
         }
 
+        Item {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+        }
 
-        RowLayout{
+        RowLayout {
             Layout.fillWidth: true
 
             Item {
                 Layout.fillWidth: true
+                Layout.fillHeight: true
             }
 
             Button {
