@@ -28,19 +28,6 @@ Page {
         currentAssetID: root.currentAssetID
     }
 
-    Component{
-        id: sendDialogComponent
-        SendPopup {
-
-        }
-    }
-
-    Component{
-        id: receiveDialogComponent
-        ReceivePopup {
-        }
-    }
-
     RowLayout {
         anchors.fill: parent
         spacing: 0
@@ -85,15 +72,12 @@ Page {
                 buttonsVisible: true
 
                 onSendCoins: {
-                    var dialog = sendDialogComponent.createObject(root)
-                    dialog.open();
+                    openSendDialog({});
                 }
 
 
                 onReceiveCoins: {
-                    var dialog = receiveDialogComponent.createObject(root)
-                    dialog.receivingAddress = walletViewModel.getReceivingAddress();
-                    dialog.open();
+                    openReceiveDialog({});
                 }
             }
 

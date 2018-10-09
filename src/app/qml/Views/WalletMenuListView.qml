@@ -7,6 +7,9 @@ ColumnLayout {
     id: root
     anchors.fill: parent
 
+    signal sendRequested()
+    signal receiveRequested()
+
     property string currentName: root.children[currentIndex].name
 
     property int currentIndex: 0
@@ -27,7 +30,9 @@ ColumnLayout {
         isCurrentItem: currentName === name
         name: "Send"
         imageSource: "qrc:/images/icons-1 stroke-16px-withdraw@2x.png"
-        onMenuItemClicked: { currentIndex = 1 ; currentName = name}
+        onMenuItemClicked: {
+            sendRequested();
+        }
     }
 
     MenuItem {
@@ -36,7 +41,9 @@ ColumnLayout {
         isCurrentItem: currentName === name
         name: "Receive"
         imageSource: "qrc:/images/received.png"
-        onMenuItemClicked: { currentIndex = 2 ; currentName = name}
+        onMenuItemClicked: {
+            receiveRequested();
+        }
     }
 
     MenuItem {
@@ -45,7 +52,10 @@ ColumnLayout {
         isCurrentItem: currentName === name
         name: "Wallets"
         imageSource: "qrc:/images/icons-1 stroke-16px-wallet 2@2x.png"
-        onMenuItemClicked: { currentIndex = 3 ; currentName = name}
+        onMenuItemClicked: {
+            currentIndex = 1;
+            currentName = name;
+        }
     }
 
     MenuItem {
@@ -54,7 +64,10 @@ ColumnLayout {
         isCurrentItem: currentName === name
         name: "Transactions"
         imageSource: "qrc:/images/icons-1 stroke-16px-transactions@2x.png"
-        onMenuItemClicked: { currentIndex = 4 ; currentName = name}
+        onMenuItemClicked: {
+            currentIndex = 2;
+            currentName = name;
+        }
     }
 
     MenuItem {
@@ -63,7 +76,10 @@ ColumnLayout {
         isCurrentItem: currentName === name
         name: "Lightning"
         imageSource: "qrc:/images/icons-1 stroke-16px-lightning@2x.png"
-        onMenuItemClicked: { currentIndex = 5 ; currentName = name}
+        onMenuItemClicked: {
+            currentIndex = 3;
+            currentName = name;
+        }
     }
 
     MenuItem {
@@ -72,7 +88,10 @@ ColumnLayout {
         isCurrentItem: currentName === name
         name: "Exchange"
         imageSource: "qrc:/images/exchange@2x.png"
-        onMenuItemClicked: { currentIndex = 6; currentName = name}
+        onMenuItemClicked: {
+            currentIndex = 4;
+            currentName = name;
+        }
     }
 
     MenuItem {
@@ -81,7 +100,10 @@ ColumnLayout {
         isCurrentItem: currentName === name
         name: "Masternodes"
         imageSource: "qrc:/images/icons-dasboard@2x.png"
-        onMenuItemClicked: { currentIndex = 7; currentName = name;}
+        onMenuItemClicked: {
+            currentIndex = 5;
+            currentName = name;
+        }
     }
 
     MenuItem {
@@ -90,7 +112,10 @@ ColumnLayout {
         isCurrentItem: currentName === name
         name: "TPoS"
         imageSource: "qrc:/images/icons-1 stroke-16px-currency@2x.png"
-        onMenuItemClicked: { currentIndex = 8 ; currentName = name}
+        onMenuItemClicked: {
+            currentIndex = 6;
+            currentName = name;
+        }
     }
 
     MenuItem {
@@ -99,7 +124,10 @@ ColumnLayout {
         isCurrentItem: root.currentName === name
         name: "Settings"
         imageSource: "qrc:/images/settings@2x.png"
-        onMenuItemClicked: { root.currentIndex = 9; currentName = name}
+        onMenuItemClicked: {
+            currentIndex = 7;
+            currentName = name;
+        }
     }
 
     RowLayout {

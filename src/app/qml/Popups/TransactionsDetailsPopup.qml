@@ -211,8 +211,12 @@ ActionDialog {
                 Layout.fillHeight: true
             }
 
+            SecondaryButton {
+                text: "Close"
+            }
+
             PrimaryButton {
-                text: "Withdraw"
+                text: "View in explorer"
                 Layout.alignment: Layout.Right
             }
         }

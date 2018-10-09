@@ -23,16 +23,13 @@ Popup {
         id: item
         anchors.fill: parent
         anchors.topMargin: 54
-        anchors.rightMargin: 13
         color: "#16192E"
     }
 
-    RowLayout{
-
-        Layout.fillWidth: true
-        Layout.preferredHeight: 60
+    RowLayout {
+        width: parent.width
+        height: 60
         spacing: 115
-
 
         Text {
             text: popUpText
@@ -48,16 +45,12 @@ Popup {
             Layout.fillWidth: true
         }
 
-        Item {
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-        }
-
         RoundButton {
             id: control
             width: 40
             height: 39
             radius: 20
+            Layout.alignment: Layout.Right
             background: Rectangle {
                 color: "transparent"
                 radius: 20

@@ -29,9 +29,11 @@ ColumnLayout {
             Layout.fillWidth: true
         }
 
-        RowLayout {
-            id: buttonsLayout
-            Layout.maximumHeight: 30
+        Row {
+            id: buttonRow
+            height: parent.height
+            spacing: 10
+
             Repeater {
                 model: ["Day", "Week", "Month", "Year"]
                 delegate: CheckableButton {
@@ -41,7 +43,7 @@ ColumnLayout {
         }
 
         ButtonGroup {
-            buttons: buttonsLayout.children
+            buttons: buttonRow.children
         }
     }
 
