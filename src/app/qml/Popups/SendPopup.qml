@@ -1,4 +1,3 @@
-//import QtQuick 2.10
 import QtQuick 2.1
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.2
@@ -7,193 +6,222 @@ import "../Components"
 
 ActionDialog {
     id: root
+    width: 503
+    height: 464
+    popUpText: "Send"
 
-    ColumnLayout{
-
+    ColumnLayout {
         anchors.fill: root.container
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.margins: 20
+        spacing: 2
 
-
-        Item {
-            Layout.fillHeight: true
+        ComboBox {
             Layout.fillWidth: true
-        }
-
-
-        RowLayout {
-
-            Layout.alignment: Qt.AlignHCenter
-            Layout.fillWidth: true
-
-            IconButton {
-                id: iconBut
-                Layout.preferredWidth: 30
-                Layout.preferredHeight: 30
-                source: "qrc:/images/Code.png"
-                sourceSize: Qt.size(30, 30)
-                hoverEnabled: true
-            }
-
-            ColumnLayout {
-
-                //Layout.fillWidth: true
-                Layout.maximumWidth: 350
-                //<<<<<<< HEAD
-                //                TextInput {
-                //=======
-                TextArea {
-                    //>>>>>>> 342e1fc1dbb6cdf9e07b7bf5a0681795c635bc30
-                    Layout.alignment: Qt.AlignHCenter
-                    Layout.fillWidth: true
-                    font.bold: false;
-                    font.pixelSize: 20;
-                    //<<<<<<< HEAD
-                    //                    color: "grey"
-                    //                    text: "Send to Bitcoin address..."
-                    //=======
-                    color: "white"
-                    placeholderText: "Send to Bitcoin address..."
-
-                    //>>>>>>> 342e1fc1dbb6cdf9e07b7bf5a0681795c635bc30
-                    cursorVisible: true
-                    onTextChanged: if(text == "")
-                                       lineAddress.color = "red"
-                                   else
-                                       lineAddress.color = "orange"
-                }
-
-                Rectangle{
-                    id: lineAddress
-                    Layout.alignment: Qt.AlignHCenter
-                    Layout.fillWidth: true
-                    Layout.preferredWidth: 350
-                    height: 3
-                    color: "orange"
-                }
-            }
-        }
-
-
-        Item {
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-        }
-
-        Item {
-            Layout.fillHeight: true
-            Layout.fillWidth: true
+            model: [ "Stakenet", "Dash", "Bitcoin" ]
         }
 
         ColumnLayout{
+            Layout.fillWidth: true
 
-            Layout.alignment: Qt.AlignHCenter
-
-            TextInput {
-                id: btcCount
-                text: "0"
-                //<<<<<<< HEAD
-                //                font.pixelSize: 20;
-                //                color: "orange"
-                //                cursorVisible: true
-                //=======
-                validator: IntValidator{bottom: 0; top: 99999999;}
-                font.pixelSize: 20;
-                color: "orange"
-                //>>>>>>> 342e1fc1dbb6cdf9e07b7bf5a0681795c635bc30
-                onTextChanged: usdCount.text = parseInt(btcCount.text) * 6000
+            SecondaryLabel{
+                Layout.fillWidth: true
+                text: qsTr("Send funds to")
             }
-
 
             Rectangle{
 
-                width:350
-                height:3
-                color: "orange"
+                color: "#090D1C"
+                Layout.fillWidth: true
+                Layout.preferredHeight: 35
+
+                RowLayout{
+
+                    Layout.fillWidth: true
+                    anchors.fill: parent
+                    spacing: 10
+
+                    Image {
+                        Layout.leftMargin: 10
+                        sourceSize: Qt.size(20, 20)
+                        source: "qrc:/images/icons-1 stroke-16px-withdraw.png"
+                    }
+
+
+                    TextArea {
+                        Layout.fillWidth: true
+                        font.bold: false;
+                        font.pixelSize: 14;
+                        color: "#8C9CD4"
+                        placeholderText: "Enter the XSN address"
+
+                        background: Rectangle {
+                            color: "transparent"
+                        }
+
+                        cursorVisible: true
+                    }
+                }
             }
-
-            TextInput {
-                id: usdCount
-                font.pixelSize: 20;
-                text: "0"
-                cursorVisible: false
-            }
         }
 
-
-        Item {
-            Layout.fillHeight: true
+        ColumnLayout{
             Layout.fillWidth: true
-        }
-
-        Item {
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-        }
-
-        TransactionButton {
-            anchors.horizontalCenter: parent.horizontalCenter
-            Layout.preferredWidth: 200
-            Layout.preferredHeight: 40
-            baseColor: "orange"
-            secondaryColor: "orange"
-            radius: 25
-
-            Text {
-                anchors.centerIn: parent
-                text: qsTr("SEND")
-                color: "white"
-                style: Text.StyledText
-                styleColor: "black"
-            }
-
-            //            onClicked: sendCoins()
-        }
-
-        Item {
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-        }
-
-
-        Rectangle
-        {
-            id: rec
-            anchors.horizontalCenter: parent.horizontalCenter
-
-            width: 350
-            height: 100
-            radius: 125
-            color: "#1C1F24"
-
 
             RowLayout{
 
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
+                Layout.fillWidth: true
 
-                Layout.preferredHeight: 40
-
-                Column{
-                    Text { text: "Bitcoin Network Fee ( 0.078 KB )"; font.bold: true; font.pixelSize: 10; color: "grey" }
-                    Text { text: "Remaining Balance"; font.bold: true; font.pixelSize: 10; color: "grey" }
-
+                SecondaryLabel{
+                    Layout.fillWidth: true
+                    font.pixelSize: 12
+                    text: qsTr("Amount")
                 }
 
-                Column{
-                    Text { text: "0.0000078"; font.pixelSize: 10; color: "orange"}
-                    Text { text: "0"; font.pixelSize: 10; color: "orange"}
+                Item {
+                    Layout.fillWidth: true
                 }
 
-                Column{
-                    Text { text: " BTC"; font.pixelSize: 10; color: "orange"}
-                    Text { text: " BTC"; font.pixelSize: 10; color: "orange"}
+                Item {
+                    Layout.fillWidth: true
                 }
 
-                Column{
-                    Text { text: "$0.05"; font.pixelSize: 10; color: "white"}
-                    Text { text: "$0.00"; font.pixelSize: 10; color: "white"}
+                XSNLabel {
+                    color: "#454C71"
+                    font.pixelSize: 12
+                    text: qsTr("Available")
+                }
+
+
+                SecondaryLabel{
+                    font.pixelSize: 12
+                    text: qsTr("2 535.00 XSN")
+                }
+
+                SecondaryLabel{
+                    font.pixelSize: 12
+                    text: qsTr("$ 721.35")
+                }
+
+            }
+
+            Rectangle{
+
+                color: "#090D1C"
+                Layout.fillWidth: true
+                Layout.preferredHeight: 35
+
+                RowLayout{
+
+                    anchors.fill: parent
+                    spacing: 10
+
+                    Image {
+                        Layout.leftMargin: 10
+                        sourceSize: Qt.size(20, 20)
+                        source: "qrc:/images/coins@2x.png"
+                    }
+
+                    TextArea {
+                        Layout.preferredWidth: 120
+                        font.bold: false;
+                        font.pixelSize: 14;
+                        color: "#8C9CD4"
+                        placeholderText: "XSN "
+
+                        background: Rectangle {
+                            color: "transparent"
+                        }
+
+                        cursorVisible: true
+                    }
+
+                    Image {
+                        Layout.leftMargin: 10
+                        sourceSize: Qt.size(20, 20)
+                        source: "qrc:/images/usd@2x.png"
+                    }
+
+                    SecondaryLabel{
+                        Layout.fillWidth: true
+                        text: qsTr("USD")
+                    }
+
+                    Button {
+
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: 32
+
+                        background: Rectangle {
+                            color: "#8C9CD4"
+                            radius: 2
+                        }
+
+                        XSNLabel{
+                            anchors.verticalCenter: parent.verticalCenter
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            color: "#FFFFFF"
+                            font.pixelSize: 12
+                            text: qsTr("Max amount")
+                        }
+
+                    }
+                }
+            }
+        }
+
+        RowLayout{
+
+            Layout.fillWidth: true
+            Layout.preferredHeight:60
+
+            SecondaryLabel{
+                text: qsTr("Network fee: ")
+            }
+
+            XSNLabel{
+                color: "#8C9CD4"
+                font.pixelSize: 14
+                text: qsTr("Network fee: ")
+            }
+
+            XSNLabel{
+                color: "#FFFFFF"
+                font.pixelSize: 14
+                text: qsTr("15 XSN")
+            }
+
+
+            SecondaryLabel{
+                text: qsTr("Remaining balance: ")
+            }
+
+            XSNLabel{
+                color: "#FFFFFF"
+                font.pixelSize: 14
+                text: qsTr("319.26853 XSN")
+            }
+        }
+
+
+        RowLayout{
+            Layout.fillWidth: true
+
+            Item {
+                Layout.fillWidth: true
+            }
+
+            Button {
+                text: "Withdraw"
+
+                Layout.alignment: Layout.Right
+
+                background: Rectangle {
+                    color: "#2C80FF"
+                    radius: 5
+
                 }
             }
         }
     }
 }
+

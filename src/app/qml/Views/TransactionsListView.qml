@@ -28,7 +28,6 @@ Item {
 
         XSNLabel {
             visible: transactionsList.count === 0
-            anchors.centerIn: parent
             text: "No Transactions"
             color: "white"
             opacity: 0.2

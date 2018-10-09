@@ -20,6 +20,7 @@ KeyStorage::KeyStorage(QObject *parent) :
     QObject(parent),
     _impl(new KeyStorageImpl)
 {
+    bitcoin::ECC_Start();
 }
 
 //==============================================================================
