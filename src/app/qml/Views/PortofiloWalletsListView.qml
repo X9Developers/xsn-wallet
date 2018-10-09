@@ -4,6 +4,9 @@ import QtQuick.Controls 2.3
 
 import "../Components"
 
+import com.xsn.viewmodels 1.0
+import com.xsn.models 1.0
+
 ColumnLayout {
 
     RowLayout {
@@ -35,6 +38,9 @@ ColumnLayout {
         WalletsListView {
             Layout.fillHeight: true
             Layout.fillWidth: true
+            model: WalletAssetsListModel {
+                Component.onCompleted: initialize(ApplicationViewModel)
+            }
         }
     }
 }

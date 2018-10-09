@@ -13,13 +13,13 @@ ListView {
     boundsBehavior: Flickable.StopAtBounds
     clip: true
 
-    model: ["1"]
-
     delegate: Rectangle {
         height: closedTransactionHeight
         color: "#16192E"
         radius: 4
         width: parent.width
+        property string name: model.name
+        property string currency: model.symbol
 
         RowLayout {
             anchors.fill: parent
@@ -30,12 +30,12 @@ ListView {
                 Layout.preferredWidth: parent.width * 0.2
                 Layout.fillHeight: true
                 Layout.alignment: Qt.AlignVCenter
+                spacing: 10
 
-                RoundButton {
+                Image {
                     anchors.verticalCenter: parent.verticalCenter
-                    width: 16
-                    height: 16
-                    radius: height / 2
+                    source: "qrc:/images/%1.png" .arg(name)
+                    sourceSize: Qt.size(25, 25)
                 }
 
                 Column {
@@ -44,11 +44,12 @@ ListView {
 
                     XSNLabel {
                         font.pixelSize: 14
-                        text: "Dash"
+                        text: name
                     }
 
                     SecondaryLabel {
-                        text: "DASH"
+                        text: currency
+                        font.capitalization: Font.AllUppercase
                     }
                 }
             }
@@ -71,7 +72,8 @@ ListView {
                     }
 
                     SecondaryLabel {
-                        text: "DASH"
+                        text: currency
+                        font.capitalization: Font.AllUppercase
                     }
                 }
 
@@ -107,10 +109,12 @@ ListView {
 
                 CheckableButton {
                     text: "Send"
+                    //onClicked: receiveCoins();
                 }
 
                 CheckableButton {
                     text: "Receive"
+                    //onClicked: receiveCoins();
                 }
             }
         }
