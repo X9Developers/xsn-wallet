@@ -113,7 +113,7 @@ Page {
         dialog.open();
     }
 
-    function openSendDialog(component, params) {
+    function openSendDialog(params) {
         openDialog(sendDialogComponent, params);
     }
 

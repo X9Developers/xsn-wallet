@@ -10,6 +10,9 @@ ListView {
     Layout.fillHeight: true
     Layout.fillWidth: true
 
+    signal sendCoinsRequested(int id)
+    signal receiveCoinsRequested(int id)
+
     boundsBehavior: Flickable.StopAtBounds
     clip: true
 
@@ -97,8 +100,8 @@ ListView {
             }
 
             Item {
-                 Layout.fillWidth: true
-                 Layout.fillHeight: true
+                Layout.fillWidth: true
+                Layout.fillHeight: true
             }
 
             RowLayout {
@@ -107,14 +110,21 @@ ListView {
                 Layout.alignment: Qt.AlignHCenter
                 spacing: 7
 
-                CheckableButton {
+                SecondaryLabel {
                     text: "Send"
-                    //onClicked: receiveCoins();
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: sendCoinsRequested(0);
+                    }
+
                 }
 
-                CheckableButton {
+                SecondaryLabel {
                     text: "Receive"
-                    //onClicked: receiveCoins();
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: receiveCoinsRequested(0);
+                    }
                 }
             }
         }
