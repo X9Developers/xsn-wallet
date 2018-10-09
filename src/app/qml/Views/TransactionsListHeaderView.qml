@@ -13,7 +13,7 @@ Rectangle {
         anchors.rightMargin: 20
         spacing: width * 0.02
 
-        TransactionHeader {
+        ListHeader {
             Layout.preferredWidth: parent.width * 0.08
             Layout.alignment: Qt.AlignCenter
             text: "Type";
@@ -24,7 +24,7 @@ Rectangle {
             Layout.fillHeight: true
             spacing: 5
 
-            TransactionHeader {
+            ListHeader {
                 id: date
                 text: "Date"
             }
@@ -38,13 +38,13 @@ Rectangle {
                 color: "#7F8DC1"
             }
         }
-
-        TransactionHeader {
+        ListHeader {
+            Layout.alignment: Qt.AlignLeft
             Layout.preferredWidth: parent.width * 0.16
             text: "Currency"
         }
 
-        TransactionHeader {
+        ListHeader {
             Layout.preferredWidth: parent.width * 0.22
             text: "Transaction ID"
         }
@@ -53,7 +53,7 @@ Rectangle {
             Layout.preferredWidth: parent.width * 0.18
             Layout.alignment: Qt.AlignRight
 
-            TransactionHeader {
+            ListHeader {
                 anchors.right: parent.right
                 anchors.verticalCenter: parent.verticalCenter
                 text: "Amount"

@@ -13,84 +13,108 @@ ListView {
     boundsBehavior: Flickable.StopAtBounds
     clip: true
 
-    model: ["1"]
-
     delegate: Rectangle {
+        height: closedTransactionHeight
         color: "#16192E"
+        radius: 4
         width: parent.width
+        property string name: model.name
+        property string currency: model.symbol
 
         RowLayout {
             anchors.fill: parent
+            anchors.leftMargin: 20
+            anchors.rightMargin: 20
 
             Row {
-                spacing: 5
-                RoundButton {
+                Layout.preferredWidth: parent.width * 0.2
+                Layout.fillHeight: true
+                Layout.alignment: Qt.AlignVCenter
+                spacing: 10
+
+                Image {
                     anchors.verticalCenter: parent.verticalCenter
-                    width: 16
-                    height: 16
-                    radius: height / 2
+                    source: "qrc:/images/%1.png" .arg(name)
+                    sourceSize: Qt.size(25, 25)
                 }
 
                 Column {
+                    anchors.verticalCenter: parent.verticalCenter
                     spacing: 5
+
                     XSNLabel {
                         font.pixelSize: 14
-                        text: "Dash"
+                        text: name
                     }
 
                     SecondaryLabel {
-                        text: "DASH"
+                        text: currency
+                        font.capitalization: Font.AllUppercase
                     }
                 }
             }
 
-            Item {
-                Layout.fillHeight: true
-                Layout.fillWidth: true
-            }
 
-            Column {
+            ColumnLayout {
+                Layout.preferredWidth:  parent.width * 0.3
+                Layout.fillHeight: true
+                Layout.alignment: Qt.AlignRight & Qt.AlignVCenter
                 spacing: 5
+
                 Row {
+                    Layout.alignment: Qt.AlignRight & Qt.AlignVCenter
+                    anchors.right: parent.right
                     spacing: 5
+
                     XSNLabel {
                         font.pixelSize: 14
                         text: "10.43451021"
                     }
+
                     SecondaryLabel {
-                        text: "DASH"
+                        text: currency
+                        font.capitalization: Font.AllUppercase
                     }
                 }
 
                 SecondaryLabel {
+                    Layout.alignment: Qt.AlignRight & Qt.AlignVCenter
                     anchors.right: parent.right
                     text: "$ 4562.54"
                 }
             }
 
             Item {
+                Layout.preferredWidth: parent.width * 0.2
                 Layout.fillHeight: true
-                Layout.fillWidth: true
-            }
+                Layout.alignment: Qt.AlignRight & Qt.AlignVCenter
 
-            SecondaryLabel {
-                text: "12%"
-                Layout.alignment: Qt.AlignVCenter
+                SecondaryLabel {
+                    text: "12%"
+                    anchors.right: parent.right
+                    anchors.verticalCenter: parent.verticalCenter
+                }
             }
 
             Item {
-                Layout.fillHeight: true
-                Layout.fillWidth: true
+                 Layout.fillWidth: true
+                 Layout.fillHeight: true
             }
 
-            Row {
+            RowLayout {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                Layout.alignment: Qt.AlignHCenter
                 spacing: 7
+
                 CheckableButton {
                     text: "Send"
+                    //onClicked: receiveCoins();
                 }
 
                 CheckableButton {
                     text: "Receive"
+                    //onClicked: receiveCoins();
                 }
             }
         }

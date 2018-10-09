@@ -33,6 +33,7 @@ ColumnLayout {
             id: buttonRow
             height: parent.height
             spacing: 10
+
             Repeater {
                 model: ["Day", "Week", "Month", "Year"]
                 delegate: CheckableButton {

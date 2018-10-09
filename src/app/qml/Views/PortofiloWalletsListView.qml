@@ -4,6 +4,9 @@ import QtQuick.Controls 2.3
 
 import "../Components"
 
+import com.xsn.viewmodels 1.0
+import com.xsn.models 1.0
+
 ColumnLayout {
 
     RowLayout {
@@ -23,14 +26,21 @@ ColumnLayout {
         }
     }
 
-    Rectangle {
+    ColumnLayout {
         Layout.fillHeight: true
         Layout.fillWidth: true
-        color: "#16192E"
 
-        WalletsListView {
-            anchors.fill: parent
+        WalletsListHeaderView {
+            Layout.fillWidth: true
+            Layout.preferredHeight: 30
         }
 
+        WalletsListView {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            model: WalletAssetsListModel {
+                Component.onCompleted: initialize(ApplicationViewModel)
+            }
+        }
     }
 }

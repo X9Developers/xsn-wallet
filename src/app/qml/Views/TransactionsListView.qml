@@ -157,9 +157,12 @@ Item {
                         }
                     }
 
-                    Image {
-                        sourceSize: Qt.size(20, 20)
-                        source: "qrc:/images/check@2x.png"
+                    Item {
+                        Layout.preferredWidth: parent.width * 0.06
+                        Image {
+                            sourceSize: Qt.size(20, 20)
+                            source: "qrc:/images/check@2x.png"
+                        }
                     }
                 }
 
