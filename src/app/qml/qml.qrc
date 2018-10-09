@@ -18,9 +18,10 @@
         <file>Components/RoundedImage.qml</file>
         <file>Popups/SendPopup.qml</file>
         <file>Components/MenuIcon.qml</file>
+        <file>Components/ListHeader.qml</file>
+        <file>Components/XSNTextArea.qml</file>
         <file>Components/ActionButton.qml</file>
         <file>Views/TransactionsListHeaderView.qml</file>
-        <file>Components/ListHeader.qml</file>
         <file>Pages/TransactionPage.qml</file>
         <file>Pages/PortfolioPage.qml</file>
         <file>Components/CheckableButton.qml</file>

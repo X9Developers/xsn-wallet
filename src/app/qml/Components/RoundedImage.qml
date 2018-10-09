@@ -14,28 +14,28 @@ Image {
     sourceSize.height: 50
     source: imageSource
 
-    MouseArea {
-        anchors.fill: parent
-        hoverEnabled: true
-//        onClicked: actionButton.clicked()
-        onEntered:  {
-            img.scale = scale * 1.1
-            radiusRec.border.color = "red"
-        }
-        onExited: {
-            img.scale = scale
-            radiusRec.border.color = "orange"
-        }
-    }
+//    MouseArea {
+//        anchors.fill: parent
+//        hoverEnabled: true
+////        onClicked: actionButton.clicked()
+//        onEntered:  {
+//            img.scale = scale * 1.1
+//            radiusRec.border.color = "red"
+//        }
+//        onExited: {
+//            img.scale = scale
+//            radiusRec.border.color = "orange"
+//        }
+//    }
 
-    Rectangle {
-        id: radiusRec
-        anchors.fill: parent
-        color: "transparent"
-        border.color: "orange"
-        border.width: 1
-        radius: parent.width / 2
-    }
+//    Rectangle {
+//        id: radiusRec
+//        anchors.fill: parent
+//        color: "transparent"
+//        border.color: "orange"
+//        border.width: 1
+//        radius: parent.width / 2
+//    }
 
 //    layer.enabled: rounded
 //    layer.effect: OpacityMask {

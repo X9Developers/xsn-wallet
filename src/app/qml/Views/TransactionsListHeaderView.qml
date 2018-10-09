@@ -38,7 +38,6 @@ Rectangle {
                 color: "#7F8DC1"
             }
         }
-
         ListHeader {
             Layout.alignment: Qt.AlignLeft
             Layout.preferredWidth: parent.width * 0.16
@@ -46,7 +45,7 @@ Rectangle {
         }
 
         ListHeader {
-            Layout.preferredWidth: parent.width * 0.23
+            Layout.preferredWidth: parent.width * 0.22
             text: "Transaction ID"
         }
 

@@ -5,8 +5,7 @@ import QtQuick.Layouts 1.3
 Popup {
     id: popUpComponent
     property alias container: item
-
-    property string imageSource: ""
+    property string popUpText: ""
     closePolicy: Popup.CloseOnEscape
 
     background: Rectangle {
@@ -14,55 +13,70 @@ Popup {
         color: "transparent"
     }
 
-    //<<<<<<< HEAD
-    //=======
     x: (parent.width - width) / 2
     y: (parent.height - height) / 2
 
     parent: Overlay.overlay
     modal: true
 
-    //>>>>>>> 342e1fc1dbb6cdf9e07b7bf5a0681795c635bc30
     Rectangle {
         id: item
         anchors.fill: parent
-        anchors.topMargin: 40
-        color: "#3F444A"
+        anchors.topMargin: 54
+        anchors.rightMargin: 13
+        color: "#16192E"
     }
 
-    Item {
-        anchors.fill: parent
+    RowLayout{
+
+        Layout.fillWidth: true
+        Layout.preferredHeight: 60
+        spacing: 115
+
+
+        Text {
+            text: popUpText
+            property int backgroundRectangleWidth: 0
+            font.family: "Rubik"
+            style: Text.StyledText
+            color: "#FFFFFF"
+            font.pixelSize: 26
+        }
+
+        Item {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+        }
+
+        Item {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+        }
 
         RoundButton {
             id: control
-            width: 32
-            height: 32
-            radius: 24
+            width: 40
+            height: 39
+            radius: 20
             background: Rectangle {
-                color: "#3F444A"
-                radius: 24
+                color: "transparent"
+                radius: 20
             }
 
-            text: "X"
-            font.pixelSize: 14
+            text: "x"
+            font.pixelSize: 22
 
             contentItem: Label {
                 text: control.text
                 font: control.font
-                color: "white"
+                color: "#8C9CD4"
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
             }
+
             //            background: "#3F444A"
             onClicked: popUpComponent.close()
         }
-
-        Image {
-            anchors.horizontalCenter: parent.horizontalCenter
-            sourceSize.width: 50
-            sourceSize.height: 50
-            source: "qrc:/images/Bitcoin.png"
-            //source: imageSource
-        }
     }
 }
+

@@ -4,10 +4,6 @@
         <file>refresh.png</file>
         <file>Dash.png</file>
         <file>Code.png</file>
-        <file>CopyFlat.png</file>
-        <file>MailFlat.png</file>
-        <file>ViewFlat.png</file>
-        <file>PrintFlat.png</file>
         <file>Stakenet.png</file>
         <file>icons-2 stroke-16px-menu@2x.png</file>
         <file>icons-2 stroke-16px-menu.png</file>
@@ -35,6 +31,11 @@
         <file>icons-1 stroke-16px-address.png</file>
         <file>checkmark.png</file>
         <file>copy.png</file>
+        <file>qr@2x.png</file>
+        <file>alert@2x.png</file>
+        <file>coins@2x.png</file>
+        <file>usd@2x.png</file>
+        <file>qr-code@2x.png</file>
         <file>x@2x.png</file>
         <file>settings@2x.png</file>
         <file>send@2x.png</file>
