@@ -30,5 +30,8 @@
         <file>Components/SecondaryLabel.qml</file>
         <file>Views/WalletsListView.qml</file>
         <file>Components/ColorOverlayImage.qml</file>
+        <file>Popups/TransactionsDetailsPopup.qml</file>
+        <file>Components/PrimaryButton.qml</file>
+        <file>Components/SecondaryButton.qml</file>
     </qresource>
 </RCC>
