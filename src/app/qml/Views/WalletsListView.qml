@@ -6,8 +6,7 @@ import QtQuick.Controls 2.3
 import "../Components"
 
 ListView {
-    id: transactionsList
-
+    id: root
     Layout.fillHeight: true
     Layout.fillWidth: true
 

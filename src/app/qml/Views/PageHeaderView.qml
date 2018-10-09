@@ -29,47 +29,20 @@ ColumnLayout {
             Layout.fillWidth: true
         }
 
-        ListView {
-            id: listView
-            Layout.preferredHeight: parent.height
-            Layout.preferredWidth: contentWidth
-            Layout.alignment: Qt.AlignVCenter
-
-            boundsBehavior: Flickable.StopAtBounds
-            orientation: ListView.Horizontal
-
+        Row {
+            id: buttonRow
+            height: parent.height
             spacing: 10
-
-            model: ["Day", "Week", "Month", "Year"]
-
-            highlight: Item {
-                Rectangle {
-                    id: highlightItem
-                    color: "#0E1E3E"
-                    height: parent.height
-                    width: parent.width
-                    radius: 5
-                }
-            }
-
-            highlightFollowsCurrentItem: true
-
-            delegate: Item {
-                width: 45
-                height: parent.height
-
-                SecondaryLabel {
-                    anchors.centerIn: parent
+            Repeater {
+                model: ["Day", "Week", "Month", "Year"]
+                delegate: CheckableButton {
                     text: modelData
                 }
-
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: {
-                        listView.currentIndex = index;
-                    }
-                }
             }
+        }
+
+        ButtonGroup {
+            buttons: buttonRow.children
         }
     }
 
