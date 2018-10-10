@@ -41,6 +41,13 @@ ColumnLayout {
             model: WalletAssetsListModel {
                 Component.onCompleted: initialize(ApplicationViewModel)
             }
+
+            onSendCoinsRequested: {
+                openSendDialog();
+            }
+            onReceiveCoinsRequested: {
+                openReceiveDialog();
+            }
         }
     }
 }
