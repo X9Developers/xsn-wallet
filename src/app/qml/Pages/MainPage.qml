@@ -66,37 +66,17 @@ Page {
                 windowWidth: root.parent.width
             }
 
-            TransactionPage {
+            Item {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-            }
+                Layout.alignment: Qt.AlignCenter
 
-            Text {
-                Layout.fillHeight: true
-                Layout.fillWidth: true
-                text: "Lightning"
-                color: "white"
-            }
-
-            Text {
-                Layout.fillHeight: true
-                Layout.fillWidth: true
-                text: "Exchange"
-                color: "white"
-            }
-
-            Text {
-                Layout.fillHeight: true
-                Layout.fillWidth: true
-                text: "Masternodes"
-                color: "white"
-            }
-
-            Text {
-                Layout.fillHeight: true
-                Layout.fillWidth: true
-                text: "TPoS"
-                color: "white"
+                Text {
+                    anchors.centerIn: parent
+                    text: "Coming soon"
+                    color: "white"
+                    font.pixelSize: 20
+                }
             }
 
             Text {
@@ -105,6 +85,10 @@ Page {
                 text: "Settings"
                 color: "white"
             }
+            //            TransactionPage {
+            //                Layout.fillHeight: true
+            //                Layout.fillWidth: true
+            //            }
         }
     }
 

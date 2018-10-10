@@ -30,6 +30,7 @@ ColumnLayout {
         }
 
         Row {
+            visible: false
             id: buttonRow
             height: parent.height
             spacing: 10
@@ -48,7 +49,7 @@ ColumnLayout {
     }
 
     Rectangle {
-        Layout.preferredHeight: 360
+        Layout.preferredHeight: 100 //360
         Layout.fillWidth: true
         color: "#16192E"
 
@@ -149,6 +150,7 @@ ColumnLayout {
             Item {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
+                visible: false
 
                 Text {
                     text: "Chart"

@@ -33,5 +33,6 @@
         <file>Popups/TransactionsDetailsPopup.qml</file>
         <file>Components/PrimaryButton.qml</file>
         <file>Components/SecondaryButton.qml</file>
+        <file>Views/WalletPageHeaderView.qml</file>
     </qresource>
 </RCC>

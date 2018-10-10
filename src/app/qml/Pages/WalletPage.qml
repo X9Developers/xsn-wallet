@@ -62,14 +62,16 @@ Page {
             Layout.margins: 30
             spacing: 35
 
-            PageHeaderView {
-                Layout.fillHeight: true
+            WalletPageHeaderView {
+                //Layout.fillHeight: true
                 Layout.fillWidth: true
 
-                mainHeader: currentAssetName
+               Layout.preferredHeight: windowWidth > windowWidthSmallMode ? (width > windowWidthLargeMode ? headerViewHeightLargeMode : headerViewHeightMediumMode)
+                                                          : headerViewHeightSmallMode
+                coinMeasure: currentAssetName
+                labelColor: currentAssetColor
                 coinSymbol: currentAssetSymbol
                 windowWidth: root.windowWidth
-                buttonsVisible: true
 
                 onSendCoins: {
                     openSendDialog({});

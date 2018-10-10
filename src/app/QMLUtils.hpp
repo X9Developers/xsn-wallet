@@ -19,7 +19,7 @@ public:
         int assetsViewWidthSmallMode = 130;
         int assetsViewWidthLargeMode = 150;
 
-        int headerViewHeightSmallMode = 270;
+        int headerViewHeightSmallMode = 240;
         int headerViewHeightMediumMode = 300;
         int headerViewHeightLargeMode = 350;
 
