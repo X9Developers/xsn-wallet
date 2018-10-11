@@ -25,6 +25,7 @@ ColumnLayout {
     }
 
     MenuItem {
+        visible: false
         Layout.fillWidth: true
         Layout.preferredHeight: isSmallMenu ? menuItemHeightSmallMode : menuItemHeightLargeMode
         isCurrentItem: currentName === name
@@ -36,6 +37,7 @@ ColumnLayout {
     }
 
     MenuItem {
+        visible: false
         Layout.fillWidth: true
         Layout.preferredHeight: isSmallMenu ? menuItemHeightSmallMode : menuItemHeightLargeMode
         isCurrentItem: currentName === name
@@ -59,6 +61,7 @@ ColumnLayout {
     }
 
     MenuItem {
+        visible: false
         Layout.fillWidth: true
         Layout.preferredHeight: isSmallMenu ? menuItemHeightSmallMode : menuItemHeightLargeMode
         isCurrentItem: currentName === name
@@ -77,12 +80,25 @@ ColumnLayout {
         name: "Lightning"
         imageSource: "qrc:/images/icons-1 stroke-16px-lightning@2x.png"
         onMenuItemClicked: {
-            currentIndex = 3;
+            currentIndex = 2;
             currentName = name;
         }
     }
 
     MenuItem {
+        Layout.fillWidth: true
+        Layout.preferredHeight: isSmallMenu ? menuItemHeightSmallMode : menuItemHeightLargeMode
+        isCurrentItem: currentName === name
+        name: "XSN Cloud"
+        imageSource: "qrc:/images/cloud.png"
+        onMenuItemClicked: {
+            currentIndex = 2;
+            currentName = name;
+        }
+    }
+
+    MenuItem {
+        visible: false
         Layout.fillWidth: true
         Layout.preferredHeight: isSmallMenu ? menuItemHeightSmallMode : menuItemHeightLargeMode
         isCurrentItem: currentName === name
@@ -95,6 +111,7 @@ ColumnLayout {
     }
 
     MenuItem {
+        visible: false
         Layout.fillWidth: true
         Layout.preferredHeight: isSmallMenu ? menuItemHeightSmallMode : menuItemHeightLargeMode
         isCurrentItem: currentName === name
@@ -107,6 +124,7 @@ ColumnLayout {
     }
 
     MenuItem {
+        visible: false
         Layout.fillWidth: true
         Layout.preferredHeight: isSmallMenu ? menuItemHeightSmallMode : menuItemHeightLargeMode
         isCurrentItem: currentName === name
@@ -125,7 +143,7 @@ ColumnLayout {
         name: "Settings"
         imageSource: "qrc:/images/settings@2x.png"
         onMenuItemClicked: {
-            currentIndex = 7;
+            currentIndex = 3;
             currentName = name;
         }
     }

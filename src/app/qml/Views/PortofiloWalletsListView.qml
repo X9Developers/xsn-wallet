@@ -12,8 +12,41 @@ ColumnLayout {
     RowLayout {
         Layout.fillWidth: true
         Layout.maximumHeight: 48
+
         XSNLabel {
+            Layout.fillWidth: true
             text: "Wallets"
+        }
+        Item {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+        }
+
+        Row {
+            Layout.fillWidth: true
+            Layout.maximumHeight: 48
+            Layout.alignment: Qt.AlignVCenter
+            spacing: 5
+
+            ColorOverlayImage
+            {
+                imageSize: 35
+                width: imageSize
+                height: imageSize
+                imageSource: "qrc:/images/magnifyingGlass.png"
+                color: "#8C9CD4"
+            }
+
+            TextArea {
+                anchors.verticalCenter: parent.verticalCenter
+                font.pixelSize: 14
+                color: "#8C9CD4"
+                placeholderText: "Search wallet or coin"
+
+                background: Rectangle {
+                    color: "transparent"
+                }
+            }
         }
 
         Item {

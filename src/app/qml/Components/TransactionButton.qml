@@ -15,8 +15,9 @@ Button {
         radius: actionButton.radius
         gradient: Gradient {
             GradientStop { position: 0.0; color: baseColor }
-            GradientStop { position: 1.0; color: secondaryColor }
+            GradientStop { position: 1.0; color: Qt.darker(baseColor) }
         }
+
         MouseArea {
             anchors.fill: parent
             hoverEnabled: true

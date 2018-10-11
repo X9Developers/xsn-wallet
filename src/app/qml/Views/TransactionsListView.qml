@@ -160,7 +160,9 @@ Item {
 
                     Item {
                         Layout.preferredWidth: parent.width * 0.06
+
                         Image {
+                            anchors.centerIn: parent
                             sourceSize: Qt.size(20, 20)
                             source: "qrc:/images/check@2x.png"
                         }

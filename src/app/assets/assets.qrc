@@ -45,6 +45,8 @@
         <file>check@2x.png</file>
         <file>recieve@2x.png</file>
         <file>icons-dasboard@2x.png</file>
+        <file>magnifyingGlass.png</file>
+        <file>cloud.png</file>
     </qresource>
     <qresource prefix="/data">
         <file>assets_conf.json</file>

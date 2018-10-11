@@ -116,7 +116,6 @@ ListView {
                         anchors.fill: parent
                         onClicked: sendCoinsRequested(0);
                     }
-
                 }
 
                 SecondaryLabel {
