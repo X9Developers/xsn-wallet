@@ -38,8 +38,8 @@ Item {
             XSNLabel {
                 id: coinsAmount
                 text: "732.12"
-                font.pixelSize: windowWidth > 1180 ? (root.parent.width > 1250 ? 100 : 75)
-                                                                       : 60
+                font.pixelSize: 60// windowWidth > 1180 ? (root.parent.width > 1250 ? 100 : 75)
+                // : 60
             }
 
             XSNLabel {
@@ -50,7 +50,7 @@ Item {
             }
         }
 
-        Text {
+        XSNLabel {
             id: usdAmount
             anchors.left: coins.left
             anchors.leftMargin: 5
@@ -61,8 +61,7 @@ Item {
 
         RowLayout {
             anchors.top: usdAmount.bottom
-            anchors.topMargin: 10
-            anchors.bottom: parent.bottom
+            anchors.topMargin: 15
             anchors.bottomMargin: 10
             anchors.horizontalCenter: parent.horizontalCenter
             spacing: 25
@@ -85,96 +84,7 @@ Item {
 
                 onClicked: receiveCoins();
             }
-            //            TransactionButton {
-            //                Layout.preferredWidth: 200
-            //                Layout.preferredHeight: 47
-            //                baseColor: labelColor
-            //                secondaryColor: buttonColor
-            //                radius: 25
-
-            //                Text {
-            //                    anchors.centerIn: parent
-            //                    text: qsTr("SEND")
-            //                    color: "white"
-            //                    style: Text.StyledText
-            //                    styleColor: "black"
-            //                }
-
-            //                onClicked: sendCoins()
-            //            }
-
-            //            TransactionButton {
-            //                Layout.preferredWidth: 200
-            //                Layout.preferredHeight: 47
-            //                baseColor: labelColor
-            //                secondaryColor: buttonColor
-            //                radius: 25
-
-            //                Text {
-            //                    anchors.centerIn: parent
-            //                    text: qsTr("RECEIVED")
-            //                    color: "white"
-            //                    style: Text.StyledText
-            //                    styleColor: "black"
-            //                }
-
-            //                onClicked: receiveCoins()
-            //            }
         }
     }
-    //        Row {
-    //            id: coins
-    //            anchors.horizontalCenter: parent.horizontalCenter
-    //            spacing: 5
-
-    //            XSNLabel {
-    //                id: coinsAmount
-    //                anchors.top: iconBut.button
-    //                text: "0"
-    //                color: labelColor
-    //                lineHeightMode: Text.FixedHeight
-    //                height: font.pixelSize
-    //                font.pixelSize: windowWidth > 1180 ? (root.parent.width > 1250 ? 100 : 75)
-    //                                                   : 60
-    //            }
-
-    //            XSNLabel {
-    //                text: coinSymbol
-    //                anchors.bottom: coinsAmount.bottom
-    //                color: labelColor
-    //                font.pixelSize: coinsAmount.font.pixelSize * 0.4
-    //                font.capitalization: Font.AllUppercase
-    //            }
-    //        }
-
-    //        Row {
-    //            id: usd
-    //            anchors.top: coins.bottom
-    //            anchors.horizontalCenter: parent.horizontalCenter
-    //            spacing: 5
-
-    //            XSNLabel {
-    //                text: qsTr("$")
-    //                anchors.bottom: parent.bottom
-    //                color: "#7F8DC1"
-    //                font.pixelSize: 22
-    //            }
-
-    //            XSNLabel {
-    //                id: usdAmount
-    //                text: "0.00" //qsTr("91.22")
-    //                color: "white"
-    //                anchors.bottom: parent.bottom
-    //                font.pixelSize: 31
-    //            }
-
-    //            XSNLabel {
-    //                text: "USD"
-    //                anchors.bottom: parent.bottom
-    //                color: "#7F8DC1"
-    //                font.pixelSize: 22
-    //                font.capitalization: Font.AllUppercase
-    //            }
-    //        }
 
 }

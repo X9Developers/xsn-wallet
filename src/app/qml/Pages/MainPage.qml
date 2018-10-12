@@ -2,6 +2,7 @@ import QtQuick 2.0
 import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 
+import "../Components"
 import "../Views"
 import "../Popups"
 import com.xsn.viewmodels 1.0
@@ -79,7 +80,7 @@ Page {
                 Layout.fillWidth: true
                 Layout.alignment: Qt.AlignCenter
 
-                Text {
+                XSNLabel {
                     anchors.centerIn: parent
                     text: "Coming soon"
                     color: "white"
@@ -87,7 +88,7 @@ Page {
                 }
             }
 
-            Text {
+            XSNLabel {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 text: "Settings"

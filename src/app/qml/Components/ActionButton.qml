@@ -41,7 +41,7 @@ Button {
             }
         }
 
-        Text {
+        XSNLabel {
             text: actionButton.buttonText
             color: "white"
             font.pixelSize: 14

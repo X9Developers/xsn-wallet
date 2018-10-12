@@ -1,40 +1,56 @@
 import QtQuick 2.0
+import QtQuick.Layouts 1.3
+import QtGraphicalEffects 1.0
+
+import "../Components"
 
 ListView {
     id: listView
+    anchors.leftMargin: 10
+    anchors.rightMargin: 10
     anchors.fill: parent
+    clip: true
 
     highlight: Item {
         Rectangle {
             id: highlightItem
-            anchors.right: parent.right
-            width: 2
-            height: parent.height
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottom: parent.bottom
+            width: 100
+            height: 3
             color: listView.currentItem.color
         }
-
     }
 
+    orientation: ListView.Horizontal
     highlightFollowsCurrentItem: true
+    spacing: 15
 
     delegate: Item {
-        height: 50
-        width: parent.width
-        anchors.right: parent.right
+        id: asset
+        height: parent.height
+        width: 110
+
         property string color: model.color
         property int id: model.id
         property string name: model.name
         property string symbol: model.symbol
 
-        Text {
-            id: assetsName
-            anchors.rightMargin: parent.width / 7
-            anchors.right: parent.right
-            anchors.verticalCenter: parent.verticalCenter
-            text: model.name
+        RowLayout {
+            spacing: 7
+            anchors.centerIn: parent
 
-            font.pixelSize: 15
-            color: parent.ListView.isCurrentItem ? parent.color : mouseArea.containsMouse ? "white" : "grey"
+            Image {
+                sourceSize: Qt.size(25, 25)
+                source: "qrc:/images/%1.png" .arg(asset.name)
+            }
+
+            XSNLabel {
+                id: assetsName
+                text: model.name
+                font.pixelSize: 15
+                color: asset.ListView.isCurrentItem ? asset.color : mouseArea.containsMouse ? "white" : "#6B78A6"
+            }
         }
 
         MouseArea {

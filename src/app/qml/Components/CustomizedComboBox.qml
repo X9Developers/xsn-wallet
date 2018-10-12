@@ -7,7 +7,7 @@ ComboBox {
 
     delegate: ItemDelegate {
         width: control.width
-        contentItem: Text {
+        contentItem: XSNLabel {
             text: modelData
             color: "#7F8DC1"
             font: control.font
@@ -22,7 +22,7 @@ ComboBox {
         highlighted: control.highlightedIndex === index
     }
 
-    contentItem: Text {
+    contentItem: XSNLabel {
         text: control.displayText
         font: control.font
         color:  "white"

@@ -81,16 +81,18 @@ void QMLUtils::RegisterModels(const char *uri, int versionMinor, int versionMajo
 
 void QMLUtils::RegisterFonts()
 {
-    QFontDatabase::addApplicationFont(":/fonts/Rubik-Black.tff");
-    QFontDatabase::addApplicationFont(":/fonts/Rubik-BlackItalic.tff");
-    QFontDatabase::addApplicationFont(":/fonts/Rubik-Bold.tff");
-    QFontDatabase::addApplicationFont(":/fonts/Rubik-BoldItalic.tff");
-    QFontDatabase::addApplicationFont(":/fonts/Rubik-Italic.tff");
-    QFontDatabase::addApplicationFont(":/fonts/Rubik-Light.tff");
-    QFontDatabase::addApplicationFont(":/fonts/Rubik-LightItalic.tff");
-    QFontDatabase::addApplicationFont(":/fonts/Rubik-Medium.tff");
-    QFontDatabase::addApplicationFont(":/fonts/Rubik-MediumItalic.tff");
-    QFontDatabase::addApplicationFont(":/fonts/Rubik-Regular.tff");
+    QFontDatabase::addApplicationFont("qrc:/Rubik-Black.tff");
+    QFontDatabase::addApplicationFont("qrc:/Rubik-BlackItalic.tff");
+    QFontDatabase::addApplicationFont("qrc:/Rubik-Bold.tff");
+    QFontDatabase::addApplicationFont("qrc:/Rubik-BoldItalic.tff");
+    QFontDatabase::addApplicationFont("qrc:/Rubik-Italic.tff");
+    QFontDatabase::addApplicationFont("qrc:/Rubik-Light.tff");
+    QFontDatabase::addApplicationFont("qrc:/Rubik-LightItalic.tff");
+    QFontDatabase::addApplicationFont("qrc:/Rubik-Medium.tff");
+    QFontDatabase::addApplicationFont("qrc:/Rubik-MediumItalic.tff");
+    QFontDatabase::addApplicationFont("qrc:/Rubik-Regular.ttf");
+    QFont font = QFont("Rubik");
+
 }
 
 //==============================================================================

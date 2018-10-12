@@ -31,10 +31,9 @@ Popup {
         height: 60
         spacing: 115
 
-        Text {
+        XSNLabel {
             text: popUpText
             property int backgroundRectangleWidth: 0
-            font.family: "Rubik"
             style: Text.StyledText
             color: "#FFFFFF"
             font.pixelSize: 26

@@ -6,7 +6,7 @@ Button {
     checkable: true
     font.pixelSize: 12
 
-    contentItem: Text {
+    contentItem: XSNLabel {
         text: control.text
         font: control.font
         opacity: enabled ? 1.0 : 0.3

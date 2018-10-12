@@ -156,13 +156,13 @@ ColumnLayout {
         spacing: 20
         Layout.alignment: Qt.AlignHCenter
 
-        Text {
+        XSNLabel {
             text: "Privacy"
             color: "grey"
             font.pixelSize: 14
         }
 
-        Text {
+        XSNLabel {
             text: "Terms"
             color: "grey"
             font.pixelSize: 14
