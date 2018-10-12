@@ -17,6 +17,7 @@ ColumnLayout {
             Layout.fillWidth: true
             text: "Wallets"
         }
+
         Item {
             Layout.fillHeight: true
             Layout.fillWidth: true
@@ -54,13 +55,26 @@ ColumnLayout {
             Layout.fillWidth: true
         }
 
-        SecondaryLabel {
-            text: qsTr("Sort by")
+        Row {
+            Layout.fillHeight: true
+            Layout.alignment: Qt.AlignRight
+            spacing: 10
+
+            SecondaryLabel {
+                anchors.verticalCenter: parent.verticalCenter
+                text: qsTr("Sort by")
+            }
+
+            CustomizedComboBox {
+                anchors.verticalCenter: parent.verticalCenter
+                model: ["Balance", "Portfolio"]
+            }
         }
     }
 
     ColumnLayout {
         Layout.fillHeight: true
+
         Layout.fillWidth: true
 
         WalletsListHeaderView {

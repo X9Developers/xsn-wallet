@@ -28,6 +28,14 @@ Page {
         }
     }
 
+    Component {
+        id: transactionDatailsComponent
+        TransactionsDetailsPopup
+        {
+
+        }
+    }
+
 
     RowLayout {
         anchors.fill: parent
@@ -103,5 +111,9 @@ Page {
 
     function openReceiveDialog(params) {
         openDialog(receiveDialogComponent, params);
+    }
+
+    function openTransactionDetailsDialog(params) {
+        openDialog(transactionDatailsComponent, params)
     }
 }

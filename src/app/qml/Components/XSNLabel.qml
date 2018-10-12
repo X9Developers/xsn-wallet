@@ -4,7 +4,7 @@ import QtQuick.Controls 2.2
 import QtGraphicalEffects 1.0
 
 Text {
-    font.family: "Arial"
+    font.family: "Rubik"
     style: Text.StyledText
     font.pixelSize: 22
     color: "white"

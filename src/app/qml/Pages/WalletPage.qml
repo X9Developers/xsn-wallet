@@ -16,6 +16,7 @@ Page {
     property string currentAssetName: assetsListView.currentItem ? assetsListView.currentItem.name : ""
     property string currentAssetColor: assetsListView.currentItem ? assetsListView.currentItem.color : ""
     property string currentAssetSymbol: assetsListView.currentItem ? assetsListView.currentItem.symbol : ""
+
     background: Rectangle {
         color: "transparent"
     }
@@ -28,46 +29,74 @@ Page {
         currentAssetID: root.currentAssetID
     }
 
-    RowLayout {
-        anchors.fill: parent
-        spacing: 0
+//    RowLayout {
+//        anchors.fill: parent
+//        spacing: 0
 
-        Rectangle {
-            Layout.fillHeight: true
-            Layout.preferredWidth: windowWidth > windowWidthSmallMode ? assetsViewWidthLargeMode : assetsViewWidthSmallMode
-            color: "#16192E"
+//        Rectangle {
+//            Layout.fillHeight: true
+//            Layout.preferredWidth: windowWidth > windowWidthSmallMode ? assetsViewWidthLargeMode : assetsViewWidthSmallMode
+//            color: "#16192E"
 
-            Item {
-                anchors.fill: parent
-                anchors.topMargin: 1
+//            Item {
+//                anchors.fill: parent
+//                anchors.topMargin: 1
 
-                WalletAssetsListView {
-                    id: assetsListView
-                    anchors.fill: parent
-                    model: WalletAssetsListModel {
-                        Component.onCompleted: initialize(ApplicationViewModel)
+//                WalletAssetsListView {
+//                    id: assetsListView
+//                    anchors.fill: parent
+//                    model: WalletAssetsListModel {
+//                        Component.onCompleted: initialize(ApplicationViewModel)
 
-                        onModelReset: {
-                            assetsListView.currentIndex = 0;
-                        }
-                    }
-                }
+//                        onModelReset: {
+//                            assetsListView.currentIndex = 0;
+//                        }
+//                    }
+//                }
 
-            }
-        }
+//            }
+//        }
 
         ColumnLayout {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            Layout.margins: 30
+            anchors.fill: parent
+            Layout.leftMargin: 30
+            Layout.rightMargin: 30
+            Layout.bottomMargin: 30
             spacing: 35
+
+            Rectangle {
+                Layout.fillWidth: true
+                Layout.preferredHeight: 60
+                color: "#16192E"
+
+                RowLayout {
+                    anchors.fill: parent
+                    Item {
+                        anchors.fill: parent
+                        anchors.topMargin: 1
+
+                        WalletAssetsListView {
+                            id: assetsListView
+                            anchors.fill: parent
+                            model: WalletAssetsListModel {
+                                Component.onCompleted: initialize(ApplicationViewModel)
+
+                                onModelReset: {
+                                    assetsListView.currentIndex = 0;
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
 
             WalletPageHeaderView {
                 //Layout.fillHeight: true
                 Layout.fillWidth: true
 
-               Layout.preferredHeight: windowWidth > windowWidthSmallMode ? (width > windowWidthLargeMode ? headerViewHeightLargeMode : headerViewHeightMediumMode)
-                                                          : headerViewHeightSmallMode
+                Layout.preferredHeight: headerViewHeightSmallMode/*windowWidth > windowWidthSmallMode ? (width > windowWidthLargeMode ? headerViewHeightLargeMode : headerViewHeightMediumMode)
+                                                          : headerViewHeightSmallMode*/
                 coinMeasure: currentAssetName
                 labelColor: currentAssetColor
                 coinSymbol: currentAssetSymbol
@@ -87,7 +116,11 @@ Page {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 transactionListModel: walletViewModel.transactionsListModel
+
+                onTransactionDetails: {
+                    openTransactionDetailsDialog({});
+                }
             }
         }
-    }
+    //}
 }

@@ -13,6 +13,7 @@ Page {
         color: "transparent"
     }
 
+
     TransactionsListView {
         anchors.fill: parent
         anchors.margins: 40

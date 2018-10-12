@@ -6,6 +6,7 @@ import "../Components"
 Item {
     id: root
     property QtObject transactionListModel: undefined
+    signal transactionDetails()
 
     ColumnLayout {
         anchors.fill: parent
@@ -177,7 +178,10 @@ Item {
                         if(transactionsList.currentIndex === index)
                             transactionsList.currentIndex = -1
                         else
+                        {
                             transactionsList.currentIndex = index
+                            transactionDetails();
+                        }
                     }
                 }
             }

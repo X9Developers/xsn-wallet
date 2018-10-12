@@ -20,6 +20,7 @@ Item {
         anchors.fill: parent
         anchors.bottomMargin: 10
         anchors.topMargin: 20
+        spacing: 10
 
         IconButton {
             id: iconBut
@@ -31,102 +32,149 @@ Item {
 
         Row {
             id: coins
-            anchors.horizontalCenter: parent.horizontalCenter
+            Layout.alignment: Qt.AlignHCenter
             spacing: 5
 
             XSNLabel {
                 id: coinsAmount
-                anchors.top: iconBut.button
-                text: "0"
-                color: labelColor
-                lineHeightMode: Text.FixedHeight
-                height: font.pixelSize
+                text: "732.12"
                 font.pixelSize: windowWidth > 1180 ? (root.parent.width > 1250 ? 100 : 75)
-                                                   : 60
+                                                                       : 60
             }
 
             XSNLabel {
                 text: coinSymbol
-                anchors.bottom: coinsAmount.bottom
-                color: labelColor
-                font.pixelSize: coinsAmount.font.pixelSize * 0.4
+                anchors.top: coinsAmount.top
+                font.pixelSize: coinsAmount.font.pixelSize * 0.5
                 font.capitalization: Font.AllUppercase
             }
         }
 
-        Row {
-            id: usd
-            anchors.top: coins.bottom
-            anchors.horizontalCenter: parent.horizontalCenter
-            spacing: 5
-
-            XSNLabel {
-                text: qsTr("$")
-                anchors.bottom: parent.bottom
-                color: "#7F8DC1"
-                font.pixelSize: 22
-            }
-
-            XSNLabel {
-                id: usdAmount
-                text: "0.00" //qsTr("91.22")
-                color: "white"
-                anchors.bottom: parent.bottom
-                font.pixelSize: 31
-            }
-
-            XSNLabel {
-                text: "USD"
-                anchors.bottom: parent.bottom
-                color: "#7F8DC1"
-                font.pixelSize: 22
-                font.capitalization: Font.AllUppercase
-            }
+        Text {
+            id: usdAmount
+            anchors.left: coins.left
+            anchors.leftMargin: 5
+            text: "$ %1" .arg("18 673.72")
+            color: "#6E7BAA"
+            font.pixelSize: 22
         }
 
         RowLayout {
-            anchors.top: usd.bottom
+            anchors.top: usdAmount.bottom
             anchors.topMargin: 10
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 10
             anchors.horizontalCenter: parent.horizontalCenter
             spacing: 25
 
-            TransactionButton {
-                Layout.preferredWidth: 200
-                Layout.preferredHeight: 47
-                baseColor: labelColor
-                secondaryColor: buttonColor
-                radius: 25
-
-                Text {
-                    anchors.centerIn: parent
-                    text: qsTr("SEND")
-                    color: "white"
-                    style: Text.StyledText
-                    styleColor: "black"
-                }
+            ActionButton {
+                Layout.preferredWidth: 130
+                Layout.preferredHeight: 40
+                buttonText: qsTr("Send")
+                source: "qrc:/images/icons-1 stroke-16px-withdraw.png"
 
                 onClicked: sendCoins()
             }
 
-            TransactionButton {
-                Layout.preferredWidth: 200
-                Layout.preferredHeight: 47
-                baseColor: labelColor
-                secondaryColor: buttonColor
-                radius: 25
+            ActionButton {
+                Layout.preferredWidth: 130
+                Layout.preferredHeight: 40
+                font.weight: Font.Light
+                buttonText: qsTr("Receive")
+                source: "qrc:/images/icons-1 stroke-16px-deposit.png"
 
-                Text {
-                    anchors.centerIn: parent
-                    text: qsTr("RECEIVED")
-                    color: "white"
-                    style: Text.StyledText
-                    styleColor: "black"
-                }
-
-                onClicked: receiveCoins()
+                onClicked: receiveCoins();
             }
+            //            TransactionButton {
+            //                Layout.preferredWidth: 200
+            //                Layout.preferredHeight: 47
+            //                baseColor: labelColor
+            //                secondaryColor: buttonColor
+            //                radius: 25
+
+            //                Text {
+            //                    anchors.centerIn: parent
+            //                    text: qsTr("SEND")
+            //                    color: "white"
+            //                    style: Text.StyledText
+            //                    styleColor: "black"
+            //                }
+
+            //                onClicked: sendCoins()
+            //            }
+
+            //            TransactionButton {
+            //                Layout.preferredWidth: 200
+            //                Layout.preferredHeight: 47
+            //                baseColor: labelColor
+            //                secondaryColor: buttonColor
+            //                radius: 25
+
+            //                Text {
+            //                    anchors.centerIn: parent
+            //                    text: qsTr("RECEIVED")
+            //                    color: "white"
+            //                    style: Text.StyledText
+            //                    styleColor: "black"
+            //                }
+
+            //                onClicked: receiveCoins()
+            //            }
         }
     }
+    //        Row {
+    //            id: coins
+    //            anchors.horizontalCenter: parent.horizontalCenter
+    //            spacing: 5
+
+    //            XSNLabel {
+    //                id: coinsAmount
+    //                anchors.top: iconBut.button
+    //                text: "0"
+    //                color: labelColor
+    //                lineHeightMode: Text.FixedHeight
+    //                height: font.pixelSize
+    //                font.pixelSize: windowWidth > 1180 ? (root.parent.width > 1250 ? 100 : 75)
+    //                                                   : 60
+    //            }
+
+    //            XSNLabel {
+    //                text: coinSymbol
+    //                anchors.bottom: coinsAmount.bottom
+    //                color: labelColor
+    //                font.pixelSize: coinsAmount.font.pixelSize * 0.4
+    //                font.capitalization: Font.AllUppercase
+    //            }
+    //        }
+
+    //        Row {
+    //            id: usd
+    //            anchors.top: coins.bottom
+    //            anchors.horizontalCenter: parent.horizontalCenter
+    //            spacing: 5
+
+    //            XSNLabel {
+    //                text: qsTr("$")
+    //                anchors.bottom: parent.bottom
+    //                color: "#7F8DC1"
+    //                font.pixelSize: 22
+    //            }
+
+    //            XSNLabel {
+    //                id: usdAmount
+    //                text: "0.00" //qsTr("91.22")
+    //                color: "white"
+    //                anchors.bottom: parent.bottom
+    //                font.pixelSize: 31
+    //            }
+
+    //            XSNLabel {
+    //                text: "USD"
+    //                anchors.bottom: parent.bottom
+    //                color: "#7F8DC1"
+    //                font.pixelSize: 22
+    //                font.capitalization: Font.AllUppercase
+    //            }
+    //        }
+
 }
