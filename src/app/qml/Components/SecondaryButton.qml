@@ -3,7 +3,7 @@ import QtQuick.Controls 2.2
 
 Button {
     id: control
-    contentItem: Text {
+    contentItem: XSNLabel {
         text: control.text
         font: control.font
         color: "white"

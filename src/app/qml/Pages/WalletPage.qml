@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
+import QtGraphicalEffects 1.0
 
 import "../Views"
 import "../Components"
@@ -16,6 +17,7 @@ Page {
     property string currentAssetName: assetsListView.currentItem ? assetsListView.currentItem.name : ""
     property string currentAssetColor: assetsListView.currentItem ? assetsListView.currentItem.color : ""
     property string currentAssetSymbol: assetsListView.currentItem ? assetsListView.currentItem.symbol : ""
+
     background: Rectangle {
         color: "transparent"
     }
@@ -28,18 +30,31 @@ Page {
         currentAssetID: root.currentAssetID
     }
 
-    RowLayout {
+    ColumnLayout {
         anchors.fill: parent
-        spacing: 0
 
-        Rectangle {
-            Layout.fillHeight: true
-            Layout.preferredWidth: windowWidth > windowWidthSmallMode ? assetsViewWidthLargeMode : assetsViewWidthSmallMode
-            color: "#16192E"
+        anchors.leftMargin: 30
+        anchors.rightMargin: 30
+        anchors.bottomMargin: 30
+        spacing: 35
 
-            Item {
+        Item {
+            Layout.fillWidth: true
+            Layout.preferredHeight: 45
+
+            LinearGradient {
+                id: background
                 anchors.fill: parent
-                anchors.topMargin: 1
+                start: Qt.point(0, 0)
+                end: Qt.point(width, 0)
+                gradient: Gradient {
+                    GradientStop { position: 1.0; color: "transparent" }
+                    GradientStop { position: 0.0; color:  "#0D1E3D"}
+                }
+            }
+
+            RowLayout {
+                anchors.fill: parent
 
                 WalletAssetsListView {
                     id: assetsListView
@@ -52,41 +67,37 @@ Page {
                         }
                     }
                 }
+            }
 
+        }
+        WalletPageHeaderView {
+            //Layout.fillHeight: true
+            Layout.fillWidth: true
+
+            Layout.preferredHeight: headerViewHeightSmallMode/*windowWidth > windowWidthSmallMode ? (width > windowWidthLargeMode ? headerViewHeightLargeMode : headerViewHeightMediumMode)
+                                                          : headerViewHeightSmallMode*/
+            coinMeasure: currentAssetName
+            labelColor: currentAssetColor
+            coinSymbol: currentAssetSymbol
+            windowWidth: root.windowWidth
+
+            onSendCoins: {
+                openSendDialog({});
+            }
+
+
+            onReceiveCoins: {
+                openReceiveDialog({});
             }
         }
 
-        ColumnLayout {
+        TransactionsListView {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            Layout.margins: 30
-            spacing: 35
+            transactionListModel: walletViewModel.transactionsListModel
 
-            WalletPageHeaderView {
-                //Layout.fillHeight: true
-                Layout.fillWidth: true
-
-               Layout.preferredHeight: windowWidth > windowWidthSmallMode ? (width > windowWidthLargeMode ? headerViewHeightLargeMode : headerViewHeightMediumMode)
-                                                          : headerViewHeightSmallMode
-                coinMeasure: currentAssetName
-                labelColor: currentAssetColor
-                coinSymbol: currentAssetSymbol
-                windowWidth: root.windowWidth
-
-                onSendCoins: {
-                    openSendDialog({});
-                }
-
-
-                onReceiveCoins: {
-                    openReceiveDialog({});
-                }
-            }
-
-            TransactionsListView {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                transactionListModel: walletViewModel.transactionsListModel
+            onTransactionDetails: {
+                openTransactionDetailsDialog({});
             }
         }
     }

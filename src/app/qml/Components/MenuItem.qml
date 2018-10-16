@@ -40,7 +40,7 @@ Item {
                 color: currentColor
             }
 
-            Text {
+            XSNLabel {
                 Layout.alignment: Qt.AlignHCenter
                 text: name
                 font.pixelSize: 13
@@ -62,7 +62,7 @@ Item {
                 color: currentColor
             }
 
-            Text {
+            XSNLabel {
                 Layout.alignment: Qt.AlignVCenter
                 Layout.leftMargin: 5
                 text: name

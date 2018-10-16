@@ -6,6 +6,7 @@ import "../Components"
 Item {
     id: root
     property QtObject transactionListModel: undefined
+    signal transactionDetails()
 
     ColumnLayout {
         anchors.fill: parent
@@ -92,8 +93,8 @@ Item {
                         Layout.preferredWidth: parent.width * 0.18
                         Layout.alignment: Qt.AlignVCenter
 
-                        Text { text: isSend ? "Sent" : "Received"; color: "white"; font.pixelSize: 14}
-                        Text { text: txDate; color: "#7D8CBF"; font.pixelSize: 11}
+                        XSNLabel { text: isSend ? "Sent" : "Received"; color: "white"; font.pixelSize: 14}
+                        XSNLabel { text: txDate; color: "#7D8CBF"; font.pixelSize: 11}
                     }
 
                     Row {
@@ -107,7 +108,7 @@ Item {
                             sourceSize: Qt.size(25, 25)
                         }
 
-                        Text {
+                        XSNLabel {
                             anchors.verticalCenter: parent.verticalCenter
                             text: currency
                             color: "white"
@@ -120,7 +121,7 @@ Item {
                         Layout.alignment: Qt.AlignVCenter
                         spacing: width * 0.05
 
-                        Text {
+                        XSNLabel {
                             property string iD: "dfjvndskfjnvdskjfvndskfvnbdskfnvkfdv"
                             id: transactionID
                             width: parent.width * 0.8
@@ -147,12 +148,12 @@ Item {
                         Row {
                             anchors.right: parent.right
                             spacing: 5
-                            Text { text: isSend ? "−" : "+"; color: isSend ? "#E2344F": "#1DB182"; font.pixelSize: 14}
-                            Text { text: delta; color: isSend ? "#E2344F": "#1DB182"; font.pixelSize: 14}
-                            Text { text: symbol; color: isSend ? "#E2344F": "#1DB182"; font.pixelSize: 14; font.capitalization: Font.AllUppercase}
+                            XSNLabel { text: isSend ? "−" : "+"; color: isSend ? "#E2344F": "#1DB182"; font.pixelSize: 14}
+                            XSNLabel { text: delta; color: isSend ? "#E2344F": "#1DB182"; font.pixelSize: 14}
+                            XSNLabel { text: symbol; color: isSend ? "#E2344F": "#1DB182"; font.pixelSize: 14; font.capitalization: Font.AllUppercase}
                         }
 
-                        Text {
+                        XSNLabel {
                             anchors.right: parent.right
                             text: "$ 4562.54"; color: "#7D8CBF"; font.pixelSize: 11;
                         }
@@ -177,7 +178,10 @@ Item {
                         if(transactionsList.currentIndex === index)
                             transactionsList.currentIndex = -1
                         else
+                        {
                             transactionsList.currentIndex = index
+                            transactionDetails();
+                        }
                     }
                 }
             }

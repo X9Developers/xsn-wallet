@@ -37,6 +37,7 @@ public:
 private:
     static void RegisterViewModels(const char *uri, int versionMinor, int versionMajor);
     static void RegisterModels(const char *uri, int versionMinor, int versionMajor);
+    static void RegisterFonts();
 
 };
 

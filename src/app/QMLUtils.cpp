@@ -6,6 +6,7 @@
 #include <ViewModels/EmulatorViewModel.hpp>
 
 #include <QQmlEngine>
+#include <QFontDatabase>
 
 #define QML_REGISTER_TYPE_HELPER(Class) qmlRegisterType<Class>(uri, versionMajor, versionMinor, #Class)
 
@@ -15,6 +16,7 @@ void QMLUtils::RegisterQMLTypes()
 {
     RegisterModels("com.xsn.models", 0, 1);
     RegisterViewModels("com.xsn.viewmodels", 0, 1);
+    RegisterFonts();
 }
 
 //==============================================================================
@@ -73,6 +75,24 @@ void QMLUtils::RegisterViewModels(const char *uri, int versionMinor, int version
 void QMLUtils::RegisterModels(const char *uri, int versionMinor, int versionMajor)
 {
     QML_REGISTER_TYPE_HELPER(WalletAssetsListModel);
+}
+
+//==============================================================================
+
+void QMLUtils::RegisterFonts()
+{
+    QFontDatabase::addApplicationFont("qrc:/Rubik-Black.tff");
+    QFontDatabase::addApplicationFont("qrc:/Rubik-BlackItalic.tff");
+    QFontDatabase::addApplicationFont("qrc:/Rubik-Bold.tff");
+    QFontDatabase::addApplicationFont("qrc:/Rubik-BoldItalic.tff");
+    QFontDatabase::addApplicationFont("qrc:/Rubik-Italic.tff");
+    QFontDatabase::addApplicationFont("qrc:/Rubik-Light.tff");
+    QFontDatabase::addApplicationFont("qrc:/Rubik-LightItalic.tff");
+    QFontDatabase::addApplicationFont("qrc:/Rubik-Medium.tff");
+    QFontDatabase::addApplicationFont("qrc:/Rubik-MediumItalic.tff");
+    QFontDatabase::addApplicationFont("qrc:/Rubik-Regular.ttf");
+    QFont font = QFont("Rubik");
+
 }
 
 //==============================================================================

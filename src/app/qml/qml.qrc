@@ -34,5 +34,6 @@
         <file>Components/PrimaryButton.qml</file>
         <file>Components/SecondaryButton.qml</file>
         <file>Views/WalletPageHeaderView.qml</file>
+        <file>Components/CustomizedComboBox.qml</file>
     </qresource>
 </RCC>

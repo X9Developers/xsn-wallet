@@ -82,7 +82,7 @@ ColumnLayout {
                         }
                     }
 
-                    Text {
+                    XSNLabel {
                         text: "$ %1" .arg("18 673.72")
                         color: "#6E7BAA"
                         font.pixelSize: 12
@@ -112,7 +112,7 @@ ColumnLayout {
                         }
                     }
 
-                    Text {
+                    XSNLabel {
                         text: "+ %1%" .arg("5.09")
                         color: "#1DB182"
                         font.pixelSize: 12
@@ -152,7 +152,7 @@ ColumnLayout {
                 Layout.fillWidth: true
                 visible: false
 
-                Text {
+                XSNLabel {
                     text: "Chart"
                     anchors.centerIn: parent
                     color: "white"
