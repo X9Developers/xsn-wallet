@@ -69,7 +69,6 @@ Page {
                 }
             }
 
-
         }
         WalletPageHeaderView {
             //Layout.fillHeight: true

@@ -33,6 +33,7 @@ Item {
         Row {
             id: coins
             Layout.alignment: Qt.AlignHCenter
+            //anchors.horizontalCenter: parent.horizontalCenter
             spacing: 5
 
             XSNLabel {
@@ -65,13 +66,11 @@ Item {
             anchors.bottomMargin: 10
             anchors.horizontalCenter: parent.horizontalCenter
             spacing: 25
-
             ActionButton {
                 Layout.preferredWidth: 130
                 Layout.preferredHeight: 40
                 buttonText: qsTr("Send")
                 source: "qrc:/images/icons-1 stroke-16px-withdraw.png"
-
                 onClicked: sendCoins()
             }
 
@@ -85,6 +84,6 @@ Item {
                 onClicked: receiveCoins();
             }
         }
-    }
 
+    }
 }

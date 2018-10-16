@@ -17,7 +17,6 @@ ColumnLayout {
             Layout.fillWidth: true
             text: "Wallets"
         }
-
         Item {
             Layout.fillHeight: true
             Layout.fillWidth: true
