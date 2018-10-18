@@ -19,6 +19,19 @@ Popup {
     parent: Overlay.overlay
     modal: true
 
+    enter: Transition {
+          from: "hidden"
+          to: "visible"
+          NumberAnimation {
+              target: root
+              property: "scale"
+              from: 0.7
+              to: 1
+              duration: 400
+              easing.type: Easing.OutCubic
+          }
+      }
+
     Rectangle {
         id: item
         anchors.fill: parent
@@ -66,7 +79,6 @@ Popup {
                 horizontalAlignment: Text.AlignHCenter
             }
 
-            //            background: "#3F444A"
             onClicked: popUpComponent.close()
         }
     }

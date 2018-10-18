@@ -82,7 +82,7 @@ ListView {
                 }
 
                 SecondaryLabel {
-                    Layout.alignment: Qt.AlignRight & Qt.AlignVCenter
+                    Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
                     anchors.right: parent.right
                     text: "$ 4562.54"
                 }

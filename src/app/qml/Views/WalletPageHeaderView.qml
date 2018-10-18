@@ -26,14 +26,13 @@ Item {
             id: iconBut
             source: hovered ? "qrc:/images/refresh.png" : coinMeasure !== "" ? "qrc:/images/%1.png".arg(coinMeasure): ""
             sourceSize: Qt.size(75, 75)
-            anchors.horizontalCenter: parent.horizontalCenter
+            Layout.alignment: Qt.AlignHCenter
             hoverEnabled: true
         }
 
         Row {
             id: coins
             Layout.alignment: Qt.AlignHCenter
-            //anchors.horizontalCenter: parent.horizontalCenter
             spacing: 5
 
             XSNLabel {
@@ -66,6 +65,7 @@ Item {
             anchors.bottomMargin: 10
             anchors.horizontalCenter: parent.horizontalCenter
             spacing: 25
+
             ActionButton {
                 Layout.preferredWidth: 130
                 Layout.preferredHeight: 40
@@ -80,7 +80,6 @@ Item {
                 font.weight: Font.Light
                 buttonText: qsTr("Receive")
                 source: "qrc:/images/icons-1 stroke-16px-deposit.png"
-
                 onClicked: receiveCoins();
             }
         }

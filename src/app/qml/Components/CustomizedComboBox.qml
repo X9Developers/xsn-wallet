@@ -13,7 +13,6 @@ ComboBox {
             font: control.font
             elide: Text.ElideRight
             verticalAlignment: Text.AlignVCenter
-
             MouseArea {
                 anchors.fill: parent
                 onClicked:
