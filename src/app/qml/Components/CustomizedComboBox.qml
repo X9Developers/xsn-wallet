@@ -13,6 +13,17 @@ ComboBox {
             font: control.font
             elide: Text.ElideRight
             verticalAlignment: Text.AlignVCenter
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked:
+                {
+                    if(modelData == "Balance")
+                        walletsListModel.model.sortByColumn("Balance")
+                    else if(modelData == "Currency")
+                        walletsListModel.model.sortByColumn("Currency")
+                }
+            }
         }
         background: Rectangle {
             color: parent.highlighted ? "#20233D" : "#090D1C"

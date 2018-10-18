@@ -63,7 +63,7 @@ void WalletAssetsModel::init(QString assetFilePath)
 
 void WalletAssetsModel::addAsset(CoinAsset asset)
 {
-    _assets.emplace(asset.coinID, asset);
+    _assets.emplace(asset.coinID(), asset);
 }
 
 //==============================================================================

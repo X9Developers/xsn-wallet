@@ -8,6 +8,8 @@ Product {
     type: "staticlibrary"
     name: "core"
     files: [
+        "Data/AssetsBalance.cpp",
+        "Data/AssetsBalance.hpp",
         "Data/CoinAsset.cpp",
         "Data/CoinAsset.hpp",
         "Data/TransactionEntry.cpp",

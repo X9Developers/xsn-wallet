@@ -69,7 +69,7 @@ QString WalletAssetViewModel::getReceivingAddress() const
     auto pubKey = derivedNewChildKey.second.key.GetPubKey();
     auto keyID = pubKey.GetID();
 
-    return QString::fromStdString(bitcoin::EncodeDestination(keyID, _walletAssetsModel->assetById(_currentAssetID).params));
+    return QString::fromStdString(bitcoin::EncodeDestination(keyID, _walletAssetsModel->assetById(_currentAssetID).params()));
 }
 
 //==============================================================================

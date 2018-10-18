@@ -66,7 +66,7 @@ ColumnLayout {
 
             CustomizedComboBox {
                 anchors.verticalCenter: parent.verticalCenter
-                model: ["Balance", "Portfolio"]
+                model: ["Balance", "Currency"]
             }
         }
     }
@@ -82,6 +82,7 @@ ColumnLayout {
         }
 
         WalletsListView {
+            id: walletsListModel
             Layout.fillHeight: true
             Layout.fillWidth: true
             model: WalletAssetsListModel {

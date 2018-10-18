@@ -13,21 +13,37 @@ struct CoinAsset
         Misc(QString color);
         static Misc FromJson(const QJsonObject &obj);
 
-        const QString color;
+        QString color;
     };
 
 
     CoinAsset(unsigned int coinID, QString name,
               QString ticket, bitcoin::CChainParams params, Misc misc);
 
-
     static CoinAsset FromJson(const QJsonObject &obj);
 
-    const unsigned int coinID;
-    const QString name;
-    const QString ticket;
-    const bitcoin::CChainParams params;
-    const Misc misc;
+    void setCoinID(unsigned int coinID);
+    unsigned int coinID() const;
+
+    void setName(QString name);
+    QString name() const;
+
+    void setTicket(QString ticket);
+    QString ticket() const;
+
+    void setParams(bitcoin::CChainParams params);
+    bitcoin::CChainParams params() const;
+
+    void setMisc(Misc misc);
+    Misc misc() const;
+
+
+private:
+    unsigned int _coinID;
+    QString _name;
+    QString _ticket;
+    bitcoin::CChainParams _params;
+    Misc _misc;
 };
 
 #endif // COINASSET_HPP
