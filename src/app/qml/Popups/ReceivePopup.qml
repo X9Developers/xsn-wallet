@@ -1,4 +1,4 @@
-import QtQuick 2.1
+import QtQuick 2.6
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.2
 import QtGraphicalEffects 1.0
@@ -17,9 +17,15 @@ ActionDialog {
         anchors.margins: 20
         spacing: 3
 
-        ComboBox {
-            Layout.fillWidth: true
-            model: [ "Stakenet", "Dash", "Bitcoin" ]
+        ListModel {
+            id: coins
+            ListElement { name: "Stakenet"; iconPath: "qrc:/images/Stakenet.png"; amount: "1000"; value: "XSN"}
+            ListElement { name: "Dash"; iconPath: "qrc:/images/Stakenet.png"; amount: "100"; value: "DASH" }
+            ListElement { name: "Bitcoin"; iconPath: "qrc:/images/Stakenet.png"; amount: "50"; value: "BTC" }
+        }
+
+        CoinsCombobox{
+            model: coins
         }
 
         Rectangle {
@@ -33,9 +39,9 @@ ActionDialog {
                 anchors.fill: parent
                 anchors.margins: 15
 
-          RoundedImage {
-              imageSource: "qrc:/images/alert@2x.png"
-          }
+                RoundedImage {
+                    imageSource: "qrc:/images/alert@2x.png"
+                }
 
                 SecondaryLabel{
                     text: qsTr("Send only XSN to this address. Sending any \nother digital asset will result in permanent loss.")
@@ -141,3 +147,4 @@ ActionDialog {
         }
     }
 }
+

@@ -1,4 +1,4 @@
-import QtQuick 2.1
+import QtQuick 2.6
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.2
 import QtGraphicalEffects 1.0
@@ -15,9 +15,15 @@ ActionDialog {
         anchors.margins: 20
         spacing: 18
 
-        ComboBox {
-            Layout.fillWidth: true
-            model: [ "Stakenet", "Dash", "Bitcoin" ]
+        ListModel {
+            id: coins
+            ListElement { name: "Stakenet"; iconPath: "qrc:/images/Stakenet.png"; amount: "1000" }
+            ListElement { name: "Dash"; iconPath: "qrc:/images/Stakenet.png"; amount: "100" }
+            ListElement { name: "Bitcoin"; iconPath: "qrc:/images/Stakenet.png"; amount: "50" }
+        }
+
+        CoinsCombobox{
+            model: coins
         }
 
         ColumnLayout {

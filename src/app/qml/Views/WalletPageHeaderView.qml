@@ -26,14 +26,13 @@ Item {
             id: iconBut
             source: hovered ? "qrc:/images/refresh.png" : coinMeasure !== "" ? "qrc:/images/%1.png".arg(coinMeasure): ""
             sourceSize: Qt.size(75, 75)
-            anchors.horizontalCenter: parent.horizontalCenter
+            Layout.alignment: Qt.AlignHCenter
             hoverEnabled: true
         }
 
         Row {
             id: coins
             Layout.alignment: Qt.AlignHCenter
-            //anchors.horizontalCenter: parent.horizontalCenter
             spacing: 5
 
             XSNLabel {
@@ -51,13 +50,34 @@ Item {
             }
         }
 
-        XSNLabel {
-            id: usdAmount
-            anchors.left: coins.left
-            anchors.leftMargin: 5
-            text: "$ %1" .arg("18 673.72")
-            color: "#6E7BAA"
-            font.pixelSize: 22
+        Row {
+            id: usd
+//            anchors.top: coins.bottom
+            Layout.alignment: Qt.AlignHCenter
+            spacing: 5
+
+            XSNLabel {
+                text: qsTr("$")
+                anchors.bottom: parent.bottom
+                color: "#7F8DC1"
+                font.pixelSize: 22
+            }
+
+            XSNLabel {
+                id: usdAmount
+                text: "0.00" //qsTr("91.22")
+                color: "white"
+                anchors.bottom: parent.bottom
+                font.pixelSize: 31
+            }
+
+            XSNLabel {
+                text: "USD"
+                anchors.bottom: parent.bottom
+                color: "#7F8DC1"
+                font.pixelSize: 22
+                font.capitalization: Font.AllUppercase
+            }
         }
 
         RowLayout {
@@ -66,6 +86,7 @@ Item {
             anchors.bottomMargin: 10
             anchors.horizontalCenter: parent.horizontalCenter
             spacing: 25
+
             ActionButton {
                 Layout.preferredWidth: 130
                 Layout.preferredHeight: 40
@@ -80,7 +101,6 @@ Item {
                 font.weight: Font.Light
                 buttonText: qsTr("Receive")
                 source: "qrc:/images/icons-1 stroke-16px-deposit.png"
-
                 onClicked: receiveCoins();
             }
         }
