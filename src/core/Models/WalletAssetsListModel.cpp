@@ -10,7 +10,7 @@
 
 struct WalletAssetsListModel::WalletAssetsListModelImpl {
     std::vector<CoinAsset> _assets;
-    AssetsBalance::BalanceMap _assetBalance;
+    AssetsBalance::BalanceMap _balance;
 };
 
 //==============================================================================
@@ -52,7 +52,7 @@ QVariant WalletAssetsListModel::data(const QModelIndex &index, int role) const
     case TicketRole: return asset.ticket();
     case ColorRole: return asset.misc().color;
     case BalanceRole: return QVariant::fromValue(getAssetBalance(asset.coinID()));
-    case PortfolioPercentageRole: return 0; //QVariant::fromValue(getAssetBalance(asset.coinID()) / _balanceSum  * 100);
+    case PortfolioPercentageRole:  return QVariant::fromValue(getAssetBalance(asset.coinID()) * 100 / _balanceSum);
     default:
         break;
     }
@@ -99,9 +99,7 @@ void WalletAssetsListModel::initialize(QObject *appViewModel)
 void WalletAssetsListModel::initAssets(const WalletAssetsModel &assetModel)
 {
     beginResetModel();
-
     _impl->_assets =  assetModel.assets();
-
     endResetModel();
 }
 
@@ -112,14 +110,12 @@ void WalletAssetsListModel::initBalance(AssetsBalance *assetsBalance)
     beginResetModel();
     _balanceSum = 0;
 
-    _assetBalance = assetsBalance;
+    _balance = assetsBalance;
 
-    _impl->_assetBalance = assetsBalance->balance();
+    _impl->_balance = assetsBalance->balance();
     _balanceSum = assetsBalance->balanceSum();
 
     connect(assetsBalance, &AssetsBalance::balanceUpdated, this, &WalletAssetsListModel::onAssetBalanceUpdated);
-
-    sortByColumn("Balance");
 
     endResetModel();
 }
@@ -128,8 +124,8 @@ void WalletAssetsListModel::initBalance(AssetsBalance *assetsBalance)
 
 Balance WalletAssetsListModel::getAssetBalance(AssetID assetID) const
 {
-    return _impl->_assetBalance.find(assetID) != _impl->_assetBalance.end() ?
-                _impl->_assetBalance.at(assetID) : 0;
+    return _impl->_balance.find(assetID) != _impl->_balance.end() ?
+                _impl->_balance.at(assetID) : 0;
 }
 
 //==============================================================================
@@ -137,9 +133,17 @@ Balance WalletAssetsListModel::getAssetBalance(AssetID assetID) const
 void WalletAssetsListModel::sortByColumn(QString columnName)
 {
     beginResetModel();
-
     if(columnName == "Balance")
     {
+        std::multimap<Balance, CoinAsset> assetsVector;
+        for(auto coinAsset : _impl->_assets)
+            assetsVector.insert({ _impl->_balance.at(coinAsset.coinID()), coinAsset});
+
+        std::vector<CoinAsset> sortedAssets;
+        for(auto asset : assetsVector)
+            sortedAssets.push_back(asset.second);
+
+        _impl->_assets.swap(sortedAssets);
     }
 
     else if (columnName == "Currency")
@@ -158,8 +162,10 @@ void WalletAssetsListModel::sortByColumn(QString columnName)
 void WalletAssetsListModel::onAssetBalanceUpdated()
 {
     beginResetModel();
-    _impl->_assetBalance = _assetBalance->balance();
-    _balanceSum = _assetBalance->balanceSum();
+    _impl->_balance = _balance->balance();
+    _balanceSum = _balance->balanceSum();
+    sortByColumn("Balance");
+
     endResetModel();
 }
 //==============================================================================

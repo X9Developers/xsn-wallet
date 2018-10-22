@@ -93,9 +93,8 @@ void ApplicationViewModel::initAllTransactions()
 
 void ApplicationViewModel::initWalletAssetsBalance()
 {
-     auto allTransactionsDataSource = new AllTransactionsDataSource(dataSource(), this);
-     _assetsBalance.reset( new AssetsBalance(_walletAssetsModel.get(), allTransactionsDataSource));
-
+    auto allTransactionsDataSource = new AllTransactionsDataSource(dataSource(), this);
+    _assetsBalance.reset( new AssetsBalance(_walletAssetsModel.get(), allTransactionsDataSource));
 }
 
 //==============================================================================

@@ -31,7 +31,7 @@ auto AssetsBalance::balance() const -> BalanceMap
 
 Balance AssetsBalance::balanceSum() const
 {
-    if(_assetsBalance.empty())
+    if(!_assetsBalance.empty())
     {
         Balance result = 0;
         for(auto assetBalance : _assetsBalance)
@@ -40,7 +40,7 @@ Balance AssetsBalance::balanceSum() const
         return result;
     }
     else
-        return 0;
+        return 1;
 }
 
 //==============================================================================
@@ -55,8 +55,6 @@ Balance AssetsBalance::balanceById(AssetID assetID) const
 void AssetsBalance::onTransactionFetched(WalletDataSource::TransactionsList list)
 {
     _transactionList.swap(list);
-    auto assetsModel = _walletAssetsModel->assets();
-
     updateBalance();
 }
 
@@ -73,22 +71,24 @@ void AssetsBalance::onTransactionAdded(TransactionEntry entry)
 void AssetsBalance::updateBalance()
 {
     auto assetsModel = _walletAssetsModel->assets();
-
-    for(auto transaction : _transactionList)
+    _assetsBalance.clear();
+    if(!_transactionList.empty())
     {
-        auto it  = _assetsBalance.find(transaction._assetID);
-        if(it == std::end(_assetsBalance))
+        for(auto transaction : _transactionList)
         {
-            _assetsBalance.insert({transaction._assetID, calculateBalance(transaction)});
-        }
-        else
-        {
-            qDebug() << "balance" <<  _assetsBalance.at(transaction._assetID) + calculateBalance(transaction);
-            it->second = _assetsBalance.at(transaction._assetID) + calculateBalance(transaction);
-        }
+            auto it  = _assetsBalance.find(transaction._assetID);
 
+            if(it == std::end(_assetsBalance))
+            {
+                _assetsBalance.insert({transaction._assetID, calculateBalance(transaction)});
+            }
+            else
+            {
+                it->second = _assetsBalance.at(transaction._assetID) + calculateBalance(transaction);
+            }
+        }
+        balanceUpdated();
     }
-    balanceUpdated();
 }
 
 //==============================================================================

@@ -1,6 +1,7 @@
 #include "EmulatorViewModel.hpp"
 #include "Models/EmulatorWalletDataSource.hpp"
 #include "ViewModels/ApplicationViewModel.hpp"
+#include <QDebug>
 
 //==============================================================================
 
@@ -40,6 +41,7 @@ void EmulatorViewModel::addTransaction(AssetID currentModel, int count)
     if(_walletDataSource)
     {
         _walletDataSource->executeAdd(currentModel, count);
+        qDebug() << "addTransaction"  << currentModel;
     }
 }
 

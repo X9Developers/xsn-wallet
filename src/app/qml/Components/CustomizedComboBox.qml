@@ -4,7 +4,6 @@ import QtQuick.Controls 2.1
 ComboBox {
     id: control
     font.pixelSize: 14
-
     delegate: ItemDelegate {
         width: control.width
         contentItem: XSNLabel {
@@ -13,16 +12,6 @@ ComboBox {
             font: control.font
             elide: Text.ElideRight
             verticalAlignment: Text.AlignVCenter
-            MouseArea {
-                anchors.fill: parent
-                onClicked:
-                {
-                    if(modelData == "Balance")
-                        walletsListModel.model.sortByColumn("Balance")
-                    else if(modelData == "Currency")
-                        walletsListModel.model.sortByColumn("Currency")
-                }
-            }
         }
         background: Rectangle {
             color: parent.highlighted ? "#20233D" : "#090D1C"
@@ -30,6 +19,14 @@ ComboBox {
         }
 
         highlighted: control.highlightedIndex === index
+
+        onClicked: {
+            if(index == 0)
+                walletsListModel.model.sortByColumn("Balance")
+            else if(index == 1)
+                walletsListModel.model.sortByColumn("Currency")
+        }
+
     }
 
     contentItem: XSNLabel {

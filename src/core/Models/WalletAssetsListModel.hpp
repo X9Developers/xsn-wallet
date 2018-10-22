@@ -43,7 +43,7 @@ private:
 private:
     struct WalletAssetsListModelImpl;
     std::unique_ptr<WalletAssetsListModelImpl> _impl;
-    QPointer<AssetsBalance> _assetBalance;
+    QPointer<AssetsBalance> _balance;
     Balance _balanceSum;
 };
 
