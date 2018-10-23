@@ -22,9 +22,9 @@ ComboBox {
 
         onClicked: {
             if(index == 0)
-                walletsListModel.model.sortByColumn("Balance")
-            else if(index == 1)
                 walletsListModel.model.sortByColumn("Currency")
+            else if(index == 1)
+                walletsListModel.model.sortByColumn("Balance")
         }
 
     }

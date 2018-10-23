@@ -88,6 +88,8 @@ void WalletTransactionsListModel::onTransactionAdded(TransactionEntry entry)
     beginInsertRows(QModelIndex(), rows, rows);
     _transactionList.emplace_back(entry);
     endInsertRows();
+
+    _dataSource-> fetchTransactions();
 }
 
 //==============================================================================

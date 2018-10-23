@@ -39,6 +39,7 @@ private:
     void initAssets(const WalletAssetsModel &assetModel);
     void initBalance(AssetsBalance *assetsBalance);
     Balance getAssetBalance(AssetID assetID) const;
+    int getPortfolioPercentage(Balance balance) const;
 
 private:
     struct WalletAssetsListModelImpl;

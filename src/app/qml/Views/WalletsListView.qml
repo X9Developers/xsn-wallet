@@ -23,7 +23,7 @@ ListView {
         width: parent.width
         property string name: model.name
         property string currency: model.symbol
-        property int balance: model.balance === undefined ? 0 : model.balance
+        property int balance: model.balance
         property int portfolioPercent: model.percent
         RowLayout {
             anchors.fill: parent

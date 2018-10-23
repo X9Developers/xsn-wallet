@@ -66,7 +66,7 @@ ColumnLayout {
 
             CustomizedComboBox {
                 anchors.verticalCenter: parent.verticalCenter
-                model: ["Balance", "Currency"]
+                model: ["Currency", "Balance"]
             }
         }
     }
