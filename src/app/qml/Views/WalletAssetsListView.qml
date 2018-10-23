@@ -6,6 +6,9 @@ import "../Components"
 
 ListView {
     id: listView
+
+    property int actualIndex: 0
+
     anchors.leftMargin: 10
     anchors.rightMargin: 10
     anchors.fill: parent
@@ -58,6 +61,7 @@ ListView {
             anchors.fill: parent
             hoverEnabled: true
             onClicked: {
+                listView.actualIndex = index;
                 listView.currentIndex = index;
             }
         }
