@@ -61,13 +61,6 @@ CoinAsset CoinAsset::FromJson(const QJsonObject &obj)
 
 //==============================================================================
 
-void CoinAsset::setCoinID(unsigned int coinID)
-{
-    _coinID = coinID;
-}
-
-//==============================================================================
-
 unsigned int CoinAsset::coinID() const
 {
     return _coinID;

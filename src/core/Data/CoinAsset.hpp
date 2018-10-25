@@ -3,6 +3,7 @@
 
 #include <QString>
 #include <chainparams.hpp>
+#include "Utils/Common.hpp"
 
 class QJsonObject;
 
@@ -22,7 +23,6 @@ struct CoinAsset
 
     static CoinAsset FromJson(const QJsonObject &obj);
 
-    void setCoinID(unsigned int coinID);
     unsigned int coinID() const;
 
     void setName(QString name);
@@ -39,7 +39,7 @@ struct CoinAsset
 
 
 private:
-    unsigned int _coinID;
+    AssetID _coinID;
     QString _name;
     QString _ticket;
     bitcoin::CChainParams _params;

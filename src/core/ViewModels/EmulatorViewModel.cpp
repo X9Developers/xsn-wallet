@@ -1,7 +1,6 @@
 #include "EmulatorViewModel.hpp"
 #include "Models/EmulatorWalletDataSource.hpp"
 #include "ViewModels/ApplicationViewModel.hpp"
-#include <QDebug>
 
 //==============================================================================
 

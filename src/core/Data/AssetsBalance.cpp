@@ -1,7 +1,7 @@
 #include "AssetsBalance.hpp"
 #include "Data/WalletAssetsModel.hpp"
 #include "Models/AllTransactionsDataSource.hpp"
-#include "QDebug"
+#include <numeric>
 
 //==============================================================================
 
@@ -33,14 +33,16 @@ Balance AssetsBalance::balanceSum() const
 {
     if(!_assetsBalance.empty())
     {
-        Balance result = 0;
-        for(auto assetBalance : _assetsBalance)
-            result += assetBalance.second;
+        Balance result = std::accumulate(std::begin(_assetsBalance), std::end(_assetsBalance), 0, []
+                                         (Balance value, const std::map<AssetID, Balance>::value_type& pair)
+        {
+            return value + pair.second;
+        });
 
         return result;
     }
     else
-        return 1;
+        return 0;
 }
 
 //==============================================================================
