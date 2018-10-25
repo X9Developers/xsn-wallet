@@ -15,6 +15,7 @@ Item {
     property string labelColor: ""
     property int windowWidth: 0
     property string buttonColor: ""
+    property var balance: undefined
 
     ColumnLayout {
         anchors.fill: parent
@@ -37,9 +38,8 @@ Item {
 
             XSNLabel {
                 id: coinsAmount
-                text: "732.12"
-                font.pixelSize: 60// windowWidth > 1180 ? (root.parent.width > 1250 ? 100 : 75)
-                // : 60
+                text: balance.toString()
+                font.pixelSize: 60
             }
 
             XSNLabel {

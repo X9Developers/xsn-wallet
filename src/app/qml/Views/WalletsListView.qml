@@ -21,10 +21,12 @@ ListView {
         color: "#16192E"
         radius: 4
         width: parent.width
+
         property string name: model.name
         property string currency: model.symbol
         property int balance: model.balance
         property int portfolioPercent: model.percent
+
         RowLayout {
             anchors.fill: parent
             anchors.leftMargin: 20

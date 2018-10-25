@@ -82,6 +82,13 @@ QHash<int, QByteArray> WalletAssetsListModel::roleNames() const
 
 //==============================================================================
 
+int WalletAssetsListModel::count() const
+{
+    return static_cast<int>(_impl->_assets.size());
+}
+
+//==============================================================================
+
 void WalletAssetsListModel::initialize(QObject *appViewModel)
 {
     if(auto viewModel = qobject_cast<ApplicationViewModel*>(appViewModel))

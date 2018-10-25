@@ -38,6 +38,7 @@ ListView {
         property int id: model.id
         property string name: model.name
         property string symbol: model.symbol
+        property var balance: model.balance
 
         RowLayout {
             spacing: 7

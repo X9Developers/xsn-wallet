@@ -14,6 +14,7 @@ class AssetsBalance;
 class WalletAssetsListModel :  public QAbstractListModel
 {
     Q_OBJECT
+    Q_PROPERTY(int count READ count CONSTANT)
 public:
     enum Roles {
         IDRole,
@@ -29,6 +30,8 @@ public:
     virtual int rowCount(const QModelIndex &parent) const override final;
     virtual QVariant data(const QModelIndex &index, int role) const override final;
     virtual QHash<int, QByteArray> roleNames() const override final;
+
+    int count() const;
 
 public slots:
     void initialize(QObject *appViewModel);
