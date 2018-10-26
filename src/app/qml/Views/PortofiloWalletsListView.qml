@@ -9,6 +9,8 @@ import com.xsn.viewmodels 1.0
 import com.xsn.models 1.0
 
 ColumnLayout {
+    id: root
+    property string accountBalance: walletsListModel.model.accountBalance !== undefined ? walletsListModel.model.accountBalance.toString() : ""
 
     RowLayout {
         Layout.fillWidth: true

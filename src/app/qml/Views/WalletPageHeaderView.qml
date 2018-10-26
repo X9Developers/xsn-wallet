@@ -16,6 +16,7 @@ Item {
     property int windowWidth: 0
     property string buttonColor: ""
     property var balance: undefined
+    property var usdBalance: undefined
 
     ColumnLayout {
         anchors.fill: parent
@@ -54,7 +55,7 @@ Item {
             id: usdAmount
             anchors.left: coins.left
             anchors.leftMargin: 5
-            text: "$ %1" .arg("18 673.72")
+            text: "$ %1" .arg(usdBalance)
             color: "#6E7BAA"
             font.pixelSize: 22
         }

@@ -5,6 +5,7 @@
 #include <Data/WalletAssetsModel.hpp>
 #include <Data/CoinAsset.hpp>
 #include <QDebug>
+#include <numeric>
 
 //==============================================================================
 
@@ -53,6 +54,7 @@ QVariant WalletAssetsListModel::data(const QModelIndex &index, int role) const
     case TicketRole: return asset.ticket();
     case ColorRole: return asset.misc().color;
     case BalanceRole: return QVariant::fromValue(balance);
+    case UsdBalanceRole: return QVariant::fromValue(getUsdBalance(asset.coinID(), balance));
     case PortfolioPercentageRole: return getPortfolioPercentage(balance);
     default:
         break;
@@ -74,6 +76,7 @@ QHash<int, QByteArray> WalletAssetsListModel::roleNames() const
         roles[TicketRole] = "symbol";
         roles[ColorRole] = "color";
         roles[BalanceRole] = "balance";
+        roles[UsdBalanceRole] = "usdBalance";
         roles[PortfolioPercentageRole] = "percent";
     }
 
@@ -85,6 +88,16 @@ QHash<int, QByteArray> WalletAssetsListModel::roleNames() const
 int WalletAssetsListModel::count() const
 {
     return static_cast<int>(_impl->_assets.size());
+}
+
+//==============================================================================
+
+QVariant WalletAssetsListModel::accountBalance() const
+{
+    return QVariant::fromValue(std::accumulate(std::begin(_impl->_balance), std::end(_impl->_balance), 0, [] (Balance value, const std::map<AssetID, Balance>::value_type& pair)
+    {
+       return value + pair.second;
+    }));
 }
 
 //==============================================================================
@@ -124,8 +137,9 @@ void WalletAssetsListModel::initBalance(AssetsBalance *assetsBalance)
     _balanceSum = assetsBalance->balanceSum();
 
     connect(assetsBalance, &AssetsBalance::balanceUpdated, this, &WalletAssetsListModel::onAssetBalanceUpdated);
-
     endResetModel();
+
+    accountBalanceChanged();
 }
 
 //==============================================================================
@@ -134,6 +148,14 @@ Balance WalletAssetsListModel::getAssetBalance(AssetID assetID) const
 {
     return _impl->_balance.find(assetID) != _impl->_balance.end() ?
                 _impl->_balance.at(assetID) : 0;
+}
+
+//==============================================================================
+
+Balance WalletAssetsListModel::getUsdBalance(AssetID assetID, Balance coinBalance) const
+{
+    // not implemented - only example
+    return  (assetID + 2) * coinBalance;
 }
 
 //==============================================================================
@@ -180,7 +202,8 @@ void WalletAssetsListModel::onAssetBalanceUpdated()
     beginResetModel();
     _impl->_balance = _balance->balance();
     _balanceSum = _balance->balanceSum();
-
     endResetModel();
+
+    accountBalanceChanged();
 }
 //==============================================================================

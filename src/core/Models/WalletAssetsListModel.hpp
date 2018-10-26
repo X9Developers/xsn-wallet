@@ -14,6 +14,7 @@ class AssetsBalance;
 class WalletAssetsListModel :  public QAbstractListModel
 {
     Q_OBJECT
+    Q_PROPERTY(QVariant accountBalance READ accountBalance NOTIFY accountBalanceChanged)
     Q_PROPERTY(int count READ count CONSTANT)
 public:
     enum Roles {
@@ -22,6 +23,7 @@ public:
         TicketRole,
         ColorRole,
         BalanceRole,
+        UsdBalanceRole,
         PortfolioPercentageRole
     };
     explicit WalletAssetsListModel(QObject *parent = nullptr);
@@ -32,6 +34,10 @@ public:
     virtual QHash<int, QByteArray> roleNames() const override final;
 
     int count() const;
+    QVariant accountBalance() const;
+
+signals:
+    void accountBalanceChanged();
 
 public slots:
     void initialize(QObject *appViewModel);
@@ -42,6 +48,7 @@ private:
     void initAssets(const WalletAssetsModel &assetModel);
     void initBalance(AssetsBalance *assetsBalance);
     Balance getAssetBalance(AssetID assetID) const;
+    Balance getUsdBalance(AssetID assetID, Balance coinBalance) const;
     int getPortfolioPercentage(Balance balance) const;
 
 private:

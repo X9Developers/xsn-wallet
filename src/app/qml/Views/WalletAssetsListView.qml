@@ -39,6 +39,7 @@ ListView {
         property string name: model.name
         property string symbol: model.symbol
         property var balance: model.balance
+        property var usdBalance: model.usdBalance
 
         RowLayout {
             spacing: 7

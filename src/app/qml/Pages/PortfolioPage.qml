@@ -11,6 +11,7 @@ import com.xsn.models 1.0
 
 Page {
     id: root
+    property string accountBalance: portofiloWalletsListView.accountBalance
 
     background: Rectangle {
         anchors.fill: parent
@@ -28,9 +29,11 @@ Page {
             mainHeader: "Statistics"
             buttonsVisible: false
             coinSymbol: "usd"
+            accountBalance: root.accountBalance
         }
 
         PortofiloWalletsListView {
+            id: portofiloWalletsListView
             Layout.fillWidth: true
             Layout.fillHeight: true
         }

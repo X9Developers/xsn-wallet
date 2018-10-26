@@ -24,8 +24,9 @@ ListView {
 
         property string name: model.name
         property string currency: model.symbol
-        property int balance: model.balance
+        property var balance: model.balance
         property int portfolioPercent: model.percent
+        property var usdBalance: model.usdBalance
 
         RowLayout {
             anchors.fill: parent
@@ -74,7 +75,7 @@ ListView {
 
                     XSNLabel {
                         font.pixelSize: 14
-                        text: balance
+                        text: balance.toString()
                     }
 
                     SecondaryLabel {
@@ -86,7 +87,7 @@ ListView {
                 SecondaryLabel {
                     Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
                     anchors.right: parent.right
-                    text: "$ 4562.54"
+                    text: "$ %1" .arg(usdBalance)
                 }
             }
 

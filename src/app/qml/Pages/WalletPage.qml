@@ -18,6 +18,7 @@ Page {
     property string currentAssetColor: assetsListView.currentItem ? assetsListView.currentItem.color : ""
     property string currentAssetSymbol: assetsListView.currentItem ? assetsListView.currentItem.symbol : ""
     property var currentBalance: assetsListView.currentItem ? assetsListView.currentItem.balance : undefined
+    property var currentUsdBalance: assetsListView.currentItem ? assetsListView.currentItem.usdBalance : undefined
 
     background: Rectangle {
         color: "transparent"
@@ -78,6 +79,7 @@ Page {
             labelColor: currentAssetColor
             coinSymbol: currentAssetSymbol
             balance: currentBalance
+            usdBalance: currentUsdBalance
             windowWidth: root.windowWidth
 
             onSendCoins: {
