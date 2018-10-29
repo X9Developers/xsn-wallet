@@ -4,7 +4,6 @@ import QtQuick.Controls 2.1
 ComboBox {
     id: control
     font.pixelSize: 14
-
     delegate: ItemDelegate {
         width: control.width
         contentItem: XSNLabel {
@@ -20,6 +19,14 @@ ComboBox {
         }
 
         highlighted: control.highlightedIndex === index
+
+        onClicked: {
+            if(index == 0)
+                walletsListModel.model.sortByColumn("Currency")
+            else if(index == 1)
+                walletsListModel.model.sortByColumn("Balance")
+        }
+
     }
 
     contentItem: XSNLabel {

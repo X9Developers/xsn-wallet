@@ -63,7 +63,7 @@ Page {
                         Component.onCompleted: initialize(ApplicationViewModel)
 
                         onModelReset: {
-                            assetsListView.currentIndex = 0;
+                            assetsListView.currentIndex = assetsListView.actualIndex;
                         }
                     }
                 }

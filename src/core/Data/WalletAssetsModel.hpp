@@ -5,6 +5,7 @@
 #include <map>
 #include <vector>
 #include "CoinAsset.hpp"
+#include "Utils/Common.hpp"
 
 class WalletAssetsModel : public QObject
 {

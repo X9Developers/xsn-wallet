@@ -50,34 +50,13 @@ Item {
             }
         }
 
-        Row {
-            id: usd
-//            anchors.top: coins.bottom
-            Layout.alignment: Qt.AlignHCenter
-            spacing: 5
-
-            XSNLabel {
-                text: qsTr("$")
-                anchors.bottom: parent.bottom
-                color: "#7F8DC1"
-                font.pixelSize: 22
-            }
-
-            XSNLabel {
-                id: usdAmount
-                text: "0.00" //qsTr("91.22")
-                color: "white"
-                anchors.bottom: parent.bottom
-                font.pixelSize: 31
-            }
-
-            XSNLabel {
-                text: "USD"
-                anchors.bottom: parent.bottom
-                color: "#7F8DC1"
-                font.pixelSize: 22
-                font.capitalization: Font.AllUppercase
-            }
+        XSNLabel {
+            id: usdAmount
+            anchors.left: coins.left
+            anchors.leftMargin: 5
+            text: "$ %1" .arg("18 673.72")
+            color: "#6E7BAA"
+            font.pixelSize: 22
         }
 
         RowLayout {
