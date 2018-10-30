@@ -15,7 +15,7 @@ class WalletAssetsListModel :  public QAbstractListModel
 {
     Q_OBJECT
     Q_PROPERTY(QVariant accountBalance READ accountBalance NOTIFY accountBalanceChanged)
-    Q_PROPERTY(int count READ count CONSTANT)
+    Q_PROPERTY(int count READ count NOTIFY countChanged)
 public:
     enum Roles {
         IDRole,
@@ -38,6 +38,7 @@ public:
 
 signals:
     void accountBalanceChanged();
+    void countChanged();
 
 public slots:
     void initialize(QObject *appViewModel);

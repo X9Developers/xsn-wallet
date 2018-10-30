@@ -140,6 +140,7 @@ void WalletAssetsListModel::initBalance(AssetsBalance *assetsBalance)
     endResetModel();
 
     accountBalanceChanged();
+    countChanged();
 }
 
 //==============================================================================
@@ -205,5 +206,6 @@ void WalletAssetsListModel::onAssetBalanceUpdated()
     endResetModel();
 
     accountBalanceChanged();
+    countChanged();
 }
 //==============================================================================

@@ -20,6 +20,8 @@ Product {
         "Models/AllTransactionsDataSource.hpp",
         "Models/AssetTransactionsDataSource.cpp",
         "Models/AssetTransactionsDataSource.hpp",
+        "Models/AssetsListProxyModel.cpp",
+        "Models/AssetsListProxyModel.hpp",
         "Models/EmulatorWalletDataSource.cpp",
         "Models/EmulatorWalletDataSource.hpp",
         "Models/TransactionsDataSource.cpp",

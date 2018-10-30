@@ -137,7 +137,7 @@ ListView {
     spacing: 5
 
     add: Transition {
-        NumberAnimation { properties: "y"; from: transactionsList.height; duration: 200 }
+        NumberAnimation { properties: "y"; from: root.height; duration: 200 }
     }
     addDisplaced: Transition {
         NumberAnimation { properties: "x,y"; duration: 200 }
