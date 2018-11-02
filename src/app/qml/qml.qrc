@@ -37,5 +37,9 @@
         <file>Components/ComboBoxItem.qml</file>
         <file>Components/CoinsCombobox.qml</file>
         <file>Components/CustomizedComboBox.qml</file>
+        <file>Pages/SettingsPage.qml</file>
+        <file>Views/SettingsHeader.qml</file>
+        <file>Views/SettingsView.qml</file>
+        <file>Views/LocalizationView.qml</file>
     </qresource>
 </RCC>

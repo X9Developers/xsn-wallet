@@ -4,7 +4,6 @@ import QtQuick.Controls 2.1
 ComboBox {
     id: control
     font.pixelSize: 14
-
     delegate: ItemDelegate {
         width: control.width
         contentItem: XSNLabel {

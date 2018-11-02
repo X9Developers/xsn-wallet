@@ -72,6 +72,7 @@ QString WalletAssetViewModel::getReceivingAddress() const
     return QString::fromStdString(bitcoin::EncodeDestination(keyID, _walletAssetsModel->assetById(_currentAssetID).params));
 #endif
     return QString("dummy");
+//    return QString::fromStdString(bitcoin::EncodeDestination(keyID, _walletAssetsModel->assetById(_currentAssetID).params()));
 }
 
 //==============================================================================

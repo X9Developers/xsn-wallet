@@ -15,6 +15,8 @@ Item {
     property string labelColor: ""
     property int windowWidth: 0
     property string buttonColor: ""
+    property var balance: undefined
+    property var usdBalance: undefined
 
     ColumnLayout {
         anchors.fill: parent
@@ -37,9 +39,8 @@ Item {
 
             XSNLabel {
                 id: coinsAmount
-                text: "732.12"
-                font.pixelSize: 60// windowWidth > 1180 ? (root.parent.width > 1250 ? 100 : 75)
-                // : 60
+                text: balance.toString()
+                font.pixelSize: 60
             }
 
             XSNLabel {
@@ -50,34 +51,13 @@ Item {
             }
         }
 
-        Row {
-            id: usd
-//            anchors.top: coins.bottom
-            Layout.alignment: Qt.AlignHCenter
-            spacing: 5
-
-            XSNLabel {
-                text: qsTr("$")
-                anchors.bottom: parent.bottom
-                color: "#7F8DC1"
-                font.pixelSize: 22
-            }
-
-            XSNLabel {
-                id: usdAmount
-                text: "0.00" //qsTr("91.22")
-                color: "white"
-                anchors.bottom: parent.bottom
-                font.pixelSize: 31
-            }
-
-            XSNLabel {
-                text: "USD"
-                anchors.bottom: parent.bottom
-                color: "#7F8DC1"
-                font.pixelSize: 22
-                font.capitalization: Font.AllUppercase
-            }
+        XSNLabel {
+            id: usdAmount
+            anchors.left: coins.left
+            anchors.leftMargin: 5
+            text: "$ %1" .arg(usdBalance)
+            color: "#6E7BAA"
+            font.pixelSize: 22
         }
 
         RowLayout {

@@ -8,8 +8,12 @@ Product {
     type: "staticlibrary"
     name: "core"
     files: [
+        "Data/AssetsBalance.cpp",
+        "Data/AssetsBalance.hpp",
         "Data/CoinAsset.cpp",
         "Data/CoinAsset.hpp",
+        "Data/LocalCurrency.cpp",
+        "Data/LocalCurrency.hpp",
         "Data/TransactionEntry.cpp",
         "Data/TransactionEntry.hpp",
         "Data/WalletAssetsModel.cpp",
@@ -18,6 +22,10 @@ Product {
         "Models/AllTransactionsDataSource.hpp",
         "Models/AssetTransactionsDataSource.cpp",
         "Models/AssetTransactionsDataSource.hpp",
+        "Models/AssetsListProxyModel.cpp",
+        "Models/AssetsListProxyModel.hpp",
+        "Models/CurrencyModel.cpp",
+        "Models/CurrencyModel.hpp",
         "Models/EmulatorWalletDataSource.cpp",
         "Models/EmulatorWalletDataSource.hpp",
         "Models/TransactionsDataSource.cpp",

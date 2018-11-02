@@ -3,6 +3,8 @@
 #include <Models/AllTransactionsDataSource.hpp>
 #include <Models/WalletTransactionsListModel.hpp>
 #include "Data/WalletAssetsModel.hpp"
+#include "Data/AssetsBalance.hpp"
+#include "Data/LocalCurrency.hpp"
 
 //==============================================================================
 
@@ -34,6 +36,20 @@ const WalletAssetsModel &ApplicationViewModel::assetsModel() const
 
 //==============================================================================
 
+AssetsBalance *ApplicationViewModel::assetsBalance() const
+{
+    return _assetsBalance.get();
+}
+
+//==============================================================================
+
+LocalCurrency *ApplicationViewModel::localCurrency() const
+{
+    return _localCurrency.get();
+}
+
+//==============================================================================
+
 ApplicationViewModel *ApplicationViewModel::Instance()
 {
     static ApplicationViewModel instance;
@@ -53,6 +69,8 @@ void ApplicationViewModel::init()
 {
     initWalletAssets();
     initDataSource();
+    initWalletAssetsBalance();
+    initLocalCurrency();
     initAllTransactions();
 }
 
@@ -78,6 +96,21 @@ void ApplicationViewModel::initAllTransactions()
     _allTransactionsListNodel.reset(new WalletTransactionsListModel(allTransactionsDataSource, _walletAssetsModel.get()));
 
     allTransactionChanged();
+}
+
+//==============================================================================
+
+void ApplicationViewModel::initWalletAssetsBalance()
+{
+    auto allTransactionsDataSource = new AllTransactionsDataSource(dataSource(), this);
+    _assetsBalance.reset( new AssetsBalance(_walletAssetsModel.get(), allTransactionsDataSource));
+}
+
+//==============================================================================
+
+void ApplicationViewModel::initLocalCurrency()
+{
+    _localCurrency.reset();
 }
 
 //==============================================================================

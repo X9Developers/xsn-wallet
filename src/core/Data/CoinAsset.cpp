@@ -39,11 +39,11 @@ static bitcoin::CChainParams ChainParamsFromJson(QJsonObject obj)
 //==============================================================================
 
 CoinAsset::CoinAsset(unsigned int coinID, QString name, QString ticket, bitcoin::CChainParams params, Misc data) :
-    coinID(coinID),
-    name(name),
-    ticket(ticket),
-    params(params),
-    misc(data)
+    _coinID(coinID),
+    _name(name),
+    _ticket(ticket),
+    _params(params),
+    _misc(data)
 {
 
 }
@@ -57,6 +57,69 @@ CoinAsset CoinAsset::FromJson(const QJsonObject &obj)
                      obj.value("symbol").toString(),
                      ChainParamsFromJson(obj.value("chainparams").toObject()),
                      Misc::FromJson(obj.value("misc").toObject()));
+}
+
+//==============================================================================
+
+unsigned int CoinAsset::coinID() const
+{
+    return _coinID;
+}
+
+//==============================================================================
+
+void CoinAsset::setName(QString name)
+{
+    _name = name;
+}
+
+//==============================================================================
+
+QString CoinAsset::name() const
+{
+    return _name;
+}
+
+//==============================================================================
+
+void CoinAsset::setTicket(QString ticket)
+{
+    _ticket = ticket;
+}
+
+//==============================================================================
+
+QString CoinAsset::ticket() const
+{
+    return _ticket;
+}
+
+//==============================================================================
+
+void CoinAsset::setParams(bitcoin::CChainParams params)
+{
+    _params = params;
+}
+
+//==============================================================================
+
+bitcoin::CChainParams CoinAsset::params() const
+{
+    return _params;
+}
+
+//==============================================================================
+
+void CoinAsset::setMisc(CoinAsset::Misc misc)
+{
+    _misc = misc;
+}
+
+//==============================================================================
+
+CoinAsset::Misc CoinAsset::misc() const
+{
+    return _misc;
 }
 
 //==============================================================================

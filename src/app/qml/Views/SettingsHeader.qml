@@ -7,6 +7,7 @@ import "../Components"
 ListView {
     id: listView
 
+    model: ["Assets", "Localization", "Skins"]
     property int actualIndex: 0
 
     anchors.leftMargin: 10
@@ -21,7 +22,7 @@ ListView {
             anchors.bottom: parent.bottom
             width: 100
             height: 3
-            color: listView.currentItem.color
+            color: "grey"
         }
     }
 
@@ -34,29 +35,13 @@ ListView {
         height: parent.height
         width: 110
 
-        property string color: model.color
-        property int id: model.id
-        property string name: model.name
-        property string symbol: model.symbol
-        property var balance: model.balance
-        property var usdBalance: model.usdBalance
-
-        RowLayout {
-            spacing: 7
-            anchors.centerIn: parent
-
-            Image {
-                sourceSize: Qt.size(25, 25)
-                source: "qrc:/images/%1.png" .arg(asset.name)
-            }
-
             XSNLabel {
+                anchors.centerIn: parent
                 id: assetsName
-                text: model.name
+                text: modelData
                 font.pixelSize: 15
-                color: asset.ListView.isCurrentItem ? asset.color : mouseArea.containsMouse ? "white" : "#6B78A6"
+                color: asset.ListView.isCurrentItem ? "grey" : mouseArea.containsMouse ? "white" : "#6B78A6"
             }
-        }
 
         MouseArea {
             id: mouseArea
