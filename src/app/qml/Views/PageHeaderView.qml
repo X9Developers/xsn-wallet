@@ -13,6 +13,7 @@ ColumnLayout {
     property string coinSymbol : ""
     property int windowWidth: 0
     property bool buttonsVisible: false
+    property string accountBalance: ""
 
     RowLayout {
         Layout.fillWidth: true
@@ -71,7 +72,7 @@ ColumnLayout {
 
                         XSNLabel {
                             id: coinsAmount
-                            text: "73 612.12"
+                            text: accountBalance
                         }
 
                         XSNLabel {

@@ -1,6 +1,7 @@
 #include "QMLUtils.hpp"
 #include <Models/WalletTransactionsListModel.hpp>
 #include <Models/WalletAssetsListModel.hpp>
+#include <Models/AssetsListProxyModel.hpp>
 #include <ViewModels/WalletAssetViewModel.hpp>
 #include <ViewModels/ApplicationViewModel.hpp>
 #include <ViewModels/EmulatorViewModel.hpp>
@@ -75,6 +76,7 @@ void QMLUtils::RegisterViewModels(const char *uri, int versionMinor, int version
 void QMLUtils::RegisterModels(const char *uri, int versionMinor, int versionMajor)
 {
     QML_REGISTER_TYPE_HELPER(WalletAssetsListModel);
+    QML_REGISTER_TYPE_HELPER(AssetsListProxyModel);
 }
 
 //==============================================================================

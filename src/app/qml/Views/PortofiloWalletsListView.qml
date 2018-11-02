@@ -8,6 +8,8 @@ import com.xsn.viewmodels 1.0
 import com.xsn.models 1.0
 
 ColumnLayout {
+    id: root
+    property string accountBalance: walletsListModel.model.accountBalance !== undefined ? walletsListModel.model.accountBalance.toString() : ""
 
     RowLayout {
         Layout.fillWidth: true
@@ -37,12 +39,16 @@ ColumnLayout {
                 color: "#8C9CD4"
             }
 
-            TextArea {
+            TextField {
+                id: searchArea
                 anchors.verticalCenter: parent.verticalCenter
-                font.pixelSize: 14
-                color: "#8C9CD4"
-                placeholderText: "Search wallet or coin"
+                font.pixelSize: 15
+                placeholderText: "Search wallet"
 
+                FontLoader { id: localFont; source: "qrc:/Rubik-Regular.ttf" }
+                font.family: localFont.name
+
+                color: "#8C9CD4"
                 background: Rectangle {
                     color: "transparent"
                 }
@@ -65,6 +71,7 @@ ColumnLayout {
             }
 
             CustomizedComboBox {
+                id: comboBox
                 anchors.verticalCenter: parent.verticalCenter
                 model: ["Currency", "Balance"]
             }
@@ -73,7 +80,6 @@ ColumnLayout {
 
     ColumnLayout {
         Layout.fillHeight: true
-
         Layout.fillWidth: true
 
         WalletsListHeaderView {
@@ -85,16 +91,26 @@ ColumnLayout {
             id: walletsListModel
             Layout.fillHeight: true
             Layout.fillWidth: true
-            model: WalletAssetsListModel {
-                Component.onCompleted: initialize(ApplicationViewModel)
-            }
-
             onSendCoinsRequested: {
                 openSendDialog();
             }
             onReceiveCoinsRequested: {
                 openReceiveDialog();
             }
+
+            AssetsListProxyModel {
+                id: assetListProxyModel
+
+                source: WalletAssetsListModel {
+                    Component.onCompleted: initialize(ApplicationViewModel)
+                }
+                sortRole: comboBox.currentText === "Balance" ? "balance" : "name"
+                filterString: searchArea.text
+                filterCaseSensitivity: Qt.CaseInsensitive
+                sortCaseSensitivity: Qt.CaseInsensitive
+            }
+
+            model: assetListProxyModel
         }
     }
 }

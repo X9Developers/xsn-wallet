@@ -17,6 +17,8 @@ Page {
     property string currentAssetName: assetsListView.currentItem ? assetsListView.currentItem.name : ""
     property string currentAssetColor: assetsListView.currentItem ? assetsListView.currentItem.color : ""
     property string currentAssetSymbol: assetsListView.currentItem ? assetsListView.currentItem.symbol : ""
+    property var currentBalance: assetsListView.currentItem ? assetsListView.currentItem.balance : undefined
+    property var currentUsdBalance: assetsListView.currentItem ? assetsListView.currentItem.usdBalance : undefined
 
     background: Rectangle {
         color: "transparent"
@@ -71,14 +73,13 @@ Page {
 
         }
         WalletPageHeaderView {
-            //Layout.fillHeight: true
             Layout.fillWidth: true
-
-            Layout.preferredHeight: headerViewHeightSmallMode/*windowWidth > windowWidthSmallMode ? (width > windowWidthLargeMode ? headerViewHeightLargeMode : headerViewHeightMediumMode)
-                                                          : headerViewHeightSmallMode*/
+            Layout.preferredHeight: headerViewHeightSmallMode
             coinMeasure: currentAssetName
             labelColor: currentAssetColor
             coinSymbol: currentAssetSymbol
+            balance: currentBalance
+            usdBalance: currentUsdBalance
             windowWidth: root.windowWidth
 
             onSendCoins: {

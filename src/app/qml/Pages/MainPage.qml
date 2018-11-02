@@ -88,11 +88,9 @@ Page {
                 }
             }
 
-            XSNLabel {
+            SettingsPage {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-                text: "Settings"
-                color: "white"
             }
             //            TransactionPage {
             //                Layout.fillHeight: true
