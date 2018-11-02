@@ -14,8 +14,12 @@ Product {
         "Data/CoinAsset.hpp",
         "Data/LocalCurrency.cpp",
         "Data/LocalCurrency.hpp",
+        "Data/RequestHandlerImpl.cpp",
+        "Data/RequestHandlerImpl.hpp",
         "Data/TransactionEntry.cpp",
         "Data/TransactionEntry.hpp",
+        "Data/TransactionHandler.cpp",
+        "Data/TransactionHandler.hpp",
         "Data/WalletAssetsModel.cpp",
         "Data/WalletAssetsModel.hpp",
         "Models/AllTransactionsDataSource.cpp",
@@ -50,6 +54,7 @@ Product {
     Depends { name: "gsl" }
     Depends { name: "bitcoin" }
     Depends { name: "boost"}
+    Depends { name: "Qt.network" }
     cpp.defines: ['CRUCIAL_DEFINE']
     cpp.includePaths: [product.sourceDirectory]
 

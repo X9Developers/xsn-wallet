@@ -9,6 +9,7 @@ CppApplication {
     Depends { name: "libbitcoin" }
     Depends { name: "gtest" }
     Depends { name: "bitcoin" }
+    Depends { name: "Qt.network" }
     name: "core_tests"
     type: base.concat("autotest")
 
@@ -17,13 +18,17 @@ CppApplication {
         "tst_addressmanager.hpp",
         "tst_coretests.hpp",
         "tst_keystorage.hpp",
+        "tst_portalhttpclient.hpp",
     ]
 
     Group {
         name: "testdata"
         prefix: "testdata/"
         qbs.install: true
-        files: ["**/*", "../../../app/assets/assets_conf.json"]
+        files: [
+            "**/*",
+            "../../../app/assets/assets_conf.json",
+        ]
         fileTags: []
     }
 
