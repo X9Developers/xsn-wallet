@@ -11,6 +11,7 @@
 #include <mutex>
 #include <map>
 #include <utilmemory.h>
+#include <sync.h>
 
 /** A map that contains all the currently held directory locks. After
  * successful locking, these will be held here until the global destructor
@@ -171,4 +172,54 @@ bool LockDirectory(const boost::filesystem::path &directory, const std::string l
         dir_locks.emplace(pathLockFile.string(), std::move(lock));
     }
     return true;
+}
+
+boost::filesystem::path GetDefaultDataDir()
+{
+    namespace fs = boost::filesystem;
+    // Windows < Vista: C:\Documents and Settings\Username\Application Data\DashCore
+    // Windows >= Vista: C:\Users\Username\AppData\Roaming\DashCore
+    // Mac: ~/Library/Application Support/DashCore
+    // Unix: ~/.dashcore
+#ifdef WIN32
+    // Windows
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "XSNWallet";
+#else
+    fs::path pathRet;
+    char* pszHome = getenv("HOME");
+    if (pszHome == NULL || strlen(pszHome) == 0)
+        pathRet = fs::path("/");
+    else
+        pathRet = fs::path(pszHome);
+#ifdef MAC_OSX
+    // Mac
+    return pathRet / "Library/Application Support/XSNWallet";
+#else
+    // Unix
+    return pathRet / ".xsnwallet";
+#endif
+#endif
+}
+
+const boost::filesystem::path &GetDataDir()
+{
+    namespace fs = boost::filesystem;
+
+    static boost::filesystem::path pathCached;
+    static CCriticalSection csPathCached;
+
+    LOCK(csPathCached);
+
+    fs::path &path = pathCached;
+
+    // This can be called during exceptions by LogPrintf(), so we cache the
+    // value so we don't have to do memory allocations after that.
+    if (!path.empty())
+        return path;
+
+    path = GetDefaultDataDir();
+
+    fs::create_directories(path);
+
+    return path;
 }

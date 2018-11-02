@@ -293,4 +293,6 @@ public:
     }
 };
 
+void RenameThread(const char* name);
+
 #endif // BITCOIN_SYNC_H

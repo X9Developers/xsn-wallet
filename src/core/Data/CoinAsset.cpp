@@ -33,7 +33,7 @@ static bitcoin::CChainParams ChainParamsFromJson(QJsonObject obj)
         }
     }
 
-    return CChainParams(typesMap);
+    return CChainParams(typesMap, static_cast<CChainParams::ExtCoinType>(obj.value("extCoinType").toInt()));
 }
 
 //==============================================================================

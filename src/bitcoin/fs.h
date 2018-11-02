@@ -40,7 +40,9 @@ namespace fsbridge {
     };
 
     std::string get_filesystem_error_message(const fs::filesystem_error& e);
-};
+}
+
+const boost::filesystem::path &GetDataDir();
 
 bool TryCreateDirectories(const fs::path& p);
 bool LockDirectory(const fs::path& directory, const std::string lockfile_name, bool probe_only = false);

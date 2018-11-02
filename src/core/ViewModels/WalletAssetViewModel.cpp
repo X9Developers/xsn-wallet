@@ -4,7 +4,6 @@
 #include <ViewModels/ApplicationViewModel.hpp>
 #include <Data/WalletAssetsModel.hpp>
 #include <Models/AssetTransactionsDataSource.hpp>
-#include <Storage/KeyStorage.hpp>
 #include <key_io.h>
 
 //==============================================================================
@@ -63,6 +62,7 @@ void WalletAssetViewModel::initialize(ApplicationViewModel *applicationViewModel
 
 QString WalletAssetViewModel::getReceivingAddress() const
 {
+#if 0
     static KeyStorage keyStorage;
     auto derivedNewChildKey = keyStorage.deriveNewChildKey(0, 0, false);
 
@@ -70,6 +70,8 @@ QString WalletAssetViewModel::getReceivingAddress() const
     auto keyID = pubKey.GetID();
 
     return QString::fromStdString(bitcoin::EncodeDestination(keyID, _walletAssetsModel->assetById(_currentAssetID).params));
+#endif
+    return QString("dummy");
 }
 
 //==============================================================================

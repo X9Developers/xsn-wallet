@@ -14,6 +14,10 @@
 #include <boost/thread.hpp>
 #include <ctime>
 #include <tinyformat.h>
+#include <sync.h>
+
+static CCriticalSection cs_nTimeOffset;
+static int64_t nTimeOffset = 0;
 
 static std::atomic<int64_t> nMockTime(0); //!< For unit testing
 
@@ -107,4 +111,15 @@ std::string FormatISO8601Time(int64_t nTime) {
     gmtime_r(&time_val, &ts);
 #endif
     return strprintf("%02i:%02i:%02iZ", ts.tm_hour, ts.tm_min, ts.tm_sec);
+}
+
+int64_t GetTimeOffset()
+{
+    LOCK(cs_nTimeOffset);
+    return nTimeOffset;
+}
+
+int64_t GetAdjustedTime()
+{
+    return GetTime();
 }

@@ -5,8 +5,9 @@ namespace bitcoin {
 
 //==============================================================================
 
-CChainParams::CChainParams(CChainParams::Base58TypesMap base58Map) :
-    _base58Types(base58Map)
+CChainParams::CChainParams(CChainParams::Base58TypesMap base58Map, ExtCoinType type) :
+    _base58Types(base58Map),
+    _type(type)
 {
     assert(_base58Types.count(Base58Type::PUBKEY_ADDRESS) == 1);
     assert(_base58Types.count(Base58Type::SCRIPT_ADDRESS) == 1);
@@ -35,6 +36,13 @@ const std::vector<unsigned char> &CChainParams::base58Prefix(CChainParams::Base5
 const std::string &CChainParams::bech32HRP() const
 {
     return std::string();
+}
+
+//==============================================================================
+
+CChainParams::ExtCoinType CChainParams::extCoinType() const
+{
+    return _type;
 }
 
 //==============================================================================

@@ -17,15 +17,17 @@ struct CChainParams {
     };
 
     using Base58TypesMap = std::map<Base58Type, std::vector<unsigned char>>;
-
-    explicit CChainParams(Base58TypesMap base58Map);
+    using ExtCoinType = unsigned int;
+    explicit CChainParams(Base58TypesMap base58Map, ExtCoinType type);
     ~CChainParams();
 
     const std::vector<unsigned char> &base58Prefix(Base58Type type) const;
     const std::string &bech32HRP() const;
+    ExtCoinType extCoinType() const;
 
 private:
     Base58TypesMap _base58Types;
+    ExtCoinType _type;
 };
 
 }

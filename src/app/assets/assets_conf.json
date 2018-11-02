@@ -7,6 +7,7 @@
       "color":"#616161"
     },
     "chainparams":{
+      "extCoinType": 384,
       "base58Prefix":{
         "pubkeyAddress":[
           76
@@ -40,6 +41,7 @@
       "color":"#0d579b"
     },
     "chainparams":{
+      "extCoinType": 5,
       "base58Prefix":{
         "pubkeyAddress":[
           76
@@ -73,6 +75,7 @@
       "color":"#f7931a"
     },
     "chainparams":{
+      "extCoinType": 0,
       "base58Prefix":{
         "pubkeyAddress":[
           0
